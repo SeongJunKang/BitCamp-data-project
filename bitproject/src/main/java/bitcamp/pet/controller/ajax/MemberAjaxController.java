@@ -43,6 +43,7 @@ public class MemberAjaxController {
       memberService.add(member);
     } catch(Exception e) {
       result.put("status", "failure"); 
+      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
