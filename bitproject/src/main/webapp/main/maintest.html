@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>산책할개</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../footerStyle.css">
+<link rel="stylesheet" type="text/css" href="../headerStyle.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+<style>
+body {
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+#inbody {
+   background-color: #f7f7f7;
+}
+
+#container {
+   padding-top: 50px;
+   padding-bottom: 100px;
+}
+
+#img1 {
+   height: 80px;
+}
+
+#img2 {
+  width : 1100px;
+  border-radius: 10px;
+   display: table;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+h1 {
+   border: 1px solid gray;
+   color: darkgray;
+   background-color: yellow;
+}
+
+#searchBtn {
+   float: right;
+}
+
+#sltArea {
+   float: right;
+   height: 34px;
+}
+
+#searchBox, #sltVisit {
+   float: right;
+   height: 34px;
+}
+#login {
+  margin-right : 10px;
+}
+#mainbot {
+  margin-top : 0px;
+   display: table;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.mainphoto {
+margin-left:auto;
+margin-right:auto;
+width:1100px;
+  height: 450px;
+   overflow: hidden;
+   display: inline-block;
+   background-color: #f7f7f7;
+   height: 1450px;
+   margin-top: 0px;
+   padding-top: 0px;
+   padding-left: 0px;
+   padding-right: 0px;
+   text-align: left;
+}
+.mainphoto1{
+  border: 1px solid lightgrey;
+  height: 450px;
+  width: 330px;
+  display: inline-block;
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-bottom: 36px;
+    border-radius: 10px;
+}
+.mainphoto1:hover {
+  position: relative;
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+.middleimg {
+  width: 100%;
+  border-radius: 10px;
+}
+.leftphoto {
+  margin-left: 0px;
+}
+.rightphoto {
+  margin-right: 0px;
+}
+
+#moveBtn {
+   display: table;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+
+#carousel-example-generic {
+   width: 100%;
+   margin: 0 auto;
+}
+
+.item {
+   text-align: center;
+}
+
+.imgmain {
+   width: 100%;
+   height: auto;
+}
+
+
+#resisttext {
+   font-size: 22px;
+   font-weight: bold;
+}
+
+.subject {
+   font-size: 16px;
+   font-weight: bold;
+}
+
+.star {
+   width: 100px;
+   height: auto;
+   padding-bottom: 10px;
+   padding-right: 7px;
+}
+
+.innerSentence {
+   padding: 7px;
+}
+
+.subtitle {
+   font-size: 16px;
+   font-weight: bold;
+   margin-bottom: 5px;
+}
+
+ul li {
+   display: inline;
+}
+
+.middleimg.landscape {
+    width: auto;
+    height: 100%;    
+}
+.middleimg.portrait {
+    width: 100%;
+    height: auto;    
+}
+</style>
+
+</head>
+<body>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow-y:on">
+      <section class="main">
+        <form class="form-2">
+          <h1><span class="log-in">Log in</span> or <span class="sign-up">sign up</span></h1>
+          <p class="float">
+            <label for="login"><i class="icon-user"></i>Username</label>
+            <input type="text" name="login" placeholder="Username or email">
+          </p>
+          <p class="float">
+            <label for="password"><i class="icon-lock"></i>Password</label>
+            <input type="password" name="password" placeholder="Password" class="showpassword">
+          </p>
+          <p class="clearfix"> 
+            <a href="#" class="log-twitter">Log in with Twitter</a>    
+            <input type="submit" name="submit" value="Log in">
+          </p>
+        </form>​​
+      </section>
+</div>
+   <div id="inbody">
+      <div id="topbanner">
+         <div id="topbar">
+            <p id="topbar_logo">
+               <a href="#" onclick="goMain(event)"><img class="logo"
+                  src="../img/로고.PNG"></a>
+            </p>
+            <p id="topbar_button">
+               <button id="signup" type="button" class="btn btn-default">회원가입</button>
+               <button id="login" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">로그인</button>
+            </p>
+         </div>
+      </div>
+      <div id="container">
+         <div class="carousel-example-generic">
+            <img class="imgmain" src="../img/main/메인개.png">
+         </div>
+         <br>
+
+         <div id='mainbot'>
+            <div>
+               <button id='searchBtn' class="btn btn-info" type="button">
+                  <img src="../img/main/search.png">검색하기
+               </button>
+               <input type='text' name='search' id='searchBox'></input> <select
+                  id='sltVisit'>
+                  <option>위탁/방문 전체</option>
+                  <option>위탁</option>
+                  <option>방문</option>
+               </select> <span id="resisttext">등록된 펫시터</span> <select id='sltArea'>
+                  <option>전지역</option>
+                  <option>서울</option>
+                  <option>경기</option>
+                  <option>인천</option>
+                  <option>광주</option>
+                  <option>대구</option>
+                  <option>부산</option>
+                  <option>대전</option>
+                  <option>울산</option>
+                  <option>강원</option>
+                  <option>경남</option>
+                  <option>경북</option>
+                  <option>전남</option>
+                  <option>전북</option>
+                  <option>충남</option>
+                  <option>충북</option>
+                  <option>제주</option>
+               </select>
+            </div>
+            <hr>
+      <ul class="nav nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#c" data-toggle="tab">최신순 <span class="sr-only">(current)</span></a></li>
+        <li role="presentation" ><a href="#p" data-toggle="tab">인기순</a></li>
+        <li role="presentation" ><a href="#n" data-toggle="tab">이름순</a></li>
+        <li role="presentation" ><a href="#s" data-toggle="tab">판매누적순</a></li>
+        <li role="presentation" ><a href="#pr" data-toggle="tab">가격순</a></li>
+            
+      </ul>
+
+            <br>
+            
+              <div class='mainphoto'>
+              
+              </div>
+              
+              
+            <br> <br>
+            <div id='moveBtn'>
+               <button class='moveBtn' class="btn btn-info" type="button">〈〈</button>
+               <button class='moveBtn' class="btn btn-info" type="button">1</button>
+               <button class='moveBtn' class="btn btn-info" type="button">2</button>
+               <button class='moveBtn' class="btn btn-info" type="button">3</button>
+               <button class='moveBtn' class="btn btn-info" type="button">4</button>
+               <button class='moveBtn' class="btn btn-info" type="button">5</button>
+               <button class='moveBtn' class="btn btn-info" type="button">〉〉</button>
+            </div>
+            <br>
+            <hr>
+            <div>
+               <img id='img2' src="../img/main/mainbot.PNG">
+            </div>
+         </div>
+      </div>
+      <footer>
+      
+            <a href="#" onclick="goMain(event)"> <img class="logofooter"
+               src="../img/로고.PNG"></a>
+      
+         <p id="copyright" class="footer">
+            <br> 이 사이트의 모든 권한은 자바 80기에 있습니다.<br> 비트캠프 | 사업자등록번호: <span
+               id="compno">214-85-24928</span> |(주)비트교육센터 서초지점 대표 조현정<br>
+            전화번호: 02)3486-9600 | 팩스: 02)6007-1245 | 메일: bit@bitacademy.net <br>
+            사업장 소재지 : 서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층
+         </p>
+      </footer>
+   </div>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(function() {
+    $.ajax({
+      url:"maintest.json",
+      dataType:"json",
+      success:function(result){
+        $.each(result.list,function(i,d){
+          $(".mainphoto").append("<div class='mainphoto1'>" +
+                  "<a href='../detail/detail.html'>" +
+                  "<div class='thumbnail-wrapper'>" +
+                  "<img class='middleimg' src='" + d["img"] + "' height='300'>" +
+                  "</div>" +
+                  "<div class='innerSentence'>"+
+                  "<p class='subtitle'>"+ d["subtitle"]+ "</p>" +
+                  "<p class='addr'>"+d["addr"]+ "</p>" +
+                  "<p class='price'>" +d["price"]+ "원 조회수 <span class='views'>"+d["views"]+"회</span></p>" +
+                  "</div><div style='text-align: right'><img src='"+d["starimg"]+"' class='star'></a></div>"
+               );
+        });
+      }
+    });
+});
+      
+/*       $.each(result.list2,function(i,d){
+          $(".mainphoto2").append("<div class='mainphoto'>" +
+             "<div class='mainphoto leftphoto'>" +
+                "<a href='../detail/detail.html'>" +
+                 "<div>" +
+                 "<img class='middleimg' src='" + d["img"] + "' height='300'>" +
+                 "</div>" +
+                 "<div class='innerSentence'>"+
+                 "<p class='subtitle'>"+ d["subtitle"]+ "</p>" +
+                 "<p class='addr'>"+d["addr"]+ "</p>" +
+                 "<p class='price'>" +d["price"]+ "원 조회수 <span class='views'>"+d["views"]+"회</span></p>" +
+                 "</div><div style='text-align: right'><img src='"+d["starimg"]+"' class='star'></div></a></div>"
+              );
+        });
+      $.each(result.list3,function(i,d){
+          $(".mainphoto3").append("<div class='mainphoto'>" +
+             "<div class='mainphoto leftphoto'>" +
+                "<a href='../detail/detail.html'>" +
+                 "<div>" +
+                 "<img class='middleimg' src='" + d["img"] + "' height='300'>" +
+                 "</div>" +
+                 "<div class='innerSentence'>"+
+                 "<p class='subtitle'>"+ d["subtitle"]+ "</p>" +
+                 "<p class='addr'>"+d["addr"]+ "</p>" +
+                 "<p class='price'>" +d["price"]+ "원 조회수 <span class='views'>"+d["views"]+"회</span></p>" +
+                 "</div><div style='text-align: right'><img src='"+d["starimg"]+"' class='star'></div></a></div>"
+              );
+        }); */
+
+      $("#signup").click(function() {
+         location.href = "../signup/signup.html"
+         event.preventDefault();
+      });
+        
+      function goMain(event) {
+         location.href = "../main/maintest.html"
+         event.preventDefault();
+      }
+   </script>
+</body>
+</html>

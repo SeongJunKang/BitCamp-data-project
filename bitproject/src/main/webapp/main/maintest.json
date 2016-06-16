@@ -1,0 +1,13 @@
+{
+  "list":[
+    {"subtitle":"책1", "img":"../img/main/pet.jpg", "addr":"정말 아름답게1", "price":"30,000", "views":"01", "starimg":"../img/main/star2.png"},
+    {"subtitle":"그2", "img":"../img/main/pet2.jpg", "addr":"내가 최고야22", "price":"15,000", "views":"02", "starimg":"../img/main/star4.png"},
+    {"subtitle":"니3", "img":"../img/main/ara.jpg", "addr":"강아지는 반려.", "price":"14,000", "views":"04", "starimg":"../img/main/star3.png"},
+    {"subtitle":"책4", "img":"../img/main/pet5.jpg", "addr":"정말 아름답33", "price":"30,000", "views":"55", "starimg":"../img/main/star2.png"},
+    {"subtitle":"그5", "img":"../img/main/pet6.jpg", "addr":"내가 최고야33", "price":"15,000", "views":"66", "starimg":"../img/main/star3.png"},
+    {"subtitle":"그6", "img":"../img/main/pet7.jpg", "addr":"강아지는 반려", "price":"14,000", "views":"77", "starimg":"../img/main/star4.png"},
+    {"subtitle":"그7", "img":"../img/main/pet4.jpg", "addr":"정말 아름답게", "price":"30,000", "views":"88", "starimg":"../img/main/star4.png"},
+    {"subtitle":"그8", "img":"../img/main/pet8.jpg", "addr":"내가 최고야34", "price":"15,000", "views":"99", "starimg":"../img/main/star4.png"},
+    {"subtitle":"그9", "img":"../img/main/pet9.jpg", "addr":"강아지는 반려", "price":"14,000", "views":"33", "starimg":"../img/main/star2.png"}
+  ]  
+}

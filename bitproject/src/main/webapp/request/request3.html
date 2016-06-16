@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../headerStyle.css">
+<link rel="stylesheet" type="text/css" href="../footerStyle.css">
+
+<script src="../js/calendar.js"></script>
+
+<title>우아하개</title>
+<style type="text/css">
+body {
+  margin-left : 20px; 
+  margin-right : 20px;
+}
+
+#inbody {
+  background-color: #f7f7f7 ;
+}
+
+#container {
+  padding-bottom : 100px;
+  padding-top: 200px;
+}
+
+.radiobtn {
+  cursor: pointer;
+}
+.day {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+p {
+	text-align : left;
+	font-size: 20px;
+}
+.day {
+	display: inline-block;
+}
+#ask {
+  display: table;
+  margin: auto;
+}
+.question, #inquire {
+	font-size: medium;
+	font-weight: bold;
+}
+.question {
+	text-decoration: underline;
+}
+.question, .answer, #inquire {
+	margin-top: 10px;
+}
+.answer {
+  margin-left: 20px;
+}
+#bodycontent {
+  width : 1100px;
+  margin: 0 auto;
+}
+#requestBody {
+  display: table;
+  text-align: center;
+  width: 646px;
+  margin: 0 auto;
+}
+#calendar, #request  {
+  float : left;
+  display : inline-block;
+  height : 230px; 
+  width: 212px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#calendar {
+  padding : 10px;
+  height : 260px;
+  width : 350px;
+  border-radius : 14px;
+  margin-right: 80px;
+  margin-bottom : 50px;
+  border: 1px lightgray solid;
+  
+}
+#selectday {
+  color : black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.choose {
+  
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+#dialog {
+  display: none;
+}
+</style>
+
+</head>
+<body>
+<div id="inbody">
+	<div id="topbanner">
+		<div id="topbar">
+			<p id="topbar_logo">
+				<a href="#" onclick="goMain(event)"><img class="logo"
+					src="../img/로고.PNG"></a>
+			</p>
+			<p id="topbar_button">
+				<button id="signup" type="button" class="btn btn-link">회원가입</button>
+				<button id="login" type="button" class="btn btn-link">로그인</button>
+			</p>
+		</div>
+	</div>
+	<div id="container">
+	<div id = "bodycontent">
+	<div id="requestBody">
+			<div id="calendar">
+				<span id="selectday">날짜 선택</span><br>
+				
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+				<script src="//code.jquery.com/jquery.min.js"></script>
+				<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+				<script src="../js/bootstrap.min.js"></script>
+				<script type="text/javascript">
+					cal = new Calendar('cal', 'frm1');
+					cal.tfDate = 'CALDDATE'; // 날짜 입력 필드명
+
+					var gb = Math.round(Math.random() * 6);
+					// gb - 0~6 : 핑크색, 오렌지색, 노란색, 연두색, 보라색, 녹색, 하늘색
+					var dayColor = new Array("#F4D7F1", "#FAD9B7", "#E3E0CC",
+							"#E2F3CD", "#EBD8FB", "#CAF2E7", "#D1EBF3");
+					var dateColor = new Array("#FDF2FC", "#FBF3EA", "#FDF9E5",
+							"#F5FEEA", "#F5EEFB", "#EFFCF5", "#E9F8FC");
+					var focusColor = new Array("yellow", "white", "#DDDDDD",
+							"#DDDDDD", "white", "#DDDDDD", "#DDDDDD");
+
+					cal.bgcolor = "#E2F3CD"; // 요일 바탕색
+					cal.bgcolor2 = "white"; // 내용 바탕색
+					cal.linecolor = "black"; // 요일 바탕 라인색
+					cal.lineheight = '23px'; // 요일 바탕 높이
+					cal.width = '330'; // 달력 너비
+					cal.tfDateLineCol = 'black'; // 날짜 입력 필드 라인색
+					cal.tfCol = "#DDDDDD"; // 내용 필드 바탕색
+					cal.focusCol = "#D1EBF3"; // 포커드 필드 바탕색
+					cal.show();
+				</script>
+			</div>
+			<div id="request">
+				<p id="week">
+				  <img class="day" id="mon" data-state="white"  src="../img/request/월백.PNG">
+					<img class="day" id="tue" data-state="white"  src="../img/request/화백.PNG"> 
+					<img class="day" id="wen" data-state="white"	src="../img/request/수백.PNG"> 
+					<img class="day" id="thu" data-state="white"	src="../img/request/목백.PNG"> 
+					<img class="day" id="fri" data-state="white"	src="../img/request/금백.PNG"> 
+					<img class="day" id="sat" data-state="white"	src="../img/request/토백.PNG"> 
+					<img class="day" id="sun" data-state="white"	src="../img/request/일백.PNG"> 
+				</p>
+				<p id="basic">기본 : </p>
+				<p id="period">기간 : </p>
+				<p id="totalday">총일 : </p> 
+				<p id="sum">합계 : </p>
+				<button id="admit" type="button" class="btn btn-default">신청</button>
+	      <button id="cancle" type="button" onclick="goMain(event)" class="btn btn-default">취소</button>
+	      <button id="discuss" type="button" class="btn btn-default">협의</button>
+      </div>
+	</div>
+	
+	<div id="ask">
+		<div class="question">관련 지침 및 요청사항 <br>
+		<textarea rows="4" cols="60"></textarea>
+		</div>
+		<div class="question">Q. 반려동물을 기관에 등록하였습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="resist" value="yes">yes
+			<input type="radio" class="radiobtn" name="resist" value="no">no
+		</div>
+		<div class="question">Q. 중성화 수술을 하였습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="neutralize" value="yes">yes
+			<input type="radio" class="radiobtn" name="neutralize" value="no">no
+		</div>
+		<div class="question">Q. 다른 동물과 친화적입니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="anifriendly" value="yes">yes
+			<input type="radio" class="radiobtn" name="anifriendly" value="no">no
+		</div>
+		<div class="question">Q. 어린이나 사람과 친화적입니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="humanfriendly" value="yes">yes
+			<input type="radio" class="radiobtn" name="humanfriendly" value="no">no
+		</div>
+		<div class="question">Q. 잘 짖습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="bark" value="yes">yes
+			<input type="radio" class="radiobtn" name="bark" value="no">no
+		</div>
+		<div class="question">Q. 지병을 갖고있습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="disease" value="yes">yes
+			<input type="radio" class="radiobtn" name="disease" value="no">no
+		</div>
+		<div class="question">Q. 식사시간이 정해져 있다면 알려주세요?</div>
+		<div class="answer">
+			<input type="text" name="mealtime">
+		</div>
+		<div class="question">Q. 훈련이 되어있다면 알려주세요</div>
+		<div class="answer">
+			<input type="text" name="training">
+		</div>
+	  <button id= "inquire" type="button" class="btn btn-default">문의사항</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  <footer>
+    <p id="footlogo" class="footer">
+      <a href="#" onclick="goMain(event)"><img class="logo"
+        src="../img/로고.PNG"></a>
+    </p>
+	    <p id="copyright" class="footer">
+	      <br> 이 사이트의 모든 권한은 자바 80기에 있습니다.<br> 비트캠프 | 사업자등록번호: <span
+	        id="compno">214-85-24928</span> |(주)비트교육센터 서초지점 대표 조현정<br>
+	      전화번호: 02)3486-9600 | 팩스: 02)6007-1245 | 메일: bit@bitacademy.net <br>
+	      사업장 소재지 : 서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층
+	    </p>
+  </footer>
+
+  <script type="text/javascript">
+  /*
+  $(function() {
+	  $( "#datepicker1, #datepicker2" ).datepicker({
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    dayNames: ['일','월','화','수','목','금','토'],
+	    dayNamesShort: ['일','월','화','수','목','금','토'],
+	    dayNamesMin: ['일','월','화','수','목','금','토'],
+	    showMonthAfterYear: true,
+	    yearSuffix: '년',
+	    onClose: function(dateText,inst) { 
+	    	if( $("#datepicker1").val() !="" && $("#datepicker2").val() !="" ){
+	    		  if ($("#datepicker2").val() < $("#datepicker1").val()) {
+	    			    $(function() {
+	    			        $( "#dialog" ).dialog({
+	    			            resizable: false,
+	    			            height:200,
+	    			            width:400,
+    		                buttons:{
+    		                    "확인":function(){
+    		                        $(this).dialog("close");
+    		                    }
+    		                }
+	    			        });
+	    			        
+	    			      });
+	    	}
+	    } 
+	   }
+	  });
+	});
+  */
+  document.getElementById("login").onclick = function() {
+	    location.href = "../mypage/mypage.html"
+	    event.preventDefault();
+	  }
+  function goMain(event) {
+    location.href = "../main/maintest.html"
+    event.preventDefault();
+  }
+  
+  var mon = document.getElementById("mon");
+  mon.onclick = function() {
+    var state = mon.getAttribute("data-state");
+    if (state == "white") {
+      mon.setAttribute("src","../img/request/월.png");
+      mon.setAttribute("data-state","color");
+    } else {
+    	mon.setAttribute("data-state","white");
+      mon.setAttribute("src","../img/request/월백.PNG");
+    }
+  }
+  
+  var tue = document.getElementById("tue");
+  tue.onclick = function() {
+    var state = tue.getAttribute("data-state");
+    if (state == "white") {
+      tue.setAttribute("src","../img/request/화.png");
+      tue.setAttribute("data-state","color");
+    } else {
+      tue.setAttribute("data-state","white");
+      tue.setAttribute("src","../img/request/화백.PNG");
+    }
+  }
+
+  var wen = document.getElementById("wen");
+  wen.onclick = function() {
+    var state = wen.getAttribute("data-state");
+    if (state == "white") {
+      wen.setAttribute("src","../img/request/수.png");
+      wen.setAttribute("data-state","color");
+    } else {
+    	wen.setAttribute("data-state","white");
+      wen.setAttribute("src","../img/request/수백.PNG");
+    }
+  }
+
+  var thu = document.getElementById("thu");
+  thu.onclick = function() {
+    var state = thu.getAttribute("data-state");
+    if (state == "white") {
+      thu.setAttribute("src","../img/request/목.png");
+      thu.setAttribute("data-state","color");
+    } else {
+      thu.setAttribute("data-state","white");
+      thu.setAttribute("src","../img/request/목백.PNG");
+    }
+  }
+  
+  var fri = document.getElementById("fri");
+  fri.onclick = function() {
+    var state = fri.getAttribute("data-state");
+    if (state == "white") {
+      fri.setAttribute("src","../img/request/금.png");
+      fri.setAttribute("data-state","color");
+    } else {
+    	fri.setAttribute("data-state","white");
+      fri.setAttribute("src","../img/request/금백.PNG");
+    }
+  }
+  
+
+  var sat = document.getElementById("sat");
+  sat.onclick = function() {
+    var state = sat.getAttribute("data-state");
+    if (state == "white") {
+      sat.setAttribute("src","../img/request/토.png");
+      sat.setAttribute("data-state","color");
+    } else {
+    	sat.setAttribute("data-state","white");
+      sat.setAttribute("src","../img/request/토백.PNG");
+    }
+  }
+
+  var sun = document.getElementById("sun");
+  sun.onclick = function() {
+    var state = sun.getAttribute("data-state");
+    if (state == "white") {
+      sun.setAttribute("src","../img/request/일.png");
+      sun.setAttribute("data-state","color");
+    } else {
+      sun.setAttribute("data-state","white");
+      sun.setAttribute("src","../img/request/일백.PNG");
+    }
+  }
+	</script>
+  <div id="dialog" title="날짜 설정 오류">
+  <p>시작일이 종료일보다 느립니다.<br> 다시 설정해주세요</p>
+  </div>
+</body>
+</html>

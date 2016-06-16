@@ -1,0 +1,231 @@
+-- 회원
+DROP TABLE IF EXISTS MEMBER RESTRICT;
+
+-- 펫시터
+DROP TABLE IF EXISTS petsitter RESTRICT;
+
+-- 신청
+DROP TABLE IF EXISTS request RESTRICT;
+
+-- 펫시터산책후기
+DROP TABLE IF EXISTS petreview RESTRICT;
+
+-- 사용자후기
+DROP TABLE IF EXISTS userreview RESTRICT;
+
+-- 좋아요
+DROP TABLE IF EXISTS likes RESTRICT;
+
+-- 회원
+CREATE TABLE MEMBER (
+  MNO   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  EMAIL VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+  PWD   VARCHAR(10)  NOT NULL COMMENT '비밀번호', -- 비밀번호
+  NAME  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
+  GEN   VARCHAR(1)   NOT NULL COMMENT '성별', -- 성별
+  BTH   DATE         NOT NULL COMMENT '생년월일', -- 생년월일
+  TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호' -- 핸드폰번호
+)
+COMMENT '회원';
+
+-- 회원
+ALTER TABLE MEMBER
+  ADD CONSTRAINT PK_MEMBER -- 회원 기본키
+    PRIMARY KEY (
+      MNO -- 회원번호
+    );
+
+-- 회원 유니크 인덱스
+CREATE UNIQUE INDEX UIX_MEMBER
+  ON MEMBER ( -- 회원
+    EMAIL ASC -- 이메일
+  );
+
+ALTER TABLE MEMBER
+  MODIFY COLUMN MNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+
+-- 펫시터
+CREATE TABLE petsitter (
+  MNO    INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
+  NICK   VARCHAR(100) NOT NULL COMMENT '닉네임', -- 닉네임
+  INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
+  AMT    INTEGER      NOT NULL COMMENT '가격', -- 가격
+  KTALK  VARCHAR(40)  NULL     COMMENT '카톡', -- 카톡
+  BANK   VARCHAR(20)  NOT NULL COMMENT '은행', -- 은행
+  BKNM   VARCHAR(20)  NOT NULL COMMENT '예금주', -- 예금주
+  ACC    VARCHAR(20)  NOT NULL COMMENT '계좌', -- 계좌
+  SER    TEXT         NULL     COMMENT '추가서비스', -- 추가서비스
+  INQUR  VARCHAR(20)  NOT NULL COMMENT '문의시간', -- 문의시간
+  ADDR_1 VARCHAR(255) NOT NULL COMMENT '우편번호', -- 우편번호
+  ADDR_2 VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
+  PET    VARCHAR(20)  NULL     COMMENT '반려동물유무', -- 반려동물유무
+  RAD    INTEGER      NULL     COMMENT '반지름', -- 반지름
+  LAT    VARCHAR(20)  NULL     COMMENT '위도', -- 위도
+  LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
+  COL    INTEGER      NULL     COMMENT '좋아요' -- 좋아요
+)
+COMMENT '펫시터';
+
+-- 펫시터
+ALTER TABLE petsitter
+  ADD CONSTRAINT PK_petsitter -- 펫시터 기본키2
+    PRIMARY KEY (
+      MNO -- 펫시터회원번호
+    );
+
+ALTER TABLE petsitter
+  MODIFY COLUMN MNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '펫시터회원번호';
+
+-- 신청
+CREATE TABLE request (
+  REQ   INTEGER NOT NULL COMMENT '신청번호', -- 신청번호
+  MNO   INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
+  PNO   INTEGER NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
+  CDT   DATE    NULL     COMMENT '신청일', -- 신청일
+  CONTS TEXT    NULL     COMMENT '내용', -- 내용
+  STAT  TEXT    NULL     COMMENT '상태', -- 상태
+  ANS   TEXT    NULL     COMMENT '답변' -- 답변
+)
+COMMENT '신청';
+
+-- 신청
+ALTER TABLE request
+  ADD CONSTRAINT PK_request -- 신청 기본키
+    PRIMARY KEY (
+      REQ -- 신청번호
+    );
+
+ALTER TABLE request
+  MODIFY COLUMN REQ INTEGER NOT NULL AUTO_INCREMENT COMMENT '신청번호';
+
+-- 펫시터산책후기
+CREATE TABLE petreview (
+  COL   INTEGER      NOT NULL COMMENT '산책후기번호', -- 산책후기번호
+  MNO   INTEGER      NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
+  PIC   VARCHAR(255) NULL     COMMENT '사진', -- 사진
+  VIDEO VARCHAR(255) NULL     COMMENT '동영상', -- 동영상
+  PREV  TEXT         NOT NULL COMMENT '후기', -- 후기
+  PDT   DATE         NULL     COMMENT '날짜' -- 날짜
+)
+COMMENT '펫시터산책후기';
+
+-- 펫시터산책후기
+ALTER TABLE petreview
+  ADD CONSTRAINT PK_petreview -- 펫시터산책후기 기본키
+    PRIMARY KEY (
+      COL -- 산책후기번호
+    );
+
+ALTER TABLE petreview
+  MODIFY COLUMN COL INTEGER NOT NULL AUTO_INCREMENT COMMENT '산책후기번호';
+
+-- 사용자후기
+CREATE TABLE userreview (
+  BNO  INTEGER NOT NULL COMMENT '게시물번호', -- 게시물번호
+  PNO  INTEGER NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
+  MNO  INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
+  BREV TEXT    NOT NULL COMMENT '글', -- 글
+  BDT  DATE    NULL     COMMENT '날짜' -- 날짜
+)
+COMMENT '사용자후기';
+
+-- 사용자후기
+ALTER TABLE userreview
+  ADD CONSTRAINT PK_userreview -- 사용자후기 기본키
+    PRIMARY KEY (
+      BNO -- 게시물번호
+    );
+
+ALTER TABLE userreview
+  MODIFY COLUMN BNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시물번호';
+
+-- 좋아요
+CREATE TABLE likes (
+  PNO INTEGER NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
+  MNO INTEGER NOT NULL COMMENT '사용자번호' -- 사용자번호
+)
+COMMENT '좋아요';
+
+-- 펫시터
+ALTER TABLE petsitter
+  ADD CONSTRAINT FK_MEMBER_TO_petsitter -- 회원 -> 펫시터
+    FOREIGN KEY (
+      MNO -- 펫시터회원번호
+    )
+    REFERENCES MEMBER ( -- 회원
+      MNO -- 회원번호
+    );
+
+-- 신청
+ALTER TABLE request
+  ADD CONSTRAINT FK_MEMBER_TO_request -- 회원 -> 신청
+    FOREIGN KEY (
+      MNO -- 회원번호
+    )
+    REFERENCES MEMBER ( -- 회원
+      MNO -- 회원번호
+    );
+
+-- 신청
+ALTER TABLE request
+  ADD CONSTRAINT FK_petsitter_TO_request -- 펫시터 -> 신청
+    FOREIGN KEY (
+      PNO -- 펫시터회원번호
+    )
+    REFERENCES petsitter ( -- 펫시터
+      MNO -- 펫시터회원번호
+    );
+
+-- 펫시터산책후기
+ALTER TABLE petreview
+  ADD CONSTRAINT FK_petsitter_TO_petreview -- 펫시터 -> 펫시터산책후기
+    FOREIGN KEY (
+      MNO -- 펫시터회원번호
+    )
+    REFERENCES petsitter ( -- 펫시터
+      MNO -- 펫시터회원번호
+    );
+
+-- 사용자후기
+ALTER TABLE userreview
+  ADD CONSTRAINT FK_MEMBER_TO_userreview -- 회원 -> 사용자후기
+    FOREIGN KEY (
+      MNO -- 회원번호
+    )
+    REFERENCES MEMBER ( -- 회원
+      MNO -- 회원번호
+    );
+
+-- 사용자후기
+ALTER TABLE userreview
+  ADD CONSTRAINT FK_petsitter_TO_userreview -- 펫시터 -> 사용자후기2
+    FOREIGN KEY (
+      PNO -- 펫시터회원번호
+    )
+    REFERENCES petsitter ( -- 펫시터
+      MNO -- 펫시터회원번호
+    );
+
+-- 좋아요
+ALTER TABLE likes
+  ADD CONSTRAINT FK_MEMBER_TO_likes -- 회원 -> 좋아요
+    FOREIGN KEY (
+      MNO -- 사용자번호
+    )
+    REFERENCES MEMBER ( -- 회원
+      MNO -- 회원번호
+    );
+
+-- 좋아요
+ALTER TABLE likes
+  ADD CONSTRAINT FK_petsitter_TO_likes -- 펫시터 -> 좋아요2
+    FOREIGN KEY (
+      PNO -- 펫시터회원번호
+    )
+    REFERENCES petsitter ( -- 펫시터
+      MNO -- 펫시터회원번호
+    );
+    
+    
+    insert into member(email,pwd,name,gen,bth,tel) value("test@test.com","1111","홍길동","남","1455-05-05","01001010101");
+    

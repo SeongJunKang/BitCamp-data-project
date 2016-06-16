@@ -1,0 +1,17 @@
+{
+  "list":[
+    {"subtitle":"도그산책", "img":"../img/main/pet.jpg",  "addr":"정말 아름답게 ", "price":"30,000", "views":"8", "starimg":"../img/main/star2.png"},
+    {"subtitle":"산책도그", "img":"../img/main/pet2.jpg", "addr":"내가 최고야", "price":"15,000", "views":"52", "starimg":"../img/main/star4.png"},
+    {"subtitle":"인간입니다", "img":"../img/main/ara.jpg", "addr":"강아지는 반려견입니다.", "price":"14,000", "views":"19", "starimg":"../img/main/star3.png"}
+  ],
+  "list2":[
+   {"subtitle":"도그산책", "img":"../img/main/pet5.jpg",  "addr":"정말 아름답게 ", "price":"30,000", "views":"8", "starimg":"../img/main/star2.png"},
+    {"subtitle":"산책도그", "img":"../img/main/pet6.jpg", "addr":"내가 최고야", "price":"15,000", "views":"52", "starimg":"../img/main/star3.png"},
+    {"subtitle":"인간입니다", "img":"../img/main/pet7.jpg", "addr":"강아지는 반려견입니다.", "price":"14,000", "views":"19", "starimg":"../img/main/star4.png"}
+  ],
+  "list3":[
+   {"subtitle":"산책", "img":"../img/main/pet4.jpg",  "addr":"정말 아름답게 ", "price":"30,000", "views":"8", "starimg":"../img/main/star4.png"},
+    {"subtitle":"산책그", "img":"../img/main/pet8.jpg", "addr":"내가 최고야", "price":"15,000", "views":"52", "starimg":"../img/main/star4.png"},
+    {"subtitle":"입니다", "img":"../img/main/pet9.jpg", "addr":"강아지는 반려견입니다.", "price":"14,000", "views":"19", "starimg":"../img/main/star2.png"}
+  ]  
+}
