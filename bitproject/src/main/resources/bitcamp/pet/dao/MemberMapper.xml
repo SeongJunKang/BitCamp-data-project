@@ -18,7 +18,7 @@
 	<update id="update" parameterType="Member">
 		update MEMBER set
 		NAME=#{name},
-		EMAIL=#{email},
+		PWD=#{pwd},
 		TEL=#{tel},
 		where MNO=#{no}
 	</update>
@@ -47,7 +47,7 @@
   <select id="isMember" parameterType="map" resultType="int">
     select count(*) 
     from MEMBER
-    where EMAIL=#{email} and PWD=#{password}
+    where EMAIL=#{email} and PWD=#{pwd}
   </select>
 </mapper>
 
