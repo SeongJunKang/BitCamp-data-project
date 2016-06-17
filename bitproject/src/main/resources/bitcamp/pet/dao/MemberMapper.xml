@@ -5,7 +5,7 @@
 
 <mapper namespace="bitcamp.pet.dao.MemberDao">
   <sql id="select01">
-    select MNO, NAME, EMAIL, TEL, GEN, GRA
+    select MNO, NAME, EMAIL, AGC,TEL, GEN, GRA
     from MEMBER
   </sql>
 	<resultMap type="Member" id="MemberMap">
@@ -15,8 +15,8 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="Member">
-		insert into MEMBER(NAME,EMAIL,PWD,TEL,GEN,BTH,GRA)
-		values(#{name},#{email},#{pwd},#{tel},#{gen},#{bth},#{gra})
+		insert into MEMBER(NAME,EMAIL,PWD,TEL,GEN,BTH,GRA,AGC)
+		values(#{name},#{email},#{pwd},#{tel},#{gen},#{bth},#{gra},#{agency})
 	</insert>
 	
 	<update id="update" parameterType="Member">

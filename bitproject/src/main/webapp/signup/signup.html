@@ -135,12 +135,11 @@ td {
 	            <td>
 	              <span id="phonenumber">휴대폰번호</span>
 	              <div class="dropdown">
-	                <button id="dLabel" class="btn btn-default dropdown-toggle"
+	                <button id="agency" class="btn btn-default dropdown-toggle"
 	                  data-target="#" data-toggle="dropdown" role="button'"
-	                  aria-haspopup="true" aria-expanded="false">
-	                  SKT <span class="caret"></span>
+	                  aria-haspopup="true"  value="SKT" aria-expanded="false">SKT<span class="caret"></span>
 	                </button>
-	                <ul class="dropdown-menu" aria-labelledby="dLabel">
+	                <ul class="dropdown-menu" aria-labelledby="agency">
 	                  <li><a href="#">KT</a></li>
 	                  <li><a href="#">LG U+</a></li>
 	                </ul>
@@ -181,6 +180,7 @@ td {
  $("#savebtn").click(function() {
       $.post("../ajax/member/add.do", {
         name : $("#name").val(),
+        agc :$("#agency").val(),        
         email : $("#email").val(),
         password : $("#password").val(),
         tel : $("#phone1").val()+"-"+

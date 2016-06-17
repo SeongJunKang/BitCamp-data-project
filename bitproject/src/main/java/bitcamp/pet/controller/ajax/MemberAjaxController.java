@@ -28,7 +28,7 @@ public class MemberAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(String name, String email, String password, String tel,String gen, String bth) 
+  public String add(String name, String email, String password, String tel,String gen, String bth,String agc) 
       throws ServletException, IOException {
     Member member = new Member();
     member.setName(name);
@@ -36,6 +36,7 @@ public class MemberAjaxController {
     member.setPwd(password);
     member.setTel(tel);
     member.setGen(gen);
+    member.setAgency(agc);
     member.setBth(Date.valueOf(bth));
     member.setGra(1);
     HashMap<String,Object> result = new HashMap<>();

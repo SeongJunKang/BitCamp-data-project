@@ -9,12 +9,19 @@ public class Member {
   String name;
   String gen;
   Date bth;
+  String agency;
 
   String tel;
   String qus;
   String ans;
   int gra;
-  
+  public String getAgency() {
+    return agency;
+  }
+
+  public void setAgency(String agency) {
+    this.agency = agency;
+  }
   public String getQus() {
     return qus;
   }
