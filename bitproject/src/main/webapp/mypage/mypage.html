@@ -297,22 +297,33 @@ hr {
 	});
 	
 	$("#delete").click(function() {
-		  $(function() {
-			    $( "#dialog-confirm" ).dialog({
-			      resizable: false,
-			      height:200,
-			      width:300,
-			      modal: true,
-			      buttons: {
-			        "확인": function() {
-			          $( this ).dialog( "close" );
-			        },
-			        "취소": function() {
-			          $( this ).dialog( "close" );
-			        }
-			      }
-			    });
-			  });
+    $( "#dialog-confirm" ).dialog({
+       resizable: false,
+       height:200,
+       width:300,
+       modal: true,
+       buttons: {
+         "확인": function() {
+           $( this ).dialog( "close" );
+           $(function() {
+              $.ajax("../ajax/member/delete.do?", {
+                  method : "POST",
+                  dataType : "json",
+                  data : {
+                   no : 3
+                 }, 
+                 success :function(result) {
+
+                }
+              });
+           });
+           location.href = "../main/maintest.html";
+         },
+         "취소": function() {
+           $( this ).dialog( "close" );
+         }
+       }
+    })
 	});
 	
 	 $("#savebtn").click(function() {
@@ -406,7 +417,7 @@ hr {
 				location.href = "../resist/resist.html"
 				event.preventDefault();
 			});
-		})
+		});
 	</script>
 </body>
 </html>
