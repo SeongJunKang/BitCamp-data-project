@@ -20,13 +20,13 @@ public class DefaultMemberService implements MemberService {
     memberDao.insert(member);
   }
 
-  public void delete(int no) {
-    memberDao.delete(no);
+  public void delete(int mno) {
+    memberDao.delete(mno);
   }
 
-  public Member retrieveByNo(int no) {
+  public Member retrieveByNo(int mno) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("no", no);
+    paramMap.put("mno", mno);
     return memberDao.selectOne(paramMap);
   }
 

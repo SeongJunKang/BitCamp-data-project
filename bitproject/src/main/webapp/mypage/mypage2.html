@@ -88,6 +88,11 @@ hr {
   display: none;
 }
 
+.form-control {
+  display: inline-block;
+  
+}
+
 </style>
 
 </head>
@@ -149,60 +154,41 @@ hr {
               </div>
 
               <div class=" input-group1">
-                <input type="text" class="form-control" placeholder="010"
-                  aria-describedby="basic-addon1">
+                <input type="text" class="form-control" value="010" id="phone1">
               </div>-
               <div class=" input-group1">
-                <input type="text" class="form-control" placeholder="5446"
-                  aria-describedby="basic-addon1">
+                <input type="text" class="form-control" value="5446" id="phone2">
               </div>-
               <div class=" input-group1">
-                <input type="text" class="form-control" placeholder="8470"
-                  aria-describedby="basic-addon1">
+                <input type="text" class="form-control" value="8470" id="phone3">
               </div>
               <button type="button" class="btn btn-default">인증하기</button>
+            </td>
+          </tr>
+          <tr>
+            <td>현재 비밀번호</td>
+            <td>
+              <div class="input-group col-lg-3">
+                <input type="password" id="nowpassword" class="form-control" placeholder="바뀌는경우만입력">
+              </div>
             </td>
           </tr>
 					<tr>
 						<td>비밀번호 변경</td>
 						<td>
-							<div class="input-group col-lg-2">
-								<input type="password" class="form-control"	placeholder="password">
-
-						  	</div>
+							<div class="input-group col-lg-3">
+								<input type="password" id="password" class="form-control"	placeholder="바뀌는경우만입력">
+					  	</div>
 				  	</td>
 					</tr>
 					<tr>
 						<td>비밀번호 확인</td>
 						<td>
-					 	 <div class="input-group">
-								<input type="password" class="form-control" placeholder="password" >
+					 	 <div class="input-group col-lg-3">
+								<input type="password" id="passwordchk" class="form-control" placeholder="바뀌는경우만입력" >
+								<span id="checkText"></span>
 							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>비밀번호 재발급 질문</td>
-						<td>
-							<div class="dropdown">
-								<button id="dLabel" class="btn btn-default dropdown-toggle"
-									data-target="#" data-toggle="dropdown" role="button'"
-									aria-haspopup="true" aria-expanded="false">
-									당신의 출신 초등학교는? <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dLabel">
-									<li><a href="#">존경하는 선생님 성함은?</a></li>
-									<li><a href="#">당신의 첫사랑은?</a></li>
-									<li><a href="#">감명깊게 본 영화는?</a></li>
-									<li><a href="#">즐겨찾는 사이트는?</a></li>
-								</ul>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>비밀번호 재발급 답변</td>
-						<td><div class="input-group">
-								<input type="text" class="form-control" aria-describedby="basic-addon1">
-							</div>
+							
 						</td>
 					</tr>
 				</table>
@@ -279,6 +265,41 @@ hr {
 	</footer>
 
 	<script type="text/javascript">
+	$("#passwordchk").change(function() {
+		 if ($("#password").val() != $("#passwordchk").val() ) {
+			 $("#checkText").html("비밀번호가 일치하지 않습니다.")
+			 $("#checkText").css("color","red");
+		 } else {
+			 $("#checkText").html("비밀번호가 일치합니다.")
+			 $("#checkText").css("color","green");
+		 }
+	})
+	
+	 $("#savebtn").click(function() {
+	     $.ajax("../ajax/member/update.do?", {
+	         method : "POST",
+	         dataType : "json",
+	         data : {
+	        	no : 1,
+		        name : $("#name").val(),
+		        password : $("#password").val(), 
+		        tel : $("#phone1").val()+"-"+
+		              $("#phone2").val()+"-"+
+		              $("#phone3").val()
+          }, 
+		      success : function(result) {
+		        if (result.status == "success") {
+		          location.href = "mypage2.html";
+		        } else {
+		          window.alert("변경 실패입니다.");
+		        }
+		      },
+		      error : function() {
+		    	  window.alert("서버요청 실패입니다.");
+		      }
+	     })
+	    });
+	
 		$(function() {
 			$.ajax({
 						url : "mypage.jsp",

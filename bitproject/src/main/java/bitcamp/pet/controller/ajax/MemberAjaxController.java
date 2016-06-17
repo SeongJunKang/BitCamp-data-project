@@ -111,12 +111,12 @@ public class MemberAjaxController {
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
   @ResponseBody
-  public String update(int no, String name, String email, String password, String tel)
+  public String update(int no, String name, String password, String tel)
       throws ServletException, IOException {
 
     Member member = memberService.retrieveByNo(no);
     member.setName(name);
-    member.setEmail(email);
+    member.setPwd(password);
     member.setTel(tel);
     HashMap<String, Object> result = new HashMap<>();
     try {

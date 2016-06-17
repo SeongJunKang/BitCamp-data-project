@@ -20,7 +20,7 @@ public interface MemberDao {
 
   int insert(Member member);
 
-  int delete(int no);
+  int delete(int mno);
 
   int update(Member member);
   
