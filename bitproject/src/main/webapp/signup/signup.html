@@ -177,6 +177,15 @@ td {
 		</p>
 	</footer>
   <script>
+  $("#checknick").click(function(){
+
+       $("#checkText").html("비밀번호가 일치하지 않습니다.")
+       $("#checkText").css("color","red");
+
+       $("#checkText").html("비밀번호가 일치합니다.")
+       $("#checkText").css("color","green");
+  })
+  
  $("#savebtn").click(function() {
       $.post("../ajax/member/add.do", {
         name : $("#name").val(),
