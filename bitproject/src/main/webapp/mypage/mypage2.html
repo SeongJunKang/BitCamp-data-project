@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>산책할개</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet"	href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet"	href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../headerStyle.css">
+<link rel="stylesheet" type="text/css" href="../footerStyle.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#inbody {
+	background-color: #f7f7f7;
+}
+#logout {
+  margin-right: 5px;
+}
+#container {
+	padding-top: 140px;
+	padding-bottom: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1100px;
+}
+
+#change-acc {
+	text-align: right;
+}
+
+#change-acc-btn {
+	margin-bottom: -40px;
+	
+}
+#change-acc-btn:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+
+.table {
+  text-align: left;
+}
+.input-group1 {
+	display: inline-block;
+	width: 100px;
+}
+
+.input-group2 {
+	display: inline-block;
+	width: 300px;
+}
+
+.table-responsive {
+	margin-left: auto;
+	margin-right: auto;
+  text-align : right;	
+	width: 1100px;
+}
+
+#changeAc {
+	float: right;
+}
+
+hr {
+	border: 1px solid lightgray;
+}
+
+.dropdown {
+	display: inline;
+}
+#grade2 {
+  display: none;
+}
+
+</style>
+
+</head>
+<body>
+	<div id="inbody">
+		<div id="topbanner">
+			<div id="topbar">
+				<p id="topbar_logo">
+					<a href="#" onclick="goMain(event)"><img class="logo"
+						src="../img/로고.PNG"></a>
+				</p>
+				<p id="topbar_button">
+					<button id="resist" type="button" class="btn btn-default">펫시터등록</button>
+					<button id="logout" type="button" onclick="goMain()" class="btn btn-default">로그아웃</button>
+				</p>
+			</div>
+		</div>
+		<div id="container">
+			<div class="table-responsive table1">
+				<table class="table table-bordered">
+					<tr class="info">
+						<th WIDTH="20%">로그인정보</th>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td id="nametd">
+					    <div class="input-group col-lg-4">
+					      <input type="text" id="name" class="form-control" readonly="readonly">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" id="changeName"  class="btn btn-default" type="button">이름변경</button>
+					      </span>
+					    </div>
+						</td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td id="emailtd">
+						  <div class="input-group col-lg-4">
+							  <input type="text" id="email" class="form-control" readonly="readonly">
+	              <span class="input-group-btn">
+	                 <button class="btn btn-default" id="emailrequest"  class="btn btn-default" type="button">인증하기</button>
+	              </span>
+              </div>
+						</td>
+					</tr>
+					<tr>
+						<td>비밀번호 변경</td>
+						<td>
+							<div class="input-group col-lg-2">
+								<input type="password" class="form-control"	placeholder="password">
+
+						  	</div>
+				  	</td>
+					</tr>
+					<tr>
+						<td>비밀번호 확인</td>
+						<td>
+					 	 <div class="input-group">
+								<input type="password" class="form-control" placeholder="password" >
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>비밀번호 재발급 질문</td>
+						<td>
+							<div class="dropdown">
+								<button id="dLabel" class="btn btn-default dropdown-toggle"
+									data-target="#" data-toggle="dropdown" role="button'"
+									aria-haspopup="true" aria-expanded="false">
+									당신의 출신 초등학교는? <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dLabel">
+									<li><a href="#">존경하는 선생님 성함은?</a></li>
+									<li><a href="#">당신의 첫사랑은?</a></li>
+									<li><a href="#">감명깊게 본 영화는?</a></li>
+									<li><a href="#">즐겨찾는 사이트는?</a></li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>비밀번호 재발급 답변</td>
+						<td><div class="input-group">
+								<input type="text" class="form-control" aria-describedby="basic-addon1">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<br>
+			<div class="table-responsive">
+
+				<table class="table table-bordered">
+					<tr class="info">
+						<th WIDTH="20%">개인정보</th>
+					</tr>
+					<tr>
+						<td>연락처</td>
+						<td>휴대폰번호
+							<div class="dropdown">
+								<button id="dLabel" class="btn btn-default dropdown-toggle"
+									data-target="#" data-toggle="dropdown" role="button'"
+									aria-haspopup="true" aria-expanded="false">
+									SKT <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dLabel">
+									<li><a href="#">KT</a></li>
+									<li><a href="#">LG U+</a></li>
+								</ul>
+							</div>
+
+							<div class=" input-group1">
+								<input type="text" class="form-control" placeholder="010"
+									aria-describedby="basic-addon1">
+							</div>-
+							<div class=" input-group1">
+								<input type="text" class="form-control" placeholder="5446"
+									aria-describedby="basic-addon1">
+							</div>-
+							<div class=" input-group1">
+								<input type="text" class="form-control" placeholder="8470"
+									aria-describedby="basic-addon1">
+							</div>
+							<button type="button" class="btn btn-default">인증하기</button>
+						</td>
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td><div class="input-group1 input-group">
+								<input type="text" class="form-control"
+									aria-describedby="basic-addon1">
+							</div>
+							<button type="button" class="btn btn-default">우편번호 찾기</button></td>
+					</tr>
+					<tr>
+						<td>상세주소</td>
+						<td><div class="input-group2 input-group">
+								<input type="text" class="form-control"
+									aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group2 input-group">
+								<input type="text" class="form-control"
+									aria-describedby="basic-addon1">
+							</div></td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<div id="grade2">
+				<div id="change-acc">
+					<button id="change-acc-btn" type="button" class='btn btn-default'>계좌변경</button>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<tr class="info">
+							<th WIDTH="20%">계좌 정보</th>
+						</tr>
+						<tr>
+							<td>은행명</td>
+							<td id="bank">비트은행</td>
+						</tr>
+						<tr>
+							<td>계좌번호</td>
+							<td id="account">123456789</td>
+						</tr>
+						<tr>
+							<td>예금주</td>
+							<td id="holder">엄진영</td>
+						</tr>
+					</table>
+					<button type="button" class="btn btn-success">저장</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+
+		<a href="#" onclick="goMain(event)"> <img class="logofooter"
+			src="../img/로고.PNG"></a>
+
+		<p id="copyright" class="footer">
+			<br> 이 사이트의 모든 권한은 자바 80기에 있습니다.<br> 비트캠프 | 사업자등록번호: <span
+				id="compno">214-85-24928</span> |(주)비트교육센터 서초지점 대표 조현정<br>
+			전화번호: 02)3486-9600 | 팩스: 02)6007-1245 | 메일: bit@bitacademy.net <br>
+			사업장 소재지 : 서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층
+		</p>
+	</footer>
+
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+						url : "mypage.jsp",
+						dataType : "json",
+						success : function(result) {
+							$("#name").attr("value",result.name);
+							$("#bank").html(result.bank);
+							$("#email").attr("value",result.email);
+							$("#account").html(result.account);
+							$("#holder").html(result.holder);
+						}
+					})
+
+		});
+
+		function goMain(event) {
+			location.href = "../main/maintest.html"
+			event.preventDefault();
+		}
+
+		$(document).ready(function() {
+      $("#changeName").click(function() {
+    	  if($("#name").attr("readonly")) {
+         $("#name").removeAttr("readonly");
+    	  } else {
+    		  $("#name").attr("readonly","readonly");
+    	  }
+       });
+			$("#resist").click( function() {
+				location.href = "../resist/resist.html"
+				event.preventDefault();
+			});
+		})
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

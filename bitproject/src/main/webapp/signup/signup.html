@@ -31,6 +31,9 @@ body {
 	padding-bottom: 100px;
 	padding-top: 100px;
 }
+.dropdown {
+  display: inline;
+}
 
 table {
 	width: 600px;
@@ -38,9 +41,12 @@ table {
 }
 
 .form-control {
-	margin-left: 20px;
 	display: inline-block;
-	width: 70%;
+	
+}
+.form-control2 {
+	margin-left: 20px;
+  width: 70%;
   border: none;
 }
 
@@ -49,8 +55,12 @@ table {
 }
 #birthday {
   font: 22px;
-  margin-left: 20px;
+  margin-left: 25px;
   margin-right: 20px;
+}
+#phonenumber {
+  margin-left: 25px;  
+  font: 22px;
 }
 .birth {
   margin: 5px;
@@ -77,6 +87,11 @@ tr {
 td {
   text-align: left;
 }
+.input-group1 {
+  display: inline-block;
+  margin : 0px;
+  width: 80px;
+}
 </style>
 </head>
 <body>
@@ -88,41 +103,65 @@ td {
 					<table class="table table-bordered">
 						<tr>
 							<td class="td" >
-                <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요">
+                <input type="email" class="form-control form-control2" id="email" placeholder="이메일을 입력하세요">
 								<button id="checknick" class="btn btn-default">중복확인</button></td>
 						</tr>
 						<tr>
 							<td class="td" >
-							<input type="password" class="form-control" id="password" placeholder="비밀번호"></td>
+							<input type="password" class="form-control form-control2" id="password" placeholder="비밀번호"></td>
 						</tr>
 						<tr>
 							<td class="td" >
-							<input type="password" class="form-control"  placeholder="비밀번호확인"	id="passwordcheck"></td>
+							<input type="password" class="form-control form-control2"  placeholder="비밀번호확인"	id="passwordcheck"></td>
 						</tr>
 						<tr>
 							<td class="td" >
-							<input type="text" class="form-control" placeholder="이름" id="name">
+							<input type="text" class="form-control form-control2" placeholder="이름" id="name">
 							<button type="button" class="btn btn-default gender">남</button>
 							</td>
 						</tr>
 						<tr>
 							<td class="td">
-							   <span id="birthday">생년월일</span>
+							  <span id="birthday">생년월일</span>
 								<select class="birth" id="birthdayYear"></select>년
 								<select class="birth" id="birthdayMonth"></select>월
 								<select class="birth" id="birthdayDay"></select>일
 							</td>
 						</tr>
 						<tr>
-							<td class="td" >
-								<input type="text" class="form-control" placeholder="핸드폰번호 -제외하고 적어주세요" id="phone">
-								<button type="button" class="btn btn-default">인증번호 보내기</button>
-							</td>
+	            <td>
+	              <span id="phonenumber">휴대폰번호</span>
+	              <div class="dropdown">
+	                <button id="dLabel" class="btn btn-default dropdown-toggle"
+	                  data-target="#" data-toggle="dropdown" role="button'"
+	                  aria-haspopup="true" aria-expanded="false">
+	                  SKT <span class="caret"></span>
+	                </button>
+	                <ul class="dropdown-menu" aria-labelledby="dLabel">
+	                  <li><a href="#">KT</a></li>
+	                  <li><a href="#">LG U+</a></li>
+	                </ul>
+	              </div>
+	
+	              <div class=" input-group1">
+	                <input type="text" class="form-control" placeholder="010"
+	                  aria-describedby="basic-addon1">
+	              </div>-
+	              <div class=" input-group1">
+	                <input type="text" class="form-control" placeholder="5446"
+	                  aria-describedby="basic-addon1">
+	              </div>-
+	              <div class=" input-group1">
+	                <input type="text" class="form-control" placeholder="8470"
+	                  aria-describedby="basic-addon1">
+	              </div>
+	              <button type="button" class="btn btn-default">인증</button>
+	            </td>
 						</tr>
 						<tr>
               <td class="td" >
-                <input type="text" class="form-control" placeholder="인증번호" id="phone2">
-                <button type="button" class="btn btn-default">인증</button>
+                <input type="text" class="form-control2" placeholder="인증번호" id="phone2">
+                <button type="button" class="btn btn-default">인증하기</button>
               </td>
             </tr>
 					</table>
