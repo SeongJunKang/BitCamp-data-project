@@ -22,7 +22,9 @@
 	<update id="update" parameterType="Member">
 		update MEMBER set
 		NAME=#{name},
+		<if test="pwd !=null">
 		PWD=#{pwd},
+		</if>
 		TEL=#{tel}
 		where MNO=#{mno}
 	</update>

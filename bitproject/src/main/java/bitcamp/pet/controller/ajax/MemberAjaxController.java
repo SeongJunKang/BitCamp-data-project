@@ -115,8 +115,10 @@ public class MemberAjaxController {
       throws ServletException, IOException {
 
     Member member = memberService.retrieveByNo(no);
+    if(!password.equals("")){
+      member.setPwd(password);
+    }
     member.setName(name);
-    member.setPwd(password);
     member.setTel(tel);
     HashMap<String, Object> result = new HashMap<>();
     try {
@@ -124,6 +126,7 @@ public class MemberAjaxController {
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");
+      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
