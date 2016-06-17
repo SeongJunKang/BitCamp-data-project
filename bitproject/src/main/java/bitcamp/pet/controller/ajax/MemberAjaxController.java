@@ -37,6 +37,7 @@ public class MemberAjaxController {
     member.setTel(tel);
     member.setGen(gen);
     member.setBth(Date.valueOf(bth));
+    member.setGra(1);
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");

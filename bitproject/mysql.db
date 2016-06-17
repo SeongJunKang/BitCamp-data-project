@@ -24,7 +24,10 @@ CREATE TABLE MEMBER (
   NAME  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
   GEN   VARCHAR(1)   NOT NULL COMMENT '성별', -- 성별
   BTH   DATE         NOT NULL COMMENT '생년월일', -- 생년월일
-  TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호' -- 핸드폰번호
+  TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호', -- 핸드폰번호
+  QUS   VARCHAR(100) NULL     COMMENT '질문', -- 질문
+  ANS   VARCHAR(100) NULL     COMMENT '답변', -- 답변
+  GRA   INTEGER      NULL     COMMENT '등급' -- 등급
 )
 COMMENT '회원';
 
@@ -225,7 +228,3 @@ ALTER TABLE likes
     REFERENCES petsitter ( -- 펫시터
       MNO -- 펫시터회원번호
     );
-    
-    
-    insert into member(email,pwd,name,gen,bth,tel) value("test@test.com","1111","홍길동","남","1455-05-05","01001010101");
-    

@@ -84,6 +84,9 @@ table {
 tr {
   height: 60px; 
 }
+#request {
+  margin: 0px;
+}
 td {
   text-align: left;
 }
@@ -144,26 +147,18 @@ td {
 	              </div>
 	
 	              <div class=" input-group1">
-	                <input type="text" class="form-control" placeholder="010"
-	                  aria-describedby="basic-addon1">
+	                <input type="text" class="form-control" placeholder="010" id="phone1">
 	              </div>-
 	              <div class=" input-group1">
 	                <input type="text" class="form-control" placeholder="5446"
-	                  aria-describedby="basic-addon1">
+	                  id="phone2">
 	              </div>-
 	              <div class=" input-group1">
 	                <input type="text" class="form-control" placeholder="8470"
-	                  aria-describedby="basic-addon1">
+	                  id="phone3">
 	              </div>
-	              <button type="button" class="btn btn-default">인증</button>
 	            </td>
 						</tr>
-						<tr>
-              <td class="td" >
-                <input type="text" class="form-control2" placeholder="인증번호" id="phone2">
-                <button type="button" class="btn btn-default">인증하기</button>
-              </td>
-            </tr>
 					</table>
 				</div>
 			<div id="savediv">
@@ -187,7 +182,9 @@ td {
         name : $("#name").val(),
         email : $("#email").val(),
         password : $("#password").val(),
-        tel : $("#phone").val(),
+        tel : $("#phone1").val()+"-"+
+        $("#phone2").val()+"-"+
+        $("#phone3").val(),
         gen : $(".gender").html(),
         bth :  $( "#birthdayYear").val() +"-"+
                $("#birthdayMonth").val() +"-"+

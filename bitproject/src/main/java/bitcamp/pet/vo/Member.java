@@ -9,8 +9,35 @@ public class Member {
   String name;
   String gen;
   Date bth;
+
   String tel;
+  String qus;
+  String ans;
+  int gra;
   
+  public String getQus() {
+    return qus;
+  }
+
+  public void setQus(String qus) {
+    this.qus = qus;
+  }
+
+  public String getAns() {
+    return ans;
+  }
+
+  public void setAns(String ans) {
+    this.ans = ans;
+  }
+
+  public int getGra() {
+    return gra;
+  }
+
+  public void setGra(int gra) {
+    this.gra = gra;
+  }
   public String getTel() {
     return tel;
   }

@@ -11,8 +11,8 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="Member">
-		insert into MEMBER(NAME,EMAIL,PWD,TEL,GEN,BTH)
-		values(#{name},#{email},#{pwd},#{tel},#{gen},#{bth})
+		insert into MEMBER(NAME,EMAIL,PWD,TEL,GEN,BTH,GRA)
+		values(#{name},#{email},#{pwd},#{tel},#{gen},#{bth},#{gra})
 	</insert>
 	
 	<update id="update" parameterType="Member">

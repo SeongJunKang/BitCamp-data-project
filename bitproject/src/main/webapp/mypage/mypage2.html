@@ -48,7 +48,12 @@ body {
   color:white;
 }
 
-
+#save {
+  text-align: right;
+}
+#savebtn {
+  width: 100px;
+}
 .table {
   text-align: left;
 }
@@ -65,7 +70,6 @@ body {
 .table-responsive {
 	margin-left: auto;
 	margin-right: auto;
-  text-align : right;	
 	width: 1100px;
 }
 
@@ -105,7 +109,7 @@ hr {
 			<div class="table-responsive table1">
 				<table class="table table-bordered">
 					<tr class="info">
-						<th WIDTH="20%">로그인정보</th>
+						<th WIDTH="20%">회원정보</th>
 					</tr>
 					<tr>
 						<td>이름</td>
@@ -129,6 +133,36 @@ hr {
               </div>
 						</td>
 					</tr>
+					         <tr>
+            <td>연락처</td>
+            <td>휴대폰번호
+              <div class="dropdown">
+                <button id="dLabel" class="btn btn-default dropdown-toggle"
+                  data-target="#" data-toggle="dropdown" role="button'"
+                  aria-haspopup="true" aria-expanded="false">
+                  SKT <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                  <li><a href="#">KT</a></li>
+                  <li><a href="#">LG U+</a></li>
+                </ul>
+              </div>
+
+              <div class=" input-group1">
+                <input type="text" class="form-control" placeholder="010"
+                  aria-describedby="basic-addon1">
+              </div>-
+              <div class=" input-group1">
+                <input type="text" class="form-control" placeholder="5446"
+                  aria-describedby="basic-addon1">
+              </div>-
+              <div class=" input-group1">
+                <input type="text" class="form-control" placeholder="8470"
+                  aria-describedby="basic-addon1">
+              </div>
+              <button type="button" class="btn btn-default">인증하기</button>
+            </td>
+          </tr>
 					<tr>
 						<td>비밀번호 변경</td>
 						<td>
@@ -175,41 +209,11 @@ hr {
 			</div>
 
 			<br>
+			<div id="grade2">
 			<div class="table-responsive">
-
 				<table class="table table-bordered">
 					<tr class="info">
 						<th WIDTH="20%">개인정보</th>
-					</tr>
-					<tr>
-						<td>연락처</td>
-						<td>휴대폰번호
-							<div class="dropdown">
-								<button id="dLabel" class="btn btn-default dropdown-toggle"
-									data-target="#" data-toggle="dropdown" role="button'"
-									aria-haspopup="true" aria-expanded="false">
-									SKT <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dLabel">
-									<li><a href="#">KT</a></li>
-									<li><a href="#">LG U+</a></li>
-								</ul>
-							</div>
-
-							<div class=" input-group1">
-								<input type="text" class="form-control" placeholder="010"
-									aria-describedby="basic-addon1">
-							</div>-
-							<div class=" input-group1">
-								<input type="text" class="form-control" placeholder="5446"
-									aria-describedby="basic-addon1">
-							</div>-
-							<div class=" input-group1">
-								<input type="text" class="form-control" placeholder="8470"
-									aria-describedby="basic-addon1">
-							</div>
-							<button type="button" class="btn btn-default">인증하기</button>
-						</td>
 					</tr>
 					<tr>
 						<td>주소</td>
@@ -233,7 +237,6 @@ hr {
 				</table>
 			</div>
 			<br>
-			<div id="grade2">
 				<div id="change-acc">
 					<button id="change-acc-btn" type="button" class='btn btn-default'>계좌변경</button>
 				</div>
@@ -255,9 +258,11 @@ hr {
 							<td id="holder">엄진영</td>
 						</tr>
 					</table>
-					<button type="button" class="btn btn-success">저장</button>
 				</div>
 			</div>
+			<div id="save">
+					<button type="button" id="savebtn" class="btn btn-success">저장</button>
+		  </div>
 		</div>
 	</div>
 	<footer>
