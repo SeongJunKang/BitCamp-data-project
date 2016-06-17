@@ -22,10 +22,11 @@ CREATE TABLE MEMBER (
   EMAIL VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
   PWD   VARCHAR(10)  NOT NULL COMMENT '비밀번호', -- 비밀번호
   NAME  VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
-  GEN   VARCHAR(1)   NOT NULL COMMENT '성별', -- 성별
+  GEN   VARCHAR(2)   NOT NULL COMMENT '성별', -- 성별
   BTH   DATE         NOT NULL COMMENT '생년월일', -- 생년월일
+  AGC   VARCHAR(10)  NOT NULL COMMENT '통신사', -- 통신사
   TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호', -- 핸드폰번호
-  GRA   INTEGER      NULL     COMMENT '등급' -- 등급
+  GRA   INTEGER      NOT NULL COMMENT '등급' -- 등급
 )
 COMMENT '회원';
 
@@ -49,7 +50,6 @@ ALTER TABLE MEMBER
 CREATE TABLE petsitter (
   MNO    INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
   NICK   VARCHAR(100) NOT NULL COMMENT '닉네임', -- 닉네임
-  INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
   AMT    INTEGER      NOT NULL COMMENT '가격', -- 가격
   KTALK  VARCHAR(40)  NULL     COMMENT '카톡', -- 카톡
   BANK   VARCHAR(20)  NOT NULL COMMENT '은행', -- 은행
@@ -57,13 +57,15 @@ CREATE TABLE petsitter (
   ACC    VARCHAR(20)  NOT NULL COMMENT '계좌', -- 계좌
   SER    TEXT         NULL     COMMENT '추가서비스', -- 추가서비스
   INQUR  VARCHAR(20)  NOT NULL COMMENT '문의시간', -- 문의시간
+  PET    VARCHAR(20)  NULL     COMMENT '반려동물유무', -- 반려동물유무
   ADDR_1 VARCHAR(255) NOT NULL COMMENT '우편번호', -- 우편번호
   ADDR_2 VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
-  PET    VARCHAR(20)  NULL     COMMENT '반려동물유무', -- 반려동물유무
   RAD    INTEGER      NULL     COMMENT '반지름', -- 반지름
   LAT    VARCHAR(20)  NULL     COMMENT '위도', -- 위도
   LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
-  COL    INTEGER      NULL     COMMENT '좋아요' -- 좋아요
+  INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
+  COL    INTEGER      NULL     COMMENT '좋아요', -- 좋아요
+  COL2   INTEGER      NULL     COMMENT '펫시터등급' -- 펫시터등급
 )
 COMMENT '펫시터';
 

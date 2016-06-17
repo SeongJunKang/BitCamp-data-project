@@ -17,7 +17,6 @@
   
 <title>산책하개</title>
 <style type="text/css">
-@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 
 body {
 	margin-left: 20px;
@@ -59,25 +58,27 @@ table {
 }
 
 .form-control {
-	margin-left: 20px; width : 20%;
+	margin-left: 20px;
 	display: inline-block;
 	width: 20%;
 }
-
+.checkbox-inline {
+  margin-left: 20px;
+}
 #checknick {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 .thtext {
-	font-family: 'Nanum Gothic', serif;
 	font-weight: bold;
 	font-size: 18px; vertical-align : middle;
 	margin-left: 20px;
 	vertical-align: middle;
 }
-
+#price {
+  margin-right: 10px;
+}
 #profileresist {
-	font-family: 'Nanum Gothic', serif;
 	font-weight: bold;
 	font-size: 25px;
 }
@@ -90,7 +91,6 @@ table {
 }
 #savebtn {
   font-size: 25px;
-  font-family: 'Nanum Gothic', serif;
   color : white;
   border: none;
   background: gray;
@@ -112,6 +112,21 @@ table {
   margin-right: auto;
   width:100%;
   height:400px;
+}
+#addr2 {
+  width: 50%;
+}
+#inqur1,#inqur2,#addr1{
+  margin-right: 10px;
+}
+#radiandiv {
+  margin-left: 100px;
+} 
+#radian {
+  margin-right: 10px;
+}
+#animal {
+  margin-right: 5px;
 }
 </style>
 </head>
@@ -143,7 +158,7 @@ table {
 								<button id="checknick" class="btn btn-default">중복확인</button></td>
 						</tr>
 						<tr>
-							<td class="th"><span class="thtext">가격</span></td>
+							<td class="th"><span class="thtext">1일 가격</span></td>
 							<td class="td"><input type="text" class="form-control"
 								id="price">원</td>
 						</tr>
@@ -169,8 +184,23 @@ table {
 						</tr>
 						<tr>
 							<td class="th"><span class="thtext">추가서비스</span></td>
-							<td class="td"><input type="text" class="form-control"
-								id="service"></td>
+							<td class="td">
+								<label class="checkbox-inline">
+							    <input type="checkbox" name="box" id="box1" value="간식 제공">간식 제공 
+							  </label>
+							  <label class="checkbox-inline">
+							    <input type="checkbox" name="box" id="box2" value="픽업">픽업
+							  </label>
+							  <label class="checkbox-inline">
+							    <input type="checkbox" name="box" id="box3" value="배변봉투 제공">배변봉투 제공 
+							  </label>
+							  <label class="checkbox-inline">
+                  <input type="checkbox" name="box"  id="box4" value="목줄/리드줄 보유">  목줄/리드줄 보유
+                </label>
+							  <label class="checkbox-inline">
+                  <input type="checkbox" name="box"  id="box5" value="강아지 물통 보유">  강아지 물통 보유
+                </label>
+							</td>
 						</tr>
 						<tr>
 							<td class="th"><span class="thtext">문의시간</span></td>
@@ -184,12 +214,25 @@ table {
 								id="animal"> 마리</td>
 						</tr>
 						<tr>
+              <td class="th"><span class="thtext">우편번호</span></td>
+              <td class="td"><input type="text" class="form-control" id="addr1"> <button type="button" class="btn btn-default">우편번호검색</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="th"><span class="thtext">상세주소</span></td>
+              <td class="td"><input type="text" class="form-control form-control2"
+                id="addr2"></td>
+            </tr>
+						<tr>
 							<td class="th" colspan="2"><span class="thtext">산책범위 지정하기</span></td>
 						</tr>
 						<tr>
 							<td class="td" colspan="2">
- 						  주소 : <input type="text" class="form-control" id="nickname">
+							<div>
+	 						  주소 : <input type="text" class="form-control" id="range">
                <button id="checknick" class="btn btn-default">검색</button>
+	 						  <span id="radiandiv">반경 : <input type="text" class="form-control" id="radian">M</span>
+ 						  </div>
 							<div id="map"></div></td>
 						</tr>
 						<tr>
@@ -220,7 +263,12 @@ table {
 		</p>
 	</footer>
   <script>
-
+  $("#savebtn").click(function() {
+      $("input[name=box]:checked").each(function() {
+        var test = $(this).val();
+        console.log(test);
+      });
+    });
   function goMain(event) {
     location.href = "../main/maintest.html"
     event.preventDefault();
