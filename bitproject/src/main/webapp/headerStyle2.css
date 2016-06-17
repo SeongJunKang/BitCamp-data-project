@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+#topbanner {
+	margin : 0px;
+  position : fixed;
+  height : 50px;
+  width : 100%;
+  z-index : 99;
+	background-color: white;
+	vertical-align: middle;
+}
+
+.logo {
+	margin-top : 14px;
+  height: 40px;
+} 
+
+#inquire {
+   margin-left : 10px;
+}
+
+#logout, #login, #signup, #inquire, #resist {
+  float: right;
+  margin-top: 27px;
+  margin-right: auto;
+}
+
+#resist:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+#logout:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+#login:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+#signup:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+#inquire:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color:#5bc0de;
+  color:white;
+}
+
+#all:hover, #all2:hover, #all3:hover {
+  transition-property: background-color, color;
+  transition-duration: 0.01s;
+  transition-timing-function: ease-out;
+  background-color: #5bc0de;
+  color: white;
+}
+
+
+#topbar_button {
+	position : absolute;
+	z-index : 100;
+	margin-left : 856px;
+	margin-top : -72px;
+	text-align : right;
+	height: 80px;
+	
+}
+#topbar_logo {
+	margin-top : -10px;
+	margin-left: 20px;
+	text-align : left;
+	position: relative;
+}
+ #topbar {
+ background-color: white;
+  margin : auto;
+	width : 1100px;
+	height: 10%;
+}
