@@ -396,10 +396,22 @@ ol {
     	  heart.setAttribute("src", "../img/detail/like.jpg");
     	  heart.setAttribute("data-state", "after");
     	  $("#like").html($("#like").html() * 1 + 1);
+    	  
+ 	      $.post("../ajax/likes/add.do", {
+ 	    	  mno : 1 ,
+ 	    	  pno : 1 
+ 	      }, "json");
+ 	      
       } else {
     	  heart.setAttribute("data-state", "before");
     	  heart.setAttribute("src", "../img/detail/beforelike.png");
     	  $("#like").html($("#like").html() * 1 - 1);
+    	  
+    	  $.post("../ajax/likes/delete.do", {
+              mno : 1 ,
+              pno : 1 
+            }, "json");
+            
       }
     }
   
