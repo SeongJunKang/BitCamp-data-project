@@ -147,7 +147,9 @@ table {
 				<img class="imgmain" src="../img/back.jpg">
 			</div>
 			<div id="bodycontent">
-	 	    <input id="pno" type='hidden' name='no'> 
+			<form >
+	 	    <input id="pno" type='hidden' name='no'>
+ 	    </form> 
 				<span id="profileresist">펫시터 프로필 등록</span>
 				<div>
 					<table class="table table-bordered">
@@ -263,8 +265,10 @@ table {
 		</p>
 	</footer>
   <script>
+  
   $("#savebtn").click(function() {
-	  
+	  var no = location.href.split("=")[1];
+	  $("#pno").val(no);
 	  var checklist="";
       $("input[name=box]:checked").each(function() {
         checklist += $(this).val()+",";
@@ -288,7 +292,7 @@ table {
           rad :$("#addr2").val(),
           lat :$("#addr2").val(),
           lnt :$("#addr2").val(),
-          intro :$("#addr2").val()
+          intro :$("#intro").val()
         }, function(result) {
           if (result.status == "success") {
             location.href = "../main/maintest.html";
@@ -324,7 +328,7 @@ table {
   
   //****************************************************************************
   $("#radian").change(function(){
-	    var circle = new daum.maps.Circle({
+	    var circle = circle = new daum.maps.Circle({
 	    center : new daum.maps.LatLng(37.5196784,127.1201637,17),  // 원의 중심좌표 입니다 
 	    radius: $("#radian").val(), // 미터 단위의 원의 반지름입니다 
 	    strokeWeight: 5, // 선의 두께입니다 

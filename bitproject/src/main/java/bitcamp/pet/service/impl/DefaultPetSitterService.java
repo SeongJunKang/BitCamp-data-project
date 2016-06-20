@@ -20,8 +20,8 @@ public class DefaultPetSitterService implements PetSitterService {
     petsitterDao.insert(petsitter);
   }
 
-  public void delete(int mno) {
-    petsitterDao.delete(mno);
+  public void delete(int pno) {
+    petsitterDao.delete(pno);
   }
 
   public PetSitter retrieveByNo(int pno) {
