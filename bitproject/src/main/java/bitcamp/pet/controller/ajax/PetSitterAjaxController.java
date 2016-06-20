@@ -1,7 +1,6 @@
 package bitcamp.pet.controller.ajax;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,32 +16,49 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import bitcamp.pet.service.MemberService;
+import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.vo.Member;
+import bitcamp.pet.vo.PetSitter;
 
 @Controller
-@RequestMapping("/ajax/member/")
-public class MemberAjaxController {
+@RequestMapping("/ajax/petsitter/")
+public class PetSitterAjaxController {
 
+  @Autowired
+  PetSitterService petsitterService;
   @Autowired
   MemberService memberService;
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(String name, String email, String password, String tel,String gen, String bth,String agc) 
+  public String add(int pno, String nick, int amt, String ktalk, String bank, String bknm,
+      String acc, String ser, String inqur, String pet, String addr_1, String addr_2,
+      int rad, String lat, String lnt, String intro) 
       throws ServletException, IOException {
-    Member member = new Member();
-    member.setName(name);
-    member.setEmail(email);
-    member.setPwd(password);
-    member.setTel(tel);
-    member.setGen(gen);
-    member.setAgency(agc);
-    member.setBth(Date.valueOf(bth));
-    member.setGra(1);
+    PetSitter petsitter = new PetSitter();
+    petsitter.setPno(pno);
+    petsitter.setNick(nick);
+    petsitter.setAmt(amt);
+    petsitter.setKtalk(ktalk);
+    petsitter.setBank(bank);
+    petsitter.setBknm(bknm);
+    petsitter.setBank(bank);
+    petsitter.setAcc(acc);
+    petsitter.setSer(ser);
+    petsitter.setInqur(inqur);
+    petsitter.setPet(pet);
+    petsitter.setAddr_1(addr_1);
+    petsitter.setAddr_2(addr_2);
+    petsitter.setRad(rad);
+    petsitter.setLat(lat);
+    petsitter.setLnt(lnt);
+    petsitter.setIntro(intro);
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
-      memberService.add(member);
+      petsitterService.add(petsitter);
+      Member member = memberService.retrieveByNo(pno);
+      member.setGra(2);
     } catch(Exception e) {
       result.put("status", "failure"); 
       e.printStackTrace();
@@ -55,7 +71,7 @@ public class MemberAjaxController {
   public String delete(int no) throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      memberService.delete(no);
+      petsitterService.delete(no);
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
@@ -68,7 +84,7 @@ public class MemberAjaxController {
   public String detail(int no) 
       throws ServletException, IOException {
     
-    return  new Gson().toJson(memberService.retrieveByNo(no));
+    return  new Gson().toJson(petsitterService.retrieveByNo(no));
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
@@ -85,17 +101,12 @@ public class MemberAjaxController {
     } else if (pageSize > 20) {
       pageSize = 20;
     }
-    int totalPage = memberService.countPage(pageSize);
+    int totalPage = petsitterService.countPage(pageSize);
     if (pageNo > totalPage ) {
       pageNo = totalPage;
     }
     
-    List<Member> list = memberService.list(pageNo,pageSize);
-    for (Member m : list) {
-      if (m.getTel() == null) {
-        m.setTel("");
-      }
-    }
+    List<PetSitter> list = petsitterService.list(pageNo,pageSize);
     HashMap<String,Object> result = new HashMap<>();
     result.put("pageNo", pageNo);
     result.put("pageSize", pageSize);
@@ -110,15 +121,10 @@ public class MemberAjaxController {
   public String update(int no, String name, String password, String tel)
       throws ServletException, IOException {
 
-    Member member = memberService.retrieveByNo(no);
-    if(!password.equals("")){
-      member.setPwd(password);
-    }
-    member.setName(name);
-    member.setTel(tel);
+    PetSitter petsitter = petsitterService.retrieveByNo(no);
     HashMap<String, Object> result = new HashMap<>();
     try {
-      memberService.change(member);
+      petsitterService.change(petsitter);
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");

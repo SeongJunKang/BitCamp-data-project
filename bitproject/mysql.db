@@ -48,7 +48,7 @@ ALTER TABLE MEMBER
 
 -- 펫시터
 CREATE TABLE petsitter (
-  MNO    INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
+  PNO    INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
   NICK   VARCHAR(100) NOT NULL COMMENT '닉네임', -- 닉네임
   AMT    INTEGER      NOT NULL COMMENT '가격', -- 가격
   KTALK  VARCHAR(40)  NULL     COMMENT '카톡', -- 카톡
@@ -73,11 +73,8 @@ COMMENT '펫시터';
 ALTER TABLE petsitter
   ADD CONSTRAINT PK_petsitter -- 펫시터 기본키2
     PRIMARY KEY (
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     );
-
-ALTER TABLE petsitter
-  MODIFY COLUMN MNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '펫시터회원번호';
 
 -- 신청
 CREATE TABLE request (
@@ -103,8 +100,8 @@ ALTER TABLE request
 
 -- 펫시터산책후기
 CREATE TABLE petreview (
-  COL   INTEGER      NOT NULL COMMENT '산책후기번호', -- 산책후기번호
-  MNO   INTEGER      NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
+  PBNO  INTEGER      NOT NULL COMMENT '산책후기번호', -- 산책후기번호
+  PNO   INTEGER      NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
   PIC   VARCHAR(255) NULL     COMMENT '사진', -- 사진
   VIDEO VARCHAR(255) NULL     COMMENT '동영상', -- 동영상
   PREV  TEXT         NOT NULL COMMENT '후기', -- 후기
@@ -116,15 +113,15 @@ COMMENT '펫시터산책후기';
 ALTER TABLE petreview
   ADD CONSTRAINT PK_petreview -- 펫시터산책후기 기본키
     PRIMARY KEY (
-      COL -- 산책후기번호
+      PBNO -- 산책후기번호
     );
 
 ALTER TABLE petreview
-  MODIFY COLUMN COL INTEGER NOT NULL AUTO_INCREMENT COMMENT '산책후기번호';
+  MODIFY COLUMN PBNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '산책후기번호';
 
 -- 사용자후기
 CREATE TABLE userreview (
-  BNO  INTEGER NOT NULL COMMENT '게시물번호', -- 게시물번호
+  MBNO INTEGER NOT NULL COMMENT '게시물번호', -- 게시물번호
   PNO  INTEGER NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
   MNO  INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
   BREV TEXT    NOT NULL COMMENT '글', -- 글
@@ -136,11 +133,11 @@ COMMENT '사용자후기';
 ALTER TABLE userreview
   ADD CONSTRAINT PK_userreview -- 사용자후기 기본키
     PRIMARY KEY (
-      BNO -- 게시물번호
+      MBNO -- 게시물번호
     );
 
 ALTER TABLE userreview
-  MODIFY COLUMN BNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시물번호';
+  MODIFY COLUMN MBNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시물번호';
 
 -- 좋아요
 CREATE TABLE likes (
@@ -153,7 +150,7 @@ COMMENT '좋아요';
 ALTER TABLE petsitter
   ADD CONSTRAINT FK_MEMBER_TO_petsitter -- 회원 -> 펫시터
     FOREIGN KEY (
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     )
     REFERENCES MEMBER ( -- 회원
       MNO -- 회원번호
@@ -176,17 +173,17 @@ ALTER TABLE request
       PNO -- 펫시터회원번호
     )
     REFERENCES petsitter ( -- 펫시터
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     );
 
 -- 펫시터산책후기
 ALTER TABLE petreview
   ADD CONSTRAINT FK_petsitter_TO_petreview -- 펫시터 -> 펫시터산책후기
     FOREIGN KEY (
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     )
     REFERENCES petsitter ( -- 펫시터
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     );
 
 -- 사용자후기
@@ -206,7 +203,7 @@ ALTER TABLE userreview
       PNO -- 펫시터회원번호
     )
     REFERENCES petsitter ( -- 펫시터
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     );
 
 -- 좋아요
@@ -226,5 +223,7 @@ ALTER TABLE likes
       PNO -- 펫시터회원번호
     )
     REFERENCES petsitter ( -- 펫시터
-      MNO -- 펫시터회원번호
+      PNO -- 펫시터회원번호
     );
+alter table petsitter alter column rad set default 0;
+    

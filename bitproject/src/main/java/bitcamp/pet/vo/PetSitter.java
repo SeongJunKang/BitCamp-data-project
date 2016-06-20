@@ -2,7 +2,7 @@ package bitcamp.pet.vo;
 
 public class PetSitter {
   
-  int mno;      // 회원번호
+  int pno;      // 회원번호
   String nick;  // 닉네임
   String intro; // 소개
   int amt;      // 가격
@@ -13,7 +13,7 @@ public class PetSitter {
   String ser;   // 추가서비스
   String inqur; // 문의시간
   String pet;   // 반려동물유무
-  String rad;   // 반지름
+  int rad;   // 반지름
   String lat;   // 위도
   String lnt;   // 경도
   String addr_1;
@@ -35,13 +35,13 @@ public class PetSitter {
     this.addr_2 = addr_2;
   }
 
-  PetSitter(){}
+  public PetSitter(){}
   
-  public int getMno() {
-    return mno;
+  public int getPno() {
+    return pno;
   }
-  public void setMno(int mno) {
-    this.mno = mno;
+  public void setPno(int pno) {
+    this.pno = pno;
   }
   public String getNick() {
     return nick;
@@ -103,10 +103,10 @@ public class PetSitter {
   public void setPet(String pet) {
     this.pet = pet;
   }
-  public String getRad() {
+  public int getRad() {
     return rad;
   }
-  public void setRad(String rad) {
+  public void setRad(int rad) {
     this.rad = rad;
   }
   public String getLat() {
