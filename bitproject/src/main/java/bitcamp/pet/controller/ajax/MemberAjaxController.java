@@ -107,15 +107,20 @@ public class MemberAjaxController {
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
   @ResponseBody
-  public String update(int no, String name, String password, String tel)
+  public String update(int no, String name, String password, String tel, int gra)
       throws ServletException, IOException {
 
     Member member = memberService.retrieveByNo(no);
-    if(!password.equals("")){
+    if (!password.equals("")){
       member.setPwd(password);
     }
-    member.setName(name);
-    member.setTel(tel);
+    if (!name.equals("")) {
+      member.setName(name);
+    }
+    if (!tel.equals("")) {
+      member.setTel(tel);
+    }
+      System.out.println(gra);
     HashMap<String, Object> result = new HashMap<>();
     try {
       memberService.change(member);

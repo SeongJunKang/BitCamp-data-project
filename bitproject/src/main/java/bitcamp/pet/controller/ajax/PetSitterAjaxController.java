@@ -59,6 +59,7 @@ public class PetSitterAjaxController {
       petsitterService.add(petsitter);
       Member member = memberService.retrieveByNo(pno);
       member.setGra(2);
+      memberService.change(member);
     } catch(Exception e) {
       result.put("status", "failure"); 
       e.printStackTrace();

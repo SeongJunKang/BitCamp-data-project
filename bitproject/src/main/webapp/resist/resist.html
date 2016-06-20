@@ -273,8 +273,11 @@ table {
       $("input[name=box]:checked").each(function() {
         checklist += $(this).val()+",";
       });
-      checklist = checklist.substring(0,checklist.length-1);
-      
+    checklist = checklist.substring(0,checklist.length-1);
+    var radian = 0;
+    if ($("#radian").val() != "") {
+    	radian = $("#radian").val();
+    }
       $.post("../ajax/petsitter/add.do", {
     	    pno : $("#pno").val(),
           nick : $("#nickname").val(),
@@ -289,7 +292,7 @@ table {
           pet :  $( "#animal").val(),
           addr_1 :$("#addr1").val(),
           addr_2 :$("#addr2").val(),
-          rad :$("#addr2").val(),
+          rad :radian,
           lat :$("#addr2").val(),
           lnt :$("#addr2").val(),
           intro :$("#intro").val()
@@ -300,7 +303,16 @@ table {
             window.alert("등록 실패입니다.");
           }
         }, "json");
-      
+      $.post("../ajax/member/update.do?", {
+           no : $("#pno").val(),
+           gra :  2   //수정해야함
+         }, function(result) {
+             if (result.status == "success") {
+                location.href = "../main/maintest.html";
+              } else {
+                window.alert("등록 실패입니다.");
+              }
+            }, "json");
     });
   
   function goMain(event) {

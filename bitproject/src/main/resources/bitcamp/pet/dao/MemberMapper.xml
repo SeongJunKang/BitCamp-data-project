@@ -22,6 +22,9 @@
 	<update id="update" parameterType="Member">
 		update MEMBER set
 		NAME=#{name},
+		<if test="gra !=null">
+		GRA=#{gra},
+		</if>
 		<if test="pwd !=null">
 		PWD=#{pwd},
 		</if>
