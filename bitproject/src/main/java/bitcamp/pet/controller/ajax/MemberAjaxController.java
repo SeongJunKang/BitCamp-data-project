@@ -49,6 +49,20 @@ public class MemberAjaxController {
     }
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(produces="application/json;charset=UTF-8", value="checkemail")
+  @ResponseBody
+  public String checkemail(String email) 
+      throws ServletException, IOException {
+    Member member = memberService.retrieveByEmail(email);
+    HashMap<String,Object> result = new HashMap<>();
+    if ( member == null) {
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
