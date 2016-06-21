@@ -1,16 +1,12 @@
 //쿠키 사용하기 - 로그인 폼에서 아이디 저장하기.
 package bitcamp.pet.controller;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import bitcamp.pet.service.MemberService;
@@ -18,7 +14,6 @@ import bitcamp.pet.vo.Member;
 
 @Controller
 @RequestMapping("/auth")
-@SessionAttributes("loginUser")
 public class AuthController {
   
   @Autowired
@@ -28,12 +23,10 @@ public class AuthController {
   public String login(
       String email ,
       String password ,
-      Model model,
-      HttpServletResponse response) {
-    
+      HttpSession session) {
     if ( memberService.exist(email, password)) {
       Member member = memberService.retrieveByEmail(email);
-      model.addAttribute("loginUser",member);
+      session.setAttribute("loginUser",member);
       return "redirect:../main/index.html";
     } else {
       return "redirect:../main/index.html";

@@ -340,7 +340,7 @@ table {
   
   //****************************************************************************
   $("#radian").change(function(){
-	    var circle = circle = new daum.maps.Circle({
+	    var circle = new daum.maps.Circle({
 	    center : new daum.maps.LatLng(37.5196784,127.1201637,17),  // 원의 중심좌표 입니다 
 	    radius: $("#radian").val(), // 미터 단위의 원의 반지름입니다 
 	    strokeWeight: 5, // 선의 두께입니다 
@@ -372,7 +372,7 @@ table {
 
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+		            content: '<div style="width:150px;text-align:center;padding:6px 0";>위치</div>'
 		        });
 		        infowindow.open(map, marker);
 

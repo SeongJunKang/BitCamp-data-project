@@ -56,7 +56,7 @@
   <select id="isMember" parameterType="map" resultType="int">
     select count(*) 
     from MEMBER
-    where EMAIL=#{email} and PWD=#{pwd}
+    where EMAIL=#{email} and PWD=#{password}
   </select>
 </mapper>
 
