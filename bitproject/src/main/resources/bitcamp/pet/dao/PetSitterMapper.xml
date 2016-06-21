@@ -28,8 +28,8 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="PetSitter">
-		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO)
-		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro})
+		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT)
+		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt})
 	</insert>
 	
 	<update id="update" parameterType="PetSitter">
@@ -47,7 +47,7 @@
     limit #{startIndex}, #{length}
 	</select>
 	<select id="selectOne" parameterType="map" resultMap="PetSitterMap">
-	   select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO from PETSITTER
+	   select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT from PETSITTER
 	   where
 	   <if test="pno != null">
 	   PNO=#{pno}
