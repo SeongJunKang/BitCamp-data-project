@@ -317,7 +317,7 @@ ol {
             <div id="profileinfo">
               이름 : <span id="name"></span> <br>
               <p id="setlike">
-                <img  id="heart" data-state="before"  src="img/detail/beforelike.png">
+                <img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
                 <span id="like"></span><br>
               </p>
               <p id="setlike2">
@@ -528,12 +528,12 @@ var heart = document.getElementById("heart");
 heart.onclick = function() {
  var state = heart.getAttribute("data-state");
  if (state == "before") {
-   heart.setAttribute("src", "img/detail/like.jpg");
+   heart.setAttribute("src", "../img/detail/like.jpg");
    heart.setAttribute("data-state", "after");
    $("#like").html($("#like").html() * 1 + 1);
  } else {
    heart.setAttribute("data-state", "before");
-   heart.setAttribute("src", "img/detail/beforelike.png");
+   heart.setAttribute("src", "../img/detail/beforelike.png");
    $("#like").html($("#like").html() * 1 - 1);
  }
 }
