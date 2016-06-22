@@ -64,8 +64,8 @@ CREATE TABLE petsitter (
   LAT    VARCHAR(20)  NULL     COMMENT '위도', -- 위도
   LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
   INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
-  COL    INTEGER      NULL     COMMENT '좋아요', -- 좋아요
-  COL2   INTEGER      NULL     COMMENT '펫시터등급' -- 펫시터등급
+  LIKES  INTEGER      NULL     COMMENT '좋아요', -- 좋아요
+  PETG   INTEGER      NULL     COMMENT '펫시터등급' -- 펫시터등급
 )
 COMMENT '펫시터';
 
@@ -226,4 +226,6 @@ ALTER TABLE likes
       PNO -- 펫시터회원번호
     );
 alter table petsitter alter column rad set default 0;
+alter table petsitter alter column likes set default 0;
+alter table petsitter alter column petg set default 1;
     
