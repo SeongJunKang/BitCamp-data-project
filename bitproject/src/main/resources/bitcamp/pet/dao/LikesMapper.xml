@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.pet.dao.LikesDao">
+	<resultMap type="Likes" id="LikesMap">
+		<id column="MNO" property="mno" />
+		<result column="PNO" property="pno" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="Likes">
+		insert into LIKES(MNO,PNO)
+		values(#{mno},#{pno})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from LIKES
+		where MNO=#{mno}
+	</delete>
+	
+	<select id="selectOne" parameterType="int" resultMap="LikesMap">
+	   select MNO, PNO from LIKES
+	   where MNO=#{mno}
+	</select>
+  <select id="countAll" resultType="int" parameterType="int" >
+    select count(*) from LIKES where PNO=#{pno}
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

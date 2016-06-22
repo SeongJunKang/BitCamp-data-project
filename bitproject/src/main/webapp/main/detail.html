@@ -270,7 +270,7 @@ ol {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a onclick="goMain(event)" class="navbar-brand page-scroll" href="#page-top">DogWalker</a>
+                <a onclick="goMain(event)" class="navbar-brand page-scroll" href="#page-top"><img class='logoimg' src='../img/logos/dlogo.PNG'></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -452,46 +452,7 @@ ol {
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
     <script type="text/javascript">
-    $(function(){
-        $.ajax({
-          url:"detail.json",
-          dataType:"json",
-          success:function(result) {
-              $("#titlesen").html(result.title);
-              $("#subtitlesen").html(result.subtitle);
-              $("#photo").attr('src',result.photo);
-              $("#like").html(result.like);
-              $("#name").html(result.name);
-              $("#age").html(result.age);
-              $("#price").html(result.price);
-              $("#confirm").attr('src',result.confirm);
-              $("#trust").attr('src',result.trust);
-              $("#introsen").html(result.intro);
-              $("#type").html(result.type);
-              $("#addr").html(result.addr);
-              $("#hospital").html(result.hospital);
-              $("#pet").html(result.pet);
-              $("#service").html(result.service);
-              $("#career").html(result.career);
-              $("#animal").html(result.animal);
-              $("#max").html(result.max);
-              $("#inqur").html(result.inqur);
-              $("#need").html(result.need);
-              $("#views").val("조회수 : "+result.views);
-              
-              var templateData = $("#imgrepeat").html();
-              var template = Handlebars.compile(templateData);
-              var html = template(result);
-              $("#picture").append(html);
-              
-              var templateData = $("#reviewrepeat").html();
-              var template = Handlebars.compile(templateData);
-              var html = template(result);
-              $("#reviewtext").append(html);
-              
-            }
-        })
-      });
+   
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
       center: new daum.maps.LatLng(37.5196784,127.1201637,17), // 지도의 중심좌표
@@ -523,6 +484,63 @@ circle.setMap(map);
 //****************************************************************************
 
 //<img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
+var mno = "";
+$(document).ready(function() {
+    $(function() {
+      $.ajax("../auth/getMemberNo.do?", {
+          method : "POST",
+          success : function(result) {
+           if (result.status == "success") {
+             mno = result.mno;
+           } else if ( result.status == "failure") {
+           }
+         }
+      });
+      
+      $(function(){
+          $.ajax({
+            url:"detail.json",
+            dataType:"json",
+            success:function(result) {
+                $("#titlesen").html(result.title);
+                $("#subtitlesen").html(result.subtitle);
+                $("#photo").attr('src',result.photo);
+                $("#like").html(result.like);
+                $("#name").html(result.name);
+                $("#age").html(result.age);
+                $("#price").html(result.price);
+                $("#confirm").attr('src',result.confirm);
+                $("#trust").attr('src',result.trust);
+                $("#introsen").html(result.intro);
+                $("#type").html(result.type);
+                $("#addr").html(result.addr);
+                $("#hospital").html(result.hospital);
+                $("#pet").html(result.pet);
+                $("#service").html(result.service);
+                $("#career").html(result.career);
+                $("#animal").html(result.animal);
+                $("#max").html(result.max);
+                $("#inqur").html(result.inqur);
+                $("#need").html(result.need);
+                $("#views").val("조회수 : "+result.views);
+                
+                var templateData = $("#imgrepeat").html();
+                var template = Handlebars.compile(templateData);
+                var html = template(result);
+                $("#picture").append(html);
+                
+                var templateData = $("#reviewrepeat").html();
+                var template = Handlebars.compile(templateData);
+                var html = template(result);
+                $("#reviewtext").append(html);
+                
+              }
+          })
+        });
+  });
+	
+}) 
+
 var heart = document.getElementById("heart");
 heart.onclick = function() {
  var state = heart.getAttribute("data-state");
@@ -530,6 +548,7 @@ heart.onclick = function() {
    heart.setAttribute("src", "../img/detail/like.jpg");
    heart.setAttribute("data-state", "after");
    $("#like").html($("#like").html() * 1 + 1);
+   
  } else {
    heart.setAttribute("data-state", "before");
    heart.setAttribute("src", "../img/detail/beforelike.png");

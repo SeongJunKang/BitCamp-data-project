@@ -1,7 +1,5 @@
 package bitcamp.pet.service.impl;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +20,15 @@ public class DefaultLikesService implements LikesService {
   public void delete(int mno) {
     likesDao.delete(mno);
   }
-
-  @Override
-  public int retrieveByPNO(int pno) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("pno", pno);
-    return likesDao.selectOne(paramMap);
-  }
-
-  @Override
-  public int retrieveByMNO(int mno) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("mno", mno);
-    return likesDao.selectOne(paramMap);
-  }
   
+  public int retrieveByMNO(int mno) {
+    return likesDao.selectOne(mno);
+  }
 
+  @Override
+  public int countAll(int pno) {
+    return likesDao.countAll(pno);
+  }
 
 }
 /*
