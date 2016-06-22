@@ -41,10 +41,10 @@ public class LikesAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
-  public String delete(int mno) throws ServletException, IOException {
+  public String delete(int mno,int pno) throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      likesService.delete(mno);
+      likesService.delete(mno,pno);
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
@@ -52,12 +52,20 @@ public class LikesAjaxController {
     return new Gson().toJson(result);
   }
 
-  @RequestMapping(produces="application/json;charset=UTF-8", value="bymno")
+  @RequestMapping(produces="application/json;charset=UTF-8", value="byno")
   @ResponseBody
-  public String bymno(int mno)
+  public String bymno(int mno,int pno)
       throws ServletException, IOException {
-    
-    return  new Gson().toJson(likesService.retrieveByMNO(mno));
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      Likes likes = (Likes)likesService.retrieveByNO(mno,pno);
+      result.put("mno", likes.getMno());
+      result.put("pno", likes.getPno());
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
   }
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="count")

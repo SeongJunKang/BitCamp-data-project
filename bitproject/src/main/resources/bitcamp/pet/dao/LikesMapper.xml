@@ -14,14 +14,14 @@
 		values(#{mno},#{pno})
 	</insert>
 	
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="map">
 		delete from LIKES
-		where MNO=#{mno}
+		where MNO=#{mno} and PNO=#{pno}
 	</delete>
 	
-	<select id="selectOne" parameterType="int" resultMap="LikesMap">
+	<select id="selectOne" parameterType="map" resultMap="LikesMap">
 	   select MNO, PNO from LIKES
-	   where MNO=#{mno}
+	   where MNO=#{mno} and PNO=#{pno}
 	</select>
   <select id="countAll" resultType="int" parameterType="int" >
     select count(*) from LIKES where PNO=#{pno}

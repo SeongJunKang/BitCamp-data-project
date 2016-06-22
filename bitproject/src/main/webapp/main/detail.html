@@ -16,7 +16,8 @@
 
     <!-- Custom CSS -->
     <link href="../bower_components/css/agency.css" rel="stylesheet">
-
+    <!-- Dialog from jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -280,7 +281,7 @@ ol {
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#" id='login'>로그인/회원가입</a>
+                        <a class="page-scroll not_login" href="#" id='login'>로그인/회원가입</a>
                     </li>
                 </ul>
             </div>
@@ -420,7 +421,9 @@ ol {
         </div>
     </footer>
     
-
+  <div id="dialog-confirm" title="좋아요">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원만 좋아요 기능을 사용할 수 있습니다.<br>로그인을 먼저 해주세요.</p>
+  </div>
  <script id="imgrepeat" type="text/x-handlebars-template">
   {{#each imglist}}
     <img src={{img}} width="800">
@@ -434,6 +437,10 @@ ol {
     <li class="review">{{review}}
   {{/each}}
   </script>
+  <!-- Dialog from jQuery -->
+   
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
  <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
 
@@ -451,119 +458,167 @@ ol {
 
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
-    <script type="text/javascript">
-   
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-      center: new daum.maps.LatLng(37.5196784,127.1201637,17), // 지도의 중심좌표
-      level: 5 // 지도의 확대 레벨
-    };
+    <script type="text/javascript" src="../LoginCheck.js"></script>
+	<script type="text/javascript">
 
- // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
- var map = new daum.maps.Map(mapContainer, mapOption); 
- var zoomControl = new daum.maps.ZoomControl();
- map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
- var mapTypeControl = new daum.maps.MapTypeControl();
- map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
-//****************************************************************************
-var circle = new daum.maps.Circle({
- center : new daum.maps.LatLng(37.5196784,127.1201637,17),  // 원의 중심좌표 입니다 
- radius: 500, // 미터 단위의 원의 반지름입니다 
- strokeWeight: 5, // 선의 두께입니다 
- strokeColor: '#75B8FA', // 선의 색깔입니다
- strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
- strokeStyle: 'solid', // 선의 스타일 입니다
- fillColor: '#CFE7FF', // 채우기 색깔입니다
- fillOpacity: 0.5  // 채우기 불투명도 입니다   
-}); 
+		//<img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
+		var memberNo = "";
+		$(document).ready(function() {
+			$("#dialog-confirm").css("display","none");
+			
+			   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			      center : new daum.maps.LatLng(37.5196784, 127.1201637, 17), // 지도의 중심좌표
+			      level : 5
+			    // 지도의 확대 레벨
+			    };
 
-// 지도에 원을 표시합니다 
-circle.setMap(map); 
+			    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+			    var map = new daum.maps.Map(mapContainer, mapOption);
+			    var zoomControl = new daum.maps.ZoomControl();
+			    map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+			    var mapTypeControl = new daum.maps.MapTypeControl();
+			    map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
-//****************************************************************************
+			    //****************************************************************************
+			    var circle = new daum.maps.Circle({
+			      center : new daum.maps.LatLng(37.5196784, 127.1201637, 17), // 원의 중심좌표 입니다 
+			      radius : 500, // 미터 단위의 원의 반지름입니다 
+			      strokeWeight : 5, // 선의 두께입니다 
+			      strokeColor : '#75B8FA', // 선의 색깔입니다
+			      strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			      strokeStyle : 'solid', // 선의 스타일 입니다
+			      fillColor : '#CFE7FF', // 채우기 색깔입니다
+			      fillOpacity : 0.5
+			    // 채우기 불투명도 입니다   
+			    });
 
-//<img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
-var mno = "";
-$(document).ready(function() {
-    $(function() {
-      $.ajax("../auth/getMemberNo.do?", {
-          method : "POST",
-          success : function(result) {
-           if (result.status == "success") {
-             mno = result.mno;
-           } else if ( result.status == "failure") {
-           }
-         }
-      });
-      
-      $(function(){
-          $.ajax({
-            url:"detail.json",
-            dataType:"json",
-            success:function(result) {
-                $("#titlesen").html(result.title);
-                $("#subtitlesen").html(result.subtitle);
-                $("#photo").attr('src',result.photo);
-                $("#like").html(result.like);
-                $("#name").html(result.name);
-                $("#age").html(result.age);
-                $("#price").html(result.price);
-                $("#confirm").attr('src',result.confirm);
-                $("#trust").attr('src',result.trust);
-                $("#introsen").html(result.intro);
-                $("#type").html(result.type);
-                $("#addr").html(result.addr);
-                $("#hospital").html(result.hospital);
-                $("#pet").html(result.pet);
-                $("#service").html(result.service);
-                $("#career").html(result.career);
-                $("#animal").html(result.animal);
-                $("#max").html(result.max);
-                $("#inqur").html(result.inqur);
-                $("#need").html(result.need);
-                $("#views").val("조회수 : "+result.views);
-                
-                var templateData = $("#imgrepeat").html();
-                var template = Handlebars.compile(templateData);
-                var html = template(result);
-                $("#picture").append(html);
-                
-                var templateData = $("#reviewrepeat").html();
-                var template = Handlebars.compile(templateData);
-                var html = template(result);
-                $("#reviewtext").append(html);
-                
-              }
-          })
-        });
-  });
-	
-}) 
+			    // 지도에 원을 표시합니다 
+			    circle.setMap(map);
 
-var heart = document.getElementById("heart");
-heart.onclick = function() {
- var state = heart.getAttribute("data-state");
- if (state == "before") {
-   heart.setAttribute("src", "../img/detail/like.jpg");
-   heart.setAttribute("data-state", "after");
-   $("#like").html($("#like").html() * 1 + 1);
-   
- } else {
-   heart.setAttribute("data-state", "before");
-   heart.setAttribute("src", "../img/detail/beforelike.png");
-   $("#like").html($("#like").html() * 1 - 1);
- }
-}
-    function goMain(event) {
-        location.href = "index.html"
-        event.preventDefault();
-      }
-    $("#login").click(function() {
-        location.href = "index.html#signin"
-       
-        event.preventDefault();
-      });
-    </script>
+			    //****************************************************************************
+			
+							$(function() {
+								$.ajax("../auth/getMemberNo.do?", {
+									method : "POST",
+									async : false,
+									success : function(result) {
+										if (result.status == "success") {
+											memberNo = result.mno;
+										}
+									}
+								});
+								if (memberNo != "") {
+									$.getJSON("../ajax/likes/byno.do?mno="+ memberNo + "&pno=1", 
+											function(	result) {
+											  if ( result.status =="success") {
+									          heart.setAttribute("src", "../img/detail/like.jpg");
+									          heart.setAttribute("data-state", "after");
+											  }
+									});
+								}
+							})
+							$(function() {
+								$.ajax({
+											url : "detail.json",
+											dataType : "json",
+											success : function(result) {
+												$("#titlesen").html(
+														result.title);
+												$("#subtitlesen").html(
+														result.subtitle);
+												$("#photo").attr('src',
+														result.photo);
+												$("#like").html(result.like);
+												$("#name").html(result.name);
+												$("#age").html(result.age);
+												$("#price").html(result.price);
+												$("#confirm").attr('src',
+														result.confirm);
+												$("#trust").attr('src',
+														result.trust);
+												$("#introsen").html(
+														result.intro);
+												$("#type").html(result.type);
+												$("#addr").html(result.addr);
+												$("#hospital").html(result.hospital);
+												$("#pet").html(result.pet);
+												$("#service").html(result.service);
+												$("#career").html(result.career);
+												$("#animal").html(result.animal);
+												$("#max").html(result.max);
+												$("#inqur").html(result.inqur);
+												$("#need").html(result.need);
+												$("#views").val("조회수 : "+ result.views);
+												var templateData = $(	"#imgrepeat").html();
+												var template = Handlebars	.compile(templateData);
+												var html = template(result);
+												$("#picture").append(html);
+												var templateData = $("#reviewrepeat").html();
+												var template = Handlebars.compile(templateData);
+												var html = template(result);
+												$("#reviewtext").append(html);
+
+											}
+										})
+							});
+
+						})
+
+		var heart = document.getElementById("heart");
+		heart.onclick =function() {
+			if (memberNo == "") {
+          window.alert("로그인 해야 이용할 수 있습니다.");
+			} else {
+				var state = heart.getAttribute("data-state");
+				if (state == "before") {
+					heart.setAttribute("src", "../img/detail/like.jpg");
+					heart.setAttribute("data-state", "after");
+					$("#like").html($("#like").html() * 1 + 1);
+					$.ajax("../ajax/likes/add.do?", {
+						method : "POST",
+						dataType : "json",
+						data : {
+							mno : memberNo,
+							pno : 1
+						},
+						success : function(result) {
+							if (result.status == "success") {
+								console.log("좋아요 성공");
+							}
+						}
+					});
+				} else {
+					heart.setAttribute("data-state", "before");
+					heart.setAttribute("src", "../img/detail/beforelike.png");
+					$("#like").html($("#like").html() * 1 - 1);
+					$.ajax("../ajax/likes/delete.do?", {
+						method : "POST",
+						dataType : "json",
+						data : {
+							mno : memberNo,
+							pno : 1
+						},
+						success : function(result) {
+							if (result.status == "success") {
+								console.log("좋아요 삭제성공");
+							}
+						}
+					});
+				}
+				
+			}
+		}
+		
+		function goMain(event) {
+			location.href = "index.html"
+			event.preventDefault();
+		}
+		$("#login").click(function() {
+			location.href = "index.html#signin"
+			event.preventDefault();
+		});
+	</script>
 </body>
 </html>
