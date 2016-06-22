@@ -9,7 +9,6 @@
 <body>
 <script>
   var loginUser ='<%= session.getAttribute("loginUser") %>'
-   
   console.log(loginUser);
 </script>
 </body>

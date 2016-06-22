@@ -848,7 +848,22 @@ margin-left: 24px;
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <script type="text/javascript">
+    
      $(document).ready(function(){
+    	 /* 회원번호 뽑는 소스
+         $(function() {
+             $.ajax("../auth/getMemberNo.do?", {
+                 method : "POST",
+                 success : function(result) {
+                  if (result.status == "success") {
+                	  console.log(result.mno);
+                  } else if ( result.status == "failure") {
+                	  console.log("실패");
+                  }
+                }
+             });
+         });
+    	 */
     	$('.cont1').css("display","");
       $('.cont2').css("display","none");
       

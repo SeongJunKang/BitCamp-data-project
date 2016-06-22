@@ -278,6 +278,20 @@ table {
   }
 
   $(document).ready(function() {
+  /*
+           $(function() {
+             $.ajax("../auth/getMemberNo.do?", {
+                 method : "POST",
+                 success : function(result) {
+                  if (result.status == "success") {
+                	  console.log(result.mno);
+                  } else if ( result.status == "failure") {
+                	  console.log("실패");
+                  }
+                }
+             });
+         });
+         */
 	  $("#savebtn").click(function() {
 		    var no = location.href.split("=")[1];
 		    $("#pno").val(no);
@@ -320,7 +334,7 @@ table {
 		           password : "",
 		           tel : "",
 		           name : "",
-		           gra :  2   //수정해야함
+		           gra :  2
 		         }, function(result) {
 		             if (result.status == "success") {
 		                location.href = "../main/maintest.html";

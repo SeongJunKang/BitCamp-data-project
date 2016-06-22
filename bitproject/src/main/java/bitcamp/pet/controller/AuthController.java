@@ -32,7 +32,6 @@ public class AuthController {
     HashMap<String,Object> result = new HashMap<>();
     if ( memberService.exist(email, password)) {
       Member member = memberService.retrieveByEmail(email);
-      System.out.println(member);
       session.setAttribute("loginUser",member);
       result.put("status", "success");
     } else {
@@ -40,6 +39,21 @@ public class AuthController {
     }
     return new Gson().toJson(result);
   }
+
+  @RequestMapping(produces="application/json;charset=UTF-8", value="getMemberNo")
+  @ResponseBody
+  public String getMemberNo(HttpSession session) {
+    HashMap<String,Object> result = new HashMap<>();
+    if ( session.getAttribute("loginUser") != null) {
+      Member member = (Member)session.getAttribute("loginUser");
+      result.put("mno", member.getMno());
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
   
   @RequestMapping(value="logout")
   public String logout(HttpSession session,SessionStatus status) {
