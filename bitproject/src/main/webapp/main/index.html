@@ -997,7 +997,6 @@ margin-left: 24px;
                       $("#checkresult").html("사용가능합니다.");
                       $("#checkresult").css("color","green");
                       $("#email").attr("data-state","ok");
-                      console.log($("#email").attr("data-state"));
                     } else if ( result.status == "failure") {
                     	$("#email").attr("data-state","no");
                       $("#checkresult").html("중복된 아이디로 사용불가능합니다.")
