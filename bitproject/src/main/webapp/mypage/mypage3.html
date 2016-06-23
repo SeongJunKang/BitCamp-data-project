@@ -30,11 +30,13 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style>
@@ -177,6 +179,76 @@ fieldset[disabled] .btn-me.active {
   background-color: #fed136;
   border-color: #fed136;
 }
+
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.preview {  
+    display: block;
+    width: 350px;
+    height: 350px;
+    margin: 50px auto;    
+    border: 2px solid lightgray;
+    border-radius: 3%;
+    overflow: hidden;
+}
+
+.file-upload-wrapper {
+    position: relative;
+    z-index: 5;
+    display: block;
+    width: 250px;
+    height: 30px;
+    margin: 50px auto;
+    border : 2px solid gray;
+}
+
+.file-upload-native,
+.file-upload-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+.file-upload-native:focus,
+.file-upload-text:focus {
+    outline: none;
+}
+
+.file-upload-text {
+    z-index: 10;
+    padding: 5px 15px 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    color: rgb(144, 162, 148);
+    border: 0;
+    background-color: transparent;
+}
+
+.file-upload-native {
+    z-index: 15;
+    opacity: 0;
+}
 </style>
 </head>
 
@@ -220,6 +292,11 @@ fieldset[disabled] .btn-me.active {
     <!-- Services Section -->
     <div id="inbody">
     <div id="container1">
+    <div class="preview img-wrapper"></div>
+	  <div class="file-upload-wrapper">
+	      <input type="file" id="uploadFile" name="uploadFile" class="file-upload-native" accept="image/*"/>
+	      <input type="text" disabled placeholder="프로필 사진을 등록하세요" class="file-upload-text" />
+	  </div>
       <div class="table-responsive table1">
       <div id="deletediv">
       <button id="delete" type="button" class="btn btn-me">회원탈퇴</button>
@@ -415,6 +492,7 @@ fieldset[disabled] .btn-me.active {
 
   <script type="text/javascript">
   var memberNo = 0;  
+  var grade = 1;
   $(function() {
       $.ajax("../auth/getMemberNo.do?", {
         method : "POST",
@@ -478,7 +556,7 @@ fieldset[disabled] .btn-me.active {
            dataType : "json",
            data : {
             no : memberNo, //수정해야함
-            gra: 1, // 수정해야함
+            gra: grade, // 수정해야함
             name : $("#name").val(),
             password : pwd,
             tel : $("#phone1").val()+"-"+
@@ -486,43 +564,43 @@ fieldset[disabled] .btn-me.active {
                   $("#phone3").val()
           }, 
           success : function(result) {
-            if (result.status == "success") {
-              $(function() {
-                  $( "#dialog-confirm2" ).dialog({
-                    resizable: false,
-                    height:180,
-                    width:300,
-                    modal: true,
-                    buttons: {
-                      "확인": function() {
-                        $( this ).dialog( "close" );
-                        location.href = "../main/index.html";
+              if (result.status == "success") {
+                $(function() {
+                    $( "#dialog-confirm2" ).dialog({
+                      resizable: false,
+                      height:180,
+                      width:300,
+                      modal: true,
+                      buttons: {
+                        "확인": function() {
+                          $( this ).dialog( "close" );
+                          location.href = "../main/index.html";
+                        }
                       }
-                    }
+                    });
                   });
-                });
-              
-            } else {
-              $(function() {
-                 $( "#dialog-confirm3" ).dialog({
-                   resizable: false,
-                   height:180,
-                   width:300,
-                   modal: true,
-                   buttons: {
-                     "확인": function() {
-                       $( this ).dialog( "close" );
+                
+              } else {
+                $(function() {
+                   $( "#dialog-confirm3" ).dialog({
+                     resizable: false,
+                     height:180,
+                     width:300,
+                     modal: true,
+                     buttons: {
+                       "확인": function() {
+                         $( this ).dialog( "close" );
+                       }
                      }
-                   }
+                   });
                  });
-               });
+              }
+            },
+            error : function() {
+              window.alert("서버요청 실패입니다.");
             }
-          },
-          error : function() {
-            window.alert("서버요청 실패입니다.");
-          }
-       })
-      });
+         })
+        });
   
     $(function() {
     	if (memberNo == 0) {
@@ -531,6 +609,10 @@ fieldset[disabled] .btn-me.active {
 	    	$.getJSON("../ajax/member/detail.do?no="+memberNo,
             function(result) {
             	$("#photo").val(result.prof);
+            	grade= result.gra;
+            	if (grade == 2) {
+            		$("#grade2").css("display","");
+            	};
               $("#name").attr("value",result.name);
               $("#email").attr("value",result.email);
               var phoneNum = result.tel.split('-');
@@ -548,6 +630,7 @@ fieldset[disabled] .btn-me.active {
     }
 
     $(document).ready(function() {
+    	$("#grade2").css("display","none");
       $("#dialog-confirm").css("display","none");
       $("#dialog-confirm2").css("display","none");
       $("#dialog-confirm3").css("display","none");
@@ -562,6 +645,74 @@ fieldset[disabled] .btn-me.active {
         location.href = "../resist/resist.html?no="+ memberNo;
         event.preventDefault();
       });
+      
+      $(function() {
+    	  function maskImgs() {
+    	    //$('.img-wrapper img').imagesLoaded({}, function() {
+    	    $.each($('.img-wrapper img'), function(index, img) {
+    	      var src = $(img).attr('src');
+    	      var parent = $(img).parent();
+    	      parent
+    	        .css('background', 'url(' + src + ') no-repeat center center')
+    	        .css('background-size', 'cover');
+    	      $(img).remove();
+    	    });
+    	    //});
+    	  }
+
+    	  var preview = {
+    	    init: function() {
+    	      preview.setPreviewImg();
+    	      preview.listenInput();
+    	    },
+    	    setPreviewImg: function(fileInput) {
+    	      var path = $(fileInput).val();
+    	      var uploadText = $(fileInput).siblings('.file-upload-text');
+
+    	      if (!path) {
+    	        $(uploadText).val('');
+    	      } else {
+    	        path = path.replace(/^C:\\fakepath\\/, "");
+    	        $(uploadText).val(path);
+
+    	        preview.showPreview(fileInput, path, uploadText);
+    	      }
+    	    },
+    	    showPreview: function(fileInput, path, uploadText) {
+    	      var file = $(fileInput)[0].files;
+
+    	      if (file && file[0]) {
+    	        var reader = new FileReader();
+
+    	        reader.onload = function(e) {
+    	          var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+    	          var img = $(previewImg).find('img');
+
+    	          if (img.length == 0) {
+    	             $(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+    	          } else {
+    	            img.attr('src', e.target.result);
+    	          }
+
+    	          uploadText.val(path);
+    	          maskImgs();
+    	        }
+
+    	        reader.onloadstart = function() {
+    	          $(uploadText).val('uploading..');
+    	        }
+
+    	        reader.readAsDataURL(file[0]);
+    	      }
+    	    },
+    	    listenInput: function() {
+    	      $('.file-upload-native').on('change', function() {
+    	        preview.setPreviewImg(this);
+    	      });
+    	    }
+    	  };
+    	  preview.init();
+    	});
     });
   </script>
 </body>
