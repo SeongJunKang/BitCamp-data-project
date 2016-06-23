@@ -12,6 +12,7 @@
     <title>산책할개</title>
 
    <!-- Bootstrap Core CSS -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
@@ -24,6 +25,10 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <script src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/handlebars/handlebars.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,11 +36,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+<link rel="stylesheet" type="text/css" href="../footerStyle.css">
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <style>
@@ -55,7 +61,7 @@
 }
 #bodycontent {
 border: 1px solid red;
-  width: 1100px;
+  width: 1200px;
   margin: 0 auto;
 }
 
@@ -65,8 +71,8 @@ border: 1px solid red;
 }
 
 table {
-border: 1px solid red;
-  width: 900px;;
+  border: 1px solid red;
+  width: 100%;
   margin-top: 15px;
 }
 
@@ -201,7 +207,7 @@ border: 1px solid red;
               <td class="th"><span class="thtext">닉네임</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="nickname">
-                <button id="checknick" class="btn btn-me">중복확인</button></td>
+                <button id="checknick" class="btn btn-default">중복확인</button></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">1일 가격</span></td>
@@ -654,21 +660,7 @@ border: 1px solid red;
 
 	        // 정상적으로 검색이 완료됐으면 
 	         if (status === daum.maps.services.Status.OK) {
-
 	            var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-
-	            // 결과값으로 받은 위치를 마커로 표시합니다
-	            var marker = new daum.maps.Marker({
-	                map: map,
-	                position: coords
-	            });
-
-	            // 인포윈도우로 장소에 대한 설명을 표시합니다
-	            var infowindow = new daum.maps.InfoWindow({
-	                content: '<div style="width:150px;text-align:center;padding:6px 0";>위치</div>'
-	            });
-	            infowindow.open(map, marker);
-
 	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	            map.setCenter(coords);
 	        } 
