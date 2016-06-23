@@ -15,6 +15,16 @@ public class Member {
   String qus;
   String ans;
   int gra;
+  String prof;
+  
+  public String getProf() {
+    return prof;
+  }
+
+  public void setProf(String prof) {
+    this.prof = prof;
+  }
+
   public String getAgency() {
     return agency;
   }

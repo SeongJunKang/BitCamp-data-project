@@ -5,7 +5,7 @@
 
 <mapper namespace="bitcamp.pet.dao.MemberDao">
   <sql id="select01">
-    select MNO, NAME, EMAIL, AGC,TEL, GEN, GRA
+    select MNO, NAME, EMAIL, AGC,TEL, GEN, GRA, PROF
     from MEMBER
   </sql>
 	<resultMap type="Member" id="MemberMap">
@@ -22,13 +22,18 @@
 	<update id="update" parameterType="Member">
 		update MEMBER set
 		NAME=#{name},
+		<if test="prof !=null">
+    PROF=#{prof},
+    </if>
 		<if test="gra !=null">
 		GRA=#{gra},
 		</if>
 		<if test="pwd !=null">
 		PWD=#{pwd},
 		</if>
+		<if test="tel !=null">
 		TEL=#{tel}
+		</if>
 		where MNO=#{mno}
 	</update>
 	<delete id="delete" parameterType="int">

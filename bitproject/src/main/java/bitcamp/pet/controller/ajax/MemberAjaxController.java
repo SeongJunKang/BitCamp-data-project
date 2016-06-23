@@ -81,8 +81,16 @@ public class MemberAjaxController {
   @ResponseBody
   public String detail(int no) 
       throws ServletException, IOException {
-    
-    return  new Gson().toJson(memberService.retrieveByNo(no));
+    Member member = (Member)memberService.retrieveByNo(no);
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("name",member.getName());
+    result.put("email",member.getEmail());
+    result.put("tel",member.getTel());
+    try {
+      result.put("prof",member.getProf());
+    } catch (Exception e) {
+    }
+    return  new Gson().toJson(result);
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
@@ -121,7 +129,7 @@ public class MemberAjaxController {
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
   @ResponseBody
-  public String update(int no, String name, String password, String tel, int gra)
+  public String update(int no, String name, String password, String tel, int gra, String prof)
       throws ServletException, IOException {
 
     Member member = memberService.retrieveByNo(no);
@@ -134,7 +142,12 @@ public class MemberAjaxController {
     if (!tel.equals("")) {
       member.setTel(tel);
     }
-      System.out.println(gra);
+    try {
+      if (!prof.equals("") || (prof != null)) {
+        member.setProf(prof);
+      }
+    } catch (Exception e) {
+    }
     HashMap<String, Object> result = new HashMap<>();
     try {
       memberService.change(member);

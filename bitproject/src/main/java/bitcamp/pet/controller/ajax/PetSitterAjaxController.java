@@ -84,8 +84,17 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String detail(int no) 
       throws ServletException, IOException {
-    
-    return  new Gson().toJson(petsitterService.retrieveByNo(no));
+    PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(no);
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      result.put("lat",petsitter.getLat());
+      result.put("lnt",petsitter.getLnt());
+      result.put("rad",petsitter.getRad());
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return  new Gson().toJson(result);
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")

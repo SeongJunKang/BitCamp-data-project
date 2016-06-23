@@ -205,10 +205,10 @@ fieldset[disabled] .btn-me.active {
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a id='resist' onclick='goMain()' class="page-scroll" href="#" id='login'>로그아웃</a>
+                        <a id='logout' class="login" href="#">로그아웃</a>
                     </li>
                     <li>
-                        <a id='logout' class="page-scroll" href="#" id='login'>펫시터등록</a>
+                        <a id='resist' class="login" href="#">펫시터등록</a>
                     </li>
                 </ul>
             </div>
@@ -236,7 +236,7 @@ fieldset[disabled] .btn-me.active {
               <div class="input-group col-lg-4">
                 <input type="text" id="photo" class="form-control" readonly="readonly">
                 <span class="input-group-btn">
-                  <button id="changeName"  class="btn btn-me" type="button">파일첨부</button>
+                  <button id="picture"  class="btn btn-me" type="button">파일첨부</button>
                 </span>
               </div>
             </td>
@@ -416,6 +416,19 @@ fieldset[disabled] .btn-me.active {
     
 
   <script type="text/javascript">
+  var memberNo = 0;  
+  $(function() {
+      $.ajax("../auth/getMemberNo.do?", {
+        method : "POST",
+        async : false,
+        success : function(result) {
+          if (result.status == "success") {
+            memberNo = result.mno;
+          }
+        }
+      });
+    })
+  
   $("#passwordchk").change(function() {
      if ($("#password").val() != $("#passwordchk").val() ) {
        $("#checkText").html("비밀번호가 일치하지 않습니다.")
@@ -440,14 +453,14 @@ fieldset[disabled] .btn-me.active {
                   method : "POST",
                   dataType : "json",
                   data : {
-                   no : 1
+                   no : memberNo
                  }, 
                  success :function(result) {
 
                 }
               });
            });
-           location.href = "../main/maintest.html";
+           location.href = "../main/index.html";
          },
          "취소": function() {
            $( this ).dialog( "close" );
@@ -466,7 +479,7 @@ fieldset[disabled] .btn-me.active {
            method : "POST",
            dataType : "json",
            data : {
-            no : 1, //수정해야함
+            no : memberNo, //수정해야함
             gra: 1, // 수정해야함
             name : $("#name").val(),
             password : pwd,
@@ -485,7 +498,7 @@ fieldset[disabled] .btn-me.active {
                     buttons: {
                       "확인": function() {
                         $( this ).dialog( "close" );
-                        location.href = "../main/maintest.html";
+                        location.href = "../main/index.html";
                       }
                     }
                   });
@@ -514,22 +527,25 @@ fieldset[disabled] .btn-me.active {
       });
   
     $(function() {
-      $.ajax({
-            url : "mypage.jsp",
-            dataType : "json",
-            success : function(result) {
+    	if (memberNo == 0) {
+    		 location.href = "../main/index.html";
+    	} else {
+	    	$.getJSON("../ajax/member/detail.do?no="+memberNo,
+            function(result) {
+            	$("#photo").val(result.prof);
               $("#name").attr("value",result.name);
-              $("#bank").html(result.bank);
               $("#email").attr("value",result.email);
-              $("#account").html(result.account);
-              $("#holder").html(result.holder);
+              var phoneNum = result.tel.split('-');
+              $("#phone1").val(phoneNum[0]);
+              $("#phone2").val(phoneNum[1]);
+              $("#phone3").val(phoneNum[2]);
             }
-          })
-
+         );
+    	}
     });
 
     function goMain(event) {
-      location.href = "../main/maintest.html"
+      location.href = "../main/index.html"
       event.preventDefault();
     }
 

@@ -26,7 +26,8 @@ CREATE TABLE MEMBER (
   BTH   DATE         NOT NULL COMMENT '생년월일', -- 생년월일
   AGC   VARCHAR(10)  NOT NULL COMMENT '통신사', -- 통신사
   TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호', -- 핸드폰번호
-  GRA   INTEGER      NOT NULL COMMENT '등급' -- 등급
+  GRA   INTEGER      NOT NULL COMMENT '등급', -- 등급
+  PROF  VARCHAR(255) NULL     COMMENT '프로필사진' -- 프로필사진
 )
 COMMENT '회원';
 
