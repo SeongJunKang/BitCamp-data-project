@@ -5,7 +5,7 @@
 
 <mapper namespace="bitcamp.pet.dao.MemberDao">
   <sql id="select01">
-    select MNO, NAME, EMAIL, AGC,TEL, GEN, GRA, PROF
+    select MNO, NAME, EMAIL, AGC,TEL, GEN, GRA, PROF,PWD
     from MEMBER
   </sql>
 	<resultMap type="Member" id="MemberMap">

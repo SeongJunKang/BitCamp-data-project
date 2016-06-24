@@ -359,7 +359,7 @@ input[type="file"]::-webkit-file-upload-button {
             <td>비밀번호 변경</td>
             <td>
               <div class="input-group col-lg-3">
-                <input type="password" id="password" name="password" class="form-control" placeholder="바뀌는경우만입력">
+                <input type="password" id="password" onkeyup="pwdCheck()" name="password" class="form-control" placeholder="바뀌는경우만입력">
               </div>
             </td>
           </tr>
@@ -367,7 +367,7 @@ input[type="file"]::-webkit-file-upload-button {
             <td>비밀번호 확인</td>
             <td>
              <div class="input-group col-lg-3">
-                <input type="password" id="passwordchk" name="passwordchk" class="form-control" placeholder="바뀌는경우만입력" >
+                <input type="password" id="passwordchk" onkeyup="pwdCheck()" name="passwordchk" class="form-control" placeholder="바뀌는경우만입력" >
                 <span id="checkText"></span>
               </div>
               
@@ -474,16 +474,6 @@ input[type="file"]::-webkit-file-upload-button {
     
 
   <script type="text/javascript">
-  $("#passwordchk").change(function() {
-     if ($("#password").val() != $("#passwordchk").val() ) {
-       $("#checkText").html("비밀번호가 일치하지 않습니다.")
-       $("#checkText").css("color","red");
-     } else {
-       $("#checkText").html("비밀번호가 일치합니다.")
-       $("#checkText").css("color","green");
-     }
-  });
-  
   $("#delete").click(function() {
     $( "#dialog-confirm" ).dialog({
        resizable: false,
@@ -565,8 +555,32 @@ input[type="file"]::-webkit-file-upload-button {
       location.href = "../main/index.html"
       event.preventDefault();
     }
-
+    function pwdCheck() {
+        var upw = $("#password").val();
+        var regex_pwd = /^[A-Za-z0-9]{4,10}$/i;
+        var chk_num = upw.search(/[0-9]/i); 
+        var chk_eng = upw.search(/[A-Za-z]/i);
+        if ( regex_pwd.test(upw)) {
+           if ( upw != $("#passwordchk").val() ) {
+             $("#checkText").html("비밀번호가 일치하지 않습니다.")
+             $("#checkText").css("color","red");
+           } else {
+             if(chk_num < 0 || chk_eng < 0) {
+               $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
+               $("#checkText").css("color","red");
+             } else {
+               $("#checkText").html("비밀번호가 일치합니다.")
+               $("#checkText").css("color","green");
+             }
+           }
+        } else {
+           $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
+           $("#checkText").css("color","red");
+        } 
+      }
     $(document).ready(function() {
+    	
+    	
     	  $(function() {
     	      $.ajax("../auth/getMemberNo.do?", {
     	        method : "POST",
