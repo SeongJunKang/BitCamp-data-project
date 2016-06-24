@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class MemberAjaxController {
 
   @Autowired
   MemberService memberService;
+  
+  @Autowired
+  ServletContext servletContext;
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
@@ -84,18 +89,20 @@ public class MemberAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
-  public String detail(int no) 
+  public String detail(HttpSession session) 
       throws ServletException, IOException {
-    Member member = (Member)memberService.retrieveByNo(no);
+    Member member = (Member)session.getAttribute("loginUser");
     HashMap<String,Object> result = new HashMap<>();
     result.put("name",member.getName());
     result.put("email",member.getEmail());
     result.put("tel",member.getTel());
     result.put("gra",member.getGra());
-    result.put("pwd",member.getPwd());
+    result.put("agc",member.getAgency());
+    System.out.println(member.getAgency());
     try {
       result.put("prof",member.getProf());
     } catch (Exception e) {
+      e.printStackTrace();
     }
     return  new Gson().toJson(result);
   }
@@ -136,37 +143,87 @@ public class MemberAjaxController {
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
   @ResponseBody
-  public String update(/*MultipartHttpServletRequest request,*/ int no, String name, String password, String tel, int gra)
+  public String update(HttpSession session,String agc, String name,String nowpassword, String passwordchk,
+      String phone1,String phone2,String phone3, String password)
       throws ServletException, IOException {
-    Member member = memberService.retrieveByNo(no);
-    /*
+    Member member = (Member)session.getAttribute("loginUser");
+    
+    if ((nowpassword.equals("") && passwordchk.equals("") && password.equals("")) // 패스워드 3개가 빈칸이거나
+        ||(member.getPwd() == nowpassword)) {                                     // 현재 비밀번호와 체크비밀번호가 같다면,
+      if ((!password.equals("")) && (password.equals(passwordchk))){
+        member.setPwd(password);
+      }
+    }
+    member.setAgency(agc);              //통신사 변경
+    member.setName(name);               //이름변경
+    member.setTel(phone1+"-"+phone2+"-"+phone3);//전화번호변경
+    
+    HashMap<String, Object> result = new HashMap<>();
+    try {
+      memberService.change(member);     // 회원정보 변경 신청
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
+ 
+  @RequestMapping(method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8", value="upgrade")
+  @ResponseBody
+  public String update(HttpSession session,int gra)
+      throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    member.setGra(gra);
+    HashMap<String, Object> result = new HashMap<>();
+    try {
+      memberService.change(member);     // 회원정보 변경 신청
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(method=RequestMethod.POST,produces="application/json;charset=UTF-8", value="upload")
+  @ResponseBody
+  public String upload(MultipartHttpServletRequest request,
+      HttpSession session,String agc, String name,String nowpassword, String passwordchk,
+      String phone1,String phone2,String phone3, String password)
+      throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    
     Map<String, MultipartFile> files = request.getFileMap();
     CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");
     int extPoint = cmf.getOriginalFilename().lastIndexOf(".");
-    String fileName = System.currentTimeMillis()+count()
-                        + cmf.getOriginalFilename().substring(extPoint);
-    // 경로
-    String path ="bitproject/img/profiles/"+fileName;
-
-    // 파일 업로드 처리 완료.
-    try {
-      cmf.transferTo(new File(path));
-      System.out.println("새 파일명 : " + fileName);
-      System.out.printf("새 파일을 저장할 실제 경로 = %s\n", path);
-      member.setProf(path);
-    } catch (Exception e) {
-    }*/
+    String fileName = "";
+    if (extPoint > 0){
+      fileName = System.currentTimeMillis() + count() + cmf.getOriginalFilename().substring(extPoint);      
+      
+      String realPath = servletContext.getRealPath("img/profiles/" + fileName);
+      try {
+        cmf.transferTo(new File(realPath));
+        member.setProf("img/profiles/"+fileName);
+        System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
+        System.out.println("새 파일명 : " + fileName);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
     
+    if ((nowpassword.equals("") && passwordchk.equals("") && password.equals("")) // 패스워드 3개가 빈칸이거나
+        ||(member.getPwd() == nowpassword)) {                                     // 현재 비밀번호와 체크비밀번호가 같다면,
+      if ((!password.equals("")) && (password.equals(passwordchk))) {
+        member.setPwd(password);
+      }
+    }
     
-    if (!password.equals("")){
-      member.setPwd(password);
-    }
-    if (!name.equals("")) {
-      member.setName(name);
-    }
-    if (!tel.equals("")) {
-      member.setTel(tel);
-    }
+    member.setAgency(agc);
+    member.setName(name);
+    member.setTel(phone1+"-"+phone2+"-"+phone3);//전화번호변경
+    
     HashMap<String, Object> result = new HashMap<>();
     try {
       memberService.change(member);
