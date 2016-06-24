@@ -584,7 +584,6 @@ input[type="file"]::-webkit-file-upload-button {
       } else {
         $.getJSON("../ajax/member/detail.do?",
             function(result) {
-        	  console.log(result.agc);
         	    $("#agc").val(result.agc).attr("selected","selected");
               if (result.gra == 2) {
                 $("#grade2").css("display","");

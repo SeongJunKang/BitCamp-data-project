@@ -12,6 +12,7 @@
 		<id column="MNO" property="mno" />
 		<result column="NAME" property="name" />
 		<result column="PWD" property="pwd" />
+		<result column="AGC" property="agency" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="Member">
