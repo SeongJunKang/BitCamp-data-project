@@ -712,6 +712,10 @@ s
         });
 
         FB.Event.subscribe('auth.login', function(response) {
+        	$("#mypage").click(function() {
+                location.href = "../mypage/mypage3.html"
+                event.preventDefault();
+              });
             document.location.reload();
         });
         FB.Event.subscribe('auth.logout', function(response) {
@@ -729,179 +733,207 @@ s
        }(document));
       
       
-     $(document).ready(function(){
-
-    	$('.cont1').css("display","");
-      $('.cont2').css("display","none");
-      
-      $("#logout").click(function() {
-    	  location.href = "../auth/logout.do";
-    	  event.preventDefault();
-      });
-      
-      $(".signup").click(function(e) {
-          $('.cont1').css("display","none");
-          $('.cont2').css("display","");
-      });
-      
-      $(".signin").click(function(e) {
+      $(document).ready(function(){
+          $("#dialog-confirm").css("display","none");
+          $("#dialog-confirm2").css("display","none");
           $('.cont1').css("display","");
           $('.cont2').css("display","none");
-       });
-      
-      $(".po1").click(function(e) {
-        location.href = "detail.html"
-              event.preventDefault();
-       });
-      
-      $("#loginbtn").click(function() {
-          $.ajax("../auth/login.do?", {
-              method : "POST",
-              dataType : "json",
-              data : {
-               email : $("#inemail").val(),
-               password : $("#inpassword").val()
-             },success : function(result) {
-               if (result.status == "success") {
-            	   alert("로그인 성공");
-            	   location.href = "index.html"
-               } else if ( result.status == "failure") {
-            	   alert("로그인 실패");
-               }
-             }
-          });
-      });
-      
-      $(function() {
-          var today = new Date();
-          var toyear = parseInt(today.getFullYear());
-          var end = toyear - 100;
-          var year = $("#birthdayYear");
-          var month = $("#birthdayMonth");
-          var day = $("#birthdayDay");
           
-          for (i = toyear; i >= end; i--)
-            $("<option>").html(i).appendTo(year);
-          for (i = 1; i <= 12; i++)
-            $("<option>").html(i).appendTo(month);
-          for (i = 1; i <= 31; i++)
-            $("<option>").html(i).appendTo(day);
-
-          $("#mypage").click(function() {
-            location.href = "../mypage/mypage3.html"
+          $("#logout").click(function() {
+            location.href = "../auth/logout.do";
             event.preventDefault();
           });
+          
+          $(".signup").click(function(e) {
+              $('.cont1').css("display","none");
+              $('.cont2').css("display","");
+          });
+          
+          $(".signin").click(function(e) {
+              $('.cont1').css("display","");
+              $('.cont2').css("display","none");
+           });
+          
+          $(".po1").click(function(e) {
+            location.href = "detail.html"
+                  event.preventDefault();
+           });
+          
+          $("#loginbtn").click(function() {
+              $.ajax("../auth/login.do?", {
+                  method : "POST",
+                  dataType : "json",
+                  data : {
+                   email : $("#inemail").val(),
+                   password : $("#inpassword").val()
+                 },success : function(result) {
+                   if (result.status == "success") {
+                     alert("로그인 성공");
+                     location.href = "index5.html"
+                   } else if ( result.status == "failure") {
+                     alert("로그인 실패");
+                   }
+                 }
+              });
+          });
+          
+          $(function() {
+              var today = new Date();
+              var toyear = parseInt(today.getFullYear());
+              var end = toyear - 100;
+              var year = $("#birthdayYear");
+              var month = $("#birthdayMonth");
+              var day = $("#birthdayDay");
+              
+              for (i = toyear; i >= end; i--)
+                $("<option>").html(i).appendTo(year);
+              for (i = 1; i <= 12; i++)
+                $("<option>").html(i).appendTo(month);
+              for (i = 1; i <= 31; i++)
+                $("<option>").html(i).appendTo(day);
 
-          $(".lookpet").click(function() {
-              location.href = "petdetail.html"
-              event.preventDefault();
-            });
-          $(".gender").click(function() {
-            if ($(this).html() == "남성") {
-              $(this).html("여성");
-            } else {
-              $(this).html("남성");
-            }
+              $("#mypage").click(function() {
+                location.href = "../mypage/mypage3.html"
+                event.preventDefault();
+              });
+
+              $(".lookpet").click(function() {
+                  location.href = "petdetail.html"
+                  event.preventDefault();
+                });
+              $(".gender").click(function() {
+                if ($(this).html() == "남성") {
+                  $(this).html("여성");
+                } else {
+                  $(this).html("남성");
+                }
+              });
+              $("input").focusin(function() {
+                $(this).css("background-color", "#FAFFBD")
+              });
+              $("input").focusout(function() {
+                $(this).css("background-color", "#ffffff")
+              });
+          })
+       $("#savebtn").click(function() {
+         if ($("#email").attr("data-state") != "ok") {
+           window.alert("이메일 중복체크하세요.");
+         } else {
+           if ( $("#password").val() == "" ) {
+             $("#checkText").css("display","none");
+           } else {
+             $("#checkText").css("display","");
+           }
+           if ( ($("#password").val() != "") && ($("#password").val() == $("#passwordcheck").val()) ) {
+                $.post("../ajax/member/add.do", {
+                  name : $("#name").val(),
+                  email : $("#email").val(),
+                  password : $("#password").val(),
+                  tel : $("#phone1").val()+"-"+
+                  $("#phone2").val()+"-"+
+                  $("#phone3").val(),
+                  agc : $("#agency").val(),
+                  gen : $(".gender").html(),
+                  bth :  $( "#birthdayYear").val() +"-"+
+                         $("#birthdayMonth").val() +"-"+
+                         $("#birthdayDay").val() 
+                },  function(result) {
+                      if (result.status == "success") {
+                        window.alert("가입 성공! 산책할개에 오신걸 환영합니다.")
+                        location.href= "index5.html";
+                          /* $(function() {
+                              $( "#dialog-confirm" ).dialog({
+                                resizable: false,
+                                height:180,
+                                width:300,
+                                modal: true,
+                                buttons: {
+                                  "확인": function() {
+                                    $( this ).dialog( "close" );
+                                    location.href = "../main/index.html";
+                                  }
+                                }
+                              });
+                            });
+                          
+                        } else {
+                          $(function() {
+                             $( "#dialog-confirm2" ).dialog({
+                               resizable: false,
+                               height:180,
+                               width:300,
+                               modal: true,
+                               buttons: {
+                                 "확인": function() {
+                                   $( this ).dialog( "close" );
+                                 }
+                               }
+                             });
+                           }); */
+                        }
+                }, "json");
+             }
+           }
           });
-          $("input").focusin(function() {
-            $(this).css("background-color", "#FAFFBD")
-          });
-          $("input").focusout(function() {
-            $(this).css("background-color", "#ffffff")
-          });
-      })
-   $("#savebtn").click(function() {
-	   if ($("#email").attr("data-state") != "ok") {
-		   window.alert("이메일 중복체크하세요.");
-	   } else {
-		   if ( $("#password").val() == "" ) {
-			   $("#checkText").css("display","none");
-		   } else {
-			   $("#checkText").css("display","");
-		   }
-		   if ( ($("#password").val() != "") && ($("#password").val() == $("#passwordcheck").val()) ) {
-		        $.post("../ajax/member/add.do", {
-		          name : $("#name").val(),
-		          email : $("#email").val(),
-		          password : $("#password").val(),
-		          tel : $("#phone1").val()+"-"+
-		          $("#phone2").val()+"-"+
-		          $("#phone3").val(),
-		          agc : $("#agency").val(),
-		          gen : $(".gender").html(),
-		          bth :  $( "#birthdayYear").val() +"-"+
-		                 $("#birthdayMonth").val() +"-"+
-		                 $("#birthdayDay").val() 
-		        }, function(result) {
-		          if (result.status == "success") {
-		            location.href = "index.html";
-		          } else {
-		            window.alert("등록 실패입니다.");
-		          }
-		        }, "json");
-			   }
-		   }
-      });
-    });  
-     
-     function pwdCheck() {
-    	   var upw = $("#password").val();
-         var regex_pwd = /^[A-Za-z0-9]{4,10}$/i;
-         var chk_num = upw.search(/[0-9]/i); 
-         var chk_eng = upw.search(/[A-Za-z]/i);
-         if ( regex_pwd.test(upw)) {
-            if ( upw != $("#passwordcheck").val() ) {
-              $("#checkText").html("비밀번호가 일치하지 않습니다.")
-              $("#checkText").css("color","red");
-            } else {
-              if(chk_num < 0 || chk_eng < 0) {
+        });  
+         
+         function pwdCheck() {
+             var upw = $("#password").val();
+             var regex_pwd = /^[A-Za-z0-9]{4,10}$/i;
+             var chk_num = upw.search(/[0-9]/i); 
+             var chk_eng = upw.search(/[A-Za-z]/i);
+             if ( regex_pwd.test(upw)) {
+                if ( upw != $("#passwordcheck").val() ) {
+                  $("#checkText").html("비밀번호가 일치하지 않습니다.")
+                  $("#checkText").css("color","red");
+                } else {
+                  if(chk_num < 0 || chk_eng < 0) {
+                    $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
+                    $("#checkText").css("color","red");
+                  } else {
+                    $("#checkText").html("비밀번호가 일치합니다.")
+                    $("#checkText").css("color","green");
+                  }
+                }
+             } else {
                 $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
                 $("#checkText").css("color","red");
-              } else {
-                $("#checkText").html("비밀번호가 일치합니다.")
-                $("#checkText").css("color","green");
-              }
-            }
-         } else {
-            $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
-            $("#checkText").css("color","red");
-         } 
-       }
-    
-     function checkEmail() {
-    	 
-         var regex_email =  /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
-           if ( regex_email.test($("#email").val()) ) {
-               $.ajax("../ajax/member/checkemail.do?", {
-                   method : "POST",
-                   dataType : "json",
-                   data : {
-                    email : $("#email").val()
-                  },success : function(result) {
-                    if (result.status == "success") {
-                      $("#checkresult").html("사용가능합니다.");
-                      $("#checkresult").css("color","green");
-                      $("#email").attr("data-state","ok");
-                      console.log($("#email").attr("data-state"));
-                    } else if ( result.status == "failure") {
-                    	$("#email").attr("data-state","no");
-                      $("#checkresult").html("중복된 아이디로 사용불가능합니다.")
-                      $("#checkresult").css("color","red");
-                    }
-                  }
-               });
-           } else {
-        	   $("#email").attr("data-state","no");
-             $("#checkresult").html("이메일 형식이여야 합니다..")
-             $("#checkresult").css("color","red");
+             } 
            }
-       }
-     
-    function goMain(event) {
-        location.href = "index.html"
-        event.preventDefault();
-      }
-    
-    </script>
-</body>
-</html>
+        
+         function checkEmail() {
+           
+             var regex_email =  /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
+               if ( regex_email.test($("#email").val()) ) {
+                   $.ajax("../ajax/member/checkemail.do?", {
+                       method : "POST",
+                       dataType : "json",
+                       data : {
+                        email : $("#email").val()
+                      },success : function(result) {
+                        if (result.status == "success") {
+                          $("#checkresult").html("사용가능합니다.");
+                          $("#checkresult").css("color","green");
+                          $("#email").attr("data-state","ok");
+                        } else if ( result.status == "failure") {
+                          $("#email").attr("data-state","no");
+                          $("#checkresult").html("중복된 아이디로 사용불가능합니다.")
+                          $("#checkresult").css("color","red");
+                        }
+                      }
+                   });
+               } else {
+                 $("#email").attr("data-state","no");
+                 $("#checkresult").html("이메일 형식이여야 합니다..")
+                 $("#checkresult").css("color","red");
+               }
+           }
+         
+        function goMain(event) {
+            location.href = "index5.html"
+            event.preventDefault();
+          }
+        
+        </script>
+    </body>
+    </html>
