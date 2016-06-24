@@ -1,36 +1,24 @@
-/* 윤호 연습용 static file 응답하기  */
-var mysql = require('mysql');
-var dateFormat = require('dateformat');
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+// 윤호 연습 select 실행 
+var mysql = require('mysql'); // mysql 연동 라이브러리 객체 준비
 
-//express 모듈에 보조 장치 장착한다.
-app.use(bodyParser.json()); // JSON 형식으로 넘오온 데이터 처리 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('www'));
-
-var pool  = mysql.createPool({
-  connectionLimit : 10,
+var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'java80',
   password : '1111',
   database : 'testdb'
 });
 
-pool.on('connection', function() {
-	console.log('커넥션 객체가 생성되었음.');
-});
+connection.connect();
 
-app.get('/', function (request, response) {
-	response.send('Express 적용 예제');
-});
 
-connection.query('select * from member', function(err, rows, fields) {
-	if(!err)
-		console.log('this is:', rows);
-	else
-		console.log('error');
+connection.query(
+		'select mno, email, pwd from member',
+		function(err, rows, fields) {
+	  if (err) throw err;
+	  
+	  for (var i = 0; i < rows.length; i++) {
+		  console.log(rows[i].mno, rows[i].email, rows[i].pwd);
+	  }
 });
 
 connection.end();
