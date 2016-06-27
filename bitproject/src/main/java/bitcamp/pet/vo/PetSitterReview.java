@@ -7,6 +7,7 @@ public class PetSitterReview {
   String videopath;
   String reviewtext;
   String cdt;
+
   public int getBno() {
     return bno;
   }

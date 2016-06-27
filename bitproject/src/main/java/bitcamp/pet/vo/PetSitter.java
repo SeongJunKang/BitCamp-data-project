@@ -18,7 +18,13 @@ public class PetSitter {
   String lnt;   // 경도
   String addr_1;
   String addr_2;
-  
+  String region;
+  public String getRegion() {
+    return region;
+  }
+  public void setRegion(String region) {
+    this.region = region;
+  }
   public String getAddr_1() {
     return addr_1;
   }

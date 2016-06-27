@@ -179,7 +179,12 @@ color: white;
               <td class="td"><input type="text" class="form-control"
                 id="kakao"></td>
             </tr>
-            <tr>
+						<tr>
+							<td class="th"><span class="thtext">활동 지역</span></td>
+							<td class="td"><input type="text" class="form-control"
+								id="region" placeholder="ex) 서울시 강남구"></td>
+						</tr>
+						<tr>
               <td class="th"><span class="thtext">은행</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="bank"></td>
@@ -331,6 +336,7 @@ color: white;
                 nick : $("#nickname").val(),
                 amt :$("#price").val(),        
                 ktalk : $("#kakao").val(),
+                region : $("#region").val(),
                 bank : $("#bank").val(),
                 bknm: $("#holder").val(),
                 acc : $("#account").val(),

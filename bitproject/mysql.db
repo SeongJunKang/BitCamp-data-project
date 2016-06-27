@@ -52,7 +52,8 @@ CREATE TABLE petsitter (
   PNO    INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
   NICK   VARCHAR(100) NOT NULL COMMENT '닉네임', -- 닉네임
   AMT    INTEGER      NOT NULL COMMENT '가격', -- 가격
-  KTALK  VARCHAR(40)  NULL     COMMENT '카톡', -- 카톡
+  KTALK  VARCHAR(40)  NOT NULL COMMENT '카톡', -- 카톡
+  REG    VARCHAR(255) NOT NULL COMMENT '활동지역', -- 활동지역
   BANK   VARCHAR(20)  NOT NULL COMMENT '은행', -- 은행
   BKNM   VARCHAR(20)  NOT NULL COMMENT '예금주', -- 예금주
   ACC    VARCHAR(20)  NOT NULL COMMENT '계좌', -- 계좌

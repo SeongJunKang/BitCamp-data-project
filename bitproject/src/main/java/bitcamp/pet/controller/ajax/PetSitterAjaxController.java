@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,12 +32,13 @@ public class PetSitterAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(int pno, String nick, int amt, String ktalk, String bank, String bknm,
+  public String add(HttpSession session, String nick, int amt, String ktalk, String bank, String bknm,
       String acc, String ser, String inqur, String pet, String addr_1, String addr_2,
-      int rad, String lat, String lnt, String intro) 
+      int rad, String lat, String lnt, String intro, String region) 
       throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
     PetSitter petsitter = new PetSitter();
-    petsitter.setPno(pno);
+    petsitter.setPno(member.getMno());
     petsitter.setNick(nick);
     petsitter.setAmt(amt);
     petsitter.setKtalk(ktalk);
@@ -53,11 +55,11 @@ public class PetSitterAjaxController {
     petsitter.setLat(lat);
     petsitter.setLnt(lnt);
     petsitter.setIntro(intro);
+    petsitter.setRegion(region);
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
       petsitterService.add(petsitter);
-      Member member = memberService.retrieveByNo(pno);
       member.setGra(2);
       memberService.change(member);
     } catch(Exception e) {
@@ -87,6 +89,20 @@ public class PetSitterAjaxController {
     PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(no);
     HashMap<String,Object> result = new HashMap<>();
     try {
+      //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
+      result.put("nick",petsitter.getNick());
+      result.put("amt",petsitter.getAmt());
+      result.put("ktalk",petsitter.getKtalk());
+      result.put("bank",petsitter.getBank());
+      result.put("bknm",petsitter.getBknm());
+      result.put("acc",petsitter.getAcc());
+      result.put("ser",petsitter.getSer());
+      result.put("inqur",petsitter.getInqur());
+      result.put("pet",petsitter.getPet());
+      result.put("addr_1",petsitter.getAddr_1());
+      result.put("addr_2",petsitter.getAddr_2());
+      result.put("intro",petsitter.getIntro());
+      result.put("reg",petsitter.getRegion());
       result.put("lat",petsitter.getLat());
       result.put("lnt",petsitter.getLnt());
       result.put("rad",petsitter.getRad());
@@ -101,7 +117,7 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String list(
       @RequestParam(defaultValue="1")int pageNo,
-      @RequestParam(defaultValue="3")int pageSize)
+      @RequestParam(defaultValue="6")int pageSize)
           throws ServletException, IOException {
     if (pageNo < 1) {
       pageNo = 1;

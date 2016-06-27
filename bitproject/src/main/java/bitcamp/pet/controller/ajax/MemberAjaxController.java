@@ -195,28 +195,22 @@ public class MemberAjaxController {
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     HashMap<String, Object> result = new HashMap<>();
-    if ((nowpassword.equals("") && passwordchk.equals("") && password.equals("")) // 패스워드 3개가 빈칸이거나
-        ||(member.getPwd().equals(nowpassword))) {                                     // 현재 비밀번호와 체크비밀번호가 같다면,
-      
-      if ((!password.equals(passwordchk)) || (!password.matches(passwordFormat))) {
+
+    if (nowpassword.equals("") ||(member.getPwd().equals(nowpassword))) { // 패스워드가 빈칸이거나 현재 비밀번호와 체크비밀번호가 같다면,
+      if (!password.equals(passwordchk)) {
         result.put("status", "failure");
         return new Gson().toJson(result);
       } else {
-        if((!password.equals(""))) {
+        if(((!password.equals("")) && (password.matches(passwordFormat)))) {
+          System.out.println(4);
           member.setPwd(password);
         }
         member.setAgency(agc);
         member.setName(name);
         member.setTel(phone1+"-"+phone2+"-"+phone3);//전화번호변경
-        try {
-          memberService.change(member);
-          result.put("status", "success");
-        } catch(Exception e) {
-          result.put("status", "failure");
-          e.printStackTrace();
-        }
       }
     } else {
+      System.out.println(5);
       result.put("status", "failure");
     }
     Map<String, MultipartFile> files = request.getFileMap();
@@ -235,6 +229,13 @@ public class MemberAjaxController {
       } catch (Exception e) {
         e.printStackTrace();
       }
+    }
+    try{
+      memberService.change(member);
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
