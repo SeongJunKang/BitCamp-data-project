@@ -25,6 +25,7 @@
     <result column="LIKES" property="likes" />
     <result column="PETG" property="petg" />
     <result column="HOS" property="hospital" />
+    <result column="IMG" property="img" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="PetSitter">
@@ -34,7 +35,10 @@
 	
 	<update id="update" parameterType="PetSitter">
 		update PETSITTER set
-		NICK=#{nick},
+    <if test="img !=null">
+    IMG=#{img},
+    </if>
+		NICK=#{nick}
 		where PNO=#{pno}
 	</update>
 	<delete id="delete" parameterType="int">

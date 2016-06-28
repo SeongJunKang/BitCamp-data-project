@@ -92,6 +92,21 @@ public class MemberAjaxController {
     return new Gson().toJson(result);
   }
 
+  @RequestMapping(produces="application/json;charset=UTF-8", value="getbirth")
+  @ResponseBody
+  public String birth(int mno) 
+      throws ServletException, IOException {
+    Member member = memberService.retrieveByNo(mno);
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("bth",member.getBth());
+    result.put("status", "success");
+    if(result.get("bth") ==null) {
+      result.put("status", "failure");
+    }
+    return  new Gson().toJson(result);
+  }
+
+  
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
   public String detail(HttpSession session) 
@@ -208,9 +223,10 @@ public class MemberAjaxController {
         e.printStackTrace();
       }
     }
+    PetSitter petsitter = null;
     if (petsitterService.exist(member.getMno())) {
       try {
-        PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
+        petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
         petsitter.setImg("../"+member.getProf());
       } catch (Exception e) {
         e.printStackTrace();
@@ -218,6 +234,7 @@ public class MemberAjaxController {
     }
     try{
       memberService.change(member);
+      petsitterService.change(petsitter);
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");
