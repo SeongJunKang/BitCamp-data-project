@@ -15,6 +15,8 @@
             <img id="image"/>
             <div id="name"></div>
             <div id="id"></div>
+            <div id="email"></div>
+             <div id="status"></div>
         </div>
   
   
@@ -38,8 +40,8 @@
          
           FB.getLoginStatus(function(response) {
               if (response.status === 'connected') {
-                  
-                  FB.api('/me', function(user) {
+                  testAPI();
+                   FB.api('/me', function(user) {
                       if (user) {
                           var image = document.getElementById('image');
                           image.src = 'http://graph.facebook.com/' + user.id + '/picture';
@@ -47,13 +49,26 @@
                           name.innerHTML = user.name
                           var id = document.getElementById('id');
                           id.innerHTML = user.id
+                          var email = document.getElementById('email');
+                          email.innerHTML = user.email
                       }
-                  });    
-                   
+                  });     
+                  FB.login(function(response) {
+                	    if (response.authResponse) {
+                	     console.log('Welcome!  Fetching your information.... ');
+                	     FB.api('/me', function(response) {
+                	       console.log('Good to see you, ' + response.email + '.');
+                	     });
+                	    } else {
+                	     console.log('User cancelled login or did not fully authorize.');
+                	    }
+                	}, {scope: 'email,user_likes'});
               } else if (response.status === 'not_authorized') {
-
+            	  document.getElementById('status').innerHTML = 'Please log ' +
+                  'into this app.';
               } else {
-                  
+            	  document.getElementById('status').innerHTML = 'Please log ' +
+                  'into Facebook.';
               }
           });
 
@@ -61,7 +76,9 @@
               document.location.reload();
           });
         };
-      
+
+        
+        
         // Load the SDK Asynchronously
         (function(d){
            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -70,7 +87,12 @@
            js.src = "//connect.facebook.net/ko_KR/all.js";
            ref.parentNode.insertBefore(js, ref);
          }(document));
-    
+        function testAPI() {
+        	console.log('Welcome!  Fetching your information.... ');
+        	FB.api('/me', function(response) {
+        	  console.log('Good to see you, ' + response.email + '.');
+        	});
+        	}
     </script>
   </body>
 
