@@ -162,40 +162,41 @@ color: white;
         <input id="pno" type='hidden' name='no'>
       </form> 
         <span id="profileresist">펫시터 프로필 등록</span>
+        <span> * 표시는 필수 항목 입니다.</span>
           <table class="table table-bordered">
             <tr>
-              <td class="th"><span class="thtext">닉네임</span></td>
+              <td class="th"><span class="thtext">닉네임*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="nickname">
                 <button id="checknick" class="btn btn-me">중복확인</button></td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">1일 가격</span></td>
+              <td class="th"><span class="thtext">1일 가격*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="price">원</td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">카톡 ID</span></td>
+              <td class="th"><span class="thtext">카톡 ID*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="kakao"></td>
             </tr>
 						<tr>
-							<td class="th"><span class="thtext">활동 지역</span></td>
+							<td class="th"><span class="thtext">활동 지역*</span></td>
 							<td class="td"><input type="text" class="form-control"
 								id="region" placeholder="ex) 서울시 강남구"></td>
 						</tr>
 						<tr>
-              <td class="th"><span class="thtext">은행</span></td>
+              <td class="th"><span class="thtext">은행*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="bank"></td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">예금주</span></td>
+              <td class="th"><span class="thtext">예금주*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="holder"></td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">계좌</span></td>
+              <td class="th"><span class="thtext">계좌*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="account"></td>
             </tr>
@@ -220,7 +221,7 @@ color: white;
               </td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">문의시간</span></td>
+              <td class="th"><span class="thtext">문의시간*</span></td>
               <td class="td"><input type="text" class="form-control"
                 id="inqur1">시 ~ <input type="text" class="form-control"
                 id="inqur2">시</td>
@@ -231,12 +232,16 @@ color: white;
                 id="animal"> 마리</td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">우편번호</span></td>
+              <td class="th"><span class="thtext">인근 동물병원*</span></td>
+              <td class="td"><input type="number" class="form-control" id="hospital"> 분 거리</td>
+            </tr>
+            <tr>
+              <td class="th"><span class="thtext">우편번호*</span></td>
               <td class="td"><input type="text" class="form-control" id="addr1"> <button type="button" class="btn btn-me">우편번호검색</button>
               </td>
             </tr>
             <tr>
-              <td class="th"><span class="thtext">상세주소</span></td>
+              <td class="th"><span class="thtext">상세주소*</span></td>
               <td class="td"><input type="text" class="form-control form-control2"
                 id="addr2"></td>
             </tr>
@@ -254,7 +259,7 @@ color: white;
               <div id="map"></div></td>
             </tr>
             <tr>
-              <td class="th" colspan="2"><span class="thtext">반려동물을 잘 산책할 수 있다는 자기 소개를 적어주세요~</span></td>
+              <td class="th" colspan="2"><span class="thtext">반려동물을 잘 산책할 수 있다는 자기 소개를 적어주세요~ *</span></td>
             </tr>
             <tr>
               <td colspan="2"><textarea id="intro" class="form-control" cols="129"
@@ -349,7 +354,8 @@ color: white;
                 rad : radian,
                 lat : lat,
                 lnt : lng,
-                intro :$("#intro").val()
+                intro :$("#intro").val(),
+                hospital : $("#hospital").val()
               }, function(result) {
                 if (result.status == "success") {
                   location.href = "../main/index.html";

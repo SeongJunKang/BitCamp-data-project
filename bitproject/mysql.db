@@ -65,6 +65,7 @@ CREATE TABLE petsitter (
   RAD    INTEGER      NULL     COMMENT '반지름', -- 반지름
   LAT    VARCHAR(20)  NULL     COMMENT '위도', -- 위도
   LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
+  HOS    INTEGER      NOT NULL COMMENT '동물병원', -- 동물병원
   INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
   LIKES  INTEGER      NULL     COMMENT '좋아요', -- 좋아요
   PETG   INTEGER      NULL     COMMENT '펫시터등급', -- 펫시터등급

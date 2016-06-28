@@ -18,9 +18,29 @@ public class PetSitter {
   String lnt;   // 경도
   String addr_1;
   String addr_2;
-  String region;
-  String img;
-  
+  String region;  // 산책범위
+  String img;     // 프로필사진
+  int likes;      // 좋아요
+  int petg;       // 펫등급
+  int hospital;
+  public int getHospital() {
+    return hospital;
+  }
+  public void setHospital(int hospital) {
+    this.hospital = hospital;
+  }
+  public int getLikes() {
+    return likes;
+  }
+  public void setLikes(int likes) {
+    this.likes = likes;
+  }
+  public int getPetg() {
+    return petg;
+  }
+  public void setPetg(int petg) {
+    this.petg = petg;
+  }
   public String getImg() {
     return img;
   }

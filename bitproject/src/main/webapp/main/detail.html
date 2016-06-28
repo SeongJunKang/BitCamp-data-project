@@ -211,12 +211,6 @@ background-color : white;
   width : 1100px;
   margin: 0 auto;
 }
-#views {
-  border-radius : 3px ;
-  border: none;
-  width : 130px;
-  box-shadow : 1px 1px 3px;
-}
 #backbtn, #gotoRequest {
   margin-bottom: 10px;
 }
@@ -304,13 +298,11 @@ ol {
       <div id="bodycontent">
         <span> 
           <span id="titlesen"></span><br>
-          <span id="subtitlesen"></span>
         </span>
         <div id="back">
           <button type="button" id="gotoRequest" onclick="gotoRequest()"
             class="btn btn-xl fa">신청</button>
           <button type="button" id="backbtn" class="btn btn-xl fa">이전화면</button>
-          <br> <input type="text" id="views" readonly="readonly">
         </div>
 
         <hr class="inner">
@@ -372,9 +364,8 @@ ol {
             - <span id="need"></span><br>
           </p>
         </div>
-        <p class="detailtext">산 책 범 위</p> 
+        <p class="detailtext" id="walkrange">산 책 범 위</p> 
         <div class="map_wrap">
-          주소:<input class='form-control' type="text" id="addr" readonly="readonly"/><br>
            <div id="map"></div> 
         </div>
         
@@ -470,108 +461,107 @@ ol {
 
 		//<img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
 		var memberNo = "";
+    var pno = location.href.split("=")[1];
 		$(document).ready(function() {
+			$("#walkrange").css("display","none");
 			$("#dialog-confirm").css("display","none");
-           $.getJSON("../ajax/petsitter/detail.do?no=1", 
-               function( result) {
-                 if ( result.status =="success") {
-                	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                     mapOption = {
-                       center : new daum.maps.LatLng(result.lat, result.lnt, 17), // 지도의 중심좌표
-                       level : 5
-                     // 지도의 확대 레벨
-                     };
+			$(".map_wrap").css("display","none");
+      $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
+          function(result) {
+            if ( result.status =="success") {
+           	 $("#walkrange").css("display","");
+           	 $(".map_wrap").css("display","");
+           	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                  center : new daum.maps.LatLng(result.lat, result.lnt, 17), // 지도의 중심좌표
+                  level : 6
+                // 지도의 확대 레벨
+                };
+                // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                var map = new daum.maps.Map(mapContainer, mapOption);
+                var zoomControl = new daum.maps.ZoomControl();
+                map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+                var mapTypeControl = new daum.maps.MapTypeControl();
+                map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
-                     // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-                     var map = new daum.maps.Map(mapContainer, mapOption);
-                     var zoomControl = new daum.maps.ZoomControl();
-                     map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-                     var mapTypeControl = new daum.maps.MapTypeControl();
-                     map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-
-                     //****************************************************************************
-                     var circle = new daum.maps.Circle({
-                       center : new daum.maps.LatLng(37.5196784, 127.1201637, 17), // 원의 중심좌표 입니다 
-                       radius : result.rad, // 미터 단위의 원의 반지름입니다 
-                       strokeWeight : 5, // 선의 두께입니다 
-                       strokeColor : '#75B8FA', // 선의 색깔입니다
-                       strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-                       strokeStyle : 'solid', // 선의 스타일 입니다
-                       fillColor : '#CFE7FF', // 채우기 색깔입니다
-                       fillOpacity : 0.5
-                     // 채우기 불투명도 입니다   
-                     });
-                     // 지도에 원을 표시합니다 
-                     circle.setMap(map);
-                 }
-           });
+                //****************************************************************************
+                var circle = new daum.maps.Circle({
+                  center : new daum.maps.LatLng(result.lat, result.lnt, 17), // 원의 중심좌표 입니다 
+                  radius : result.rad, // 미터 단위의 원의 반지름입니다 
+                  strokeWeight : 5, // 선의 두께입니다 
+                  strokeColor : '#75B8FA', // 선의 색깔입니다
+                  strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                  strokeStyle : 'solid', // 선의 스타일 입니다
+                  fillColor : '#CFE7FF', // 채우기 색깔입니다
+                  fillOpacity : 0.5
+                // 채우기 불투명도 입니다   
+                });
+                // 지도에 원을 표시합니다 
+                circle.setMap(map);
+                //********************************************************************************
+                $("#titlesen").html(result.reg);
+                $("#photo").attr('src',result.img);
+                $("#like").html(result.likes);
+                $("#name").html(result.nick);
+                $("#age").html(result.age);
+                $("#price").html(result.amt);
+                $("#introsen").html(result.intro);
+                $("#type").html(result.type);
+                $("#addr").html(result.reg);
+                $("#hospital").html(result.hospital);
+                $("#pet").html(result.pet);
+                $("#service").html(result.service);
+                $("#career").html(result.career);
+                $("#animal").html(result.animal);
+                $("#max").html(result.max);
+                $("#inqur").html(result.inqur);
+                $("#need").html(result.need);
+            } else {
+           	 $("#walkrange").css("display","none");
+           	 $(".map_wrap").css("display","none");
+            }
+       });
 			
-							$(function() {
-								$.ajax("../auth/getMemberNo.do?", {
-									method : "POST",
-									async : false,
-									success : function(result) {
-										if (result.status == "success") {
-											memberNo = result.mno;
-										}
-									}
-								});
-								if (memberNo != "") {
-									$.getJSON("../ajax/likes/byno.do?mno="+ memberNo + "&pno=1", 
-											function(	result) {
-											  if ( result.status =="success") {
-									          heart.setAttribute("src", "../img/detail/like.jpg");
-									          heart.setAttribute("data-state", "after");
-											  }
-									});
-								}
-							})
-							$(function() {
-								$.ajax({
-											url : "detail.json",
-											dataType : "json",
-											success : function(result) {
-												$("#titlesen").html(
-														result.title);
-												$("#subtitlesen").html(
-														result.subtitle);
-												$("#photo").attr('src',
-														result.photo);
-												$("#like").html(result.like);
-												$("#name").html(result.name);
-												$("#age").html(result.age);
-												$("#price").html(result.price);
-												$("#confirm").attr('src',
-														result.confirm);
-												$("#trust").attr('src',
-														result.trust);
-												$("#introsen").html(
-														result.intro);
-												$("#type").html(result.type);
-												$("#addr").html(result.addr);
-												$("#hospital").html(result.hospital);
-												$("#pet").html(result.pet);
-												$("#service").html(result.service);
-												$("#career").html(result.career);
-												$("#animal").html(result.animal);
-												$("#max").html(result.max);
-												$("#inqur").html(result.inqur);
-												$("#need").html(result.need);
-												$("#views").val("조회수 : "+ result.views);
-												var templateData = $(	"#imgrepeat").html();
-												var template = Handlebars	.compile(templateData);
-												var html = template(result);
-												$("#picture").append(html);
-												var templateData = $("#reviewrepeat").html();
-												var template = Handlebars.compile(templateData);
-												var html = template(result);
-												$("#reviewtext").append(html);
-
-											}
-										})
-							});
-
+			$(function() {
+				$.ajax("../auth/getMemberNo.do?", {
+					method : "POST",
+					async : false,
+					success : function(result) {
+						if (result.status == "success") {
+							memberNo = result.mno;
+						}
+					}
+				});
+				if (memberNo != "") {
+					$.getJSON("../ajax/likes/byno.do?mno="+ memberNo + "&pno="+pno, 
+						function(	result) {
+						  if ( result.status =="success") {
+				          heart.setAttribute("src", "../img/detail/like.jpg");
+				          heart.setAttribute("data-state", "after");
+						  }
+					});
+				}
+			})
+			$(function() {
+				$.ajax({
+							url : "detail.json",
+							dataType : "json",
+							success : function(result) {
+                $("#confirm").attr('src',result.confirm);
+                $("#trust").attr('src',result.trust);
+								var templateData = $(	"#imgrepeat").html();
+								var template = Handlebars	.compile(templateData);
+								var html = template(result);
+								$("#picture").append(html);
+								var templateData = $("#reviewrepeat").html();
+								var template = Handlebars.compile(templateData);
+								var html = template(result);
+								$("#reviewtext").append(html);
+							}
 						})
+			});
+
+		})
 
 		var heart = document.getElementById("heart");
 		heart.onclick =function() {

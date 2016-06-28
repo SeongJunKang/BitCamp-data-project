@@ -876,15 +876,6 @@ margin-left: 24px;
     <!-- Handlebars  JavaScript -->
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script type="text/javascript">
-    
-    function onclickDetail(event) {
-    	  //onsole.log(event.target.getAttribute("data-pno"));
-        location.href = "detail.html?no="
-              + $(event.currentTarget).attr("data-pno")
-        event.preventDefault();
-    }
-    
-    
      $(document).ready(function(){
     	$('.cont1').css("display","");
       $('.cont2').css("display","none");
@@ -939,7 +930,14 @@ margin-left: 24px;
              }
           });
       });
-      
+      $("#mypage").click(function() {
+          location.href = "../mypage/mypage3.html"
+          event.preventDefault();
+        });
+      $(".lookpet").click(function() {
+          location.href = "petdetail.html"
+          event.preventDefault();
+        });
       $(function() {
           var today = new Date();
           var toyear = parseInt(today.getFullYear());
@@ -955,15 +953,6 @@ margin-left: 24px;
           for (i = 1; i <= 31; i++)
             $("<option>").html(i).appendTo(day);
 
-          $("#mypage").click(function() {
-            location.href = "../mypage/mypage3.html"
-            event.preventDefault();
-          });
-
-          $(".lookpet").click(function() {
-              location.href = "petdetail.html"
-              event.preventDefault();
-            });
           $(".gender").click(function() {
             if ($(this).html() == "남성") {
               $(this).html("여성");
@@ -1013,7 +1002,12 @@ margin-left: 24px;
       });
 
     });  
-
+     function onclickDetail(event) {
+         //onsole.log(event.target.getAttribute("data-pno"));
+         location.href = "detail.html?no="
+               + $(event.currentTarget).attr("data-pno")
+         event.preventDefault();
+     }
      function pwdCheck() {
     	   var upw = $("#password").val();
          var regex_pwd = /^[A-Za-z0-9]{4,10}$/i;

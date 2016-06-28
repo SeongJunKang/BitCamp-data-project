@@ -34,7 +34,7 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String add(HttpSession session, String nick, int amt, String ktalk, String bank, String bknm,
       String acc, String ser, String inqur, String pet, String addr_1, String addr_2,
-      int rad, String lat, String lnt, String intro, String region) 
+      int rad, String lat, String lnt, String intro, String region, int hospital) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     PetSitter petsitter = new PetSitter();
@@ -57,6 +57,7 @@ public class PetSitterAjaxController {
     petsitter.setIntro(intro);
     petsitter.setRegion(region);
     petsitter.setImg("../"+member.getProf());
+    petsitter.setHospital(hospital);
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
@@ -91,23 +92,26 @@ public class PetSitterAjaxController {
     HashMap<String,Object> result = new HashMap<>();
     try {
       //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
-      result.put("nick",petsitter.getNick());
-      result.put("amt",petsitter.getAmt());
-      result.put("ktalk",petsitter.getKtalk());
-      result.put("bank",petsitter.getBank());
-      result.put("bknm",petsitter.getBknm());
-      result.put("acc",petsitter.getAcc());
-      result.put("ser",petsitter.getSer());
-      result.put("inqur",petsitter.getInqur());
-      result.put("pet",petsitter.getPet());
-      result.put("addr_1",petsitter.getAddr_1());
-      result.put("addr_2",petsitter.getAddr_2());
-      result.put("intro",petsitter.getIntro());
-      result.put("reg",petsitter.getRegion());
-      result.put("lat",petsitter.getLat());
-      result.put("lnt",petsitter.getLnt());
-      result.put("rad",petsitter.getRad());
-      result.put("img",petsitter.getImg());
+      result.put("nick",petsitter.getNick());   // 닉네임
+      result.put("amt",petsitter.getAmt());     // 가격
+      result.put("ktalk",petsitter.getKtalk()); // 카톡
+      result.put("bank",petsitter.getBank());   // 은행
+      result.put("bknm",petsitter.getBknm());   // 예금명
+      result.put("acc",petsitter.getAcc());     // 계좌
+      result.put("ser",petsitter.getSer());     // 서비스
+      result.put("inqur",petsitter.getInqur()); // 요구사항
+      result.put("pet",petsitter.getPet());     // 펫시터 펫마리수
+      result.put("addr_1",petsitter.getAddr_1()); // 우편주소1
+      result.put("addr_2",petsitter.getAddr_2()); // 상세주소2
+      result.put("intro",petsitter.getIntro());   // 자기소개
+      result.put("reg",petsitter.getRegion());    // 활동지역
+      result.put("lat",petsitter.getLat());     //  좌표
+      result.put("lnt",petsitter.getLnt());     // 좌표
+      result.put("rad",petsitter.getRad());     // 반지름
+      result.put("img",petsitter.getImg());     // 이미지
+      result.put("likes",petsitter.getLikes());  // 좋아요수
+      result.put("petg",petsitter.getPetg());    // 펫등급
+      result.put("hospital",petsitter.getHospital());    // 펫등급
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");

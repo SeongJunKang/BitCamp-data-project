@@ -22,15 +22,14 @@
     <result column="LNT" property="lnt" />
     <result column="INTRO" property="intro" />
     <result column="REG" property="region" />
-    <!-- 
-    <result column="LIKES" property="amt" />
-    <result column="PETG" property="name" />
-     -->
+    <result column="LIKES" property="likes" />
+    <result column="PETG" property="petg" />
+    <result column="HOS" property="hospital" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="PetSitter">
-		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG)
-		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt},#{region},#{img})
+		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG,HOS)
+		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt},#{region},#{img},#{hospital})
 	</insert>
 	
 	<update id="update" parameterType="PetSitter">
@@ -43,12 +42,12 @@
 		where PNO=#{pno}
 	</delete>
 	<select id="selectList" resultMap="PetSitterMap" parameterType="map">
-		 select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG from PETSITTER
+		 select * from PETSITTER
 		order by PNO DESC
     limit #{startIndex}, #{length}
 	</select>
 	<select id="selectOne" parameterType="map" resultMap="PetSitterMap">
-	   select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG from PETSITTER
+	   select * from PETSITTER
 	   where
 	   <if test="pno != null">
 	   PNO=#{pno}
@@ -66,6 +65,7 @@
     where PNO=#{pno}
   </select>
 </mapper>
+
 
 
 
