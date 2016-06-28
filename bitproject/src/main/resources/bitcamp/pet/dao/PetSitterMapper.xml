@@ -38,6 +38,9 @@
     <if test="img !=null">
     IMG=#{img},
     </if>
+    <if test="likes !=null">
+    LIKES=#{likes},
+    </if>
 		NICK=#{nick}
 		where PNO=#{pno}
 	</update>

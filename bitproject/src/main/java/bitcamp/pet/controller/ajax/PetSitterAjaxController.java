@@ -84,6 +84,7 @@ public class PetSitterAjaxController {
     return new Gson().toJson(result);
   }
 
+  
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
   public String detail(int no) 
@@ -155,6 +156,27 @@ public class PetSitterAjaxController {
     Member member = (Member)session.getAttribute("loginUser");
     PetSitter petsitter = petsitterService.retrieveByNo(member.getMno());
     petsitter.setImg("../"+member.getProf());
+    HashMap<String, Object> result = new HashMap<>();
+    try {
+      petsitterService.change(petsitter);
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
+
+  @RequestMapping(method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8", value="like")
+  @ResponseBody
+  public String like(int pno, int likes)
+      throws ServletException, IOException {
+    
+    System.out.println(pno);
+    System.out.println(likes);
+    PetSitter petsitter = petsitterService.retrieveByNo(pno);
+    petsitter.setLikes(likes);
     HashMap<String, Object> result = new HashMap<>();
     try {
       petsitterService.change(petsitter);

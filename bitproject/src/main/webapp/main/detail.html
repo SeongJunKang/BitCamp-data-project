@@ -394,11 +394,12 @@ ol {
         <div class="map_wrap">
            <div id="map"></div> 
         </div>
-        
+        <!-- 
         <br>
           <p class="detailtext">사 진</p> 
         <div id="picture">
         </div>
+        -->
       <div id="review">
         <p class="detailtext">후기</p>
         <ol id="reviewtext"></ol>
@@ -604,14 +605,25 @@ ol {
 						dataType : "json",
 						data : {
 							mno : memberNo,
-							pno : 1
+							pno : pno
 						},
 						success : function(result) {
 							if (result.status == "success") {
-								console.log("좋아요 성공");
 							}
 						}
 					});
+					 $.ajax("../ajax/petsitter/like.do?", {
+             method : "POST",
+             dataType : "json",
+             data : {
+               pno : pno,
+               likes : $("#like").html() 
+             },
+             success : function(result) {
+               if (result.status == "success") {
+               }
+             }
+           });
 				} else {
 					heart.setAttribute("data-state", "before");
 					heart.setAttribute("src", "../img/detail/beforelike.png");
@@ -625,10 +637,21 @@ ol {
 						},
 						success : function(result) {
 							if (result.status == "success") {
-								console.log("좋아요 삭제성공");
 							}
 						}
 					});
+	          $.ajax("../ajax/petsitter/like.do?", {
+	              method : "POST",
+	              dataType : "json",
+	              data : {
+	                pno : pno,
+	                likes : $("#like").html() 
+	              },
+	              success : function(result) {
+	                if (result.status == "success") {
+	                }
+	              }
+	            });
 				}
 				
 			}

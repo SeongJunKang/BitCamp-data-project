@@ -243,15 +243,17 @@ public class MemberAjaxController {
         e.printStackTrace();
       }
     }
+    PetSitter petsitter = null;
     if (petsitterService.exist(member.getMno())) {
       try {
-        PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
+        petsitter =(PetSitter)petsitterService.retrieveByNo(member.getMno());
         petsitter.setImg("../"+member.getProf());
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
     try{
+      petsitterService.change(petsitter);
       memberService.change(member);
       result.put("status", "success");
     } catch(Exception e) {
