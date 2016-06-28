@@ -44,7 +44,6 @@
 	<select id="selectList" resultMap="MemberMap" parameterType="map">
 		<include refid="select01"/>
 		order by MNO DESC
-    limit #{startIndex}, #{length}
 	</select>
 	<select id="selectOne" parameterType="map" resultMap="MemberMap">
 	   <include refid="select01"/>

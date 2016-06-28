@@ -12,4 +12,5 @@ public interface PetSitterService {
   void change(PetSitter petsitter);
   List<PetSitter> list(int pageNo,int pageSize);
   int countPage(int pageSize);
+  boolean exist(int no);
 }

@@ -56,6 +56,7 @@ public class PetSitterAjaxController {
     petsitter.setLnt(lnt);
     petsitter.setIntro(intro);
     petsitter.setRegion(region);
+    petsitter.setImg("../"+member.getProf());
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
@@ -106,6 +107,7 @@ public class PetSitterAjaxController {
       result.put("lat",petsitter.getLat());
       result.put("lnt",petsitter.getLnt());
       result.put("rad",petsitter.getRad());
+      result.put("img",petsitter.getImg());
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
@@ -144,10 +146,11 @@ public class PetSitterAjaxController {
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
   @ResponseBody
-  public String update(int no, String name, String password, String tel)
+  public String update(HttpSession session)
       throws ServletException, IOException {
-
-    PetSitter petsitter = petsitterService.retrieveByNo(no);
+    Member member = (Member)session.getAttribute("loginUser");
+    PetSitter petsitter = petsitterService.retrieveByNo(member.getMno());
+    petsitter.setImg("../"+member.getProf());
     HashMap<String, Object> result = new HashMap<>();
     try {
       petsitterService.change(petsitter);

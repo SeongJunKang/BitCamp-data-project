@@ -67,7 +67,8 @@ CREATE TABLE petsitter (
   LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
   INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
   LIKES  INTEGER      NULL     COMMENT '좋아요', -- 좋아요
-  PETG   INTEGER      NULL     COMMENT '펫시터등급' -- 펫시터등급
+  PETG   INTEGER      NULL     COMMENT '펫시터등급', -- 펫시터등급
+  IMG    VARCHAR(255) NULL     COMMENT '사진' -- 사진
 )
 COMMENT '펫시터';
 

@@ -55,7 +55,14 @@ public class DefaultPetSitterService implements PetSitterService {
     }
     return pages;
   }
-
+  public boolean exist(int no) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("pno", no);
+    if (petsitterDao.isPetSitter(paramMap) > 0) {
+      return true;
+    }
+    return false;
+  }
 }
 /*
  * # Service 객체 - 비즈니스 로직을 수행한다. - 트랜잭션을 제어한다 - 메서드의 이름은 업무 용어에 가깝게 정의하라 - 업무

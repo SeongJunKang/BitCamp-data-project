@@ -19,6 +19,14 @@ public class PetSitter {
   String addr_1;
   String addr_2;
   String region;
+  String img;
+  
+  public String getImg() {
+    return img;
+  }
+  public void setImg(String img) {
+    this.img = img;
+  }
   public String getRegion() {
     return region;
   }

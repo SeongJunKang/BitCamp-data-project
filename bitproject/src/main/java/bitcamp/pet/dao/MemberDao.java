@@ -26,7 +26,5 @@ public interface MemberDao {
   
   int isMember(Map<String,Object> paramMap);
 
-  List<Member> selectList(Map<String, Object> paramMap);
-
   int countAll();
 }

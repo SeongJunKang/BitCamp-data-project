@@ -29,8 +29,8 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="PetSitter">
-		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG)
-		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt},#{region})
+		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG)
+		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt},#{region},#{img})
 	</insert>
 	
 	<update id="update" parameterType="PetSitter">
@@ -43,12 +43,12 @@
 		where PNO=#{pno}
 	</delete>
 	<select id="selectList" resultMap="PetSitterMap" parameterType="map">
-		select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
+		 select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG from PETSITTER
 		order by PNO DESC
     limit #{startIndex}, #{length}
 	</select>
 	<select id="selectOne" parameterType="map" resultMap="PetSitterMap">
-	   select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
+	   select PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG from PETSITTER
 	   where
 	   <if test="pno != null">
 	   PNO=#{pno}
@@ -59,6 +59,11 @@
 	</select>
   <select id="countAll" resultType="int">
     select count(*) from PetSitter
+  </select>
+    <select id="isPetSitter" parameterType="map" resultType="int">
+    select count(*) 
+    from PETSITTER
+    where PNO=#{pno}
   </select>
 </mapper>
 

@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,7 +23,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.google.gson.Gson;
 
 import bitcamp.pet.service.MemberService;
+import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.vo.Member;
+import bitcamp.pet.vo.PetSitter;
 
 @Controller
 @RequestMapping("/ajax/member/")
@@ -33,6 +34,9 @@ public class MemberAjaxController {
   
   @Autowired
   MemberService memberService;
+  
+  @Autowired
+  PetSitterService petsitterService;
   
   @Autowired
   ServletContext servletContext;
@@ -109,33 +113,9 @@ public class MemberAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
-  public String list(
-      @RequestParam(defaultValue="1")int pageNo,
-      @RequestParam(defaultValue="3")int pageSize)
-          throws ServletException, IOException {
-    if (pageNo < 1) {
-      pageNo = 1;
-    }
-    if (pageSize < 3) {
-      pageSize = 3;
-    } else if (pageSize > 20) {
-      pageSize = 20;
-    }
-    int totalPage = memberService.countPage(pageSize);
-    if (pageNo > totalPage ) {
-      pageNo = totalPage;
-    }
-    
-    List<Member> list = memberService.list(pageNo,pageSize);
-    for (Member m : list) {
-      if (m.getTel() == null) {
-        m.setTel("");
-      }
-    }
+  public String list() throws ServletException, IOException {
+    List<Member> list = memberService.list();
     HashMap<String,Object> result = new HashMap<>();
-    result.put("pageNo", pageNo);
-    result.put("pageSize", pageSize);
-    result.put("totalPage", totalPage);
     result.put("list", list);
     return new Gson().toJson(result);
   }
@@ -202,7 +182,6 @@ public class MemberAjaxController {
         return new Gson().toJson(result);
       } else {
         if(((!password.equals("")) && (password.matches(passwordFormat)))) {
-          System.out.println(4);
           member.setPwd(password);
         }
         member.setAgency(agc);
@@ -210,7 +189,6 @@ public class MemberAjaxController {
         member.setTel(phone1+"-"+phone2+"-"+phone3);//전화번호변경
       }
     } else {
-      System.out.println(5);
       result.put("status", "failure");
     }
     Map<String, MultipartFile> files = request.getFileMap();
@@ -226,6 +204,14 @@ public class MemberAjaxController {
         member.setProf("img/profiles/"+fileName);
         System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
         System.out.println("새 파일명 : " + fileName);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    if (petsitterService.exist(member.getMno())) {
+      try {
+        PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
+        petsitter.setImg("../"+member.getProf());
       } catch (Exception e) {
         e.printStackTrace();
       }

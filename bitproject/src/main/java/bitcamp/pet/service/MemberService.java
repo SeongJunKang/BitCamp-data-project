@@ -10,7 +10,7 @@ public interface MemberService {
   Member retrieveByNo(int mno);
   Member retrieveByEmail(String email);
   void change(Member member);
-  List<Member> list(int pageNo,int pageSize);
+  List<Member> list();
   boolean exist(String email, String password);
   int countPage(int pageSize);
 }
