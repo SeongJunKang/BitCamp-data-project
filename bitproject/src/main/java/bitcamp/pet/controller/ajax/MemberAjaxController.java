@@ -1,5 +1,7 @@
 package bitcamp.pet.controller.ajax;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -91,7 +94,7 @@ public class MemberAjaxController {
     }
     return new Gson().toJson(result);
   }
-
+  
   @RequestMapping(produces="application/json;charset=UTF-8", value="getbirth")
   @ResponseBody
   public String birth(int mno) 
@@ -106,7 +109,6 @@ public class MemberAjaxController {
     return  new Gson().toJson(result);
   }
 
-  
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
   public String detail(HttpSession session) 
@@ -213,20 +215,37 @@ public class MemberAjaxController {
     if (extPoint > 0){
       fileName = System.currentTimeMillis() + count() + cmf.getOriginalFilename().substring(extPoint);      
       
-      String realPath = servletContext.getRealPath("img/profiles/" + fileName);
+//      String realPath = servletContext.getRealPath("img/profiles/" + fileName);
+      String realPath = servletContext.getRealPath("img/profiles/");
       try {
-        cmf.transferTo(new File(realPath));
-        member.setProf("img/profiles/"+fileName);
+//        cmf.transferTo(new File(realPath));
+        cmf.transferTo(new File(realPath+fileName));
+        /*member.setProf("img/profiles/"+fileName);*/
         System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
         System.out.println("새 파일명 : " + fileName);
+        //썸네일 가로사이즈
+        int thumbnail_width = 400;
+        //썸네일 세로사이즈
+        int thumbnail_height = 285;
+        //원본이미지파일의 경로+파일명
+        File origin_file_name = new File(realPath + fileName);
+        //생성할 썸네일파일의 경로+썸네일파일명
+        File thumb_file_name = new File(realPath+"/thumb/"+fileName);
+        BufferedImage buffer_original_image = ImageIO.read(origin_file_name);
+        BufferedImage buffer_thumbnail_image = new BufferedImage(thumbnail_width, thumbnail_height, BufferedImage.TYPE_3BYTE_BGR);
+        Graphics2D graphic = buffer_thumbnail_image.createGraphics();
+        graphic.drawImage(buffer_original_image, 0, 0, thumbnail_width, thumbnail_height, null);
+        ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);
+        
+        member.setProf("img/profiles/thumb/"+fileName);
+        System.out.println("썸네일 생성완료");
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
-    PetSitter petsitter = null;
     if (petsitterService.exist(member.getMno())) {
       try {
-        petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
+        PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(member.getMno());
         petsitter.setImg("../"+member.getProf());
       } catch (Exception e) {
         e.printStackTrace();
@@ -234,7 +253,6 @@ public class MemberAjaxController {
     }
     try{
       memberService.change(member);
-      petsitterService.change(petsitter);
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");

@@ -24,7 +24,6 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -679,27 +678,7 @@ s
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <script type="text/javascript">
-    function statusChangeCallback(response) {
-    	console.log('statusChangeCallback');
-    	console.log(response);
-    	// The response object is returned with a status field that lets the
-    	// app know the current login status of the person.
-    	// Full docs on the response object can be found in the documentation
-    	// for FB.getLoginStatus().
-    	if (response.status === 'connected') {
-    	// Logged into your app and Facebook.
-    	testAPI();
-    	} else if (response.status === 'not_authorized') {
-    	// The person is logged into Facebook, but not your app.
-    	document.getElementById('status').innerHTML = 'Please log ' +
-    	'into this app.';
-    	} else {
-    	// The person is not logged into Facebook, so we're not sure if
-    	// they are logged into this app or not.
-    	document.getElementById('status').innerHTML = 'Please log ' +
-    	'into Facebook.';
-    	}
-    	}
+
     
     window.fbAsyncInit = function() {
         FB.init({
@@ -716,18 +695,18 @@ s
                     if (user) {
                     	   $(".not_login").css("display","none")
                            $(".login").css("display","")
-                        var image = document.getElementById('image'); /* 필요없음 */
-                        image.src = 'http://graph.facebook.com/' + user.id + '/picture';
                         var name = document.getElementById('name');/* 필요없음 */
                         name.innerHTML = user.name
                         var id = document.getElementById('id');/* 필요없음 */
                         id.innerHTML = user.id
+                        console.log('됨');
                     }
                 });    
                  
             } else if (response.status === 'not_authorized') {
             	$(".login").css("display","none")
                 $(".not_login").css("display","")
+                console.log('안됨');
             } else {
                 
             }
