@@ -280,9 +280,6 @@ margin-left: 24px;
             </div>
         </div>
     </section>
-
-
-    </section> -->
     <!-- Team Section -->
     <section id="team"  class="bg-light-gray">
         <div class="container">
@@ -871,9 +868,7 @@ margin-left: 24px;
 
     });  
      function onclickDetail(event) {
-         //onsole.log(event.target.getAttribute("data-pno"));
-         location.href = "detail.html?no="
-               + $(event.currentTarget).attr("data-pno")
+         location.href = "detail.html?no="+ $(event.currentTarget).attr("data-pno")
          event.preventDefault();
      }
      function pwdCheck() {
