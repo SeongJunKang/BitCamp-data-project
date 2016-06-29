@@ -25,9 +25,13 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
-    <!-- daum map api -->
     <script src="//apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547"></script>
-
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 <style type="text/css">
 .form-control {
 	display: inline-block;
@@ -227,7 +231,7 @@
 
 #setlike {
 	text-align: right;
-	margin-top: -30px;
+	margin-top: -20px;
 }
 
 #setlike2 {
@@ -260,14 +264,35 @@ ol {
 }
 
 #heart {
-	width: 40px;
-	height: 35px;
+  margin-top: 0px;
+	width: 20px;
+	height: 25px;
 	cursor: pointer;
 }
 
 #login {
 	margin-right: 10px;
 }
+
+#loading {
+ width: 100%;   
+ height: 100%;   
+ top: 0px;
+ left: 0px;
+ position: fixed;   
+ display: block;   
+ opacity: 0.7;   
+ background-color: #fff;   
+ z-index: 99;   
+ text-align: center; 
+}  
+ 
+#loading-image {   
+ position: relative;   
+ top: 400px;   
+ right: auto;   
+ z-index: 100px; 
+}  
 
 .dtitle {
 	font-style: "맑은 고딕";
@@ -325,6 +350,9 @@ ol {
 
     <!-- Services Section -->
    <div id="inbody">
+   <div id="loading">
+ <img id="loading-image" src="../img/ajax-loader.gif">
+ </div>
     <div id="container1">
       <div id="bodycontent">
         <span> 
@@ -346,7 +374,7 @@ ol {
             <div id="profileinfo">
               이름 : <span id="name"></span> <br>
               <p id="setlike">
-                <img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
+                <img  id="heart" data-state="before"  src="../img/detail/web_heart_animation1.png">
                 <span id="like"></span><br>
               </p>
               <p id="setlike2">
@@ -475,10 +503,11 @@ ol {
 	<script type="text/javascript">
 
 
-		var memberNo = "";      //로그인한 회원 번호
-    var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
+		//<img  id="heart" data-state="before"  src="../img/detail/beforelike.png">
+		var memberNo = "";
+    var pno = location.href.split("=")[1];
 		$(document).ready(function() {
-			$("#walkrange").css("display","none");   //산책범위 맵
+			$("#walkrange").css("display","none");
 			$("#dialog-confirm").css("display","none");
 			$(".map_wrap").css("display","none");
       $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
@@ -559,7 +588,7 @@ ol {
 					$.getJSON("../ajax/likes/byno.do?mno="+ memberNo + "&pno="+pno, 
 						function(	result) {
 						  if ( result.status =="success") {
-				          heart.setAttribute("src", "../img/detail/like.jpg");
+				          heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
 				          heart.setAttribute("data-state", "after");
 						  }
 					});
@@ -594,7 +623,7 @@ ol {
 			} else {
 				var state = heart.getAttribute("data-state");
 				if (state == "before") {
-					heart.setAttribute("src", "../img/detail/like.jpg");
+					heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
 					heart.setAttribute("data-state", "after");
 					$("#like").html($("#like").html() * 1 + 1);
 					$.ajax("../ajax/likes/add.do?", {
@@ -623,14 +652,14 @@ ol {
            });
 				} else {
 					heart.setAttribute("data-state", "before");
-					heart.setAttribute("src", "../img/detail/beforelike.png");
+					heart.setAttribute("src", "../img/detail/web_heart_animation1.png");
 					$("#like").html($("#like").html() * 1 - 1);
 					$.ajax("../ajax/likes/delete.do?", {
 						method : "POST",
 						dataType : "json",
 						data : {
 							mno : memberNo,
-							pno : pno
+							pno : 1
 						},
 						success : function(result) {
 							if (result.status == "success") {
@@ -669,6 +698,11 @@ ol {
 			location.href = "index.html#signin"
 			event.preventDefault();
 		});
+		
+		$(window).load(function() {     
+	        $('#loading').hide();   
+	      }); 
+	    
 	</script>
 </body>
 </html>

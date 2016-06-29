@@ -246,6 +246,27 @@ input[type="file"]::-webkit-file-upload-button {
     z-index: 15;
     opacity: 0;
 }
+
+#loading {
+ width: 100%;   
+ height: 100%;   
+ top: 0px;
+ left: 0px;
+ position: fixed;   
+ display: block;   
+ opacity: 0.7;   
+ background-color: #fff;   
+ z-index: 99;   
+ text-align: center; 
+}  
+ 
+#loading-image {   
+ position: relative;   
+ top: 400px;   
+ right: auto;   
+ z-index: 100px; 
+} 
+
 </style>
 </head>
 
@@ -288,6 +309,9 @@ input[type="file"]::-webkit-file-upload-button {
 
     <!-- Services Section -->
     <div id="inbody">
+    <div id="loading">
+    <img id="loading-image" src="../img/ajax-loader.gif">
+    </div>
     <div id="container1">
     <form id="frm" method="post" name="frm">
     <input type="hidden" id="no" name="no">
@@ -627,6 +651,9 @@ input[type="file"]::-webkit-file-upload-button {
         }
        });
       $("#resist").click( function() {
+    	  $(window).load(function() {     
+    	        $('#loading').hide();   
+    	      }); 
         location.href = "../resist/resist.html?";
         event.preventDefault();
       });
@@ -702,6 +729,10 @@ input[type="file"]::-webkit-file-upload-button {
     	  preview.init();
     	});
     });
+    
+    $(window).load(function() {     
+        $('#loading').hide();   
+      }); 
   </script>
 </body>
 </html>

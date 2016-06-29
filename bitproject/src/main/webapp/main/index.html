@@ -742,6 +742,9 @@ margin-left: 24px;
         }); 
       
       $("#logout").click(function() {
+    	  $(window).load(function() {     
+              $('#loading').hide();   
+            }); 
     	  location.href = "../auth/logout.do";
     	  event.preventDefault();
       });
@@ -757,6 +760,9 @@ margin-left: 24px;
        });
       
       $(".po1").click(function(e) {
+    	  $(window).load(function() {     
+              $('#loading').hide();   
+            }); 
         location.href = "detail.html"
               event.preventDefault();
        });
@@ -765,8 +771,9 @@ margin-left: 24px;
           $.ajax({
              url : "../ajax/petsitter/list.do",
              dataType : "json",
-             data : {
+             data:  {
             	 order : "pno"
+             
              },
              success : function(result) {
                var templateData = $( "#sitterlist").html();
@@ -795,11 +802,17 @@ margin-left: 24px;
           });
       });
       $("#mypage").click(function() {
+    	  $(window).load(function() {     
+              $('#loading').hide();   
+            }); 
           location.href = "../mypage/mypage3.html"
           event.preventDefault();
         });
       $(".lookpet").click(function() {
-          location.href = "search.html"
+    	  $(window).load(function() {     
+              $('#loading').hide();   
+            }); 
+          location.href = "petdetail.html"
           event.preventDefault();
         });
       $(function() {
@@ -925,6 +938,9 @@ margin-left: 24px;
        }
      
     function goMain(event) {
+    	$(window).load(function() {     
+            $('#loading').hide();   
+          }); 
         location.href = "index.html"
         event.preventDefault();
       }
