@@ -44,15 +44,28 @@
 		NICK=#{nick}
 		where PNO=#{pno}
 	</update>
+	
 	<delete id="delete" parameterType="int">
 		delete from PETSITTER
 		where PNO=#{pno}
 	</delete>
+	
 	<select id="selectList" resultMap="PetSitterMap" parameterType="map">
 		 select * from PETSITTER
+		<if test="pno != null">
 		order by PNO DESC
-    limit #{startIndex}, #{length}
+    </if>
+    <if test="likes != null">
+    order by LIKES DESC
+    </if>
+    <if test="nick != null">
+    order by NICK
+    </if>
+    <if test="amt != null">
+    order by AMT
+    </if>
 	</select>
+	
 	<select id="selectOne" parameterType="map" resultMap="PetSitterMap">
 	   select * from PETSITTER
 	   where
@@ -63,10 +76,12 @@
 	   KTALK=#{ktalk}
 	   </if>
 	</select>
+	
   <select id="countAll" resultType="int">
     select count(*) from PetSitter
   </select>
-    <select id="isPetSitter" parameterType="map" resultType="int">
+  
+  <select id="isPetSitter" parameterType="map" resultType="int">
     select count(*) 
     from PETSITTER
     where PNO=#{pno}

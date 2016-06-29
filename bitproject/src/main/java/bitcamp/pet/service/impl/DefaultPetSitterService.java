@@ -40,12 +40,7 @@ public class DefaultPetSitterService implements PetSitterService {
     petsitterDao.update(petsitter);
   }
 
-  public List<PetSitter> list(int pageNo, int pageSize) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", (pageNo - 1) * pageSize);
-    paramMap.put("length", pageSize);
-    return petsitterDao.selectList(paramMap);
-  }
+
 
   public int countPage(int pageSize) {
     int count = petsitterDao.countAll();
@@ -62,6 +57,21 @@ public class DefaultPetSitterService implements PetSitterService {
       return true;
     }
     return false;
+  }
+
+  public List<PetSitter> list(String order) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    switch(order) {
+    case "pno": paramMap.put("pno", order);
+      break;
+    case "likes":paramMap.put("likes", order);
+      break;
+    case "nick":paramMap.put("nick", order);
+      break;
+    case "amt":paramMap.put("amt", order);
+      break;
+    }
+    return petsitterDao.selectList(paramMap);
   }
 }
 /*

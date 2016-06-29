@@ -765,6 +765,9 @@ margin-left: 24px;
           $.ajax({
              url : "../ajax/petsitter/list.do",
              dataType : "json",
+             data : {
+            	 order : "pno"
+             },
              success : function(result) {
                var templateData = $( "#sitterlist").html();
                var template = Handlebars .compile(templateData);
@@ -796,7 +799,7 @@ margin-left: 24px;
           event.preventDefault();
         });
       $(".lookpet").click(function() {
-          location.href = "petdetail.html"
+          location.href = "search.html"
           event.preventDefault();
         });
       $(function() {

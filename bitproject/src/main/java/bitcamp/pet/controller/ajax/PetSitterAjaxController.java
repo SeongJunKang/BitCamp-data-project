@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -122,31 +121,13 @@ public class PetSitterAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
-  public String list(
-      @RequestParam(defaultValue="1")int pageNo,
-      @RequestParam(defaultValue="6")int pageSize)
-          throws ServletException, IOException {
-    if (pageNo < 1) {
-      pageNo = 1;
-    }
-    if (pageSize < 3) {
-      pageSize = 3;
-    } else if (pageSize > 20) {
-      pageSize = 20;
-    }
-    int totalPage = petsitterService.countPage(pageSize);
-    if (pageNo > totalPage ) {
-      pageNo = totalPage;
-    }
-    
-    List<PetSitter> list = petsitterService.list(pageNo,pageSize);
+  public String list(String order) throws ServletException, IOException {
+    List<PetSitter> list = petsitterService.list(order);
     HashMap<String,Object> result = new HashMap<>();
-    result.put("pageNo", pageNo);
-    result.put("pageSize", pageSize);
-    result.put("totalPage", totalPage);
     result.put("list", list);
     return new Gson().toJson(result);
   }
+
 
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")
