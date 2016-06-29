@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../bower_components/css/agency.css" rel="stylesheet">
+    <!-- Dialog from jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+
+
+<title>산책할개</title>
+<style type="text/css">
+body {
+  margin-left : 20px; 
+  margin-right : 20px;
+}
+#carousel-example-generic {
+  width: 100%;
+  margin: 0 auto;
+}
+#login {
+  margin-right: 5px;
+}
+.imgmain {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+#inbody {
+  background-color: #f7f7f7 ;
+}
+
+#container {
+  padding-bottom : 100px;
+  padding-top:50px;
+}
+
+.radiobtn {
+  cursor: pointer;
+}
+.day {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+p {
+	text-align : left;
+	font-size: 20px;
+}
+.day {
+	display: inline-block;
+}
+#ask {
+  display: table;
+  margin: auto;
+}
+.question, #inquire {
+	font-size: medium;
+	font-weight: bold;
+}
+.question {
+	text-decoration: underline;
+}
+.question, .answer, #inquire {
+	margin-top: 10px;
+}
+.answer {
+  margin-left: 20px;
+}
+#bodycontent {
+  width : 1100px;
+  margin: 0 auto;
+}
+#requestBody {
+  display: table;
+  text-align: center;
+  width: auto;
+  margin: 0 auto;
+}
+#request  {
+  float : left;
+  display : inline-block;
+  height : 250px; 
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+#calendar {
+  float : left;
+  display : inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding : 10px;
+  height : auto;
+  width : 282px;
+  border-radius : 14px;
+  margin-right: 80px;
+  margin-bottom : 50px;
+  border: 1px lightgray solid;
+  text-align: center;
+}
+#selectday {
+  color : black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.choose {
+  
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+#dialog {
+  display: none;
+}
+</style>
+
+</head>
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top"  style="background-color: black;">
+        <div class="container" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a onclick="goMain(event)" class="navbar-brand page-scroll" href="#page-top"><img class='logoimg' src='../img/logos/dlogo.PNG'></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll not_login" href="#" id='login'>로그인/회원가입</a>
+                    </li>
+                    <li class="login">
+                        <a href="#" id="logout">Logout</a>
+                    </li>
+                    <li class="login">
+                        <a href="#" id="mypage">Mypage</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+    
+<div id="inbody">
+
+	<div id="container">
+	     <div class="carousel-example-generic">
+        <img class="imgmain" src="../img/back.jpg">
+      </div>
+	<div id ="bodycontent">
+	<div id="requestBody">
+			<div id="calendar">
+				<span id="selectday">날짜 선택</span><br>
+				<div id="datepicker"></div>
+			</div>
+			<div id="request">
+				<p id="week">
+				  <img class="day" id="mon" data-state="white"  src="../img/request/월백.PNG">
+					<img class="day" id="tue" data-state="white"  src="../img/request/화백.PNG"> 
+					<img class="day" id="wen" data-state="white"	src="../img/request/수백.PNG"> 
+					<img class="day" id="thu" data-state="white"	src="../img/request/목백.PNG"> 
+					<img class="day" id="fri" data-state="white"	src="../img/request/금백.PNG"> 
+					<img class="day" id="sat" data-state="white"	src="../img/request/토백.PNG"> 
+					<img class="day" id="sun" data-state="white"	src="../img/request/일백.PNG"> 
+				</p>
+				<p id="basic">기본 : </p>
+				<p id="period">기간 : </p>
+				<p id="totalday">총일 : </p> 
+				<p id="sum">합계 : </p>
+				<button id="admit" type="button" class="btn btn-default">신청</button>
+	      <button id="cancle" type="button" onclick="goMain(event)" class="btn btn-default">취소</button>
+	      <button id="discuss" type="button" class="btn btn-default">협의</button>
+      </div>
+	</div>
+	
+	<div id="ask">
+		<div class="question">관련 지침 및 요청사항 <br>
+		<textarea rows="4" cols="60"></textarea>
+		</div>
+		<div class="question">Q. 반려동물을 기관에 등록하였습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="resist" value="yes">yes
+			<input type="radio" class="radiobtn" name="resist" value="no">no
+		</div>
+		<div class="question">Q. 중성화 수술을 하였습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="neutralize" value="yes">yes
+			<input type="radio" class="radiobtn" name="neutralize" value="no">no
+		</div>
+		<div class="question">Q. 다른 동물과 친화적입니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="anifriendly" value="yes">yes
+			<input type="radio" class="radiobtn" name="anifriendly" value="no">no
+		</div>
+		<div class="question">Q. 어린이나 사람과 친화적입니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="humanfriendly" value="yes">yes
+			<input type="radio" class="radiobtn" name="humanfriendly" value="no">no
+		</div>
+		<div class="question">Q. 잘 짖습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="bark" value="yes">yes
+			<input type="radio" class="radiobtn" name="bark" value="no">no
+		</div>
+		<div class="question">Q. 지병을 갖고있습니까?</div>
+		<div class="answer">
+			<input type="radio" class="radiobtn" name="disease" value="yes">yes
+			<input type="radio" class="radiobtn" name="disease" value="no">no
+		</div>
+		<div class="question">Q. 식사시간이 정해져 있다면 알려주세요?</div>
+		<div class="answer">
+			<input type="text" name="mealtime">
+		</div>
+		<div class="question">Q. 훈련이 되어있다면 알려주세요</div>
+		<div class="answer">
+			<input type="text" name="training">
+		</div>
+	  <button id= "inquire" type="button" class="btn btn-default">문의사항</button>
+  </div>
+  </div>
+  </div>
+  </div>
+<script
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="../bower_components/js/classie.js"></script>
+<script src="../bower_components/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../bower_components/js/jqBootstrapValidation.js"></script>
+<!-- 
+<script src="../bower_components/js/contact_me.js"></script>
+-->
+<!-- Custom Theme JavaScript -->
+<script src="../bower_components/js/agency.js"></script>
+<!-- check login -->
+<script type="text/javascript" src="../LoginCheck.js"></script>
+<script type="text/javascript">
+	  $(function() {
+		    $( "#datepicker" ).datepicker({
+		    	  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		    	  monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		    	  dayNames: ['일','월','화','수','목','금','토'],
+		    	  dayNamesShort: ['일','월','화','수','목','금','토'],
+		    	  dayNamesMin: ['일','월','화','수','목','금','토']
+		    //  onSelect
+		    });
+		  });
+	
+		$("#login").click = function() {
+			location.href = "../mypage/mypage.html"
+			event.preventDefault();
+		}
+		function goMain(event) {
+			location.href = "../main/maintest.html"
+			event.preventDefault();
+		}
+
+		var mon = document.getElementById("mon");
+		mon.onclick = function() {
+			var state = mon.getAttribute("data-state");
+			if (state == "white") {
+				mon.setAttribute("src", "../img/request/월.png");
+				mon.setAttribute("data-state", "color");
+			} else {
+				mon.setAttribute("data-state", "white");
+				mon.setAttribute("src", "../img/request/월백.PNG");
+			}
+		}
+
+		var tue = document.getElementById("tue");
+		tue.onclick = function() {
+			var state = tue.getAttribute("data-state");
+			if (state == "white") {
+				tue.setAttribute("src", "../img/request/화.png");
+				tue.setAttribute("data-state", "color");
+			} else {
+				tue.setAttribute("data-state", "white");
+				tue.setAttribute("src", "../img/request/화백.PNG");
+			}
+		}
+
+		var wen = document.getElementById("wen");
+		wen.onclick = function() {
+			var state = wen.getAttribute("data-state");
+			if (state == "white") {
+				wen.setAttribute("src", "../img/request/수.png");
+				wen.setAttribute("data-state", "color");
+			} else {
+				wen.setAttribute("data-state", "white");
+				wen.setAttribute("src", "../img/request/수백.PNG");
+			}
+		}
+
+		var thu = document.getElementById("thu");
+		thu.onclick = function() {
+			var state = thu.getAttribute("data-state");
+			if (state == "white") {
+				thu.setAttribute("src", "../img/request/목.png");
+				thu.setAttribute("data-state", "color");
+			} else {
+				thu.setAttribute("data-state", "white");
+				thu.setAttribute("src", "../img/request/목백.PNG");
+			}
+		}
+
+		var fri = document.getElementById("fri");
+		fri.onclick = function() {
+			var state = fri.getAttribute("data-state");
+			if (state == "white") {
+				fri.setAttribute("src", "../img/request/금.png");
+				fri.setAttribute("data-state", "color");
+			} else {
+				fri.setAttribute("data-state", "white");
+				fri.setAttribute("src", "../img/request/금백.PNG");
+			}
+		}
+
+		var sat = document.getElementById("sat");
+		sat.onclick = function() {
+			var state = sat.getAttribute("data-state");
+			if (state == "white") {
+				sat.setAttribute("src", "../img/request/토.png");
+				sat.setAttribute("data-state", "color");
+			} else {
+				sat.setAttribute("data-state", "white");
+				sat.setAttribute("src", "../img/request/토백.PNG");
+			}
+		}
+
+		var sun = document.getElementById("sun");
+		sun.onclick = function() {
+			var state = sun.getAttribute("data-state");
+			if (state == "white") {
+				sun.setAttribute("src", "../img/request/일.png");
+				sun.setAttribute("data-state", "color");
+			} else {
+				sun.setAttribute("data-state", "white");
+				sun.setAttribute("src", "../img/request/일백.PNG");
+			}
+		}
+	</script>
+	<div id="dialog" title="날짜 설정 오류">
+  <p>시작일이 종료일보다 느립니다.<br> 다시 설정해주세요</p>
+  </div>
+</body>
+</html>
