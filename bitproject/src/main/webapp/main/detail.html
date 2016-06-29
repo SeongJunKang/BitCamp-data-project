@@ -484,6 +484,8 @@ ol {
       $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
           function(result) {
             if ( result.status =="success") {
+            	
+            	if(result.lat) {
            	 $("#walkrange").css("display","");
            	 $(".map_wrap").css("display","");
            	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -513,6 +515,7 @@ ol {
                 });
                 // 지도에 원을 표시합니다 
                 circle.setMap(map);
+            	}
                 //********************************************************************************
                 $("#titlesen").html(result.reg);
                 $("#photo").attr('src',result.img);
@@ -529,10 +532,9 @@ ol {
                 $("#service").html(result.ser);
                 $("#inqur").html(result.inqur);
             } else {
-           	 $("#walkrange").css("display","none");
-           	 $(".map_wrap").css("display","none");
+	           	 $("#walkrange").css("display","none");
+	           	 $(".map_wrap").css("display","none");
             }
-
        });
       $.getJSON("../ajax/member/getbirth.do?mno="+pno, 
          function(result) {
