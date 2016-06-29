@@ -173,8 +173,6 @@ public class PetSitterAjaxController {
   public String like(int pno, int likes)
       throws ServletException, IOException {
     
-    System.out.println(pno);
-    System.out.println(likes);
     PetSitter petsitter = petsitterService.retrieveByNo(pno);
     petsitter.setLikes(likes);
     HashMap<String, Object> result = new HashMap<>();
