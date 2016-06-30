@@ -233,4 +233,7 @@ alter table petsitter alter column rad set default 0;
 alter table petsitter alter column likes set default 0;
 alter table petsitter alter column petg set default 1;
 alter table petsitter alter column pet set default 0;
+
+alter table petsitter add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
+
     

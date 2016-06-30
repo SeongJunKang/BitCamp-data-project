@@ -189,39 +189,33 @@ color: white;
           <table class="table table-bordered">
             <tr>
               <td class="th"><span class="thtext">닉네임*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="nickname">
+              <td class="td"><input type="text" class="form-control " id="nickname">
                 <button id="checknick" class="btn btn-me">중복확인</button></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">1일 가격*</span></td>
-              <td class="td"><input type="text" class="form-control"
+              <td class="td"><input type="text" class="form-control "
                 id="price">원</td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">카톡 ID*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="kakao"></td>
+              <td class="td"><input type="text" class="form-control " id="kakao"></td>
             </tr>
 						<tr>
 							<td class="th"><span class="thtext">활동 지역*</span></td>
-							<td class="td"><input type="text" class="form-control"
-								id="region" placeholder="ex) 서울시 강남구"></td>
+							<td class="td"><input type="text" class="form-control " id="region" placeholder="ex) 서울시 강남구"></td>
 						</tr>
 						<tr>
               <td class="th"><span class="thtext">은행*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="bank"></td>
+              <td class="td"><input type="text" class="form-control "  id="bank"></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">예금주*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="holder"></td>
+              <td class="td"><input type="text" class="form-control "  id="holder"></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">계좌*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="account"></td>
+              <td class="td"><input type="text" class="form-control "  id="account"></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">추가서비스</span></td>
@@ -245,14 +239,13 @@ color: white;
             </tr>
             <tr>
               <td class="th"><span class="thtext">문의시간*</span></td>
-              <td class="td"><input type="text" class="form-control"
-                id="inqur1">시 ~ <input type="text" class="form-control"
-                id="inqur2">시</td>
+              <td class="td">
+                <input type="text" class="form-control" id="inqur1">시 ~ 
+                <input type="text" class="form-control" id="inqur2">시</td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">반려동물유무</span></td>
-              <td class="td"><input type="number" class="form-control"
-                id="animal"> 마리</td>
+              <td class="td"><input type="number" class="form-control" id="animal"> 마리</td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">인근 동물병원*</span></td>
@@ -265,7 +258,7 @@ color: white;
             </tr>
             <tr>
               <td class="th"><span class="thtext">상세주소*</span></td>
-              <td class="td"><input type="text" class="form-control form-control2"
+              <td class="td"><input type="text" class="form-control "
                 id="addr2"></td>
             </tr>
             <tr>
@@ -351,50 +344,50 @@ color: white;
 
     $(document).ready(function() {
       $("#savebtn").click(function() {
-          var checklist="";
-            $("input[name=box]:checked").each(function() {
-              checklist += $(this).val()+",";
-            });
-          checklist = checklist.substring(0,checklist.length-1);
-          var radian = 0;
-          if ($("#radian").val() != "") {
-            radian = $("#radian").val();
-          }
-            $.post("../ajax/petsitter/add.do", {
-                nick : $("#nickname").val(),
-                amt :$("#price").val(),        
-                ktalk : $("#kakao").val(),
-                region : $("#region").val(),
-                bank : $("#bank").val(),
-                bknm: $("#holder").val(),
-                acc : $("#account").val(),
-                ser : checklist,
-                inqur : $("#inqur1").val() + "시 ~ "
-                       +$("#inqur2").val()+ "시",
-                pet :  $( "#animal").val(),
-                addr_1 :$("#addr1").val(),
-                addr_2 :$("#addr2").val(),
-                rad : radian,
-                lat : lat,
-                lnt : lng,
-                intro :$("#intro").val(),
-                hospital : $("#hospital").val()
-              }, function(result) {
-                if (result.status == "success") {
-                  location.href = "../main/index.html";
-                } else {
-                  window.alert("등록 실패입니다.");
-                }
-              }, "json");
-            $.post("../ajax/member/upgrade.do?", {
-                 gra :  2
-               }, function(result) {
-                   if (result.status == "success") {
-                      location.href = "../main/index.html";
-                    } else {
-                      window.alert("등록 실패입니다.");
-                    }
-                  }, "json");
+       var checklist="";
+         $("input[name=box]:checked").each(function() {
+           checklist += $(this).val()+",";
+         });
+       checklist = checklist.substring(0,checklist.length-1);
+       var radian = 0;
+       if ($("#radian").val() != "") {
+         radian = $("#radian").val();
+       }
+         $.post("../ajax/petsitter/add.do", {
+             nick : $("#nickname").val(),
+             amt :$("#price").val(),        
+             ktalk : $("#kakao").val(),
+             region : $("#region").val(),
+             bank : $("#bank").val(),
+             bknm: $("#holder").val(),
+             acc : $("#account").val(),
+             ser : checklist,
+             inqur : $("#inqur1").val() + "시 ~ "
+                    +$("#inqur2").val()+ "시",
+             pet :  $( "#animal").val(),
+             addr_1 :$("#addr1").val(),
+             addr_2 :$("#addr2").val(),
+             rad : radian,
+             lat : lat,
+             lnt : lng,
+             intro :$("#intro").val(),
+             hospital : $("#hospital").val()
+           }, function(result) {
+             if (result.status == "success") {
+               location.href = "../main/index.html";
+             } else {
+               window.alert("등록 실패입니다.");
+             }
+           }, "json");
+         $.post("../ajax/member/upgrade.do?", {
+              gra :  2
+            }, function(result) {
+              if (result.status == "success") {
+                 location.href = "../main/index.html";
+               } else {
+                 window.alert("등록 실패입니다.");
+               }
+             }, "json");
           });
       
       var lat;
@@ -418,56 +411,51 @@ color: white;
     
     //****************************************************************************
 
-    var drawingFlag = false; // 원이 그려지고 있는 상태를 가지고 있을 변수입니다
-  var centerPosition; // 원의 중심좌표 입니다
-  var drawingCircle; // 그려지고 있는 원을 표시할 원 객체입니다
-  var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
-  var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
-  var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
-
-  var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
+	    var drawingFlag = false; // 원이 그려지고 있는 상태를 가지고 있을 변수입니다
+		  var centerPosition; // 원의 중심좌표 입니다
+		  var drawingCircle; // 그려지고 있는 원을 표시할 원 객체입니다
+		  var drawingLine; // 그려지고 있는 원의 반지름을 표시할 선 객체입니다
+		  var drawingOverlay; // 그려지고 있는 원의 반경을 표시할 커스텀오버레이 입니다
+		  var drawingDot; // 그려지고 있는 원의 중심점을 표시할 커스텀오버레이 입니다
+		
+		  var circles = []; // 클릭으로 그려진 원과 반경 정보를 표시하는 선과 커스텀오버레이를 가지고 있을 배열입니다
 
   // 지도에 클릭 이벤트를 등록합니다
-  daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+      daum.maps.event.addListener(map, 'click', function(mouseEvent) {
       removeCircles();    
       // 클릭 이벤트가 발생했을 때 원을 그리고 있는 상태가 아니면 중심좌표를 클릭한 지점으로 설정합니다
       if (!drawingFlag) {    
-          
           // 상태를 그리고있는 상태로 변경합니다
           drawingFlag = true; 
-          
           // 원이 그려질 중심좌표를 클릭한 위치로 설정합니다 
           centerPosition = mouseEvent.latLng; 
-
           // 그려지고 있는 원의 반경을 표시할 선 객체를 생성합니다
           if (!drawingLine) {
-              drawingLine = new daum.maps.Polyline({
-                  strokeWeight: 3, // 선의 두께입니다
-                  strokeColor: '#00a0e9', // 선의 색깔입니다
-                  strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-                  strokeStyle: 'solid' // 선의 스타일입니다
-              });    
+            drawingLine = new daum.maps.Polyline({
+              strokeWeight: 3, // 선의 두께입니다
+              strokeColor: '#00a0e9', // 선의 색깔입니다
+              strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+              strokeStyle: 'solid' // 선의 스타일입니다
+            });    
           }
-          
           // 그려지고 있는 원을 표시할 원 객체를 생성합니다
           if (!drawingCircle) {                    
-              drawingCircle = new daum.maps.Circle({ 
-                  strokeWeight: 3, // 선의 두께입니다 
-                  strokeColor: '#75B8FA', // 선의 색깔입니다
-                  strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-                  strokeStyle: 'solid', // 선의 스타일 입니다
-                  fillColor: '#CFE7FF', // 채우기 색깔입니다
-                  fillOpacity: 0.5  // 채우기 불투명도 입니다 
-              });     
+            drawingCircle = new daum.maps.Circle({ 
+              strokeWeight: 3, // 선의 두께입니다 
+              strokeColor: '#75B8FA', // 선의 색깔입니다
+              strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+              strokeStyle: 'solid', // 선의 스타일 입니다
+              fillColor: '#CFE7FF', // 채우기 색깔입니다
+              fillOpacity: 0.5  // 채우기 불투명도 입니다 
+            });     
           }
-          
           // 그려지고 있는 원의 반경 정보를 표시할 커스텀오버레이를 생성합니다
           if (!drawingOverlay) {
-              drawingOverlay = new daum.maps.CustomOverlay({
-                  xAnchor: 0,
-                  yAnchor: 0,
-                  zIndex: 1
-              });              
+            drawingOverlay = new daum.maps.CustomOverlay({
+              xAnchor: 0,
+              yAnchor: 0,
+              zIndex: 1
+            });              
           }
       }
       });
@@ -475,72 +463,53 @@ color: white;
   // 지도에 마우스무브 이벤트를 등록합니다
   // 원을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 원의 위치와 반경정보를 동적으로 보여주도록 합니다
   daum.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
-          
       // 마우스무브 이벤트가 발생했을 때 원을 그리고있는 상태이면
       if (drawingFlag) {
-
           // 마우스 커서의 현재 위치를 얻어옵니다 
           var mousePosition = mouseEvent.latLng; 
-          
           // 그려지고 있는 선을 표시할 좌표 배열입니다. 클릭한 중심좌표와 마우스커서의 위치로 설정합니다
           var linePath = [centerPosition, mousePosition];     
-          
           // 그려지고 있는 선을 표시할 선 객체에 좌표 배열을 설정합니다
           drawingLine.setPath(linePath);
-          
           // 원의 반지름을 선 객체를 이용해서 얻어옵니다 
           var length = drawingLine.getLength();
-          
           if(length > 0) {
-              
               // 그려지고 있는 원의 중심좌표와 반지름입니다
               var circleOptions = { 
                   center : centerPosition, 
-              radius: length,                 
+                  radius: length,                 
               };
-              
               // 그려지고 있는 원의 옵션을 설정합니다
               drawingCircle.setOptions(circleOptions); 
-                  
               // 반경 정보를 표시할 커스텀오버레이의 내용입니다
               var radius = Math.round(drawingCircle.getRadius()),   
               content = '<div class="info">반경 <span class="number">' + radius + '</span>m</div>';
-              
               // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
               drawingOverlay.setPosition(mousePosition);
-              
               // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
               drawingOverlay.setContent(content);
-              
               // 그려지고 있는 원을 지도에 표시합니다
               drawingCircle.setMap(map); 
-              
               // 그려지고 있는 선을 지도에 표시합니다
               drawingLine.setMap(map);  
-              
               // 그려지고 있는 원의 반경정보 커스텀 오버레이를 지도에 표시합니다
               drawingOverlay.setMap(map);
-              
           } else { 
-              
               drawingCircle.setMap(null);
               drawingLine.setMap(null);    
               drawingOverlay.setMap(null);
-              
           }
-      }     
-  });     
+         }     
+      });     
 
   // 지도에 마우스 오른쪽 클릭이벤트를 등록합니다
   // 원을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면
   // 마우스 오른쪽 클릭한 위치를 기준으로 원과 원의 반경정보를 표시하는 선과 커스텀 오버레이를 표시하고 그리기를 종료합니다
-  daum.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
+      daum.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
 
       if (drawingFlag) {
-
           // 마우스로 오른쪽 클릭한 위치입니다 
           var rClickPosition = mouseEvent.latLng; 
-
           // 원의 반경을 표시할 선 객체를 생성합니다
           var polyline = new daum.maps.Polyline({
               path: [centerPosition, rClickPosition], // 선을 구성하는 좌표 배열입니다. 원의 중심좌표와 클릭한 위치로 설정합니다
@@ -549,7 +518,6 @@ color: white;
               strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
               strokeStyle: 'solid' // 선의 스타일입니다
           });
-          
           // 원 객체를 생성합니다
           var circle = new daum.maps.Circle({ 
               center : centerPosition, // 원의 중심좌표입니다
@@ -561,11 +529,8 @@ color: white;
               fillColor: '#CFE7FF', // 채우기 색깔입니다
               fillOpacity: 0.5  // 채우기 불투명도 입니다  
           });
-          
           var radius = Math.round(circle.getRadius()) // 원의 반경 정보를 얻어옵니다
               content = getTimeHTML(radius); // 커스텀 오버레이에 표시할 반경 정보입니다
-
-          
           // 반경정보를 표시할 커스텀 오버레이를 생성합니다
           var radiusOverlay = new daum.maps.CustomOverlay({
               content: content, // 표시할 내용입니다
@@ -574,27 +539,21 @@ color: white;
               yAnchor: 0,
               zIndex: 1 
           });  
-
           // 원을 지도에 표시합니다
           circle.setMap(map); 
-          
           // 선을 지도에 표시합니다
           polyline.setMap(map);
-          
           // 반경 정보 커스텀 오버레이를 지도에 표시합니다
           radiusOverlay.setMap(map);
-          
           // 배열에 담을 객체입니다. 원, 선, 커스텀오버레이 객체를 가지고 있습니다
           var radiusObj = {
               'polyline' : polyline,
               'circle' : circle,
               'overlay' : radiusOverlay
           };
-          
           // 배열에 추가합니다
           // 이 배열을 이용해서 "모두 지우기" 버튼을 클릭했을 때 지도에 그려진 원, 선, 커스텀오버레이들을 지웁니다
           circles.push(radiusObj);   
-      
           // 그리기 상태를 그리고 있지 않는 상태로 바꿉니다
           drawingFlag = false;
           lat = centerPosition.bb;
@@ -626,7 +585,7 @@ color: white;
   function getTimeHTML(distance) {
 
    // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
-   var walkkTime = distance / 67 | 0;
+   /* var walkkTime = distance / 67 | 0;
    var walkHour = '', walkMin = '';
 
    // 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
@@ -634,7 +593,7 @@ color: white;
        walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
    }
    walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
-
+    */
    // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
    var content = '<ul class="info">';
    content += '    <li>';

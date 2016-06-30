@@ -84,10 +84,10 @@ public class MemberAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
-  public String delete(int no) throws ServletException, IOException {
+  public String delete(HttpSession session) throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      memberService.delete(no);
+      memberService.delete(((Member)session.getAttribute("loginUser")).getMno());
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
