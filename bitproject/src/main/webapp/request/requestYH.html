@@ -300,11 +300,13 @@ p {
 			        format: 'YYYY MMMM DD dddd- HH:mm'
 			      });
 			      
+			   
 			      $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
 			              function(result) {
 			                if ( result.status =="success") {
 			                    $("#price").html(result.amt);
-			                });
+			                }
+			              });
 			      
 			      
 			    });
