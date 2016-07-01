@@ -30,19 +30,6 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="../bower_components/js/classie.js"></script>
-    <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="../bower_components/js/jqBootstrapValidation.js"></script>
-    <script src="../bower_components/js/contact_me.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../bower_components/js/agency.js"></script>
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <!-- Daum map API -->
@@ -261,6 +248,7 @@
               <td class="td"><input type="text" class="form-control width-control" name="addr2" id="addr2"></td>
             </tr>
             <tr>
+
               <td class="th" colspan="2"><span class="thtext">산책범위 지정하기</span></td>
             </tr>
             <tr>
@@ -333,6 +321,19 @@
             </div>
         </div>
     </footer>
+        <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../bower_components/js/classie.js"></script>
+    <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../bower_components/js/jqBootstrapValidation.js"></script>
+    <script src="../bower_components/js/contact_me.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../bower_components/js/agency.js"></script>
 <script type="text/javascript">
   $("#delete").click(function() {
     $( "#dialog-confirm" ).dialog({
@@ -523,7 +524,8 @@
                $("#phone1").val(phoneNum[0]);
                $("#phone2").val(phoneNum[1]);
                $("#phone3").val(phoneNum[2]);
-               if(result.prof)
+               if(!result.prof)
+                   result.prof="img/default_img.jpg";
                $(".img-wrapper")
                .css('background', 'url(' +"../"+result.prof + ') no-repeat center center')
                .css('background-size', 'cover');
