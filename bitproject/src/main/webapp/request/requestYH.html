@@ -25,12 +25,9 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-   
-
-    
 
 
-
+   <script src="../bower_components/handlebars/handlebars.min.js"></script>
 <title>산책할개</title>
 <style type="text/css">
 
@@ -97,7 +94,7 @@ p {
 #request  {
   float : left;
   display : inline-block;
-  height : 250px; 
+  height : 50px; 
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -172,7 +169,6 @@ p {
     </nav>
 <div id="inbody">
 	<div id="container1">
-	     
 	<div id ="bodycontent">
 	<div id="requestBody">
 			<div id="calendar">
@@ -180,14 +176,10 @@ p {
 				<div id="datepicker"> <input type="text" id="date-format" class="form-control floating-label" placeholder="산책 날짜와 시간을 선택해주세요"></div>
 			</div>
 			<div id="request">
-				
-				<p id="basic">기본 : </p>
-				<p id="period">기간 : </p>
-				<p id="totalday">총일 : </p> 
-				<p id="sum">합계 : </p>
-				<button id="admit" type="button" class="btn btn-default">신청</button>
-	      <button id="cancle" type="button" onclick="goMain(event)" class="btn btn-default">취소</button>
-	      <button id="discuss" type="button" class="btn btn-default">협의</button>
+				<p id="sum">가격 : <span id="price"></span></p>
+				<button id="admit" type="button" class="btn btn-me">신청</button>
+	      <button id="cancle" type="button" onclick="goMain(event)" class="btn btn-me">취소</button>
+	      <button id="discuss" type="button" class="btn btn-me">협의</button>
       </div>
 	</div>
 	
@@ -233,7 +225,7 @@ p {
 		<div class="answer">
 			<input type="text" name="training">
 		</div>
-	  <button id= "inquire" type="button" class="btn btn-default">문의사항</button>
+	  <button id= "inquire" type="button" class="btn btn-me">문의사항</button>
   </div>
   </div>
   </div>
@@ -281,8 +273,16 @@ p {
     <script src="../bower_components/js/agency.js"></script>
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
+ 
+      <script id="reviewrepeat" type="text/x-handlebars-template">
+  {{#each reviewlist}}
+    <li class="review">{{review}}
+  {{/each}}
+  </script>
 	<script type="text/javascript">
-	  $(document).ready(function()
+	var memberNo = "";      //로그인한 회원 번호
+  var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
+    $(document).ready(function()
 			    {
 			      $('#date').bootstrapMaterialDatePicker
 			      ({
@@ -299,6 +299,14 @@ p {
 			      ({
 			        format: 'YYYY MMMM DD dddd- HH:mm'
 			      });
+			      
+			      $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
+			              function(result) {
+			                if ( result.status =="success") {
+			                    $("#price").html(result.amt);
+			                });
+			      
+			      
 			    });
 
 
