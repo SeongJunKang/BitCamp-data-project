@@ -125,7 +125,7 @@ public class MemberAjaxController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return  new Gson().toJson(result);
+    return new Gson().toJson(result);
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")

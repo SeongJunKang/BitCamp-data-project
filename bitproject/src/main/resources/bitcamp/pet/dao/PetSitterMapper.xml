@@ -45,6 +45,28 @@
 		where PNO=#{pno}
 	</update>
 	
+	 <update id="setInfo" parameterType="PetSitter">
+    update PETSITTER set
+    NICK=#{nick},
+    KTALK=#{ktalk},
+    AMT=#{amt},
+    REG=#{region},
+    BANK=#{bank},
+    BKNM=#{bknm},
+    ACC=#{acc},
+    SER=#{ser},
+    INQUR=#{inqur},
+    PET=#{pet},
+    ADDR_1=#{addr_1},
+    ADDR_2=#{addr_2},
+    INTRO=#{intro},
+    HOS=#{hospital},
+    RAD=#{rad},
+    LAT=#{lat},
+    LNT=#{lnt}
+    where PNO=#{pno}
+  </update>
+	
 	<delete id="delete" parameterType="int">
 		delete from PETSITTER
 		where PNO=#{pno}

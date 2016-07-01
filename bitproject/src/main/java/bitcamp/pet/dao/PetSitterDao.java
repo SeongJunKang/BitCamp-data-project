@@ -22,8 +22,8 @@ public interface PetSitterDao {
 
   int delete(int pno);
 
-  int update(PetSitter petsitter);
-  
+  void update(PetSitter petsitter);
+  void setInfo(PetSitter petsitter);
   int isPetSitter(Map<String,Object> paramMap);
 
   int countAll();

@@ -10,6 +10,7 @@ public interface PetSitterService {
   PetSitter retrieveByNo(int pno);
   PetSitter retrieveByKakao(String kakao);
   void change(PetSitter petsitter);
+  void setInfo(PetSitter petsitter);
   int countPage(int pageSize);
   boolean exist(int no);
   

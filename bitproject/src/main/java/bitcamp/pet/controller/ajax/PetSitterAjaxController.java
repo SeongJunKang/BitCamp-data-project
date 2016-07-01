@@ -119,6 +119,42 @@ public class PetSitterAjaxController {
     return  new Gson().toJson(result);
   }
 
+  @RequestMapping(produces="application/json;charset=UTF-8", value="petmypage")
+  @ResponseBody
+  public String detail(HttpSession session) 
+      throws ServletException, IOException {
+    PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(
+        ((Member)session.getAttribute("loginUser")).getMno());
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
+      result.put("nick",petsitter.getNick());   // 닉네임
+      result.put("amt",petsitter.getAmt());     // 가격
+      result.put("ktalk",petsitter.getKtalk()); // 카톡
+      result.put("bank",petsitter.getBank());   // 은행
+      result.put("bknm",petsitter.getBknm());   // 예금명
+      result.put("acc",petsitter.getAcc());     // 계좌
+      result.put("ser",petsitter.getSer());     // 서비스
+      result.put("inqur",petsitter.getInqur()); // 요구사항
+      result.put("pet",petsitter.getPet());     // 펫시터 펫마리수
+      result.put("addr_1",petsitter.getAddr_1()); // 우편주소1
+      result.put("addr_2",petsitter.getAddr_2()); // 상세주소2
+      result.put("intro",petsitter.getIntro());   // 자기소개
+      result.put("reg",petsitter.getRegion());    // 활동지역
+      result.put("lat",petsitter.getLat());     //  좌표
+      result.put("lnt",petsitter.getLnt());     // 좌표
+      result.put("rad",petsitter.getRad());     // 반지름
+      result.put("img",petsitter.getImg());     // 이미지
+      result.put("likes",petsitter.getLikes());  // 좋아요수
+      result.put("petg",petsitter.getPetg());    // 펫등급
+      result.put("hospital",petsitter.getHospital());    // 펫등급
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return  new Gson().toJson(result);
+  }
+  
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
   public String list(String order) throws ServletException, IOException {
@@ -167,4 +203,50 @@ public class PetSitterAjaxController {
     return new Gson().toJson(result);
   }
 
+  @RequestMapping(method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8", value="upload")
+  @ResponseBody
+  public String upload(HttpSession session, String nickname,int amt,
+      String ktalk,String region, String bank, String bknm, String acc,
+      String box, String inqur1,String inqur2, String pet, int hos, String addr1, 
+      String addr2, int rad, String intro,String lat, String lnt)
+      throws ServletException, IOException {
+    
+    PetSitter petsitter = petsitterService.retrieveByNo(((Member)session.getAttribute("loginUser")).getMno());
+    petsitter.setNick(nickname);
+    petsitter.setAmt(amt);
+    petsitter.setKtalk(ktalk);
+    petsitter.setRegion(region);
+    petsitter.setBank(bank);
+    petsitter.setBknm(bknm);
+    petsitter.setAcc(acc);
+    petsitter.setSer(box);
+    petsitter.setInqur(inqur1+"시 ~"+inqur2+"시");
+    petsitter.setPet(pet);
+    petsitter.setHospital(hos);
+    petsitter.setAddr_1(addr1);
+    petsitter.setAddr_2(addr2);
+    petsitter.setRad(rad);
+    petsitter.setLat(lat);
+    petsitter.setLnt(lnt);
+    petsitter.setIntro(intro);
+    System.out.println(nickname);
+    System.out.println(amt);
+    System.out.println(ktalk);
+    System.out.println(region);
+    System.out.println(bank);
+    System.out.println(bknm);
+    System.out.println(acc);
+    System.out.println(box);
+    HashMap<String, Object> result = new HashMap<>();
+    try {
+      petsitterService.setInfo(petsitter);
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
+  
 }
