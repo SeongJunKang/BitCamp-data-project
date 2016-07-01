@@ -248,7 +248,6 @@
               <td class="td"><input type="text" class="form-control width-control" name="addr2" id="addr2"></td>
             </tr>
             <tr>
-
               <td class="th" colspan="2"><span class="thtext">산책범위 지정하기</span></td>
             </tr>
             <tr>
@@ -321,7 +320,7 @@
             </div>
         </div>
     </footer>
-        <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- Plugin JavaScript -->
@@ -371,6 +370,35 @@
 	       contentType: false,
 	       processData: false,
 	       success:  function(result) {
+	    	   if (sessionStorage.getItem("gra") == 1) {
+	    		   sessionStorage.removeItem("gra");
+             if (result.status == "success") {
+                 $(function() {
+                     $( "#dialog-confirm2" ).dialog({
+                       resizable: false,
+                       height:180,
+                       width:300,
+                       modal: true,
+                       buttons: {"확인": function() {
+                         $( this ).dialog( "close" );
+                         location.href = "mypage3.html"
+                         }}
+                     });
+                   });
+               } else {
+                 $(function() {
+                    $( "#dialog-confirm3" ).dialog({
+                      resizable: false,
+                      height:180,
+                      width:300,
+                      modal: true,
+                      buttons: {"확인": function() {$( this ).dialog( "close" );}
+                      }
+                    });
+                  });
+                }
+	    	   } else if (sessionStorage.getItem("gra") == 2) {
+	    		   sessionStorage.removeItem("gra");
 	           $.ajax({
 	             url: "../ajax/petsitter/upload.do?",
 	             type: "POST",
@@ -410,6 +438,7 @@
                     window.alert("서버요청 실패입니다.");
                   }
 	           });
+	    	    }
            }
 	     });     
 	     return false;     
@@ -480,6 +509,7 @@
           $.getJSON("../ajax/member/detail.do?",
             function(result) {
               $("#agc").val(result.agc).attr("selected","selected");
+              sessionStorage.setItem("gra", result.gra);
                if (result.gra == 2) {
                  $(".grade2").css("display","");
                  $(".grade1").css("display","none");
@@ -524,11 +554,13 @@
                $("#phone1").val(phoneNum[0]);
                $("#phone2").val(phoneNum[1]);
                $("#phone3").val(phoneNum[2]);
-               if(!result.prof)
+				if(!result.prof) {
                    result.prof="img/default_img.jpg";
+                 } else {
                $(".img-wrapper")
                .css('background', 'url(' +"../"+result.prof + ') no-repeat center center')
                .css('background-size', 'cover');
+               }
              }
           );
       });
