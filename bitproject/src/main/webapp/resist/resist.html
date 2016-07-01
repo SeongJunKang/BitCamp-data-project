@@ -181,9 +181,6 @@ color: white;
     <div id="container1">
       <div id="bodycontent">
        <div class="table-responsive table1">
-      <form>
-        <input id="pno" type='hidden' name='no'>
-      </form> 
         <span id="profileresist">펫시터 프로필 등록</span>
         <span> * 표시는 필수 항목 입니다.</span>
           <table class="table table-bordered">
@@ -316,9 +313,9 @@ color: white;
             </div>
         </div>
     </footer>
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
- <!-- jQuery -->
+    <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -340,7 +337,7 @@ color: white;
   function goMain(event) {
       location.href = "../main/index.html"
       event.preventDefault();
-    }
+  }
 
     $(document).ready(function() {
       $("#savebtn").click(function() {
@@ -353,42 +350,42 @@ color: white;
        if ($("#radian").val() != "") {
          radian = $("#radian").val();
        }
-         $.post("../ajax/petsitter/add.do", {
-             nick : $("#nickname").val(),
-             amt :$("#price").val(),        
-             ktalk : $("#kakao").val(),
-             region : $("#region").val(),
-             bank : $("#bank").val(),
-             bknm: $("#holder").val(),
-             acc : $("#account").val(),
-             ser : checklist,
-             inqur : $("#inqur1").val() + "시 ~ "
-                    +$("#inqur2").val()+ "시",
-             pet :  $( "#animal").val(),
-             addr_1 :$("#addr1").val(),
-             addr_2 :$("#addr2").val(),
-             rad : radian,
-             lat : lat,
-             lnt : lng,
-             intro :$("#intro").val(),
-             hospital : $("#hospital").val()
-           }, function(result) {
-             if (result.status == "success") {
+       $.post("../ajax/petsitter/add.do", {
+           nick : $("#nickname").val(),
+           amt :$("#price").val(),        
+           ktalk : $("#kakao").val(),
+           region : $("#region").val(),
+           bank : $("#bank").val(),
+           bknm: $("#holder").val(),
+           acc : $("#account").val(),
+           ser : checklist,
+           inqur : $("#inqur1").val() + "시 ~ "
+                  +$("#inqur2").val()+ "시",
+           pet :  $( "#animal").val(),
+           addr_1 :$("#addr1").val(),
+           addr_2 :$("#addr2").val(),
+           rad : radian,
+           lat : lat,
+           lnt : lng,
+           intro :$("#intro").val(),
+           hospital : $("#hospital").val()
+         }, function(result) {
+           if (result.status == "success") {
+             location.href = "../main/index.html";
+           } else {
+             window.alert("등록 실패입니다.");
+           }
+         }, "json");
+       $.post("../ajax/member/upgrade.do?", {
+            gra :  2
+          }, function(result) {
+            if (result.status == "success") {
                location.href = "../main/index.html";
              } else {
                window.alert("등록 실패입니다.");
              }
-           }, "json");
-         $.post("../ajax/member/upgrade.do?", {
-              gra :  2
-            }, function(result) {
-              if (result.status == "success") {
-                 location.href = "../main/index.html";
-               } else {
-                 window.alert("등록 실패입니다.");
-               }
-             }, "json");
-          });
+        }, "json");
+     });
       
       var lat;
       var lng;
