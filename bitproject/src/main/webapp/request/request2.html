@@ -17,8 +17,19 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/material.min.css" />
+    <link rel="stylesheet" href="pretty/css/bootstrap-material-datetimepicker.css" />
 
 
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="pretty/js/bootstrap-material-datetimepicker.js"></script>
 
 <title>산책할개</title>
 <style type="text/css">
@@ -176,20 +187,26 @@ p {
       </div>
 	<div id ="bodycontent">
 	<div id="requestBody">
-			<div id="calendar">
-				<span id="selectday">날짜 선택</span><br>
-				<div id="datepicker"></div>
-			</div>
-			<div id="request">
-				<p id="week">
-				  <img class="day" id="mon" data-state="white"  src="../img/request/월백.PNG">
-					<img class="day" id="tue" data-state="white"  src="../img/request/화백.PNG"> 
-					<img class="day" id="wen" data-state="white"	src="../img/request/수백.PNG"> 
-					<img class="day" id="thu" data-state="white"	src="../img/request/목백.PNG"> 
-					<img class="day" id="fri" data-state="white"	src="../img/request/금백.PNG"> 
-					<img class="day" id="sat" data-state="white"	src="../img/request/토백.PNG"> 
-					<img class="day" id="sun" data-state="white"	src="../img/request/일백.PNG"> 
-				</p>
+<div class="container well">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Date Time Picker</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-control-wrapper">
+            <input type="text" id="date-format" class="form-control floating-label" placeholder="Begin Date Time">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <code>
+            <p>Code</p>
+            $('#date-format').bootstrapMaterialDatePicker({  });
+          </code>
+        </div>
+      </div>
+    </div>
 				<p id="basic">기본 : </p>
 				<p id="period">기간 : </p>
 				<p id="totalday">총일 : </p> 
@@ -275,112 +292,51 @@ p {
 <!-- check login -->
 <script type="text/javascript" src="../LoginCheck.js"></script>
 <script type="text/javascript">
-	  $(function() {
-		    $( "#datepicker" ).datepicker({
-		    	  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    	  monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-		    	  dayNames: ['일','월','화','수','목','금','토'],
-		    	  dayNamesShort: ['일','월','화','수','목','금','토'],
-		    	  dayNamesMin: ['일','월','화','수','목','금','토']
-		    //  onSelect
-		    });
-		  });
-	
-		$("#login").click = function() {
-			location.href = "../mypage/mypage.html"
-			event.preventDefault();
-		}
-		function goMain(event) {
-			location.href = "../main/maintest.html"
-			event.preventDefault();
-		}
+$(document).ready(function()
+	    {
+	      $('#date').bootstrapMaterialDatePicker
+	      ({
+	        time: false,
+	        clearButton: true
+	      });
 
-		var mon = document.getElementById("mon");
-		mon.onclick = function() {
-			var state = mon.getAttribute("data-state");
-			if (state == "white") {
-				mon.setAttribute("src", "../img/request/월.png");
-				mon.setAttribute("data-state", "color");
-			} else {
-				mon.setAttribute("data-state", "white");
-				mon.setAttribute("src", "../img/request/월백.PNG");
-			}
-		}
+	      $('#time').bootstrapMaterialDatePicker
+	      ({
+	        date: false,
+	        shortTime: false,
+	        format: 'HH:mm'
+	      });
 
-		var tue = document.getElementById("tue");
-		tue.onclick = function() {
-			var state = tue.getAttribute("data-state");
-			if (state == "white") {
-				tue.setAttribute("src", "../img/request/화.png");
-				tue.setAttribute("data-state", "color");
-			} else {
-				tue.setAttribute("data-state", "white");
-				tue.setAttribute("src", "../img/request/화백.PNG");
-			}
-		}
+	      $('#date-format').bootstrapMaterialDatePicker
+	      ({
+	        format: 'dddd DD MMMM YYYY - HH:mm'
+	      });
+	      $('#date-fr').bootstrapMaterialDatePicker
+	      ({
+	        format: 'DD/MM/YYYY HH:mm',
+	        lang: 'fr',
+	        weekStart: 1, 
+	        cancelText : 'ANNULER',
+	        nowButton : true,
+	        switchOnClick : true
+	      });
 
-		var wen = document.getElementById("wen");
-		wen.onclick = function() {
-			var state = wen.getAttribute("data-state");
-			if (state == "white") {
-				wen.setAttribute("src", "../img/request/수.png");
-				wen.setAttribute("data-state", "color");
-			} else {
-				wen.setAttribute("data-state", "white");
-				wen.setAttribute("src", "../img/request/수백.PNG");
-			}
-		}
+	      $('#date-end').bootstrapMaterialDatePicker
+	      ({
+	        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+	      });
+	      $('#date-start').bootstrapMaterialDatePicker
+	      ({
+	        weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+	      }).on('change', function(e, date)
+	      {
+	        $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+	      });
 
-		var thu = document.getElementById("thu");
-		thu.onclick = function() {
-			var state = thu.getAttribute("data-state");
-			if (state == "white") {
-				thu.setAttribute("src", "../img/request/목.png");
-				thu.setAttribute("data-state", "color");
-			} else {
-				thu.setAttribute("data-state", "white");
-				thu.setAttribute("src", "../img/request/목백.PNG");
-			}
-		}
+	      $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
 
-		var fri = document.getElementById("fri");
-		fri.onclick = function() {
-			var state = fri.getAttribute("data-state");
-			if (state == "white") {
-				fri.setAttribute("src", "../img/request/금.png");
-				fri.setAttribute("data-state", "color");
-			} else {
-				fri.setAttribute("data-state", "white");
-				fri.setAttribute("src", "../img/request/금백.PNG");
-			}
-		}
-
-		var sat = document.getElementById("sat");
-		sat.onclick = function() {
-			var state = sat.getAttribute("data-state");
-			if (state == "white") {
-				sat.setAttribute("src", "../img/request/토.png");
-				sat.setAttribute("data-state", "color");
-			} else {
-				sat.setAttribute("data-state", "white");
-				sat.setAttribute("src", "../img/request/토백.PNG");
-			}
-		}
-
-		var sun = document.getElementById("sun");
-		sun.onclick = function() {
-			var state = sun.getAttribute("data-state");
-			if (state == "white") {
-				sun.setAttribute("src", "../img/request/일.png");
-				sun.setAttribute("data-state", "color");
-			} else {
-				sun.setAttribute("data-state", "white");
-				sun.setAttribute("src", "../img/request/일백.PNG");
-			}
-		}
+	      $.material.init()
+	    });
 	</script>
-	<div id="dialog" title="날짜 설정 오류">
-  <p>시작일이 종료일보다 느립니다.<br> 다시 설정해주세요</p>
-  </div>
 </body>
 </html>
