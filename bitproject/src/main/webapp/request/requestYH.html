@@ -155,12 +155,6 @@ p {
                     <li>
                         <a id='logout' class="login" href="#">로그아웃</a>
                     </li>
-                    <li>
-                        <a id='resist' class="login grade1" href="#">펫시터등록</a>
-                    </li>
-                    <li>
-                        <a id='deleteresist' class="login grade2" href="#">펫시터삭제</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -185,7 +179,7 @@ p {
 	
 	<div id="ask">
 		<div class="question">관련 지침 및 요청사항 <br>
-		<textarea rows="4" cols="60"></textarea>
+		<textarea id='requirement' rows="4" cols="60"></textarea>
 		</div>
 		<div class="question">Q. 반려동물을 기관에 등록하였습니까?</div>
 		<div class="answer">
@@ -265,23 +259,16 @@ p {
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="../bower_components/js/classie.js"></script>
     <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="../bower_components/js/jqBootstrapValidation.js"></script>
-    <script src="../bower_components/js/contact_me.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
  
-      <script id="reviewrepeat" type="text/x-handlebars-template">
-  {{#each reviewlist}}
-    <li class="review">{{review}}
-  {{/each}}
-  </script>
 	<script type="text/javascript">
 	var memberNo = "";      //로그인한 회원 번호
   var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
+  
+  
     $(document).ready(function()
 			    {
 			      $('#date').bootstrapMaterialDatePicker
@@ -307,8 +294,54 @@ p {
 			                    $("#price").html(result.amt);
 			                }
 			              });
-			      
-			      
+			      $("#admit").click(function() {
+			    	 var date = $('#date-format').val()
+			    	  alert(date);
+			      var text = $('#requirement').val()
+	              alert(text);
+			      var ch=$("input[type=radio][name=resist]:checked").val()
+                  alert(ch);
+			      var ch1=$("input[type=radio][name=neutralize]:checked").val()
+                  alert(ch1);
+			      var ch2=$("input[type=radio][name=anifriendly]:checked").val()
+                  alert(ch2);
+			      var ch3=$("input[type=radio][name=humanfriendly]:checked").val()
+                  alert(ch3);
+			      var ch4=$("input[type=radio][name=bark]:checked").val()
+                  alert(ch4);
+			      var ch5=$("input[type=radio][name=disease]:checked").val()
+                  alert(ch5);
+			      var meal = $('#mealtime').val()
+	                alert(meal);
+			      var train = $('#training').val()
+	                alert(train);
+			      });
+/* 			      $("#admit").click(function() {
+			          var checklist="";
+			            $("input[name=box]:checked").each(function() {
+			              checklist += $(this).val()+",";
+			            });
+			          checklist = checklist.substring(0,checklist.length-1);
+			          $.post("../ajax/request/add.do", {
+			            date = $('#date-format').val()
+			            text = $('#requirement').val()
+			            ch=$("input[type=radio][name=resist]:checked").val()
+			            ch1=$("input[type=radio][name=neutralize]:checked").val()
+			            ch2=$("input[type=radio][name=anifriendly]:checked").val()
+			            ch3=$("input[type=radio][name=humanfriendly]:checked").val()
+			            ch4=$("input[type=radio][name=bark]:checked").val()
+			            ch5=$("input[type=radio][name=disease]:checked").val()
+			            meal : $('#mealtime').val()
+			            train : $('#training').val()
+			            }, function(result) {
+			              if (result.status == "success") {
+			                location.href = "../main/index.html";
+			              } else {
+			                window.alert("등록 실패입니다.");
+			              }
+			            }, "json");
+			    
+			        }); */
 			    });
 
 
