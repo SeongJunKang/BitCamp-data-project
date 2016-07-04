@@ -30,9 +30,9 @@ public class DefaultPetSitterService implements PetSitterService {
     return petsitterDao.selectOne(paramMap);
   }
 
-  public PetSitter retrieveByKakao(String kakao) {
+  public PetSitter retrieveByNick(String nick) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("kakao", kakao);
+    paramMap.put("nick", nick);
     return petsitterDao.selectOne(paramMap);
   }
 

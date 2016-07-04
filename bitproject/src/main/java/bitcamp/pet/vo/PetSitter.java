@@ -18,11 +18,18 @@ public class PetSitter {
   String lnt;   // 경도
   String addr_1;
   String addr_2;
+  String addr_3;
   String region;  // 산책범위
   String img;     // 프로필사진
   int likes;      // 좋아요
   int petg;       // 펫등급
   int hospital;
+  public String getAddr_3() {
+    return addr_3;
+  }
+  public void setAddr_3(String addr_3) {
+    this.addr_3 = addr_3;
+  }
   public int getHospital() {
     return hospital;
   }

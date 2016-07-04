@@ -17,6 +17,7 @@
     <result column="PET" property="pet" />
     <result column="ADDR_1" property="addr_1" />
     <result column="ADDR_2" property="addr_2" />
+    <result column="ADDR_3" property="addr_3" />
     <result column="RAD" property="rad" />
     <result column="LAT" property="lat" />
     <result column="LNT" property="lnt" />
@@ -29,8 +30,8 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="PetSitter">
-		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG,IMG,HOS)
-		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{intro},#{rad},#{lat},#{lnt},#{region},#{img},#{hospital})
+		insert into PETSITTER(PNO,NICK,AMT,KTALK,BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,ADDR_3,INTRO,RAD,LAT,LNT,REG,IMG,HOS)
+		values(#{pno},#{nick},#{amt},#{ktalk},#{bank},#{bknm},#{acc},#{ser},#{inqur},#{pet},#{addr_1},#{addr_2},#{addr_3},#{intro},#{rad},#{lat},#{lnt},#{region},#{img},#{hospital})
 	</insert>
 	
 	<update id="update" parameterType="PetSitter">
@@ -59,6 +60,7 @@
     PET=#{pet},
     ADDR_1=#{addr_1},
     ADDR_2=#{addr_2},
+    ADDR_3=#{addr_3},
     INTRO=#{intro},
     HOS=#{hospital},
     RAD=#{rad},
@@ -94,8 +96,8 @@
 	   <if test="pno != null">
 	   PNO=#{pno}
 	   </if>
-	   <if test="kakao != null">
-	   KTALK=#{ktalk}
+	   <if test="nick != null">
+	   NICK=#{nick}
 	   </if>
 	</select>
 	

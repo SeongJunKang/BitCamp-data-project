@@ -32,7 +32,7 @@ public class PetSitterAjaxController {
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
   public String add(HttpSession session, String nick, int amt, String ktalk, String bank, String bknm,
-      String acc, String ser, String inqur, String pet, String addr_1, String addr_2,
+      String acc, String ser, String inqur, String pet, String addr_1, String addr_2,String addr_3,
       int rad, String lat, String lnt, String intro, String region, int hospital) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
@@ -50,6 +50,7 @@ public class PetSitterAjaxController {
     petsitter.setPet(pet);
     petsitter.setAddr_1(addr_1);
     petsitter.setAddr_2(addr_2);
+    petsitter.setAddr_3(addr_3);
     petsitter.setRad(rad);
     petsitter.setLat(lat);
     petsitter.setLnt(lnt);
@@ -102,7 +103,8 @@ public class PetSitterAjaxController {
       result.put("inqur",petsitter.getInqur()); // 요구사항
       result.put("pet",petsitter.getPet());     // 펫시터 펫마리수
       result.put("addr_1",petsitter.getAddr_1()); // 우편주소1
-      result.put("addr_2",petsitter.getAddr_2()); // 상세주소2
+      result.put("addr_2",petsitter.getAddr_2()); // 상세주소1
+      result.put("addr_3",petsitter.getAddr_3()); // 상세주소2
       result.put("intro",petsitter.getIntro());   // 자기소개
       result.put("reg",petsitter.getRegion());    // 활동지역
       result.put("lat",petsitter.getLat());     //  좌표
@@ -138,7 +140,8 @@ public class PetSitterAjaxController {
       result.put("inqur",petsitter.getInqur()); // 요구사항
       result.put("pet",petsitter.getPet());     // 펫시터 펫마리수
       result.put("addr_1",petsitter.getAddr_1()); // 우편주소1
-      result.put("addr_2",petsitter.getAddr_2()); // 상세주소2
+      result.put("addr_2",petsitter.getAddr_2()); // 상세주소1
+      result.put("addr_3",petsitter.getAddr_3()); // 상세주소2
       result.put("intro",petsitter.getIntro());   // 자기소개
       result.put("reg",petsitter.getRegion());    // 활동지역
       result.put("lat",petsitter.getLat());     //  좌표
@@ -209,7 +212,7 @@ public class PetSitterAjaxController {
   public String upload(HttpSession session, String nickname,int amt,
       String ktalk,String region, String bank, String bknm, String acc,
       String box, String inqur1,String inqur2, String pet, int hos, String addr1, 
-      String addr2, int rad, String intro,String lat, String lnt)
+      String addr2,String addr3, int rad, String intro,String lat, String lnt)
       throws ServletException, IOException {
     
     PetSitter petsitter = petsitterService.retrieveByNo(((Member)session.getAttribute("loginUser")).getMno());
@@ -226,6 +229,7 @@ public class PetSitterAjaxController {
     petsitter.setHospital(hos);
     petsitter.setAddr_1(addr1);
     petsitter.setAddr_2(addr2);
+    petsitter.setAddr_3(addr3);
     petsitter.setRad(rad);
     petsitter.setLat(lat);
     petsitter.setLnt(lnt);
@@ -249,4 +253,17 @@ public class PetSitterAjaxController {
     return new Gson().toJson(result);
   }
   
+  @RequestMapping(produces="application/json;charset=UTF-8", value="checknick")
+  @ResponseBody
+  public String checknick(String nick) 
+      throws ServletException, IOException {
+    PetSitter petsitter = petsitterService.retrieveByNick(nick);
+    HashMap<String,Object> result = new HashMap<>();
+    if ( petsitter == null) {
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
 }

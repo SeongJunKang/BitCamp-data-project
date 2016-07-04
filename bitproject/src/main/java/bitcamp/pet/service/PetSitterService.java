@@ -8,7 +8,7 @@ public interface PetSitterService {
   void add(PetSitter petsitter);
   void delete(int pno);
   PetSitter retrieveByNo(int pno);
-  PetSitter retrieveByKakao(String kakao);
+  PetSitter retrieveByNick(String nick);
   void change(PetSitter petsitter);
   void setInfo(PetSitter petsitter);
   int countPage(int pageSize);
