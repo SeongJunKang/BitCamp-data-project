@@ -294,7 +294,7 @@ p {
 			                    $("#price").html(result.amt);
 			                }
 			              });
-			      $("#admit").click(function() {
+			     /*  $("#admit").click(function() {
 			    	 var date = $('#date-format').val()
 			    	  alert(date);
 			      var text = $('#requirement').val()
@@ -315,22 +315,18 @@ p {
 	                alert(meal);
 			      var train = $('#training').val()
 	                alert(train);
-			      });
-/* 			      $("#admit").click(function() {
-			          var checklist="";
-			            $("input[name=box]:checked").each(function() {
-			              checklist += $(this).val()+",";
-			            });
+			      }); */
+		      $("#admit").click(function() {
 			          checklist = checklist.substring(0,checklist.length-1);
 			          $.post("../ajax/request/add.do", {
-			            date = $('#date-format').val()
-			            text = $('#requirement').val()
-			            ch=$("input[type=radio][name=resist]:checked").val()
-			            ch1=$("input[type=radio][name=neutralize]:checked").val()
-			            ch2=$("input[type=radio][name=anifriendly]:checked").val()
-			            ch3=$("input[type=radio][name=humanfriendly]:checked").val()
-			            ch4=$("input[type=radio][name=bark]:checked").val()
-			            ch5=$("input[type=radio][name=disease]:checked").val()
+			            date : $('#date-format').val()
+			            cdt : $('#requirement').val()
+			            res : $("input[type=radio][name=resist]:checked").val()
+			            neut : $("input[type=radio][name=neutralize]:checked").val()
+			            anifd : $("input[type=radio][name=anifriendly]:checked").val()
+			            manfd : $("input[type=radio][name=humanfriendly]:checked").val()
+			            bark : $("input[type=radio][name=bark]:checked").val()
+			            diz : $("input[type=radio][name=disease]:checked").val()
 			            meal : $('#mealtime').val()
 			            train : $('#training').val()
 			            }, function(result) {
@@ -341,7 +337,7 @@ p {
 			              }
 			            }, "json");
 			    
-			        }); */
+			        }); 
 			    });
 
 
