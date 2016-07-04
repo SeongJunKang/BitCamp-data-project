@@ -173,7 +173,7 @@ p {
 				<p id="sum">가격 : <span id="price"></span></p>
 				<button id="admit" type="button" class="btn btn-me">신청</button>
 	      <button id="cancle" type="button" onclick="goMain(event)" class="btn btn-me">취소</button>
-	      <button id="discuss" type="button" class="btn btn-me">협의</button>
+<!-- 	      <button id="discuss" type="button" class="btn btn-me">협의</button> -->
       </div>
 	</div>
 	
@@ -213,13 +213,13 @@ p {
 		</div>
 		<div class="question">Q. 식사시간이 정해져 있다면 알려주세요?</div>
 		<div class="answer">
-			<input type="text" name="mealtime">
+			<input type="text" id='mealtime' name="mealtime">
 		</div>
 		<div class="question">Q. 훈련이 되어있다면 알려주세요</div>
 		<div class="answer">
-			<input type="text" name="training">
+			<input type="text" id='training' name="training">
 		</div>
-	  <button id= "inquire" type="button" class="btn btn-me">문의사항</button>
+	  <!-- <button id= "inquire" type="button" class="btn btn-me">문의사항</button> -->
   </div>
   </div>
   </div>
@@ -294,7 +294,7 @@ p {
 			                    $("#price").html(result.amt);
 			                }
 			              });
-			     /*  $("#admit").click(function() {
+			       $("#admit").click(function() {
 			    	 var date = $('#date-format').val()
 			    	  alert(date);
 			      var text = $('#requirement').val()
@@ -315,8 +315,8 @@ p {
 	                alert(meal);
 			      var train = $('#training').val()
 	                alert(train);
-			      }); */
-		      $("#admit").click(function() {
+			      }); 
+		      /* $("#admit").click(function() {
 			          checklist = checklist.substring(0,checklist.length-1);
 			          $.post("../ajax/request/add.do", {
 			            date : $('#date-format').val()
@@ -337,7 +337,7 @@ p {
 			              }
 			            }, "json");
 			    
-			        }); 
+			        });  */
 			    });
 
 
