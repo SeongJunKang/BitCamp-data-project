@@ -20,8 +20,8 @@ public class DefaultRequestService implements RequestService {
     requestDao.insert(request);
   }
 
-  public void delete(int pno) {
-    requestDao.delete(pno);
+  public void delete(int mno) {
+    requestDao.delete(mno);
   }
 
   public Request retrieveByNo(int pno) {

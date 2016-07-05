@@ -1,12 +1,10 @@
 package bitcamp.pet.vo;
 
-import java.sql.Date;
-
 public class Request {
   int req;
   int mno;
   int pno;
-  Date cdt;
+  String cdt;
   String conts;
   String stat;
   String ans;
@@ -24,6 +22,12 @@ public class Request {
   }
   public void setReq(int req) {
     this.req = req;
+  }
+  public String getCdt() {
+    return cdt;
+  }
+  public void setCdt(String cdt) {
+    this.cdt = cdt;
   }
   public int getMno() {
     return mno;
@@ -85,12 +89,7 @@ public class Request {
   public void setPno(int pno) {
     this.pno = pno;
   }
-  public Date getCdt() {
-    return cdt;
-  }
-  public void setCdt(Date cdt) {
-    this.cdt = cdt;
-  }
+
   public String getConts() {
     return conts;
   }

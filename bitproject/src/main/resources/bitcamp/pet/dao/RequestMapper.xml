@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.pet.dao.RequestDao">
+  <resultMap type="Request" id="RequestMap">
+    <id column="req" property="req" />
+    <result column="cdt" property="cdt" />
+  </resultMap>
+  
+  <insert id="insert" parameterType="Request">
+    insert into request(mno, pno, cdt, conts, stat, ans)
+    values(#{mno},#{pno},#{cdt},#{conts},#{stat},#{ans})
+  </insert>
+
+  
+  <delete id="delete" parameterType="int">
+    delete from request
+    where req=#{req}
+  </delete>
+  
+  <select id="selectList" resultMap="RequestMap" parameterType="map">
+     select * from request
+    <if test="req != null">
+    order by req DESC
+    </if>
+    <if test="likes != null">
+    order by LIKES DESC
+    </if>
+    <if test="nick != null">
+    order by NICK
+    </if>
+    <if test="amt != null">
+    order by AMT
+    </if>
+  </select>
+  
+  <select id="selectOne" parameterType="map" resultMap="RequestMap">
+     select * from request
+     where
+     <if test="pno != null">
+     PNO=#{pno}
+     </if>
+     <if test="nick != null">
+     NICK=#{nick}
+     </if>
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from request
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
