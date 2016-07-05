@@ -21,6 +21,7 @@
 	<insert id="insert" parameterType="UserReview">
 		insert into USERREVIEW(MNO,PNO,BREV,BDT)
 		values(#{mno},#{pno},#{content},now())
+		<!-- DATE_FORMAT(NOW(),'%Y-%b-%d %T') -->
 	</insert>
 	
 	 <select id="selectOne" parameterType="map" resultMap="UserReviewMap">

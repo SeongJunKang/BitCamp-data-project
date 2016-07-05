@@ -1,13 +1,13 @@
 package bitcamp.pet.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class UserReview {
   int mbno;
   int pno;
   int mno;
   String content;
-  Date cdt;
+  Timestamp cdt;
   public int getMbno() {
     return mbno;
   }
@@ -32,10 +32,10 @@ public class UserReview {
   public void setContent(String content) {
     this.content = content;
   }
-  public Date getCdt() {
+  public Timestamp getCdt() {
     return cdt;
   }
-  public void setCdt(Date cdt) {
+  public void setCdt(Timestamp cdt) {
     this.cdt = cdt;
   }
   

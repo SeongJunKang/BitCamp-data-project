@@ -1,16 +1,16 @@
 package bitcamp.pet.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class UserReviewData {
-  Date cdt;
+  Timestamp cdt;
   String name;
   String content;
   String prof;
-  public Date getCdt() {
+  public Timestamp getCdt() {
     return cdt;
   }
-  public void setCdt(Date cdt) {
+  public void setCdt(Timestamp cdt) {
     this.cdt = cdt;
   }
   public String getName() {
