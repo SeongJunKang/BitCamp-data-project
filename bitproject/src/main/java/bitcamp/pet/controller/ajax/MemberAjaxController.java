@@ -29,6 +29,8 @@ import bitcamp.pet.service.MemberService;
 import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.vo.Member;
 import bitcamp.pet.vo.PetSitter;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
 
 @Controller
 @RequestMapping("/ajax/member/")
@@ -224,7 +226,7 @@ public class MemberAjaxController {
         System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
         System.out.println("새 파일명 : " + fileName);
         //썸네일 가로사이즈
-        int thumbnail_width = 400;
+ /*       int thumbnail_width = 400;
         //썸네일 세로사이즈
         int thumbnail_height = 285;
         //원본이미지파일의 경로+파일명
@@ -235,8 +237,8 @@ public class MemberAjaxController {
         BufferedImage buffer_thumbnail_image = new BufferedImage(thumbnail_width, thumbnail_height, BufferedImage.TYPE_3BYTE_BGR);
         Graphics2D graphic = buffer_thumbnail_image.createGraphics();
         graphic.drawImage(buffer_original_image, 0, 0, thumbnail_width, thumbnail_height, null);
-        ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);
-        
+        ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);*/
+        Thumbnails.of(realPath + fileName).crop(Positions.TOP_CENTER).size(400, 285).toFile(new File(realPath+"/thumb/"+fileName));
         member.setProf("img/profiles/thumb/"+fileName);
         System.out.println("썸네일 생성완료");
       } catch (Exception e) {

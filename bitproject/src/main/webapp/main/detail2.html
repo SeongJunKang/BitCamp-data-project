@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>산책할개</title>
+
+   <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../bower_components/css/agency.css" rel="stylesheet">
+    <!-- Dialog from jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <script src="../bower_components/handlebars/handlebars.min.js"></script>
+    <!-- daum map api -->
+    <script src="//apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547"></script>
+
+<style type="text/css">
+.form-control {
+	display: inline-block;
+}
+
+.birth1 {
+	margin-left: 23px;
+	margin-right: 2px;
+}
+
+.birth2 {
+	margin-left: 26px;
+	width: 61px;
+	margin-right: 2px;
+}
+
+.birth3 {
+	margin-left: 24px;
+	width: 61px;
+	margin-right: 2px;
+}
+
+#birthdayYear {
+	width: 80px;
+}
+
+.upname {
+	width: 309px;
+}
+
+.gender {
+	margin-left: 27px;
+}
+
+.input-group1 {
+	display: inline-block;
+	margin-left: 14px;
+	margin-right: 2px;
+	width: 60px;
+}
+
+.input-group2 {
+	display: inline-block;
+	margin: 0px 2px 0px 1px;
+	width: 60px;
+}
+
+.input-group3 {
+	display: inline-block;
+	margin-left: 1px;
+	width: 60px;
+}
+
+#phonenumber {
+	margin-right: 8px;
+}
+
+#agency {
+	width: 87px;
+}
+
+#inbody {
+	background-color: #f7f7f7;
+}
+
+#container1 {
+	padding-bottom: 150px;
+	padding-top: 150px;
+}
+
+.review {
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	border: 1px solid black;
+	padding: 10px;
+	width: auto;
+}
+
+#moveBtn {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#back {
+	text-align: right;
+	margin-top: -60px;
+}
+
+#titlesen {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+#info, #intro {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.inner {
+	border: 1px solid black;
+}
+
+.detail, #introsen, #profileinfo {
+	display: inline-block;
+	font-size: 15px;
+}
+
+.detail {
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+#picture {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+#writeReview {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#d1, #d2 {
+	display: inline-block;
+	text-align: center;
+	height: 300px;
+	width: 300px;
+	float: left;
+	border: 2px solid skyblue;
+	padding: 10px;
+	background-color: white;
+}
+
+#d1 {
+	border-radius: 10px 0px 0px 10px;
+	margin-right: 10px;
+}
+
+#d2 {
+	border-radius: 0px 10px 10px 0px;
+}
+
+#d {
+	display: table;
+	text-align: center;
+	height: 300px;
+	width: auto;
+	margin: 0 auto;
+}
+
+#profileinfo {
+	border-radius: 10px;
+	background-color: white;
+	padding: 10px;
+}
+
+#introsen {
+	background-color: white;
+	width: 400px;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#photo {
+	border-radius: 10px;
+	height: 400px;
+	margin-right: 30px;
+}
+
+#wrap {
+	text-align: center;
+}
+
+#infomation {
+	text-align: left;
+}
+
+.detailtext {
+	text-align: left;
+	font-size: 40px;
+	font-style: oblique;
+	font-weight: bold;
+	margin: 40px;
+}
+
+#bodycontent {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#backbtn, #gotoRequest {
+	margin-bottom: 10px;
+}
+
+#setlike {
+	text-align: right;
+	margin-top: -20px;
+}
+
+#setlike2 {
+	text-align: left;
+	margin-top: -12px;
+}
+
+.form-control {
+	margin-bottom: 40px;
+}
+
+ol {
+	margin-bottom: 25px;
+}
+
+.map_wrap {
+	text-align: center;
+}
+
+#map {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	height: 400px;
+}
+
+#addr {
+	text-align: left;
+	width: 57%;
+}
+
+#heart {
+  margin-top: 0px;
+	width: 20px;
+	height: 25px;
+	cursor: pointer;
+}
+
+#login {
+	margin-right: 10px;
+}
+
+#loading {
+ width: 100%;   
+ height: 100%;   
+ top: 0px;
+ left: 0px;
+ position: fixed;   
+ display: block;   
+ opacity: 0.7;   
+ background-color: #fff;   
+ z-index: 99;   
+ text-align: center; 
+}  
+ 
+#loading-image {   
+ position: relative;   
+ top: 400px;   
+ right: auto;   
+ z-index: 100px; 
+}  
+
+.dtitle {
+	font-style: "맑은 고딕";
+	font-size: 21px;
+	
+}
+
+.dtext {
+	font-style: "맑은 고딕";
+	font-size: 18px;
+	color : gray;
+}
+</style>
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top"  style="background-color: black;">
+        <div class="container" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a onclick="goMain(event)" class="navbar-brand page-scroll" href="#page-top"><img class='logoimg' src='../img/logos/dlogo.PNG'></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll not_login" href="#" id='login'>로그인/회원가입</a>
+                    </li>
+                    <li class="login">
+                        <a href="#" id="logout">Logout</a>
+                    </li>
+                    <li class="login">
+                        <a href="#" id="mypage">Mypage</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+
+    <!-- Services Section -->
+   <div id="inbody">
+   <div id="loading">
+ <img id="loading-image" src="../img/ajax-loader.gif">
+ </div>
+    <div id="container1">
+      <div id="bodycontent">
+        <span> 
+          <span id="titlesen"></span><br>
+        </span>
+        <div id="back">
+          <button type="button" id="gotoRequest" onclick="gotoRequest()"
+            class="btn btn-xl fa">신청</button>
+          <button type="button" id="backbtn" class="btn btn-xl fa">이전화면</button>
+        </div>
+
+        <hr class="inner">
+        <div id="wrap">
+          <div class="detail">
+            <img id='photo'>
+          </div>
+          <div id="infomation" class="detail">
+            <span id="info">프로필 정보</span><br>
+            <div id="profileinfo">
+              이름 : <span id="name"></span> <br>
+              <p id="setlike">
+                <img  id="heart" data-state="before"  src="../img/detail/web_heart_animation1.png">
+                <span id="like"></span><br>
+              </p>
+              <p id="setlike2">
+                나이 : <span id="age"></span><br> 
+                펫/하루 당 가격 : <span id="price"></span><br>
+                인증정보 : <img id="confirm"><br> 
+                펫시터등급 : <span id="petgrade"></span><br>
+              <p>
+            </div>
+            <br> 
+            <br> 
+            <span id="intro">자기 소개</span><br>
+            <p id="introsen">
+            </p>
+          </div>
+        </div>
+
+        <hr class="inner">
+
+        <p class="detailtext">상세정보</p>
+        <br>
+        <div id="d">
+          <p id="d1">
+            <span class="dtitle">□ 펫시터 유형</span><br> 
+             ■<span class="dtext" >산책 대행</span><br> 
+            <span class="dtitle">□ 활동 주소</span><br> 
+             ■<span class="dtext"  id="addr"></span><br> 
+            <span class="dtitle">□ 펫시터의 반려동물</span><br> 
+             ■<span class="dtext"  id="pet"></span><br> 
+          </p>
+          <p id="d2">
+            <span class="dtitle">□ 인근 동물병원 위치</span><br> 
+             ■<span class="dtext" id="hospital"></span><br> 
+            <span class="dtitle">□ 문의 가능 시간대</span><br> 
+             ■<span class="dtext" id="inqur"></span><br> 
+            <span class="dtitle">□ 추가 서비스</span><br> 
+             ■<span class="dtext" id="service"></span><br>
+          </p>
+        </div>
+        <p class="detailtext" id="walkrange">산 책 범 위</p> 
+        <div class="map_wrap">
+           <div id="map"></div> 
+        </div>
+        <!-- 
+        <br>
+          <p class="detailtext">사 진</p> 
+        <div id="picture">
+        </div>
+        -->
+      <div id="review">
+        <p class="detailtext">후기</p>
+        <ol id="reviewtext"></ol>
+        <div id='moveBtn'>
+          <button class='moveBtn' class="btn btn-info" type="button">〈〈</button>
+          <button class='moveBtn' class="btn btn-info" type="button">1</button>
+          <button class='moveBtn' class="btn btn-info" type="button">2</button>
+          <button class='moveBtn' class="btn btn-info" type="button">〉〉</button>
+        </div>
+        <span id="writeReview">후기 남기기</span>
+        <input type="text" class="form-control" placeholder="후기를 남겨주세요.">
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; 산책할개 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+  <div id="dialog-confirm" title="좋아요">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원만 좋아요 기능을 사용할 수 있습니다.<br>로그인을 먼저 해주세요.</p>
+  </div>
+  
+  <script id="reviewrepeat" type="text/x-handlebars-template">
+  {{#each reviewlist}}
+    <li class="review">{{review}}
+  {{/each}}
+  </script>
+  <!-- Dialog from jQuery -->
+   
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../bower_components/js/classie.js"></script>
+    <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../bower_components/js/jqBootstrapValidation.js"></script>
+    <script src="../bower_components/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../bower_components/js/agency.js"></script>
+    <script type="text/javascript" src="../LoginCheck.js"></script>
+	<script type="text/javascript">
+
+
+		var memberNo = "";      //로그인한 회원 번호
+    var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
+		$(document).ready(function() {
+			$("#walkrange").css("display","none");   //산책범위 맵
+			$("#dialog-confirm").css("display","none");
+			$(".map_wrap").css("display","none");
+      $.getJSON("../ajax/petsitter/detail.do?no="+pno, 
+          function(result) {
+            if ( result.status =="success") {
+            	
+            	if(result.lat) {
+           	 $("#walkrange").css("display","");
+           	 $(".map_wrap").css("display","");
+           	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                  center : new daum.maps.LatLng(result.lat, result.lnt, 17), // 지도의 중심좌표
+                  level : 6
+                // 지도의 확대 레벨
+                };
+                // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                var map = new daum.maps.Map(mapContainer, mapOption);
+                var zoomControl = new daum.maps.ZoomControl();
+                map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+                var mapTypeControl = new daum.maps.MapTypeControl();
+                map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+                //윤호
+                var markerPosition  = new daum.maps.LatLng(result.lat, result.lnt); 
+                var marker = new daum.maps.Marker({
+                    position: markerPosition
+                });
+
+                // 마커가 지도 위에 표시되도록 설정합니다
+								marker.setMap(map);
+								marker.setDraggable(true); 
+								var iwContent = '<div style="padding:5px;">Hello World! <br><a href="http://map.daum.net/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">사진보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+								 iwRemoveable = true;
+								
+								// 인포윈도우를 생성합니다
+								var infowindow = new daum.maps.InfoWindow({
+									removable : iwRemoveable,
+								    content : iwContent 
+								});
+								daum.maps.event.addListener(marker, 'click', function() {
+								      // 마커 위에 인포윈도우를 표시합니다
+								      infowindow.open(map, marker);  
+								});
+								  
+								// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+								infowindow.open(map, marker);  
+                //****************************************************************************
+                var circle = new daum.maps.Circle({
+                  center : new daum.maps.LatLng(result.lat, result.lnt, 17), // 원의 중심좌표 입니다 
+                  radius : result.rad, // 미터 단위의 원의 반지름입니다 
+                  strokeWeight : 5, // 선의 두께입니다 
+                  strokeColor : '#75B8FA', // 선의 색깔입니다
+                  strokeOpacity : 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                  strokeStyle : 'solid', // 선의 스타일 입니다
+                  fillColor : '#CFE7FF', // 채우기 색깔입니다
+                  fillOpacity : 0.5
+                // 채우기 불투명도 입니다   
+                });
+                // 지도에 원을 표시합니다 
+                circle.setMap(map);
+            	}
+                //********************************************************************************
+                $("#titlesen").html(result.reg);
+                $("#photo").attr('src',result.img);
+                $("#like").html(result.likes);
+                $("#name").html(result.nick);
+                $("#age").html(result.age);
+                $("#price").html(result.amt);
+                $("#introsen").html(result.intro);
+                $("#addr").html(result.reg);
+                $("#hospital").html(result.hospital+"분 거리");
+                $("#pet").html(result.pet +" 마리");
+                $("#petgrade").html(result.petg);
+                
+                $("#service").html(result.ser);
+                $("#inqur").html(result.inqur);
+            } else {
+	           	 $("#walkrange").css("display","none");
+	           	 $(".map_wrap").css("display","none");
+            }
+       });
+      $.getJSON("../ajax/member/getbirth.do?mno="+pno, 
+         function(result) {
+           if ( result.status =="success") {
+             var today = new Date();
+             var toyear = parseInt(today.getFullYear());
+             var membirth = parseInt(new Date(result.bth).getFullYear());
+             $("#age").html(toyear - membirth + 1);
+           }
+        });
+			$(function() {
+				$.ajax("../auth/getMemberNo.do?", {
+					method : "POST",
+					async : false,
+					success : function(result) {
+						if (result.status == "success") {
+							memberNo = result.mno;
+						}
+					}
+				});
+				if (memberNo != "") {
+					$.getJSON("../ajax/likes/byno.do?mno="+ memberNo + "&pno="+pno, 
+						function(	result) {
+						  if ( result.status =="success") {
+				          heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
+				          heart.setAttribute("data-state", "after");
+						  }
+					});
+				}
+			})
+			$(function() {
+				$.ajax({
+							url : "detail.json",
+							dataType : "json",
+							success : function(result) {
+                $("#confirm").attr('src',result.confirm);
+                /*
+								var templateData = $(	"# peat").html();
+								var template = Handlebars	.compile(templateData);
+								var html = template(result);
+								$("#picture").append(html);
+								*/
+								var templateData = $("#reviewrepeat").html();
+								var template = Handlebars.compile(templateData);
+								var html = template(result);
+								$("#reviewtext").append(html);
+							}
+						})
+			});
+
+		})
+
+		var heart = document.getElementById("heart");
+		heart.onclick =function() {
+			if (memberNo == "") {
+          window.alert("로그인 해야 이용할 수 있습니다.");
+			} else {
+				var state = heart.getAttribute("data-state");
+				if (state == "before") {
+					heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
+					heart.setAttribute("data-state", "after");
+					$("#like").html($("#like").html() * 1 + 1);
+					$.ajax("../ajax/likes/add.do?", {
+						method : "POST",
+						dataType : "json",
+						data : {
+							mno : memberNo,
+							pno : pno
+						},
+						success : function(result) {
+							if (result.status == "success") {
+							}
+						}
+					});
+					 $.ajax("../ajax/petsitter/like.do?", {
+             method : "POST",
+             dataType : "json",
+             data : {
+               pno : pno,
+               likes : $("#like").html() 
+             },
+             success : function(result) {
+               if (result.status == "success") {
+               }
+             }
+           });
+				} else {
+					heart.setAttribute("data-state", "before");
+					heart.setAttribute("src", "../img/detail/web_heart_animation1.png");
+					$("#like").html($("#like").html() * 1 - 1);
+					$.ajax("../ajax/likes/delete.do?", {
+						method : "POST",
+						dataType : "json",
+						data : {
+							mno : memberNo,
+							pno : pno
+						},
+						success : function(result) {
+							if (result.status == "success") {
+							}
+						}
+					});
+	          $.ajax("../ajax/petsitter/like.do?", {
+	              method : "POST",
+	              dataType : "json",
+	              data : {
+	                pno : pno,
+	                likes : $("#like").html() 
+	              },
+	              success : function(result) {
+	                if (result.status == "success") {
+	                }
+	              }
+	            });
+				}
+				
+			}
+		}
+    $("#mypage").click(function() {
+        location.href = "../mypage/mypage3.html"
+        event.preventDefault();
+      });
+    $("#logout").click(function() {
+        location.href = "../auth/logout.do";
+        event.preventDefault();
+      });
+		function goMain(event) {
+			location.href = "index.html"
+			event.preventDefault();
+		}
+		$("#login").click(function() {
+			location.href = "index.html#signin"
+			event.preventDefault();
+		});
+		
+	function gotoRequest(event){
+		location.href = "../request/requestYH.html?no=" + pno;
+		      event.preventDefault();
+	}
+		
+		$(window).load(function() {     
+	        $('#loading').hide();   
+	      }); 
+	    
+	</script>
+</body>
+</html>
