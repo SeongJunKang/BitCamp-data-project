@@ -241,6 +241,7 @@ ALTER TABLE  likes DROP FOREIGN KEY  FK_petsitter_TO_likes ;
 alter table likes add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
 
 ALTER TABLE  userreview DROP FOREIGN KEY  userreview_ibfk_1 ;
+ALTER TABLE userreview MODIFY BDT DATETIME;
 alter table userreview add foreign key (mbno) references testdb.petsitter (pno) on delete cascade on update cascade;
 
 alter table petsitter add ADDR_3 varchar(255) after ADDR_2;
