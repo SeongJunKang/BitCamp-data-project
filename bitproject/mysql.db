@@ -235,5 +235,6 @@ alter table petsitter alter column petg set default 1;
 alter table petsitter alter column pet set default 0;
 
 alter table petsitter add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
+alter table userreview add foreign key (mbno) references testdb.petsitter (pno) on delete cascade on update cascade;
 alter table petsitter add ADDR_3 varchar(255) after ADDR_2;
     

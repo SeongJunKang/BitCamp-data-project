@@ -234,14 +234,6 @@ public class PetSitterAjaxController {
     petsitter.setLat(lat);
     petsitter.setLnt(lnt);
     petsitter.setIntro(intro);
-    System.out.println(nickname);
-    System.out.println(amt);
-    System.out.println(ktalk);
-    System.out.println(region);
-    System.out.println(bank);
-    System.out.println(bknm);
-    System.out.println(acc);
-    System.out.println(box);
     HashMap<String, Object> result = new HashMap<>();
     try {
       petsitterService.setInfo(petsitter);

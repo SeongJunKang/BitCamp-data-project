@@ -3,16 +3,16 @@ package bitcamp.pet.vo;
 import java.util.Date;
 
 public class UserReview {
-  int bno;
+  int mbno;
   int pno;
   int mno;
   String content;
   Date cdt;
-  public int getBno() {
-    return bno;
+  public int getMbno() {
+    return mbno;
   }
-  public void setBno(int bno) {
-    this.bno = bno;
+  public void setMbno(int mbno) {
+    this.mbno = mbno;
   }
   public int getPno() {
     return pno;

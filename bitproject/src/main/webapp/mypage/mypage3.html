@@ -34,8 +34,7 @@
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <!-- Daum map API -->
     <script src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
-    <!-- Drawing Circle on Map -->
-    <script src ="../bower_components/js/drawingCircleMap.js"></script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -255,7 +254,7 @@
               <div>
                 주소 : <input type="text" class="form-control width-control" id="range">
                <button id="addrfind" class="btn btn-me">검색</button>
-                <span class="radiandiv">반경 : <input type="text" class="width-control form-control" id="radian" name="rad" readonly="readonly">M</span>
+                <span class="radiandiv">반경 : <input type="text" class="width-control form-control" id="radian" name="rad" readonly="readonly">m</span>
                 <span class="radiandiv"> 마우스 왼쪽(중심좌표),오른쪽(거리조절)</span>
               <input type="hidden" name="lat" id="lat">
               <input type="hidden" name="lnt" id="lnt">
@@ -286,8 +285,8 @@
   <div id="dialog-confirm3" title="회원 정보 변경">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원 정보를 변경하지못했습니다</p>
   </div>
-  <div id="dialog-delete" title="펫시터 등록 정보 삭제">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 펫시터정보를 삭제하였습니다.</p>
+  <div id="dialog-deletec" title="펫시터 등록 정보 삭제">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 펫시터정보를 삭제하시겠습니까 ?.</p>
   </div>
   <div id="dialog-deletef" title="펫시터 등록 정보 삭제">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 펫시터정보를 삭제 실패했습니다.</p>
@@ -322,41 +321,28 @@
     </footer>
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="../bower_components/js/classie.js"></script>
     <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
-
     <!-- Contact Form JavaScript -->
     <script src="../bower_components/js/jqBootstrapValidation.js"></script>
     <script src="../bower_components/js/contact_me.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
+    <!-- pwd check -->
+    <script src="../bower_components/js/pwdCheck.js"></script>
+    <!-- Delete Petsitter resist delete-->
+    <script src="../bower_components/js/mypageDeleteResist.js"></script>
+    <!-- Delete Member-->
+    <script src="../bower_components/js/mypageDeleteMember.js"></script>
+    <!-- Get User Info js-->
+    <script src="../bower_components/js/mypageGetInfo.js"></script>
+    <!-- Login check -->
+    <script src="../bower_components/js/checkLogin.js"></script>
+    <!-- Drawing Circle on Map -->
+    <script src ="../bower_components/js/drawingCircleMap.js"></script>
 <script type="text/javascript">
-  $("#delete").click(function() {
-    $( "#dialog-confirm" ).dialog({
-       resizable: false,
-       height:200,
-       width:300,
-       modal: true,
-       buttons: {
-         "확인": function() {
-           $( this ).dialog( "close" );
-           $(function() {
-              $.ajax("../ajax/member/delete.do?", {
-                  method : "POST",
-                  dataType : "json",
-              });
-           });
-           location.href = "../auth/logout.do";
-         },
-         "취소": function() {
-           $( this ).dialog( "close" );
-         }
-       }
-    })
-  });
   $("form#frm").submit(function(event){    
 	     //disable the default form submission
 	     event.preventDefault();
@@ -378,6 +364,14 @@
                        resizable: false,
                        height:180,
                        width:300,
+                       show: {
+                           effect: "blind",
+                           duration: 500
+                         },
+                         hide: {
+                           effect: "fadeOut",
+                           duration: 500
+                         },
                        modal: true,
                        buttons: {"확인": function() {
                          $( this ).dialog( "close" );
@@ -391,6 +385,14 @@
                       resizable: false,
                       height:180,
                       width:300,
+                      show: {
+                          effect: "blind",
+                          duration: 500
+                        },
+                        hide: {
+                          effect: "fadeOut",
+                          duration: 500
+                        },
                       modal: true,
                       buttons: {"확인": function() {$( this ).dialog( "close" );}
                       }
@@ -414,6 +416,14 @@
                            resizable: false,
                            height:180,
                            width:300,
+                           show: {
+                               effect: "blind",
+                               duration: 500
+                             },
+                             hide: {
+                               effect: "fadeOut",
+                               duration: 500
+                             },
                            modal: true,
                            buttons: {"확인": function() {
                         	   $( this ).dialog( "close" );
@@ -427,6 +437,14 @@
                           resizable: false,
                           height:180,
                           width:300,
+                          show: {
+                              effect: "blind",
+                              duration: 500
+                            },
+                            hide: {
+                              effect: "fadeOut",
+                              duration: 500
+                            },
                           modal: true,
                           buttons: {"확인": function() {$( this ).dialog( "close" );}
                           }
@@ -447,37 +465,15 @@
       location.href = "../main/index.html"
       event.preventDefault();
     }
-    function pwdCheck() {
-        var upw = $("#password").val();
-        var regex_pwd = /^[A-Za-z0-9]{4,10}$/i;
-        var chk_num = upw.search(/[0-9]/i); 
-        var chk_eng = upw.search(/[A-Za-z]/i);
-        if ( regex_pwd.test(upw)) {
-           if ( upw != $("#passwordchk").val() ) {
-             $("#checkText").html("비밀번호가 일치하지 않습니다.")
-             $("#checkText").css("color","red");
-           } else {
-             if(chk_num < 0 || chk_eng < 0) {
-               $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
-               $("#checkText").css("color","red");
-             } else {
-               $("#checkText").html("비밀번호가 일치합니다.")
-               $("#checkText").css("color","green");
-             }
-           }
-        } else {
-           $("#checkText").html("영문,숫자 혼합 4~10자로 만들어야합니다.")
-           $("#checkText").css("color","red");
-        } 
-      }
+
     $(document).ready(function() {
    	  $(".grade1").css("display","none");
     	$(".grade2").hide;
       $("#dialog-confirm").css("display","none");
       $("#dialog-confirm2").css("display","none");
       $("#dialog-confirm3").css("display","none");
-      $("#dialog-delete").css("display","none");
       $("#dialog-deletef").css("display","none");
+      $("#dialog-deletec").css("display","none");
       $("#logout").click(function() {
           location.href = "../auth/logout.do";
           event.preventDefault();
@@ -504,107 +500,6 @@
              }
           });
        })
- 
-       $(function() {
-          $.getJSON("../ajax/member/detail.do?",
-            function(result) {
-              $("#agc").val(result.agc).attr("selected","selected");
-              sessionStorage.setItem("gra", result.gra);
-               if (result.gra == 2) {
-                 $(".grade2").css("display","");
-                 $(".grade1").css("display","none");
-                 $.getJSON("../ajax/petsitter/petmypage.do?",function(result2){
-                	 $("#nickname").val(result2.nick);
-                	 $("#price").val(result2.amt);
-                	 $("#kakao").val(result2.ktalk);
-                	 $("#bank").val(result2.bank);
-                	 $("#holder").val(result2.bknm);
-                	 $("#account").val(result2.acc);
-                	 $("#bank").val(result2.bank);
-                	 $("#region").val(result2.reg);
-                	 $("#hospital").val(result2.hospital);
-                	 $("#animal").val(result2.pet);
-                	 $("#addr1").val(result2.addr_1);
-                	 $("#addr2").val(result2.addr_2);
-                	 $("#intro").val(result2.intro);
-                	 var inqur = result2.inqur.split("~");
-                	 var inqur1 = inqur[0].split("시");
-                	 var inqur2 = inqur[1].split("시");
-                	 $("#inqur1").val(inqur1[0]);
-                	 $("#inqur2").val(inqur2[0]);
-                	 var service = result2.ser.split(",");
-                	 for (var i in service) {
-                		  if ($("#box1").val() == service[i]) {$("#box1").prop("checked",true)}
-                		  else if ($("#box2").val() == service[i]) {$("#box2").prop("checked",true)}
-               			  else if ($("#box3").val() == service[i]) {$("#box3").prop("checked",true)}
-             				  else if ($("#box4").val() == service[i]) {$("#box4").prop("checked",true)}
-           					  else if ($("#box5").val() == service[i]) {$("#box5").prop("checked",true)}
-                	 }
-                	  sessionStorage.setItem("lat", result2.lat);
-                	  sessionStorage.setItem("lnt", result2.lnt);
-                	  sessionStorage.setItem("rad", result2.rad);
-                 })
-               } else {
-                 $(".grade1").css("display","");
-                 $(".grade2").css("display","none");
-               }
-               $("#name").attr("value",result.name);
-               $("#email").attr("value",result.email);
-               var phoneNum = result.tel.split('-');
-               $("#phone1").val(phoneNum[0]);
-               $("#phone2").val(phoneNum[1]);
-               $("#phone3").val(phoneNum[2]);
-				if(!result.prof) {
-                   result.prof="img/default_img.jpg";
-                 } else {
-               $(".img-wrapper")
-               .css('background', 'url(' +"../"+result.prof + ') no-repeat center center')
-               .css('background-size', 'cover');
-               }
-             }
-          );
-      });
-      $("#deleteresist").click( function() {
-          $.ajax("../ajax/petsitter/delete.do", {
-              method : "POST",
-              success : function(result) {
-                  if (result.status == "success") {
-                      $.post("../ajax/member/upgrade.do?", {gra :  1}, function(result) {}, "json");
-                      $(function() {
-                          $( "#dialog-delete" ).dialog({
-                            resizable: false,
-                            height:180,
-                            width:300,
-                            modal: true,
-                            buttons: {
-                              "확인": function() {
-                                $( this ).dialog( "close" );
-                                location.href ="mypage3.html";
-                              }
-                            }
-                          });
-                        });
-                    } else {
-                      $(function() {
-                         $( "#dialog-deletef" ).dialog({
-                           resizable: false,
-                           height:180,
-                           width:300,
-                           modal: true,
-                           buttons: {
-                             "확인": function() {
-                               $( this ).dialog( "close" );
-                             }
-                           }
-                         });
-                       });
-                    }
-                  },
-          });
-          event.preventDefault();
-      });
-      
-      
       $(function() {
     	  function maskImgs() {
     	    //$('.img-wrapper img').imagesLoaded({}, function() {

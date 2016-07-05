@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.pet.dao.UserReviewDao">
+	<resultMap type="UserReview" id="UserReviewMap">
+		<id column="MBNO" property="mbno" />
+		<result column="PNO" property="pno" />
+		<result column="MNO" property="mno" />
+		<result column="BREV" property="content" />
+		<result column="BDT" property="cdt" />
+	</resultMap>
+  <resultMap type="UserReviewData" id="UserReviewDataMap">
+    <result column="BREV" property="content" />
+    <result column="BDT" property="cdt" />
+    <result column="NAME" property="name" />
+    <result column="PROF" property="prof" />
+  </resultMap>
+	
+	<insert id="insert" parameterType="UserReview">
+		insert into USERREVIEW(MNO,PNO,BREV,BDT)
+		values(#{mno},#{pno},#{content},now())
+	</insert>
+	
+	 <select id="selectOne" parameterType="map" resultMap="UserReviewMap">
+     select * from USERREVIEW
+     where PNO=#{pno} and MNO=#{mno}
+  </select>
+	
+	<update id="update" parameterType="UserReview">
+		update USERREVIEW set
+		BREV = #{content}
+		where MNO=#{mno} and PNO=#{pno}
+	</update>
+	
+	<delete id="delete" parameterType="map">
+		delete from USERREVIEW
+		where MNO=#{mno} and PNO=#{pno}
+	</delete>
+	
+	<select id="selectList" resultMap="UserReviewDataMap" parameterType="map">
+		select USERREVIEW.BREV, USERREVIEW.BDT, MEMBER.NAME , MEMBER.PROF
+		from USERREVIEW left outer join MEMBER on USERREVIEW.MNO = MEMBER.MNO
+		where PNO=#{pno}
+		order by BDT DESC
+		limit #{start}, #{end}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
