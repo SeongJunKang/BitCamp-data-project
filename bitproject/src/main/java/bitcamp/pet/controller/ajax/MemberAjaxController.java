@@ -89,6 +89,7 @@ public class MemberAjaxController {
       memberService.delete(((Member)session.getAttribute("loginUser")).getMno());
       result.put("status", "success");
     } catch (Exception e) {
+      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
@@ -114,6 +115,10 @@ public class MemberAjaxController {
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     HashMap<String,Object> result = new HashMap<>();
+    if (member == null) {
+      result.put("status","failure");
+      return new Gson().toJson(result);
+    }
     result.put("name",member.getName());
     result.put("email",member.getEmail());
     result.put("tel",member.getTel());
