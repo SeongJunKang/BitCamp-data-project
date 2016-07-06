@@ -5,7 +5,7 @@
 
 <mapper namespace="bitcamp.pet.dao.RequestDao">
   <resultMap type="Request" id="RequestMap">
-    <id column="req" property="req" />
+    <id column="REQ" property="req" />
     <result column="cdt" property="cdt" />
   </resultMap>
   
@@ -15,7 +15,7 @@
   </insert>
 
   
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="Request">
     delete from request
     where req=#{req}
   </delete>

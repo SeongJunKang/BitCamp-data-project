@@ -319,6 +319,7 @@ p {
 		      $(function() {
 		    	  $("#admit").click(function() {
 			        $.post("../ajax/request/add.do", {
+			        	pno : location.href.split("=")[1],
 			          date : $('#date-format').val(),
 			          cdt : $('#requirement').val(),
 			          res : $("input[type=radio][name=resist]:checked").val(),

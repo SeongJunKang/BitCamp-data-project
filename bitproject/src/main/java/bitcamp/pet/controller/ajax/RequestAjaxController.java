@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import bitcamp.pet.service.MemberService;
-import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.service.RequestService;
 import bitcamp.pet.vo.Member;
 import bitcamp.pet.vo.Request;
@@ -26,10 +24,10 @@ public class RequestAjaxController {
 
   @Autowired
   RequestService requestService;
-  @Autowired
-  PetSitterService petsitterService;
-  @Autowired
-  MemberService memberService;
+//  @Autowired
+//  PetSitterService petsitterService;
+//  @Autowired
+//  MemberService memberService;
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
@@ -39,10 +37,9 @@ public class RequestAjaxController {
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     Request request = new Request();
-    request.setReq(req);
     request.setMno(member.getMno());
     request.setPno(pno);
-    request.setCdt(cdt);;
+    request.setCdt(cdt);
     request.setConts(conts);
     request.setStat(stat);
     request.setAns(ans);
