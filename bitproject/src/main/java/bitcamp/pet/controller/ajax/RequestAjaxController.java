@@ -31,8 +31,8 @@ public class RequestAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(HttpSession session, int pno, String cdt,
-      String conts, String stat, String ans, String res, String neut, String anifd,
+  public String add(HttpSession session, int pno, String date,
+      String conts, String res, String neut, String anifd,
       String manfd, String bark, String diz, String meal, String train) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
@@ -40,10 +40,8 @@ public class RequestAjaxController {
     Request request = new Request();
     request.setMno(member.getMno());
     request.setPno(pno);
-    request.setCdt(cdt);
+    request.setDate(date);
     request.setConts(conts);
-    request.setStat(stat);
-    request.setAns(ans);
     request.setRes(res);
     request.setNeut(neut);
     request.setAnifd(anifd);
@@ -86,13 +84,10 @@ public class RequestAjaxController {
     HashMap<String,Object> result = new HashMap<>();
     try {
       //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
-      result.put("name",request.getMno());   // 닉네임
-      result.put("nick",request.getPno());     // 가격
-      result.put("date",request.getCdt()); // 카톡
-      result.put("conts",request.getConts());   // 은행
-      result.put("stat",request.getStat());   // 예금명
-      result.put("ans",request.getAns());     // 계좌
-      result.put("res",request.getRes());     // 서비스
+      result.put("name",request.getMno());   
+      result.put("nick",request.getPno());     
+      result.put("conts",request.getConts());   
+      result.put("res",request.getRes());     
       result.put("neut",request.getNeut()); // 요구사항
       result.put("anifd",request.getAnifd());     // 펫시터 펫마리수
       result.put("manfd",request.getManfd()); // 우편주소1

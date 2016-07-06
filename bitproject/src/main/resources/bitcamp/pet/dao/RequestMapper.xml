@@ -6,12 +6,11 @@
 <mapper namespace="bitcamp.pet.dao.RequestDao">
   <resultMap type="Request" id="RequestMap">
     <id column="REQ" property="req"/>
-    <result column="cdt" property="cdt"/>
   </resultMap>
   
   <insert id="insert" parameterType="Request">
-    insert into request(mno, pno, cdt, conts, stat, ans)
-    values(#{mno},#{pno},#{cdt},#{conts},#{stat},#{ans})
+    insert into request(mno, pno, conts, meal, train, date, res, neut, anifd, manfd, bark, diz)
+    values(#{mno},#{pno},#{conts},#{meal},#{train},#{date},#{res},#{neut},#{anifd},#{manfd},#{bark},#{diz})
   </insert>
 
   
