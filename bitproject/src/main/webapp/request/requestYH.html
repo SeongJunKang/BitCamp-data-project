@@ -265,7 +265,6 @@ p {
     <script type="text/javascript" src="../LoginCheck.js"></script>
  
 	<script type="text/javascript">
-	var memberNo = "";      //로그인한 회원 번호
   var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
   
   
@@ -319,9 +318,9 @@ p {
 		      $(function() {
 		    	  $("#admit").click(function() {
 			        $.post("../ajax/request/add.do", {
-			        	pno : location.href.split("=")[1],
+			        	pno : pno,
 			          date : $('#date-format').val(),
-			          cdt : $('#requirement').val(),
+			          conts : $('#requirement').val(),
 			          res : $("input[type=radio][name=resist]:checked").val(),
 			          neut : $("input[type=radio][name=neutralize]:checked").val(),
 			          anifd : $("input[type=radio][name=anifriendly]:checked").val(),

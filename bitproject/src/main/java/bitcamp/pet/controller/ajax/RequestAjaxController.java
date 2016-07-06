@@ -31,11 +31,12 @@ public class RequestAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(HttpSession session, int req, int mno, int pno, String cdt,
+  public String add(HttpSession session, int pno, String cdt,
       String conts, String stat, String ans, String res, String neut, String anifd,
       String manfd, String bark, String diz, String meal, String train) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
+    System.out.println(member.getName());
     Request request = new Request();
     request.setMno(member.getMno());
     request.setPno(pno);

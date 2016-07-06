@@ -21,6 +21,8 @@ public interface RequestDao {
 
   int delete(int pno);
 
+  int isPetSitter(Map<String,Object> paramMap);
+
   Request selectOne(HashMap<String, Object> paramMap);
 
   void update(Request Request);

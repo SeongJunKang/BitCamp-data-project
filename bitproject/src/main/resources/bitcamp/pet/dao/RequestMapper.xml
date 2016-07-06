@@ -5,8 +5,8 @@
 
 <mapper namespace="bitcamp.pet.dao.RequestDao">
   <resultMap type="Request" id="RequestMap">
-    <id column="REQ" property="req" />
-    <result column="cdt" property="cdt" />
+    <id column="REQ" property="req"/>
+    <result column="cdt" property="cdt"/>
   </resultMap>
   
   <insert id="insert" parameterType="Request">
