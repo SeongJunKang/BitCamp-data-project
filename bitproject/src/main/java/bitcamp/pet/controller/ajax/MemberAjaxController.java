@@ -56,6 +56,7 @@ public class MemberAjaxController {
     member.setAgency(agc);
     member.setBth(Date.valueOf(bth));
     member.setGra(1);
+    member.setProf("img/profiles/thumb/default_img.jpg");
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
@@ -212,21 +213,19 @@ public class MemberAjaxController {
     } else {
       result.put("status", "failure");
     }
+    
     Map<String, MultipartFile> files = request.getFileMap();
     CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadFile");
     int extPoint = cmf.getOriginalFilename().lastIndexOf(".");
     String fileName = "";
     if (extPoint > 0){
       fileName = System.currentTimeMillis() + count() + cmf.getOriginalFilename().substring(extPoint);      
-      
 //      String realPath = servletContext.getRealPath("img/profiles/" + fileName);
       String realPath = servletContext.getRealPath("img/profiles/");
       try {
 //        cmf.transferTo(new File(realPath));
         cmf.transferTo(new File(realPath+fileName));
         /*member.setProf("img/profiles/"+fileName);*/
-        System.out.printf("새 파일을 저장할 실제 경로=%s\n", realPath);
-        System.out.println("새 파일명 : " + fileName);
         //썸네일 가로사이즈
  /*       int thumbnail_width = 400;
         //썸네일 세로사이즈
@@ -242,11 +241,10 @@ public class MemberAjaxController {
         ImageIO.write(buffer_thumbnail_image, "jpg", thumb_file_name);*/
         Thumbnails.of(realPath + fileName).crop(Positions.TOP_CENTER).size(400, 285).toFile(new File(realPath+"/thumb/"+fileName));
         member.setProf("img/profiles/thumb/"+fileName);
-        System.out.println("썸네일 생성완료");
       } catch (Exception e) {
         e.printStackTrace();
       }
-    }
+    } 
     PetSitter petsitter = null;
     if (petsitterService.exist(member.getMno())) {
       try {

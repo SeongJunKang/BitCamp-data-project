@@ -15,7 +15,7 @@ import bitcamp.pet.vo.PetSitter;
 
 public interface PetSitterDao {
   List<PetSitter> selectList(Map<String,Object> paramMap);
-  
+  List<PetSitter> mainList();
   PetSitter selectOne(Map<String, Object> paramMap);
 
   int insert(PetSitter petsitter);

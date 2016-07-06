@@ -90,6 +90,12 @@
     </if>
 	</select>
 	
+  <select id="mainList" resultMap="PetSitterMap">
+     select * from PETSITTER
+    order by LIKES DESC 
+    limit 0,6
+  </select>
+	
 	<select id="selectOne" parameterType="map" resultMap="PetSitterMap">
 	   select * from PETSITTER
 	   where

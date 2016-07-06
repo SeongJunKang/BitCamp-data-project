@@ -491,16 +491,6 @@
         event.preventDefault();
       });
       $(function() {
-          $.ajax("../auth/loging.do?", {
-              method : "POST",
-              success : function(result) {
-                if ( result.status == "failure") {
-                  location.href = "../main/index.html";
-               }
-             }
-          });
-       })
-      $(function() {
     	  function maskImgs() {
     	    //$('.img-wrapper img').imagesLoaded({}, function() {
     	    $.each($('.img-wrapper img'), function(index, img) {

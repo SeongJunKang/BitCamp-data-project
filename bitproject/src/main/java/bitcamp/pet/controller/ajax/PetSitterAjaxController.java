@@ -167,7 +167,15 @@ public class PetSitterAjaxController {
     result.put("list", list);
     return new Gson().toJson(result);
   }
-
+  
+  @RequestMapping(produces="application/json;charset=UTF-8", value="mainlist")
+  @ResponseBody
+  public String mainlist() throws ServletException, IOException {
+    List<PetSitter> list = petsitterService.mainlist();
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }
 
   @RequestMapping(method=RequestMethod.POST,
       produces="application/json;charset=UTF-8", value="update")

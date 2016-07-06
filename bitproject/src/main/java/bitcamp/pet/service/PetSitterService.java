@@ -15,4 +15,5 @@ public interface PetSitterService {
   boolean exist(int no);
   
   List<PetSitter> list(String order);
+  List<PetSitter> mainlist();
 }
