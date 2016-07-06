@@ -4,10 +4,8 @@ public class Request {
   int req;
   int mno;
   int pno;
-  String cdt;
+  String date;
   String conts;
-  String stat;
-  String ans;
   String res;
   String neut;
   String anifd;
@@ -16,21 +14,35 @@ public class Request {
   String diz;
   String meal;
   String train;
-  
   public int getReq() {
     return req;
   }
   public void setReq(int req) {
     this.req = req;
   }
-  public String getCdt() {
-    return cdt;
-  }
-  public void setCdt(String cdt) {
-    this.cdt = cdt;
-  }
   public int getMno() {
     return mno;
+  }
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+  public int getPno() {
+    return pno;
+  }
+  public void setPno(int pno) {
+    this.pno = pno;
+  }
+  public String getDate() {
+    return date;
+  }
+  public void setDate(String date) {
+    this.date = date;
+  }
+  public String getConts() {
+    return conts;
+  }
+  public void setConts(String conts) {
+    this.conts = conts;
   }
   public String getRes() {
     return res;
@@ -80,34 +92,8 @@ public class Request {
   public void setTrain(String train) {
     this.train = train;
   }
-  public void setMno(int mno) {
-    this.mno = mno;
-  }
-  public int getPno() {
-    return pno;
-  }
-  public void setPno(int pno) {
-    this.pno = pno;
-  }
-
-  public String getConts() {
-    return conts;
-  }
-  public void setConts(String conts) {
-    this.conts = conts;
-  }
-  public String getStat() {
-    return stat;
-  }
-  public void setStat(String stat) {
-    this.stat = stat;
-  }
-  public String getAns() {
-    return ans;
-  }
-  public void setAns(String ans) {
-    this.ans = ans;
-  }
+  
+  
   
   
 }
