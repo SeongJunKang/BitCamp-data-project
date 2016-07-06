@@ -83,18 +83,17 @@ public class RequestAjaxController {
     Request request= (Request)requestService.retrieveByNo(no);
     HashMap<String,Object> result = new HashMap<>();
     try {
-      //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
       result.put("name",request.getMno());   
-      result.put("nick",request.getPno());     
-      result.put("conts",request.getConts());   
+      result.put("date",request.getDate());   
+      result.put("conts",request.getConts());
       result.put("res",request.getRes());     
-      result.put("neut",request.getNeut()); // 요구사항
-      result.put("anifd",request.getAnifd());     // 펫시터 펫마리수
-      result.put("manfd",request.getManfd()); // 우편주소1
-      result.put("bark",request.getBark()); // 상세주소1
-      result.put("diz",request.getDiz()); // 상세주소2
-      result.put("meal",request.getMeal());   // 자기소개
-      result.put("train",request.getTrain());    // 활동지역
+      result.put("neut",request.getNeut());
+      result.put("anifd",request.getAnifd()); 
+      result.put("manfd",request.getManfd());
+      result.put("bark",request.getBark());
+      result.put("diz",request.getDiz()); 
+      result.put("meal",request.getMeal());  
+      result.put("train",request.getTrain());  
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
