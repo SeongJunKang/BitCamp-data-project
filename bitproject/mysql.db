@@ -233,11 +233,11 @@ alter table petsitter alter column rad set default 0;
 alter table petsitter alter column likes set default 0;
 alter table petsitter alter column petg set default 1;
 alter table petsitter alter column pet set default 0;
-ALTER TABLE  petsitter DROP FOREIGN KEY  FK_MEMBER_TO_petsitter ;
+ALTER TABLE petsitter DROP FOREIGN KEY  FK_MEMBER_TO_petsitter ;
 alter table petsitter add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
 
-ALTER TABLE  likes DROP FOREIGN KEY  FK_MEMBER_TO_likes ;
-ALTER TABLE  likes DROP FOREIGN KEY  FK_petsitter_TO_likes ;
+ALTER TABLE likes DROP FOREIGN KEY  FK_MEMBER_TO_likes ;
+ALTER TABLE likes DROP FOREIGN KEY  FK_petsitter_TO_likes ;
 alter table likes add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
 
 ALTER TABLE  userreview DROP FOREIGN KEY  userreview_ibfk_1 ;
@@ -245,4 +245,16 @@ ALTER TABLE userreview MODIFY BDT DATETIME;
 alter table userreview add foreign key (mbno) references testdb.petsitter (pno) on delete cascade on update cascade;
 
 alter table petsitter add ADDR_3 varchar(255) after ADDR_2;
-    
+alter table request change CONTS MEAL text;
+alter table request change cdt CONTS text;
+alter table request change STAT TRAIN text;
+alter table request drop ANS;
+alter table request add DATE varchar(100) not null;
+alter table request add RES varchar(12) not null;
+alter table request add NEUT varchar(12) not null;
+alter table request add ANIFD varchar(12) not null;
+alter table request add MANFD varchar(12) not null;
+alter table request add BARK varchar(12) not null;
+alter table request add DIZ varchar(12) not null;
+alter table request add ANS text;
+alter table request add STAT varchar(12) not null;

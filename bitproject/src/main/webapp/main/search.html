@@ -134,22 +134,23 @@ margin-left: 24px;
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">What we want is....</div>
-                <div class="intro-heading">Loving dog sitter</div>
+                <div class="intro-heading">Loving dog Walker</div>
                   <div class="col-lg-6 col-lg-offset-3">
 								    <div class="input-group">
 								      <div class="input-group-btn">
-								        <button style="background-color: #fed136;" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">지역 <span class="caret"></span></button>
+								        <button style="background-color: #fed136;" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="select_location">지역</span> <span class="caret"></span></button>
 								         <ul class="dropdown-menu">
-								          <li><a href="#">서울</a></li>
-								          <li><a href="#">경기</a></li>
-								          <li><a href="#">인천</a></li>
-								          <li><a href="#">강원</a></li>
+								          <li><a href="#" class="selected_location">전체</a></li>
+								          <li><a href="#" class="selected_location">서울</a></li>
+								          <li><a href="#" class="selected_location">경기</a></li>
+								          <li><a href="#" class="selected_location">인천</a></li>
+								          <li><a href="#" class="selected_location">강원</a></li>
 								        </ul>
 								      </div><!-- /btn-group -->
-								      <input id='txtFilter' type="text" class="form-control"  placeholder="예) 서울시 도봉구" aria-label="...">
+								      <input id='search_input' type="text" class="form-control"  placeholder="예) 서울시 도봉구" aria-label="...">
 								    </div><!-- /input-group -->
 								  </div><!-- /.col-lg-6 -->
-								    <button type='button' style='margin-left: -230px;' class='btn btn-me'><span class='fa fa-search'></span>검색</button>
+								    <button type='button' style='margin-left: -230px;' id="search_btn" class='btn btn-me'><span class='fa fa-search'></span>검색</button>
 								</div><!-- /.row -->
             </div>
     </header>
@@ -159,7 +160,7 @@ margin-left: 24px;
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Petsitter</h2>
+                    <h2 class="section-heading">DogWalkers</h2>
                     <h3 class="section-subheading text-muted">최신순</h3>
                 </div>
             </div>
@@ -233,7 +234,42 @@ margin-left: 24px;
     <!-- Handlebars  JavaScript -->
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script type="text/javascript">
+
    $(document).ready(function () {// Add contents for max height
+	   $(".selected_location").click(function(event) {
+		     $("#select_location").text($(this).text());
+         $(function() {
+             $.ajax({
+                url : "../ajax/petsitter/search.do",
+                dataType : "json",
+                data :{
+                   index: $("#select_location").text()
+                },
+                success : function(result) {
+                  var templateData = $( "#sitterlist").html();
+                  var template = Handlebars .compile(templateData);
+                  var html = template(result);
+                  $("#petsitter").html(html);
+                }
+              })
+          });
+		     event.preventDefault();
+	   }); 
+   $("#search_btn").click(function() {
+       $.ajax({
+          url : "../ajax/petsitter/search.do",
+          dataType : "json",
+          data :{
+             index: $("#search_input").val()
+          },
+          success : function(result) {
+            var templateData = $( "#sitterlist").html();
+            var template = Handlebars .compile(templateData);
+            var html = template(result);
+            $("#petsitter").html(html);
+          }
+        })
+   })
 	   $(document).scroll(function() {
 		    var maxHeight = $(document).height();
 		    var currentScroll = $(window).scrollTop() + $(window).height();
@@ -332,6 +368,7 @@ margin-left: 24px;
                })
            });
         });
+      
       $("#bysales").click(function() {
           TagText.text($("#bysales").text());
         });

@@ -267,4 +267,15 @@ public class PetSitterAjaxController {
     }
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(produces="application/json;charset=UTF-8", value="search")
+  @ResponseBody
+  public String search(String index) throws ServletException, IOException {
+//    try {
+      List<PetSitter> list = petsitterService.search(index);
+//    } catch (Exception e){}
+    HashMap<String,Object> result = new HashMap<>();
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }
 }

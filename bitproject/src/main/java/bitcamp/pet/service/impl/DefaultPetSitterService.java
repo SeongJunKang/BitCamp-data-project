@@ -40,8 +40,6 @@ public class DefaultPetSitterService implements PetSitterService {
     petsitterDao.update(petsitter);
   }
 
-
-
   public int countPage(int pageSize) {
     int count = petsitterDao.countAll();
     int pages = count / pageSize;
@@ -84,6 +82,17 @@ public class DefaultPetSitterService implements PetSitterService {
   public List<PetSitter> mainlist() {
     // TODO Auto-generated method stub
     return petsitterDao.mainList();
+  }
+
+  @Override
+  public List<PetSitter> search(String index) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    if ( index.equals("전체") ) {
+      paramMap.put("pno", "pno");
+      return petsitterDao.selectList(paramMap);
+    }
+    paramMap.put("index", "%"+index+"%");
+    return petsitterDao.search(paramMap);
   }
 }
 /*

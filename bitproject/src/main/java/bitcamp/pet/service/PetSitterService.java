@@ -16,4 +16,5 @@ public interface PetSitterService {
   
   List<PetSitter> list(String order);
   List<PetSitter> mainlist();
+  List<PetSitter> search(String index);
 }
