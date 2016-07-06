@@ -36,7 +36,6 @@ public class RequestAjaxController {
       String manfd, String bark, String diz, String meal, String train) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
-    System.out.println(member.getName());
     Request request = new Request();
     request.setMno(member.getMno());
     request.setPno(pno);

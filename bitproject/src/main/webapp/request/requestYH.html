@@ -266,8 +266,6 @@ p {
  
 	<script type="text/javascript">
   var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
-  
-  
     $(document).ready(function()
 			    {
 			      $('#date').bootstrapMaterialDatePicker
@@ -293,28 +291,6 @@ p {
 			                    $("#price").html(result.amt);
 			                }
 			              });
-/* 			       $("#admit").click(function() {
-			    	 var date = $('#date-format').val()
-			    	  alert(date);
-			      var text = $('#requirement').val()
-	              alert(text);
-			      var ch=$("input[type=radio][name=resist]:checked").val()
-                  alert(ch);
-			      var ch1=$("input[type=radio][name=neutralize]:checked").val()
-                  alert(ch1);
-			      var ch2=$("input[type=radio][name=anifriendly]:checked").val()
-                  alert(ch2);
-			      var ch3=$("input[type=radio][name=humanfriendly]:checked").val()
-                  alert(ch3);
-			      var ch4=$("input[type=radio][name=bark]:checked").val()
-                  alert(ch4);
-			      var ch5=$("input[type=radio][name=disease]:checked").val()
-                  alert(ch5);
-			      var meal = $('#mealtime').val()
-	                alert(meal);
-			      var train = $('#training').val()
-	                alert(train);
-			      }); */ 
 		      $(function() {
 		    	  $("#admit").click(function() {
 			        $.post("../ajax/request/add.do", {
@@ -340,31 +316,6 @@ p {
 			         });
 		       });
 			    });
-/*     $(function() {
-    	$("#admit").click(function() {
-            $.post("../ajax/request/add.do", {
-              date : $('#date-format').val()
-              cdt : $('#requirement').val()
-              res : $("input[type=radio][name=resist]:checked").val()
-              neut : $("input[type=radio][name=neutralize]:checked").val()
-              anifd : $("input[type=radio][name=anifriendly]:checked").val()
-              manfd : $("input[type=radio][name=humanfriendly]:checked").val()
-              bark : $("input[type=radio][name=bark]:checked").val()
-              diz : $("input[type=radio][name=disease]:checked").val()
-              meal : $('#mealtime').val()
-              train : $('#training').val()
-              }, function(result) {
-                if (result.status == "success") {
-                  location.href = "../main/index.html";
-                } else {
-                  window.alert("등록 실패입니다.");
-                }
-              }, "json");
-      
-          });
-    }); */
-
-	
 		$("#login").click = function() {
 			location.href = "../mypage/mypage.html"
 			event.preventDefault();
@@ -373,8 +324,6 @@ p {
 			location.href = "../main/index.html"
 			event.preventDefault();
 		}
-
-		
 	</script>
 	
 </body>
