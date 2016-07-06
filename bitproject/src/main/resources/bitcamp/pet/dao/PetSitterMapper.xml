@@ -75,7 +75,7 @@
 	</delete>
 	
 	<select id="selectList" resultMap="PetSitterMap" parameterType="map">
-		 select NICK,IMG,REG from PETSITTER
+		 select PNO,NICK,IMG,REG from PETSITTER
 		<if test="pno != null">
 		order by PNO DESC
     </if>
@@ -91,11 +91,11 @@
 	</select>
 	
 	<select id="search" resultMap="PetSitterMap" parameterType="map">
-     select NICK,IMG,REG from PETSITTER where REG like #{index}
+     select PNO,NICK,IMG,REG from PETSITTER where REG like #{index}
   </select> 
 	
   <select id="mainList" resultMap="PetSitterMap">
-     select NICK,IMG,REG from PETSITTER
+     select PNO,NICK,IMG,REG from PETSITTER
     order by LIKES DESC 
     limit 0,6
   </select>
