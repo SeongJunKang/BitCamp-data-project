@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.service.RequestService;
 import bitcamp.pet.vo.Member;
+import bitcamp.pet.vo.Petrequest;
 import bitcamp.pet.vo.Request;
 
 @Controller
@@ -24,8 +26,8 @@ public class RequestAjaxController {
 
   @Autowired
   RequestService requestService;
-//  @Autowired
-//  PetSitterService petsitterService;
+  @Autowired
+  PetSitterService petsitterService;
 //  @Autowired
 //  MemberService memberService;
 
@@ -53,14 +55,39 @@ public class RequestAjaxController {
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
-      requestService.add(request);
+     requestService.add(request);
     } catch(Exception e) {
       result.put("status", "failure"); 
       e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
-
+  @RequestMapping(produces="application/json;charset=UTF-8", value="petrequest")
+  @ResponseBody
+  public String detail(HttpSession session) 
+      throws ServletException, IOException {
+    Member member = (Member)session.getAttribute("loginUser");
+    Request request = new Request();
+    Petrequest prequest = new Petrequest();
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+     result.put("req", request.getReq());
+     result.put("name", member.getName());
+     result.put("date", request.getDate());
+     result.put("conts", request.getConts());
+     result.put("meal", request.getMeal());
+     result.put("train", request.getTrain());
+     result.put("date", request.getDate());
+     result.put("res", request.getRes());
+     result.put("neut", request.getNeut());
+     result.put("anifd", request.getAnifd());
+     result.put("manfd", request.getManfd());
+     result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return  new Gson().toJson(result);
+  }
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
   public String delete(HttpSession session) throws ServletException, IOException {

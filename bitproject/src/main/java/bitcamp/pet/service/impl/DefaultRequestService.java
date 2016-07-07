@@ -54,16 +54,7 @@ public class DefaultRequestService implements RequestService {
 
   public List<Request> list(String order) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    switch(order) {
-    case "pno": paramMap.put("pno", order);
-      break;
-    case "likes":paramMap.put("likes", order);
-      break;
-    case "nick":paramMap.put("nick", order);
-      break;
-    case "amt":paramMap.put("amt", order);
-      break;
-    }
+    paramMap.put("req", order);
     return requestDao.selectList(paramMap);
   }
 

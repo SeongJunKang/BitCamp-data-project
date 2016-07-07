@@ -7,6 +7,9 @@
   <resultMap type="Request" id="RequestMap">
     <id column="REQ" property="req"/>
   </resultMap>
+  <resultMap type='PetRequest' id='PetrequestMap'>
+    <id column='pno' property='pno'/>
+  </resultMap>
   
   <insert id="insert" parameterType="Request">
     insert into request(mno, pno, conts, meal, train, date, res, neut, anifd, manfd, bark, diz)
@@ -19,18 +22,13 @@
     where req=#{req}
   </delete>
   
-  <select id="selectList" resultMap="RequestMap" parameterType="map">
-     select * from request
-    <if test="req != null">
+    <select id="selectList" resultMap="PetrequestMap" parameterType="map">
+    select pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
+    bark, diz, ans, stat 
+    from request as r left outer join petsitter as p 
+    on p.pno = r.pno;
+    where PNO=#{pno}
     order by req DESC
-    </if>
-    <if test="pno != null">
-    order by pne DESC
-    </if>
-    <if test="mno != null">
-    order by mno desc
-    </if>
-
   </select>
   
   <select id="selectOne" parameterType="map" resultMap="RequestMap">

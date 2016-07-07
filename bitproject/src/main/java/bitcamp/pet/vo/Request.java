@@ -14,6 +14,20 @@ public class Request {
   String diz;
   String meal;
   String train;
+  String stat;
+  String ans;
+  public String getAns() {
+    return ans;
+  }
+  public void setAns(String ans) {
+    this.ans = ans;
+  }
+  public String getStat() {
+    return stat;
+  }
+  public void setStat(String stat) {
+    this.stat = stat;
+  }
   public int getReq() {
     return req;
   }
