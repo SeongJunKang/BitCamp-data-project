@@ -2,7 +2,6 @@ package bitcamp.pet.controller.ajax;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,6 @@ import com.google.gson.Gson;
 import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.service.RequestService;
 import bitcamp.pet.vo.Member;
-import bitcamp.pet.vo.Petrequest;
 import bitcamp.pet.vo.Request;
 
 @Controller
@@ -68,7 +66,7 @@ public class RequestAjaxController {
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     Request request = new Request();
-    Petrequest prequest = new Petrequest();
+//    Petrequest prequest = new Petrequest();
     HashMap<String,Object> result = new HashMap<>();
     try {
      result.put("req", request.getReq());
@@ -76,7 +74,7 @@ public class RequestAjaxController {
      result.put("date", request.getDate());
      result.put("conts", request.getConts());
      result.put("meal", request.getMeal());
-     result.put("train", request.getTrain());
+     result.put("train",request.getTrain());
      result.put("date", request.getDate());
      result.put("res", request.getRes());
      result.put("neut", request.getNeut());
@@ -104,9 +102,9 @@ public class RequestAjaxController {
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
-  public String detail(int no) 
+  public String detail(HttpSession session, int req) 
       throws ServletException, IOException {
-    Request request= (Request)requestService.retrieveByNo(no);
+    Request request= (Request)requestService.retrieveByNo(((Member)session.getAttribute("loginUser")).getMno());
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("name",request.getMno());   
@@ -127,13 +125,13 @@ public class RequestAjaxController {
     return  new Gson().toJson(result);
   }
 
-  
+/*  
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
   public String list(String order) throws ServletException, IOException {
-    List<Request> list = requestService.list(order);
+    List<Request> list = requestService.list("req");
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
     return new Gson().toJson(result);
-  }
+  }*/
 }

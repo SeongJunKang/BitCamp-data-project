@@ -26,8 +26,8 @@
     select pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
     bark, diz, ans, stat 
     from request as r left outer join petsitter as p 
-    on p.pno = r.pno;
-    where PNO=#{pno}
+    on p.pno = r.pno
+    where p.PNO=#{pno}
     order by req DESC
   </select>
   
@@ -35,17 +35,22 @@
      select * from request
      where
      <if test="pno != null">
-     PNO=#{pno}
+     order by PNO DESC
      </if>
-     <if test="nick != null">
-     NICK=#{nick}
+     <if test="req != null">
+     order by REQ DESC
      </if>
   </select>
-  
-  <select id="countAll" resultType="int">
-    select count(*) from request
-  </select>
-  
+  <select id="select" parameterType="map" resultMap="RequestMap">
+     select * from request
+     where
+     <if test="pno != null">
+     order by PNO DESC
+     </if>
+     <if test="req != null">
+     order by REQ DESC
+     </if>
+  </select>  
 </mapper>
 
 

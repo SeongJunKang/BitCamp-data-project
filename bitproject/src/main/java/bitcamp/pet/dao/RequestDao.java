@@ -15,16 +15,14 @@ import bitcamp.pet.vo.Request;
  */
 
 public interface RequestDao {
-  List<Request> selectList(Map<String, Object> paramMap);
-  
+  List<Request> selectOne(Map<String, Object> paramMap);
+  List<Request> selectList(Map<String, Object> paramMap); 
   int insert(Request request);
 
   int delete(int pno);
 
   int isPetSitter(Map<String,Object> paramMap);
 
-  Request selectOne(HashMap<String, Object> paramMap);
-
   void update(Request Request);
-
+  Request select(HashMap<String, Object> paramMap);
 }

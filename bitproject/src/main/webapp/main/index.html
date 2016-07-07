@@ -28,7 +28,7 @@
     <link href="../bower_components/css/index.css" rel="stylesheet">
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" onLoad="OpenWindow()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -484,6 +484,14 @@
           </div>
      </div>
     {{/each}}
+    </script>
+    <script>
+    
+    	function OpenWindow() {  
+    	      window.open("poprequest.html","신청목록","top=200,left=200,width=470,height=340,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no"); 
+    	      
+    	} 
+    
     </script>
 </body>
 </html>

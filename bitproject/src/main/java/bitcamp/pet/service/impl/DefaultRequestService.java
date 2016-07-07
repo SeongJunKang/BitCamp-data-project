@@ -24,7 +24,7 @@ public class DefaultRequestService implements RequestService {
     requestDao.delete(mno);
   }
 
-  public Request retrieveByNo(int pno) {
+/*  public Request retrieveByNo(int pno) {
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("pno", pno);
     return requestDao.selectOne(paramMap);
@@ -38,7 +38,7 @@ public class DefaultRequestService implements RequestService {
 
   public void change(Request request) {
     requestDao.update(request);
-  }
+  }*/
 
 
 
@@ -52,11 +52,28 @@ public class DefaultRequestService implements RequestService {
     return false;
   }
 
-  public List<Request> list(String order) {
+  public List<Request> list(String order, int pno) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("req", order);
+   paramMap.put("req", order);
+
+    paramMap.put("pno", pno);
+
     return requestDao.selectList(paramMap);
   }
+
+  @Override
+  public Request retrieveByNo(int req) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("req", req);
+    return requestDao.select(paramMap);
+  }
+
+/*  @Override
+  public List<Request> list(String order, int pno) {
+   HashMap<String, Object> paramMap = new HashMap<>();
+   paramMap.put(key, value)
+    return null;
+  }*/
 
 }
 /*
