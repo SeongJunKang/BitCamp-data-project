@@ -35,6 +35,10 @@ public class UserReviewAjaxController {
     if ( member == null ) {
       result.put("status", "failure"); 
       return new Gson().toJson(result);
+    } else if ( userreviewService.retrieveByNo(
+        ((Member)session.getAttribute("loginUser")).getMno(), pno) != null) {
+      result.put("status", "onlyone"); 
+      return new Gson().toJson(result);
     }
     userreview.setMno(member.getMno());
     userreview.setPno(pno);
@@ -64,9 +68,15 @@ public class UserReviewAjaxController {
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
-  public String list(int pno) throws ServletException, IOException {
+  public String list(HttpSession session,int pno) throws ServletException, IOException {
+    
     List<UserReview> list = userreviewService.list(pno,1);
     HashMap<String,Object> result = new HashMap<>();
+    try { 
+      result.put("userNo", ((Member)session.getAttribute("loginUser")).getMno());
+    } catch( Exception e ) {
+      result.remove("userNo");
+    }
     result.put("list", list);
     return new Gson().toJson(result);
   }

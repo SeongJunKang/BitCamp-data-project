@@ -4,9 +4,16 @@ import java.sql.Timestamp;
 
 public class UserReviewData {
   Timestamp cdt;
+  int mno;
   String name;
   String content;
   String prof;
+  public int getMno() {
+    return mno;
+  }
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
   public Timestamp getCdt() {
     return cdt;
   }

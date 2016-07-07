@@ -204,12 +204,18 @@
   {{#each list}}
     <div >
       <div>
-        <img class ="review" src='../{{prof}}'>[ {{name}} ]님
+        <img class ="review" src='../{{prof}}'>[ {{name}} ]님 
       </div>
+      <div >
+        <textarea id="review_text_{{mno}}" class="form-control review_text" cols="100" rows="2"  readonly="readonly">{{content}}</textarea>
       <div>
-          {{content}}<br>
-          <span class="cdt" style="font-size:9px; color:gray;">{{cdt}}</span>
-      <div>
+      <div class="review_margin">
+        <span class="cdt review_margin" style="font-size:9px; color:gray;">작성일 : {{cdt}}</span>
+      </div>
+      <div id="review_{{mno}}" class="review_margin review_update_delete" data-no="{{mno}}">
+        <button type="button" id="review_update_{{mno}}" class="btn btn-link" data-no="{{mno}}"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button type="button" id="review_delete_{{mno}}" class="btn btn-link" data-no="{{mno}}"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
     </div>
     <hr>
   {{/each}}
@@ -236,39 +242,13 @@
     <script src="../bower_components/js/detailGetInfo.js"></script>
     <!-- Get Detail Like JS -->
     <script src="../bower_components/js/detailLike.js"></script>
+    <!-- Ger Detail Review JS -->
+    <script src="../bower_components/js/detailReview.js"></script>
     <!-- check Login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
 	<script type="text/javascript">
 	
-	   $("#sendReview").click(function() {
-		   var pno = location.href.split("=")[1];
-		      $.ajax("../ajax/userreview/add.do?", {
-		          method : "POST",
-		          dataType : "json",
-		          data : {
-		            pno : pno,
-		            review :  $("#userreview").val()
-		          },
-		          success : function(result) {
-		            if (result.status == "success") {
-		            	  location.href = "detail.html?no="+pno;
-		            }
-		          }
-		      });
-		   })	 
-		   
-			$(function() {
-				$.ajax("../ajax/userreview/list.do?pno="+location.href.split("=")[1],{
-					  method : "POST",
-						dataType : "json",
-						success : function(result) {
-							var templateData = $("#reviewrepeat").html();
-							var template = Handlebars.compile(templateData);
-							var html = template(result);
-							$("#reviewtext").append(html);
-						}
-					})
-			});
+
 	  $("#login").click(function() {
 	      location.href = "../main/index.html#signin"
 	      event.preventDefault();

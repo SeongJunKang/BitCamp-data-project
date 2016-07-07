@@ -41,7 +41,7 @@
 	</delete>
 	
 	<select id="selectList" resultMap="UserReviewDataMap" parameterType="map">
-		select USERREVIEW.BREV, USERREVIEW.BDT, MEMBER.NAME , MEMBER.PROF
+		select USERREVIEW.BREV, USERREVIEW.BDT, MEMBER.NAME , MEMBER.PROF, MEMBER.MNO
 		from USERREVIEW left outer join MEMBER on USERREVIEW.MNO = MEMBER.MNO
 		where PNO=#{pno}
 		order by BDT DESC
