@@ -228,18 +228,7 @@
     <!-- Daum post API -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script type="text/javascript">
-  function ex_map() {
-	  window.open('../img/resist/map.gif','지도 설정 설명','width=960, height=355,location=no,resizable=no, scrollbars=no');
-  }
-  function openDaumZipAddress() {
-      new daum.Postcode({
-          oncomplete: function(data) {
-              $('#addr1').val(data.postcode1+"-"+data.postcode2);
-              $('#addr2').val(data.address);
-              console.log(data);
-          }
-      }).open();
-  }
+
   function goMain(event) {
       location.href = "../main/index.html"
       event.preventDefault();
