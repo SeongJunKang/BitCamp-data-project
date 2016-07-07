@@ -6,9 +6,11 @@ $(function() {
 		method : "POST",
 		success : function(result) {
 			if (result.status == "success") {
+				sessionStorage.setItem("login","success");
 				$(".not_login").css("display","none")
 				$(".login").css("display","")
 			} else if ( result.status == "failure") {
+				sessionStorage.removeItem("login");
 				$(".login").css("display","none")
 				$(".not_login").css("display","")
 			}

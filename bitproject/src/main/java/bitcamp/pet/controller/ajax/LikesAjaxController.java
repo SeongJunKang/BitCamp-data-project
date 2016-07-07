@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 
 import bitcamp.pet.service.LikesService;
 import bitcamp.pet.vo.Likes;
+import bitcamp.pet.vo.Member;
 
 @Controller
 @RequestMapping("/ajax/likes/")
@@ -24,10 +26,10 @@ public class LikesAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(int mno, int pno) 
+  public String add(HttpSession session, int pno) 
       throws ServletException, IOException {
     Likes likes = new Likes();
-    likes.setMno(mno);
+    likes.setMno(((Member)session.getAttribute("loginUser")).getMno());
     likes.setPno(pno);
     HashMap<String,Object> result = new HashMap<>();
     try {
@@ -41,10 +43,10 @@ public class LikesAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
-  public String delete(int mno,int pno) throws ServletException, IOException {
+  public String delete(HttpSession session,int pno) throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      likesService.delete(mno,pno);
+      likesService.delete(((Member)session.getAttribute("loginUser")).getMno(),pno);
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
@@ -54,11 +56,11 @@ public class LikesAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="byno")
   @ResponseBody
-  public String bymno(int mno,int pno)
+  public String bymno(HttpSession session,int pno)
       throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      Likes likes = (Likes)likesService.retrieveByNO(mno,pno);
+      Likes likes = (Likes)likesService.retrieveByNO(((Member)session.getAttribute("loginUser")).getMno(),pno);
       result.put("mno", likes.getMno());
       result.put("pno", likes.getPno());
       result.put("status", "success");
