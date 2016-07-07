@@ -22,7 +22,7 @@
     where req=#{req}
   </delete>
   
-    <select id="selectList" resultMap="PetrequestMap" parameterType="map">
+   <select id="selectList" resultMap="PetrequestMap" parameterType="map">
     select pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
     bark, diz, ans, stat 
     from request as r left outer join petsitter as p 
@@ -41,15 +41,9 @@
      order by REQ DESC
      </if>
   </select>
-  <select id="select" parameterType="map" resultMap="RequestMap">
-     select * from request
-     where
-     <if test="pno != null">
-     order by PNO DESC
-     </if>
-     <if test="req != null">
-     order by REQ DESC
-     </if>
+  <select id="selectLit" parameterType="map" resultMap="RequestMap">
+     select REQ, MNO, CONTS from request
+      order by REQ DESC
   </select>  
 </mapper>
 

@@ -17,6 +17,7 @@ import bitcamp.pet.vo.Request;
 public interface RequestDao {
   List<Request> selectOne(Map<String, Object> paramMap);
   List<Request> selectList(Map<String, Object> paramMap); 
+  List<Request> selectLit(Map<String,Object> paramMap);
   int insert(Request request);
 
   int delete(int pno);
