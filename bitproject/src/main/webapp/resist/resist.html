@@ -150,7 +150,8 @@
                 주소 : <input type="text" class="form-control" id="range">
                <button id="addrfind" class="btn btn-me">검색</button>
                 <span class="radiandiv">반경 : <input type="text" class="form-control" id="radian" readonly="readonly">m</span>
-                <span class="radiandiv"> <button class="btn btn-me" type="button" onclick="window.open('../img/resist/map.gif','test','width=1000, height=400,top=300,left=400, scrollbars=yes')">상세보기</button></span>
+                <span class="radiandiv"> 
+                <button class="btn btn-me" type="button" onclick="ex_map()">상세보기</button></span>
               </div>
               <div id="map"></div></td>
             </tr>
@@ -227,6 +228,9 @@
     <!-- Daum post API -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script type="text/javascript">
+  function ex_map() {
+	  window.open('../img/resist/map.gif','지도 설정 설명','width=960, height=355,location=no,resizable=no, scrollbars=no');
+  }
   function openDaumZipAddress() {
       new daum.Postcode({
           oncomplete: function(data) {
