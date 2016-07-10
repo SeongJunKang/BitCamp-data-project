@@ -1,9 +1,9 @@
 package bitcamp.pet.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bitcamp.pet.vo.Petrequest;
 import bitcamp.pet.vo.Request;
 
 /*PetSitterMapper.xml에 선언도니 SQl 에 맞추어 메서드를 변경한다.
@@ -15,15 +15,12 @@ import bitcamp.pet.vo.Request;
  */
 
 public interface RequestDao {
-  List<Request> selectOne(Map<String, Object> paramMap);
   List<Request> selectList(Map<String, Object> paramMap); 
-  List<Request> selectLit(Map<String,Object> paramMap);
+  Request selectOne(int req);
+  List<Petrequest> selectListpet(Map<String,Object> paramMap);
   int insert(Request request);
-
-  int delete(int pno);
-
+  int update(Request Request);
+  int delete(int req);
   int isPetSitter(Map<String,Object> paramMap);
-
-  void update(Request Request);
-  Request select(HashMap<String, Object> paramMap);
+  int countAll();
 }

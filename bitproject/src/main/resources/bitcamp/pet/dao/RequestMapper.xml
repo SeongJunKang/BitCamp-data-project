@@ -17,13 +17,13 @@
   </insert>
 
   
-  <delete id="delete" parameterType="Request">
+  <delete id="delete" parameterType="int">
     delete from request
     where req=#{req}
   </delete>
   
-   <select id="selectList" resultMap="PetrequestMap" parameterType="map">
-    select pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
+   <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
+    select p.pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
     bark, diz, ans, stat 
     from request as r left outer join petsitter as p 
     on p.pno = r.pno
@@ -31,20 +31,24 @@
     order by req DESC
   </select>
   
-  <select id="selectOne" parameterType="map" resultMap="RequestMap">
+  <select id="selectOne" parameterType="int" resultMap="RequestMap">
      select * from request
-     where
-     <if test="pno != null">
+     where req=#{req}
      order by PNO DESC
-     </if>
-     <if test="req != null">
-     order by REQ DESC
-     </if>
   </select>
-  <select id="selectLit" parameterType="map" resultMap="RequestMap">
-     select REQ, MNO, CONTS from request
+  <select id="selectList" parameterType="map" resultMap="RequestMap">
+     <!-- select req, mno, date from request -->
+    select req, mno, date
+    from request as r left outer join petsitter as p 
+    on p.pno = r.pno where p.pno=5
       order by REQ DESC
+      limit #{startIndex}, #{length}
   </select>  
+  
+  <select id="countAll" resultType="int">
+    select count(*) 
+    from request
+  </select>
 </mapper>
 
 

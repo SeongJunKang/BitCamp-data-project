@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import bitcamp.pet.dao.RequestDao;
 import bitcamp.pet.service.RequestService;
+import bitcamp.pet.vo.Petrequest;
 import bitcamp.pet.vo.Request;
 
 @Service
@@ -20,53 +21,54 @@ public class DefaultRequestService implements RequestService {
     requestDao.insert(request);
   }
 
-  public void delete(int mno) {
-    requestDao.delete(mno);
+  public void delete(int req) {
+    requestDao.delete(req);
   }
 
-/*  public Request retrieveByNo(int pno) {
+/*  public boolean exist(int req) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("pno", pno);
-    return requestDao.selectOne(paramMap);
-  }
-
-  public Request retrieveByNick(String nick) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("nick", nick);
-    return requestDao.selectOne(paramMap);
-  }
-
-  public void change(Request request) {
-    requestDao.update(request);
-  }*/
-
-
-
-
-  public boolean exist(int no) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("pno", no);
+    paramMap.put("req", req);
     if (requestDao.isPetSitter(paramMap) > 0) {
       return true;
     }
     return false;
+  }*/
+  public Request retrieve(int req) {
+    return requestDao.selectOne(req);
+  }
+  public List<Request> list(int pageNo, int pageSize) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    return requestDao.selectList(paramMap);
+  }
+  
+
+
+  public int countPage(int pageSize) {
+    int count = requestDao.countAll();
+    int pages = count / pageSize;
+    if ((count % pageSize) > 0)
+      pages++;
+    return pages;
   }
 
-  public List<Request> list(String order, int pno) {
-    HashMap<String, Object> paramMap = new HashMap<>();
-   paramMap.put("req", order);
 
-    paramMap.put("pno", pno);
 
-    return requestDao.selectList(paramMap);
+  @Override
+  public void change(Request Request) {
+    requestDao.update(Request);
+    
   }
 
   @Override
-  public Request retrieveByNo(int req) {
+  public List<Petrequest> petrequestlist(int pageNo, int pageSize) {
     HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("req", req);
-    return requestDao.select(paramMap);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    return requestDao.selectListpet(paramMap);
   }
+
 
 /*  @Override
   public List<Request> list(String order, int pno) {

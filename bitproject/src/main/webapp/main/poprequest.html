@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div class="container">
+<h1>신청목록</h1>
 <table id='requestTable' class="table table-condensed">
   
 <thead>
@@ -19,15 +21,15 @@
 </thead>
 <tbody></tbody>
 </table>
-<script src="../js/common.js"></script>
+</div>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/handlebars/handlebars.min.js"></script>
 <script id="temp1" type="text/x-handlebars-template">
 {{#each list}}
 <tr>
-  <td>{{no}}</td>
-  <td><a href="#" onclick="onclickDetail(event)" data-no="{{no}}">{{name}}</a></td>
+  <td>{{req}}</td>
+  <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{mno}}</a></td>
   <td>{{date}}</td>
 </tr>
 {{/each}}
@@ -36,7 +38,7 @@
 loadBoardList();
 
 function loadBoardList() {
-  $.getJSON(contextRoot + "/ajax/request/list.do", function(result) {
+  $.getJSON("../ajax/request/list.do", function(result) {
       var templateData = $('#temp1').html(); 
       var template = Handlebars.compile(templateData);
       var html = template(result);  
@@ -46,8 +48,8 @@ function loadBoardList() {
 
 // 태그에 선언된 onclick 속성에서 호출한 것이기 때문에
 // 다음 함수는 이벤트 리스너가 아니다.
-function onclickDetail(event) {
-  location.href = "detail.html?no=" + event.target.getAttribute("data-no");
+function onclickDetail(event) {  
+  location.href = "requeDetail.html?no=" + event.target.getAttribute("data-no");
   event.preventDefault(); // 원래 a 태그의 행위를 막는다.
 }
 </script>
