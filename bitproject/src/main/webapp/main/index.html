@@ -450,19 +450,19 @@
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
     <!-- BirthDay calendar -->
-    <script src="../bower_components/js/indexCalendar.js"></script>
+    <script src="../bower_components/js/index/indexCalendar.js"></script>
     <!-- pwd check -->
     <script src="../bower_components/js/pwdCheck.js"></script>
     <!-- email check -->
-    <script src="../bower_components/js/emailCheck.js"></script>
+    <script src="../bower_components/js/index/emailCheck.js"></script>
     <!-- signUp btn-->
-    <script src="../bower_components/js/signUp.js"></script>
+    <script src="../bower_components/js/index/signUp.js"></script>
     <!-- login btn-->
-    <script src="../bower_components/js/loginBtn.js"></script>
+    <script src="../bower_components/js/index/loginBtn.js"></script>
     <!-- Index Petsitter list-->
-    <script src="../bower_components/js/indexlist.js"></script>
+    <script src="../bower_components/js/index/indexlist.js"></script>
     <!-- Loading Index -->
-    <script src="../bower_components/js/index.js"></script>
+    <script src="../bower_components/js/index/index.js"></script>
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <!-- Handlebars  JavaScript -->
@@ -485,23 +485,6 @@
           </div>
      </div>
     {{/each}}
-    </script>
-    <script>
-   
-    	function OpenWindow() {
-  	      $(function() {
-  	          $.ajax({
-  	             url : "../ajax/request/petrequestlist.do",
-  	             dataType : "json",
-  	             success : function(result) {
-  	               if( (result.status == "success") && (result.list.length != 0) ) {
-  	            	   window.open("poprequest.html","신청목록","top=200,left=200,width=470,height=340,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no"); 
-  	               }
-  	             }
-  	           })
-  	        });
-    	} 
-    
     </script>
 </body>
 </html>

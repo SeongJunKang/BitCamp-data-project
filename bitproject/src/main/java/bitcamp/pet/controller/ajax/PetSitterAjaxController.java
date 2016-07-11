@@ -223,7 +223,6 @@ public class PetSitterAjaxController {
       String box, String inqur1,String inqur2, String pet, int hos, String addr1, 
       String addr2,String addr3, int rad, String intro,String lat, String lnt)
       throws ServletException, IOException {
-    
     PetSitter petsitter = petsitterService.retrieveByNo(((Member)session.getAttribute("loginUser")).getMno());
     petsitter.setNick(nickname);
     petsitter.setAmt(amt);

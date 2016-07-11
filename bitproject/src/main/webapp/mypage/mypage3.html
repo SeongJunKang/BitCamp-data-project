@@ -252,15 +252,29 @@
             </tr>
             <tr>
               <td class="td" colspan="2">
-              <div>
-                주소 : <input type="text" class="form-control width-control" id="range">
-               <button id="addrfind" class="btn btn-me">검색</button>
-                <span class="radiandiv">반경 : <input type="text" class="width-control form-control" id="radian" name="rad" readonly="readonly">m</span>
-                <span class="radiandiv"> 마우스 왼쪽(중심좌표),오른쪽(거리조절)</span>
+                <div>
+                  반경 : <input type="text" class="form-control" id="radian" name="rad" readonly="readonly">m
+                  <span class="radiandiv"> 
+                  <button class="btn btn-me" type="button" onclick="ex_map()">지도 설정 상세보기</button></span>
+                </div>
+                <div class="map_wrap">
+                  <div id="map" ></div>
+                  <div id="menu_wrap" class="bg_white">
+                      <div class="option">
+                          <div>
+                              <!-- <form onsubmit="searchPlaces(); return false;"> -->
+                                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15"> 
+                                  <button type="button" onclick="searchPlaces()" >검색하기</button> 
+                              <!-- </form>  -->
+                          </div>
+                      </div>
+                      <hr>
+                      <ul id="placesList"></ul>
+                      <div id="pagination"></div>
+                  </div>
+              </div>
               <input type="hidden" name="lat" id="lat">
               <input type="hidden" name="lnt" id="lnt">
-              </div>
-              <div id="map"></div></td>
             </tr>
             <tr>
               <td class="th" colspan="2"><span class="thtext">반려동물을 잘 산책할 수 있다는 자기 소개를 적어주세요~ *</span></td>
@@ -334,225 +348,22 @@
     <!-- pwd check -->
     <script src="../bower_components/js/pwdCheck.js"></script>
     <!-- Delete Petsitter resist delete-->
-    <script src="../bower_components/js/mypageDeleteResist.js"></script>
+    <script src="../bower_components/js/mypage/mypageDeleteResist.js"></script>
     <!-- Delete Member-->
-    <script src="../bower_components/js/mypageDeleteMember.js"></script>
+    <script src="../bower_components/js/mypage/mypageDeleteMember.js"></script>
     <!-- Get User Info js-->
-    <script src="../bower_components/js/mypageGetInfo.js"></script>
+    <script src="../bower_components/js/mypage/mypageGetInfo.js"></script>
     <!-- Login check -->
     <script src="../bower_components/js/checkLogin.js"></script>
     <!-- Drawing Circle on Map -->
-    <script src ="../bower_components/js/drawingCircleMap.js"></script>
+    <script src ="../bower_components/js/mypage/drawingCircleMap.js"></script>
+    <!-- mypage IMG -->
+    <script src="../bower_components/js/mypage/mypageImg.js"></script>
+    <!-- mypage Ready -->
+    <script src="../bower_components/js/mypage/mypageReady.js"></script>
+    <!-- mypage Onload -->
+    <script src="../bower_components/js/mypage/mypageSubmit.js"></script>
 <script type="text/javascript">
-  $("form#frm").submit(function(event){    
-	     //disable the default form submission
-	     event.preventDefault();
-	     var fd = new FormData($(this)[0]);  
-	     $.ajax({
-	       url: "../ajax/member/upload.do?",
-	       type: "POST",
-	       data: fd,
-	       async: false,
-	       cache: false,
-	       contentType: false,
-	       processData: false,
-	       success:  function(result) {
-	    	   if (sessionStorage.getItem("gra") == 1) {
-	    		   sessionStorage.removeItem("gra");
-             if (result.status == "success") {
-                 $(function() {
-                     $( "#dialog-confirm2" ).dialog({
-                       resizable: false,
-                       height:180,
-                       width:300,
-                       show: {
-                           effect: "blind",
-                           duration: 500
-                         },
-                         hide: {
-                           effect: "fadeOut",
-                           duration: 500
-                         },
-                       modal: true,
-                       buttons: {"확인": function() {
-                         $( this ).dialog( "close" );
-                         location.href = "mypage3.html"
-                         }}
-                     });
-                   });
-               } else {
-                 $(function() {
-                    $( "#dialog-confirm3" ).dialog({
-                      resizable: false,
-                      height:180,
-                      width:300,
-                      show: {
-                          effect: "blind",
-                          duration: 500
-                        },
-                        hide: {
-                          effect: "fadeOut",
-                          duration: 500
-                        },
-                      modal: true,
-                      buttons: {"확인": function() {$( this ).dialog( "close" );}
-                      }
-                    });
-                  });
-                }
-	    	   } else if (sessionStorage.getItem("gra") == 2) {
-	    		   sessionStorage.removeItem("gra");
-	           $.ajax({
-	             url: "../ajax/petsitter/upload.do?",
-	             type: "POST",
-	             data: fd,
-	             async: false,
-	             cache: false,
-	             contentType: false,
-	             processData: false,
-	             success : function(result) {
-                 if (result.status == "success") {
-                     $(function() {
-                         $( "#dialog-confirm2" ).dialog({
-                           resizable: false,
-                           height:180,
-                           width:300,
-                           show: {
-                               effect: "blind",
-                               duration: 500
-                             },
-                             hide: {
-                               effect: "fadeOut",
-                               duration: 500
-                             },
-                           modal: true,
-                           buttons: {"확인": function() {
-                        	   $( this ).dialog( "close" );
-                        	   location.href = "mypage3.html"
-                        	   }}
-                         });
-                       });
-                   } else {
-                     $(function() {
-                        $( "#dialog-confirm3" ).dialog({
-                          resizable: false,
-                          height:180,
-                          width:300,
-                          show: {
-                              effect: "blind",
-                              duration: 500
-                            },
-                            hide: {
-                              effect: "fadeOut",
-                              duration: 500
-                            },
-                          modal: true,
-                          buttons: {"확인": function() {$( this ).dialog( "close" );}
-                          }
-                        });
-                      });
-                    }
-                  },
-                  error : function() {
-                    window.alert("서버요청 실패입니다.");
-                  }
-	           });
-	    	    }
-           }
-	     });     
-	     return false;     
-	});
-    function goMain(event) {
-      location.href = "../main/index.html"
-      event.preventDefault();
-    }
-
-    $(document).ready(function() {
-   	  $(".grade1").css("display","none");
-    	$(".grade2").hide;
-      $("#dialog-confirm").css("display","none");
-      $("#dialog-confirm2").css("display","none");
-      $("#dialog-confirm3").css("display","none");
-      $("#dialog-deletef").css("display","none");
-      $("#dialog-deletec").css("display","none");
-      $("#logout").click(function() {
-          location.href = "../auth/logout.do";
-          event.preventDefault();
-        });
-      $("#changeName").click(function() {
-        if($("#name").attr("readonly")) {
-         $("#name").removeAttr("readonly");
-        } else {
-          $("#name").attr("readonly","readonly");
-        }
-       });
-      
-      $("#resist").click( function() {
-        location.href = "../resist/resist.html";
-        event.preventDefault();
-      });
-      $(function() {
-    	  function maskImgs() {
-    	    //$('.img-wrapper img').imagesLoaded({}, function() {
-    	    $.each($('.img-wrapper img'), function(index, img) {
-    	      var src = $(img).attr('src');
-    	      var parent = $(img).parent();
-    	      parent
-    	        .css('background', 'url(' + src + ') no-repeat center center')
-    	        .css('background-size', 'cover');
-    	      $(img).remove();
-    	    });
-    	    //});
-    	  }
-    	  var preview = {
-    	    init: function() {
-    	      preview.setPreviewImg();
-    	      preview.listenInput();
-    	    },
-    	    setPreviewImg: function(fileInput) {
-    	      var path = $(fileInput).val();
-    	      var uploadText = $(fileInput).siblings('.file-upload-text');
-    	      if (!path) {
-    	        $(uploadText).val('');
-    	      } else {
-    	        path = path.replace(/^C:\\fakepath\\/, "");
-    	        $(uploadText).val(path);
-    	        preview.showPreview(fileInput, path, uploadText);
-    	      }
-    	    },
-    	    showPreview: function(fileInput, path, uploadText) {
-    	      var file = $(fileInput)[0].files;
-
-    	      if (file && file[0]) {
-    	        var reader = new FileReader();
-
-    	        reader.onload = function(e) {
-    	          var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
-    	          var img = $(previewImg).find('img');
-
-    	          if (img.length == 0) {
-    	             $(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
-    	          } else {
-    	            img.attr('src', e.target.result);
-    	          }
-    	          uploadText.val(path);
-    	          maskImgs();
-    	        }
-    	        reader.onloadstart = function() {
-    	          $(uploadText).val('uploading..');
-    	        }
-    	        reader.readAsDataURL(file[0]);
-    	      }
-    	    },
-    	    listenInput: function() {
-    	      $('.file-upload-native').on('change', function() {
-    	        preview.setPreviewImg(this);
-    	      });
-    	    }
-    	  };
-    	  preview.init();
-    	});
-    });
     $(window).load(function() {     
         $('#loading').hide();   
       }); 
