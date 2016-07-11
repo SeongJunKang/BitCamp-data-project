@@ -38,7 +38,7 @@ width: 800px
   <!--   <div class="answer1">
    
     </div> -->
-    <div class="question">Q. 중성화 수술을 하였습니까?<span id='answer2'></span></div>
+    <div class="question">Q. 중성화 수술을 하였습니까?<span></span></div>
     <div class="answer2">
       
     </div>
@@ -69,7 +69,8 @@ width: 800px
     <!-- <button id= "inquire" type="button" class="btn btn-me">문의사항</button> -->
   </div>   
     
-    
+    <input type="text" value="some text">
+<p></p>
     
     
 <button id='changeBtn' type='button' class='change-form btn btn-default btn-me'>변경</button>
@@ -96,13 +97,22 @@ width: 800px
 <script>
 var no = location.href.split("=")[1];
 
-
+$( "input" )
+.keyup(function() {
+  var value = $( this ).val();
+  $( "p" ).text( value );
+})
+.keyup();
   $.getJSON("../ajax/request/detail.do?req=" + no, function(result) {
+	  var span = $
       $("#fNo").val(result.req);
       $("#fTitle").val(result.date);
       $("#fContent").val(result.conts);
       $("#answer1").val(result.res);
-      $("#answer2").val(result.neut);
+      console.log($("#answer1").val(result.res));
+      console.log($("#answer2").val(result.res));
+      var value = $("#answer2").val(result.res);
+      $().html(result.res).appendTo($("span"));
   });
   
 
