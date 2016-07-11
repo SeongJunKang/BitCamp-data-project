@@ -106,9 +106,9 @@ public class RequestAjaxController {
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")
   @ResponseBody
-  public String detail(HttpSession session, int req) 
+  public String detail(int req) 
       throws ServletException, IOException {
-    Request request= (Request)requestService.retrieve(((Member)session.getAttribute("loginUser")).getMno());
+    Request request= (Request)requestService.retrieve(req);
     HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
@@ -152,7 +152,7 @@ public class RequestAjaxController {
   }
   @RequestMapping(value="petrequestlist", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String petrequestlist(
+  public String petrequestlist(HttpSession session,
       @RequestParam(defaultValue="1") int pageNo, 
       @RequestParam(defaultValue="3") int pageSize) 
       throws ServletException, IOException {
@@ -173,7 +173,7 @@ public class RequestAjaxController {
       pageSize = 50;
     }
     
-    List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize);
+    List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
     
     HashMap<String,Object> result = new HashMap<>();
     result.put("pageNo", pageNo);

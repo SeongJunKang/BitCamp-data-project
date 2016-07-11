@@ -11,6 +11,20 @@ public class Petrequest {
   String neut;
   String anifd;
   String manfd;
+  int pno;
+  int mno;
+  public int getPno() {
+    return pno;
+  }
+  public void setPno(int pno) {
+    this.pno = pno;
+  }
+  public int getMno() {
+    return mno;
+  }
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
   public int getReq() {
     return req;
   }

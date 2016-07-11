@@ -62,8 +62,9 @@ public class DefaultRequestService implements RequestService {
   }
 
   @Override
-  public List<Petrequest> petrequestlist(int pageNo, int pageSize) {
+  public List<Petrequest> petrequestlist(int pageNo, int pageSize, int pno) {
     HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("pno", pno);
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
     return requestDao.selectListpet(paramMap);

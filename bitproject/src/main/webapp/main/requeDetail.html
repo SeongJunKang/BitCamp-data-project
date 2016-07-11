@@ -16,7 +16,7 @@ width: 800px
 <form class="form-horizontal">
 <input id="fNo" type='hidden' name='no'>
  <div class="form-group">
-    <label for="fTitle" class="col-sm-2 control-label">제목 :</label>
+    <label for="fTitle" class="col-sm-2 control-label">날짜 :</label>
     <div class="col-sm-10">
 <input class="form-control" id="fTitle" type='text' name='title'>
  </div>
@@ -51,7 +51,7 @@ if (no) {
   
   $.getJSON("../ajax/request/detail.do?no=" + no, function(result) {
       $("#fNo").val(result.req);
-      $("#fTitle").val(result.mno);
+      $("#fTitle").val(result.date);
       $("#fContent").val(result.conts);
   });
   

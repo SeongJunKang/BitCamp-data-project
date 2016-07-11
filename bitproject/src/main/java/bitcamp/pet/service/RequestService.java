@@ -10,7 +10,7 @@ public interface RequestService {
   void delete(int req);
   Request retrieve(int req);
   List<Request> list(int pageNo, int pageSize);
-  List<Petrequest> petrequestlist(int pageNo, int pageSize);
+  List<Petrequest> petrequestlist(int pageNo, int pageSize, int pno);
   void change(Request Request);
   int countPage(int pageSize);
 }

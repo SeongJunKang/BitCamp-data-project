@@ -38,14 +38,22 @@
 loadBoardList();
 
 function loadBoardList() {
-  $.getJSON("../ajax/request/list.do", function(result) {
+  $.getJSON("../ajax/request/petrequestlist.do", function(result) {
       var templateData = $('#temp1').html(); 
       var template = Handlebars.compile(templateData);
       var html = template(result);  
       $("#requestTable tbody").append(html);
   });
 }
-
+function gotoRequest(event) {
+  if (sessionStorage.getItem("login") == "success") {
+    var pno = location.href.split("=")[1]; 
+    location.href = "../main/requeDetail.html?no=" + pno;
+  } else {
+    window.alert("로그인 해야 이용할 수 있습니다.");
+  }
+  event.preventDefault();
+}
 // 태그에 선언된 onclick 속성에서 호출한 것이기 때문에
 // 다음 함수는 이벤트 리스너가 아니다.
 function onclickDetail(event) {  
