@@ -172,15 +172,18 @@ public class RequestAjaxController {
     } else if (pageSize > 50) { // 최대 50개 
       pageSize = 50;
     }
-    
-    List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
-    
     HashMap<String,Object> result = new HashMap<>();
-    result.put("pageNo", pageNo);
-    result.put("pageSize", pageSize);
-    result.put("totalPage", totalPage);
-    result.put("list", list);
+    if ((Member)session.getAttribute("loginUser") != null) {
+      List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
     
+      result.put("pageNo", pageNo);
+      result.put("pageSize", pageSize);
+      result.put("totalPage", totalPage);
+      result.put("list", list);
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
     return new Gson().toJson(result);
   }
   

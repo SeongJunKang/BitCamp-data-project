@@ -488,9 +488,18 @@
     </script>
     <script>
    
-    	function OpenWindow() {  
-
-    	      window.open("poprequest.html","신청목록","top=200,left=200,width=470,height=340,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no"); 
+    	function OpenWindow() {
+    	      $(function() {
+    	          $.ajax({
+    	             url : "../ajax/request/petrequestlist.do",
+    	             dataType : "json",
+    	             success : function(result) {
+    	               if(result.status == "success") {
+    	            	   window.open("poprequest.html","신청목록","top=200,left=200,width=470,height=340,resizable=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no"); 
+    	               }
+    	             }
+    	           })
+    	        });
     	} 
     
     </script>
