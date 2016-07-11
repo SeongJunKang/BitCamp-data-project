@@ -146,14 +146,27 @@
             </tr>
             <tr>
               <td class="td" colspan="2">
-              <div>
-                주소 : <input type="text" class="form-control" id="range">
-               <button id="addrfind" class="btn btn-me">검색</button>
-                <span class="radiandiv">반경 : <input type="text" class="form-control" id="radian" readonly="readonly">m</span>
-                <span class="radiandiv"> 
-                <button class="btn btn-me" type="button" onclick="ex_map()">상세보기</button></span>
-              </div>
-              <div id="map"></div></td>
+                <div>
+	                반경 : <input type="text" class="form-control" id="radian" readonly="readonly">m
+	                <span class="radiandiv"> 
+	                <button class="btn btn-me" type="button" onclick="ex_map()">지도 설정 상세보기</button></span>
+                </div>
+                <div class="map_wrap">
+							    <div id="map" ></div>
+							    <div id="menu_wrap" class="bg_white">
+							        <div class="option">
+							            <div>
+	                            <!-- <form onsubmit="searchPlaces(); return false;"> -->
+								                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15"> 
+                                  <button type="button" onclick="searchPlaces()" >검색하기</button> 
+								              <!-- </form>  -->
+							            </div>
+							        </div>
+							        <hr>
+							        <ul id="placesList"></ul>
+							        <div id="pagination"></div>
+							    </div>
+							</div>
             </tr>
             <tr>
               <td class="th" colspan="2"><span class="thtext">
