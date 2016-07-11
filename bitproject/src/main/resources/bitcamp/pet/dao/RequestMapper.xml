@@ -21,7 +21,11 @@
     delete from request
     where req=#{req}
   </delete>
-  
+  <update id="update" parameterType="Request">
+    update request set
+      SATA=#{stat}, 
+    where req=#{req}
+  </update>
    <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
     select req, p.amt, p.nick, p.pno, r.mno, m.name, date, conts, meal, train, date, res, neut, 
     anifd, manfd, bark, diz, ans, stat 

@@ -22,19 +22,19 @@
 <h3>신청-상세정보</h3>
 <form class="form-horizontal">
 <input id="fNo" type='hidden' name='no'>
-    <div class="">신청날짜 : <span id='date'></span></div>
+    <div class="">신청날짜 : <strong id='date'></strong></div>
   
     <div class="">관련 지침및 요청 사항</div>
-    <div id="conts"  style='border: 1px solid black;'></div>
+    <div style='border: 1px solid black; width: 320px;'><strong id="conts"></strong></div>
   <div id="ask">
-    <div class="question">Q. 반려동물을 기관에 등록하였습니까? <span id='answer1'></span></div>
-    <div class="question">Q. 중성화 수술을 하였습니까? <span id='answer2'></span></div>
-    <div class="question">Q. 다른 동물과 친화적입니까? <span id='answer3'></span></div>
-    <div class="question">Q. 어린이나 사람과 친화적입니까? <span id='answer4'></span></div>
-    <div class="question">Q. 잘 짖습니까? <span id='answer5'></span></div>
-    <div class="question">Q. 지병을 갖고있습니까? <span id='answer6'></span></div>
-    <div class="question">Q. 식사시간이 정해져 있다면 알려주세요? <span id='answer7'></span></div>
-    <div class="question">Q. 훈련이 되어있다면 알려주세요 <span id='answer8'></span></div>
+    <div class="question">Q. 반려동물을 기관에 등록하였습니까? <strong id='answer1'></strong></div>
+    <div class="question">Q. 중성화 수술을 하였습니까? <strong id='answer2'></strong></div>
+    <div class="question">Q. 다른 동물과 친화적입니까? <strong id='answer3'></strong></div>
+    <div class="question">Q. 어린이나 사람과 친화적입니까? <strong id='answer4'></strong></div>
+    <div class="question">Q. 잘 짖습니까? <strong id='answer5'></strong></div>
+    <div class="question">Q. 지병을 갖고있습니까? <strong id='answer6'></strong></div>
+    <div class="question">Q. 식사시간이 정해져 있다면 알려주세요? <strong id='answer7'></strong></div>
+    <div class="question">Q. 훈련이 되어있다면 알려주세요 <strong id='answer8'></strong></div>
     
     
 <button id='acceptBtn' type='button' class='change-form btn btn-me'>수락</button>
@@ -88,7 +88,7 @@ $("#acceptBtn").click(function(event) {
     },
     success: function(result) {
       if (result.status == "success") {
-        location.href = "board.html";
+        location.href = "poprequest.html";
       } else {
         window.alert("변경 실패입니다!");
       }

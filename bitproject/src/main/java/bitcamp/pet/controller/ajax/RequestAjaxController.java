@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -182,6 +183,26 @@ public class RequestAjaxController {
       result.put("list", list);
       result.put("status", "success");
     } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="update",
+      method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String update(int req, String stat) throws ServletException, IOException {
+    
+    Request request= new Request();
+    request.setReq(req);
+    request.setStat(stat);
+    
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      requestService.change(request);
+      result.put("status", "success");
+    } catch (Exception e) {
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
