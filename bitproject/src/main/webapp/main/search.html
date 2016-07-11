@@ -270,6 +270,11 @@ margin-left: 24px;
           }
         })
    })
+    $('#search_input').keyup(function(e) {
+      if (e.keyCode == 13) {
+    	  $("#search_btn").click();
+      }        
+    });
 	   $(document).scroll(function() {
 		    var maxHeight = $(document).height();
 		    var currentScroll = $(window).scrollTop() + $(window).height();
