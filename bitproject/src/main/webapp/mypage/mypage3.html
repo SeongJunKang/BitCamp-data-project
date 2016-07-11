@@ -12,6 +12,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
+
     <!-- Custom CSS -->
     <link href="../bower_components/css/agency.css" rel="stylesheet">
 
@@ -82,7 +83,7 @@
     <img id="loading-image" src="../img/ajax-loader.gif">
     </div>
     <div id="container1">
-    <form id="frm" method="post" name="frm">
+    <form id="frm" method="post" name="frm" onsubmit="return false;">
     <div class="preview img-wrapper"></div>
 	  <div class="file-upload-wrapper">
 	      <input type="file" id="uploadFile" name="uploadFile" class="file-upload-native" accept="image/*"/>
@@ -178,7 +179,7 @@
             <tr>
               <td class="th"><span class="thtext">닉네임*</span></td>
               <td class="td"><input type="text" class="form-control width-control" id="nickname" name="nickname">
-                <button id="checknick" class="btn btn-me">중복확인</button></td>
+                <button id="checknick" type="button" class="btn btn-me">중복확인</button></td>
             </tr>
             <tr>
               <td class="th"><span class="thtext">1일 가격*</span></td>
@@ -265,7 +266,7 @@
                               <!-- <form onsubmit="searchPlaces(); return false;"> -->
                                   키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15"> 
                                   <button type="button" onclick="searchPlaces()" >검색하기</button> 
-                              <!-- </form>  -->
+                              <!-- </form> -->
                           </div>
                       </div>
                       <hr>
@@ -347,6 +348,8 @@
     <script src="../bower_components/js/agency.js"></script>
     <!-- pwd check -->
     <script src="../bower_components/js/pwdCheck.js"></script>
+    <!-- NickName Check -->
+    <script src ="../bower_components/js/mypage/checkNickName.js"></script>
     <!-- Delete Petsitter resist delete-->
     <script src="../bower_components/js/mypage/mypageDeleteResist.js"></script>
     <!-- Delete Member-->
@@ -364,6 +367,18 @@
     <!-- mypage Onload -->
     <script src="../bower_components/js/mypage/mypageSubmit.js"></script>
 <script type="text/javascript">
+	$('#frm').on('keyup keypress', function(e) {
+	    var keyCode = e.keyCode || e.which;
+	    if (keyCode === 13) { 
+	      e.preventDefault();
+	      return false;
+	    }
+	  });
+	$('#keyword').keyup(function(e) {
+	    if (e.keyCode == 13) {
+	        searchPlaces();
+	    }        
+	});
     $(window).load(function() {     
         $('#loading').hide();   
       }); 

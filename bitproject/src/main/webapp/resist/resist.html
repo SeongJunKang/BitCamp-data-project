@@ -248,7 +248,12 @@
   }
     $(window).load(function() {     
         $('#loading').hide();   
-      }); 
+      });
+    $('#keyword').keyup(function(e) {
+        if (e.keyCode == 13) {
+            searchPlaces();
+        }        
+    });
     </script>
   </body>
   </html>
