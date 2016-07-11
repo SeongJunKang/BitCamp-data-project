@@ -108,13 +108,13 @@ public class RequestAjaxController {
   @ResponseBody
   public String detail(int req) 
       throws ServletException, IOException {
-    Request request= (Request)requestService.retrieve(req);
-    HashMap<String,Object> result = new HashMap<>();
+    Request request= requestService.retrieve(req);
+/*    HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
-    }
+    }*/
     return  new Gson().toJson(request);
   }
 

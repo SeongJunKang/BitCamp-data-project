@@ -22,6 +22,15 @@
 <tbody></tbody>
 </table>
 </div>
+    <footer>
+        <div class="container" class="bg-light-gray">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; 산책할개 2016</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/handlebars/handlebars.min.js"></script>
@@ -29,7 +38,7 @@
 {{#each list}}
 <tr>
   <td>{{req}}</td>
-  <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{mno}}</a></td>
+  <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{name}}</a></td>
   <td>{{date}}</td>
 </tr>
 {{/each}}
@@ -45,7 +54,7 @@ function loadBoardList() {
       $("#requestTable tbody").append(html);
   });
 }
-function gotoRequest(event) {
+/* function gotoRequest(event) {
   if (sessionStorage.getItem("login") == "success") {
     var pno = location.href.split("=")[1]; 
     location.href = "../main/requeDetail.html?no=" + pno;
@@ -53,11 +62,11 @@ function gotoRequest(event) {
     window.alert("로그인 해야 이용할 수 있습니다.");
   }
   event.preventDefault();
-}
+} */
 // 태그에 선언된 onclick 속성에서 호출한 것이기 때문에
 // 다음 함수는 이벤트 리스너가 아니다.
 function onclickDetail(event) {  
-  location.href = "requeDetail.html?no=" + event.target.getAttribute("data-no");
+  location.href = "requeDetail.html?req=" + event.target.getAttribute("data-no");
   event.preventDefault(); // 원래 a 태그의 행위를 막는다.
 }
 </script>

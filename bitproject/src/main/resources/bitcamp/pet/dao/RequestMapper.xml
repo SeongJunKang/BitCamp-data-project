@@ -23,18 +23,19 @@
   </delete>
   
    <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
-    select req, p.pno, mno, date, conts, meal, train, date, res, neut, anifd, manfd, 
-    bark, diz, ans, stat 
-    from request as r left outer join petsitter as p 
-    on p.pno = r.pno
-    where p.PNO=#{pno}
+    select req, p.pno, r.mno, m.name, date, conts, meal, train, date, res, neut, 
+    anifd, manfd, bark, diz, ans, stat 
+    from request as r 
+    left outer join petsitter as p on p.pno = r.pno 
+    left outer join member as m on r.mno = m.mno 
+    where p.pno=#{pno}
     order by req DESC
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="RequestMap">
-     select req, date, conts from request
+     select * 
+     from request
      where req=#{req}
-     order by req DESC
   </select>
   <select id="selectList" parameterType="map" resultMap="RequestMap">
      <!-- select req, mno, date from request -->
