@@ -10,7 +10,10 @@
     <meta name="author" content="">
 
     <title>산책할개</title>
-
+     <!-- Poprequest Modal -->
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -26,12 +29,10 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <!-- index CSS -->
     <link href="../bower_components/css/index.css" rel="stylesheet">
-    <!-- Poprequest Modal -->
-    <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
-     <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+   
 </head>
 
-<body id="page-top" class="index" onLoad="OpenWindow()">
+<body id="page-top" class="index" onload="ccc()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -434,41 +435,28 @@
     <div id="dialog-check-email" title="이메일 중복체크">
       <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>이메일 중복확인 또는 형식을 맞춰주세요.</p>
     </div>
- <div id="ex1" style="display:none;">
-    <div class="container">
+    
+    <!-- 알림창 -->
+ <div id="ex1">
+    <div>
 <h1>신청목록</h1>
 <table id='requestTable' class="table table-condensed">
-  
 <thead>
-<tr>
-<th>번호</th> 
-  <th>신청인</th>
-  <th>신청날짜</th>
-  <th>상태</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
+	<tr>
+	<th>번호</th> 
+	  <th>신청인</th>
+	  <th>신청날짜</th>
+	  <th>상태</th>
+	</tr>
+	</thead>
+	<tbody></tbody>
+	</table>
+	</div>
+    
 </div>
-    <footer>
-        <div class="container" class="bg-light-gray">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; 산책할개 2016</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-  
-  
-  
-  
-  </div>
 
   <!-- Link to open the modal -->
-  <p style="display:none;"><a href="#ex1" id='ex' rel="modal:open" style="display:none;">Open Modal</a></p>
+  <p><a href="#ex1"  id='ex' rel="modal:open" >Open Modal</a></p>
    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
