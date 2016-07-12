@@ -70,6 +70,9 @@
                     <li>
                         <a id='deleteresist' class="login grade2" href="#">도그워커 삭제</a>
                     </li>
+                    <li>
+                        <a id='inquiry' class="login" href="#">신청조회</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -374,11 +377,6 @@
 	      return false;
 	    }
 	  });
-	$('#keyword').keyup(function(e) {
-	    if (e.keyCode == 13) {
-	        searchPlaces();
-	    }        
-	});
     $(window).load(function() {     
         $('#loading').hide();   
       }); 
