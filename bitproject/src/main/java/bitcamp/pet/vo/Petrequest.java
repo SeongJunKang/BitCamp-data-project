@@ -11,8 +11,22 @@ public class Petrequest {
   String neut;
   String anifd;
   String manfd;
+  String stat;
+  String ans;
   int pno;
   int mno;
+  public String getStat() {
+    return stat;
+  }
+  public void setStat(String stat) {
+    this.stat = stat;
+  }
+  public String getAns() {
+    return ans;
+  }
+  public void setAns(String ans) {
+    this.ans = ans;
+  }
   public int getPno() {
     return pno;
   }

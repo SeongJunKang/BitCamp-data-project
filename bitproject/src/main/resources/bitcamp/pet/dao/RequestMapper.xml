@@ -23,8 +23,8 @@
   </delete>
   <update id="update" parameterType="Request">
     update request set
-      SATA=#{stat}, 
-    where req=#{req}
+      STAT=#{stat}
+    where REQ=#{req}
   </update>
    <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
     select req, p.amt, p.nick, p.pno, r.mno, m.name, date, conts, meal, train, date, res, neut, 
