@@ -536,7 +536,7 @@
 {{#each list}}
 <tr>
   <td>{{req}}</td>
-  <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{name}}</a></td>
+  <td><a href="#" onclick="requestDetail(event)" data-no="{{req}}">{{name}}</a></td>
   <td>{{date}}</td>
   <td>{{stat}}</td>
 </tr>
@@ -553,7 +553,7 @@ function loadBoardList() {
   });
 }
 // 다음 함수는 이벤트 리스너가 아니다.
-function onclickDetail(event) {  
+function requestDetail(event) {  
 sessionStorage.setItem("no", event.target.getAttribute("data-no"));
 	$("#inex1").dialog({
 		resizable : false,
