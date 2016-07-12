@@ -258,3 +258,4 @@ alter table request add BARK varchar(12) not null;
 alter table request add DIZ varchar(12) not null;
 alter table request add ANS text;
 alter table request add STAT varchar(12) not null;
+alter table request column STAT set default '대기';
