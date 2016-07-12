@@ -10,10 +10,8 @@
     <meta name="author" content="">
 
     <title>산책할개</title>
-     <!-- Poprequest Modal -->
+    
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-     <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,7 +30,7 @@
    
 </head>
 
-<body id="page-top" class="index" onload="ccc()">
+<body id="page-top" class="index" onload="OpenWindow()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -437,28 +435,24 @@
     </div>
     
     <!-- 알림창 -->
- <div id="ex1">
-    <div>
-<h1>신청목록</h1>
-<table id='requestTable' class="table table-condensed">
-<thead>
-	<tr>
-	<th>번호</th> 
-	  <th>신청인</th>
-	  <th>신청날짜</th>
-	  <th>상태</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-	</table>
-	</div>
-    
-</div>
+	<div id="ex1" style="display: none;">
+		<div>
+			<h1>신청목록</h1>
+			<table id='requestTable' class="table table-condensed">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>신청인</th>
+						<th>신청날짜</th>
+						<th>상태</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 
-  <!-- Link to open the modal -->
-  <p><a href="#ex1"  id='ex' rel="modal:open" >Open Modal</a></p>
-   
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
