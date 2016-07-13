@@ -31,7 +31,7 @@ public class PetSitterAjaxController {
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="add")
   @ResponseBody
-  public String add(HttpSession session, String nick, int amt, String ktalk, String bank, String bknm,
+  public String add(HttpSession session, String nick, String amt, String ktalk, String bank, String bknm,
       String acc, String ser, String inqur, String pet, String addr_1, String addr_2,String addr_3,
       int rad, String lat, String lnt, String intro, String region, int hospital) 
       throws ServletException, IOException {
@@ -39,7 +39,8 @@ public class PetSitterAjaxController {
     PetSitter petsitter = new PetSitter();
     petsitter.setPno(member.getMno());
     petsitter.setNick(nick);
-    petsitter.setAmt(amt);
+    amt.replace(",", "");
+    petsitter.setAmt(Integer.parseInt(amt));
     petsitter.setKtalk(ktalk);
     petsitter.setBank(bank);
     petsitter.setBknm(bknm);
