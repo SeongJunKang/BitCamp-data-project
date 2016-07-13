@@ -48,63 +48,12 @@
 <script
 	src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
 <style>
-
-#container2 {
-  padding-bottom: 110px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1100px;
-}
-ul.tabs {
-    margin: 0;
-    padding: 0;
-    float: left;
-    list-style: none;
-    height: 32px;
-    border-bottom: 1px solid #eee;
-    border-left: 1px solid #eee;
-    width: 100%;
-    font-family:"dotum";
-    font-size:12px;
-}
-ul.tabs li {
-    float: left;
-    text-align:center;
-    cursor: pointer;
-    width:82px;
-    height: 31px;
-    line-height: 31px;
-    border: 1px solid #eee;
-    border-left: none;
-    font-weight: bold;
-    background: #fafafa;
-    overflow: hidden;
-    position: relative;
-}
-ul.tabs li.active {
-    background: #FFFFFF;
-    border-bottom: 1px solid #FFFFFF;
-}
-.tab_container {
-    border-top: none;
-    clear: both;
-    float: left;
-    width: 248px;
-    background: #FFFFFF;
-}
-.tab_content {
-    padding: 5px;
-    font-size: 12px;
-    display: none;
-}
-.tab_container .tab_content ul {
-    width:100%;
-    margin:0px;
-    padding:0px;
-}
-.tab_container .tab_content ul li {
-    padding:5px;
-    list-style:none;
+#container1 {
+	padding-top: 140px;
+	padding-bottom: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1100px;
 }
 
 .table {
@@ -164,60 +113,52 @@ ul.tabs li.active {
 		</div>
 	</nav>
 
-<section>
-<div id="container2">
-    <ul class="tabs">
-        <li class="active info" rel="tab1">신청내역</li>
-        <li rel="tab2">받은신청내역</li>
-       <!--  <li rel="tab3">공지사항</li> -->
-    </ul>
-    <div class="tab_container">
-        <div id="tab1" class="tab_content">
-        <div class="table-responsive table1">
-          <table class="table table-bordered">
-            <thead>
+	<!-- Services Section -->
+	<div id="inbody">
+		<div id="container1">
+			<form id="frm" method="post" name="frm" onsubmit="return false;">
+				<div class="table-responsive table1">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="info">
+								<th WIDTH="20%">산책 신청내역</th>
+							</tr>
+							<tr>
+								<td>주문번호</td>
+								<td WIDTH="30%">도그워커 닉네임</td>
+								<td WIDTH="22%">요청 날짜</td>
+								<td WIDTH="8%">수락 / 거부</td>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 
-              <tr>
-                <td>주문번호</td>
-                <td WIDTH="30%">도그워커 닉네임</td>
-                <td WIDTH="22%">요청 날짜</td>
-                <td WIDTH="8%">수락 / 거부</td>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        </div>
-        <!-- #tab1 -->
-        <div id="tab2" class="tab_content">       
-        <div class="grade2">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <td>주문번호</td>
-                  <td WIDTH="30%">신청인</td>
-                  <td WIDTH="22%">요청 날짜</td>
-                  <td WIDTH="8%">수락 / 거부</td>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div></div>
-        <!-- #tab2 -->
-        <div id="tab3" class="tab_content">3333Halo: Reach is the culmination of the superlative combat, sensational multiplayer, and seamless online integration that are the hallmarks of this superb series.</div>
-        <!-- #tab3 -->
-    </div>
-    <!-- .tab_container -->
-</div>
-<!-- #container -->
-</section>
-<section>
-</section>
+				<br>
+				<div class="grade2">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="info">
+									<th WIDTH="20%">받은 신청내역</th>
+								</tr>
+								<tr>
+									<td>주문번호</td>
+									<td WIDTH="30%">신청인</td>
+									<td WIDTH="22%">요청 날짜</td>
+									<td WIDTH="8%">수락 / 거부</td>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
-	<footer class="bg-light-gray">
-		<div class="container" >
+	<footer>
+		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
 					<span class="copyright">Copyright &copy; 산책할개 2016</span>
@@ -295,21 +236,6 @@ ul.tabs li.active {
 				location.href = "../resist/resist.html";
 				event.preventDefault();
 			});
-		});
-		
-		$(function () {
-
-		    $(".tab_content").hide();
-		    $(".tab_content:first").show();
-
-		    $("ul.tabs li").click(function () {
-		        $("ul.tabs li").removeClass("active").css("color", "#333");
-		        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-		        $(this).addClass("active").css("color", "darkred");
-		        $(".tab_content").hide()
-		        var activeTab = $(this).attr("rel");
-		        $("#" + activeTab).fadeIn()
-		    });
 		});
 	</script>
 </body>
