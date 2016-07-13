@@ -39,8 +39,8 @@ public class PetSitterAjaxController {
     PetSitter petsitter = new PetSitter();
     petsitter.setPno(member.getMno());
     petsitter.setNick(nick);
-    amt.replace(",", "");
-    petsitter.setAmt(Integer.parseInt(amt));
+    String price = amt.replace(",", "");
+    petsitter.setAmt(Integer.parseInt(price));
     petsitter.setKtalk(ktalk);
     petsitter.setBank(bank);
     petsitter.setBknm(bknm);
