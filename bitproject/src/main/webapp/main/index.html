@@ -30,7 +30,7 @@
    
 </head>
 
-<body id="page-top" class="index" onload="OpenWindow()">
+<body id="page-top" class="index" >
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -492,10 +492,6 @@
 					Q. 훈련이 되어있다면 알려주세요 <strong id='answer8'></strong>
 				</div>
 
-
-				<button id='acceptBtn' type='button' class='change-form btn btn-me'>수락</button>
-				<button id='deleteBtn' type='button' class='change-form btn btn-me'>삭제</button>
-				<button id='listBtn' type='button' class='change-form btn btn-me'>목록</button>
 			</div>
 		</form>
 	</div>
@@ -564,42 +560,7 @@
 {{/each}}
 </script>
 <script>
-// 다음 함수는 이벤트 리스너가 아니다.
 
-
-//var no = location.href.split("=")[1];
-$("#acceptBtn").click(function(event) {
-  $.ajax("../ajax/request/update.do", {
-    method: "POST",
-    dataType: "json",
-    data: {
-      req: $("#fNo").val(), 
-      stat: "수락"
-    },
-    success: function(result) {
-      if (result.status == "success") {
-        location.href = "index.html";
-      } else {
-        window.alert("변경 실패입니다!");
-      }
-    },
-    error: function() {
-      window.alert("서버 요청 실패입니다!");
-    }
-  });
-});
-$("#deleteBtn").click(function(event) {
-  $.getJSON("../ajax/request/delete.do?no=" + no, function(result) {
-      if (result.status == "success") {
-        location.href = "index.html";
-      } else {
-        window.alert("삭제 실패입니다!");
-      }
-  });
-});
-$("#listBtn").click(function(event) {
-          location.href = "index.html";
-  });
 $("#addBtn").click(function(event) {
   $.post("../ajax/request/add.do", {
       title: $("#fTitle").val(),
