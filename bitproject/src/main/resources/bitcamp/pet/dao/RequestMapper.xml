@@ -32,7 +32,9 @@
     from request as r 
     left outer join petsitter as p on p.pno = r.pno 
     left outer join member as m on r.mno = m.mno 
-    where p.pno=#{pno}
+    where 
+    <if test="pno != null">p.pno=#{pno}</if>
+    <if test="mno != null">r.mno=#{mno}</if>
     order by req DESC
   </select>
   

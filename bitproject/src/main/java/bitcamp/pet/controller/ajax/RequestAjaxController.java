@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import bitcamp.pet.service.MemberService;
 import bitcamp.pet.service.PetSitterService;
 import bitcamp.pet.service.RequestService;
 import bitcamp.pet.vo.Member;
@@ -29,6 +30,8 @@ public class RequestAjaxController {
   @Autowired
   RequestService requestService;
   @Autowired
+  MemberService memberService;
+  @Autowired
   PetSitterService petsitterService;
 //  @Autowired
 //  MemberService memberService;
@@ -40,6 +43,11 @@ public class RequestAjaxController {
       String manfd, String bark, String diz, String meal, String train) 
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
+    HashMap<String,Object> result = new HashMap<>();
+    if (member.getMno() == pno) {
+      result.put("status", "same");
+      return new Gson().toJson(result);
+    }
     Request request = new Request();
     request.setMno(member.getMno());
     request.setPno(pno);
@@ -54,7 +62,6 @@ public class RequestAjaxController {
     request.setMeal(meal);
     request.setTrain(train);
     
-    HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
      requestService.add(request);
@@ -63,32 +70,6 @@ public class RequestAjaxController {
       e.printStackTrace();
     }
     return new Gson().toJson(result);
-  }
-  @RequestMapping(produces="application/json;charset=UTF-8", value="petrequest")
-  @ResponseBody
-  public String petrequest(HttpSession session) 
-      throws ServletException, IOException {
-    Member member = (Member)session.getAttribute("loginUser");
-    Request request = new Request();
-//    Petrequest prequest = new Petrequest();
-    HashMap<String,Object> result = new HashMap<>();
-    try {
-     result.put("req", request.getReq());
-     result.put("name", member.getName());
-     result.put("date", request.getDate());
-     result.put("conts", request.getConts());
-     result.put("meal", request.getMeal());
-     result.put("train",request.getTrain());
-     result.put("date", request.getDate());
-     result.put("res", request.getRes());
-     result.put("neut", request.getNeut());
-     result.put("anifd", request.getAnifd());
-     result.put("manfd", request.getManfd());
-     result.put("status", "success");
-    } catch (Exception e) {
-      result.put("status", "failure");
-    }
-    return  new Gson().toJson(result);
   }
 
   @RequestMapping(value="delete", produces="application/json;charset=UTF-8")
@@ -109,14 +90,18 @@ public class RequestAjaxController {
   @ResponseBody
   public String detail(int req) 
       throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
     Request request= requestService.retrieve(req);
+    result.put("mname",memberService.retrieveByNo(request.getMno()).getName());
+    result.put("pname",petsitterService.retrieveByNo(request.getPno()).getNick());
+    result.put("request", request);
 /*    HashMap<String,Object> result = new HashMap<>();
     try {
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
     }*/
-    return  new Gson().toJson(request);
+    return  new Gson().toJson(result);
   }
 
   @RequestMapping(value="list", produces="application/json;charset=UTF-8")
@@ -155,7 +140,7 @@ public class RequestAjaxController {
   @ResponseBody
   public String petrequestlist(HttpSession session,
       @RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="3") int pageSize) 
+      @RequestParam(defaultValue="20") int pageSize) 
       throws ServletException, IOException {
     
     // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
@@ -176,6 +161,43 @@ public class RequestAjaxController {
     HashMap<String,Object> result = new HashMap<>();
     if ((Member)session.getAttribute("loginUser") != null) {
       List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
+    
+      result.put("pageNo", pageNo);
+      result.put("pageSize", pageSize);
+      result.put("totalPage", totalPage);
+      result.put("list", list);
+      result.put("status", "success");
+    } else {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value="myrequestlist", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String myrequestlist(HttpSession session,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="20") int pageSize) 
+      throws ServletException, IOException {
+    
+    // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
+    if (pageNo < 0) { // 1페이지 부터 시작
+      pageNo = 1;
+    }
+    
+    int totalPage = requestService.countPage(pageSize);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+      pageNo = totalPage;
+    }
+    
+    if (pageSize < 3) { // 최소 3개
+      pageSize = 3; 
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    HashMap<String,Object> result = new HashMap<>();
+    if ((Member)session.getAttribute("loginUser") != null) {
+      List<Petrequest> list = requestService.myrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
     
       result.put("pageNo", pageNo);
       result.put("pageSize", pageSize);

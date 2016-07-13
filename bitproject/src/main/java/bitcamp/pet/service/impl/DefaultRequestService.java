@@ -70,6 +70,15 @@ public class DefaultRequestService implements RequestService {
     return requestDao.selectListpet(paramMap);
   }
 
+  @Override
+  public List<Petrequest> myrequestlist(int pageNo, int pageSize, int mno) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", mno);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    return requestDao.selectListpet(paramMap);
+  }
+
 
 /*  @Override
   public List<Request> list(String order, int pno) {

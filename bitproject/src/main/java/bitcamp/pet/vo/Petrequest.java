@@ -2,6 +2,8 @@ package bitcamp.pet.vo;
 
 public class Petrequest {
   int req;
+  String nick;
+
   String name;
   String date;
   String conts;
@@ -15,6 +17,12 @@ public class Petrequest {
   String ans;
   int pno;
   int mno;
+  public String getNick() {
+    return nick;
+  }
+  public void setNick(String nick) {
+    this.nick = nick;
+  }
   public String getStat() {
     return stat;
   }
@@ -99,5 +107,5 @@ public class Petrequest {
   public void setManfd(String manfd) {
     this.manfd = manfd;
   }
-  
+
 }

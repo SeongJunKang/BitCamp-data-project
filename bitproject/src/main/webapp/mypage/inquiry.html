@@ -48,63 +48,69 @@
 <script
 	src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
 <style>
-
 #container2 {
-  padding-bottom: 110px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1100px;
+	padding-bottom: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1100px;
 }
+
 ul.tabs {
-    margin: 0;
-    padding: 0;
-    float: left;
-    list-style: none;
-    height: 32px;
-    border-bottom: 1px solid #eee;
-    border-left: 1px solid #eee;
-    width: 100%;
-    font-family:"dotum";
-    font-size:15px;
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px;
+	border-bottom: 1px solid #eee;
+	border-left: 1px solid #eee;
+	width: 100%;
+	font-family: "dotum";
+	font-size: 15px;
 }
+
 ul.tabs li {
-    float: left;
-    text-align:center;
-    cursor: pointer;
-    width:110px;
-    height: 31px;
-    line-height: 31px;
-    border: 1px solid #eee;
-    border-left: none;
-    font-weight: bold;
-    background: #fafafa;
-    overflow: hidden;
-    position: relative;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	width: 110px;
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #eee;
+	border-left: none;
+	font-weight: bold;
+	background: #fafafa;
+	overflow: hidden;
+	position: relative;
 }
+
 ul.tabs li.active {
-    background: #fec503;
-    border-bottom: 1px solid #fec503;
+	background: #fec503;
+	border-bottom: 1px solid #fec503;
 }
+
 .tab_container {
-    border-top: none;
-    clear: both;
-    float: left;
-    width: 248px;
-    background: #FFFFFF;
+	border-top: none;
+	clear: both;
+	float: left;
+	width: 248px;
+	background: #FFFFFF;
 }
+
 .tab_content {
-    padding: 5px 0 5px 0;
-    font-size: 12px;
-    display: none;
+	padding: 5px 0 5px 0;
+	font-size: 12px;
+	display: none;
 }
+
 .tab_container .tab_content ul {
-    width:100%;
-    margin:0px;
-    padding:0px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
+
 .tab_container .tab_content ul li {
-    padding:5px;
-    list-style:none;
+	padding: 5px;
+	list-style: none;
 }
 
 .table {
@@ -127,9 +133,22 @@ ul.tabs li.active {
 	right: auto;
 	z-index: 100px;
 }
+thead {
+  font-size: 18px;
+	font-weight: bold;
+	background-color: #f0ffff;
+}
 td {
-font-size: 13px;
-font-weight: bold;
+	font-size: 17px;
+  vertical-align: middle;
+}
+tbody tr{
+  height : 40px;
+  text-align: center ;
+}
+tbody tr:hover {
+	cursor: pointer;
+	background-color: #fed100;
 }
 </style>
 </head>
@@ -168,60 +187,63 @@ font-weight: bold;
 		</div>
 	</nav>
 
-<section>
-<div id="container2">
-    <ul class="tabs">
-        <li class="active info" rel="tab1">신청내역</li>
-        <li rel="tab2">받은신청내역</li>
-       <!--  <li rel="tab3">공지사항</li> -->
-    </ul>
-    <div class="tab_container">
-        <div id="tab1" class="tab_content">
-        <div class="table-responsive table1">
-          <table class="table table-bordered">
-            <thead>
-
-              <tr>
-                <td WIDTH="15%">주문번호</td>
-                <td WIDTH="30%">도그워커 닉네임</td>
-                <td WIDTH="22%">요청 날짜</td>
-                <td WIDTH="8%">수락 / 거부</td>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        </div>
-        <!-- #tab1 -->
-        <div id="tab2" class="tab_content">       
-        <div class="grade2">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <td WIDTH="15%">주문번호</td>
-                  <td WIDTH="30%">신청인</td>
-                  <td WIDTH="22%">요청 날짜</td>
-                  <td WIDTH="8%">수락 / 거부</td>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div></div>
-        <!-- #tab2 -->
-        <div id="tab3" class="tab_content">3333Halo: Reach is the culmination of the superlative combat, sensational multiplayer, and seamless online integration that are the hallmarks of this superb series.</div>
-        <!-- #tab3 -->
-    </div>
-    <!-- .tab_container -->
-</div>
-<!-- #container -->
-</section>
-<section>
-</section>
-
+	<section>
+		<div id="container2">
+			<ul class="tabs">
+				<li class="active info" rel="tab1">신청내역</li>
+				<li rel="tab2">받은신청내역</li>
+				<!--  <li rel="tab3">공지사항</li> -->
+			</ul>
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					<div class="table-responsive table1">
+						<table class="table ">
+							<thead>
+								<tr>
+									<td WIDTH="15%">주 문 번 호</td>
+									<td WIDTH="30%">도그워커 닉네임</td>
+									<td WIDTH="22%">요 청 날 짜</td>
+									<td WIDTH="8%">수락 / 거부</td>
+								</tr>
+							</thead>
+							<tbody id="send"></tbody>
+						</table>
+					</div>
+				</div>
+				<!-- #tab1 -->
+				<div id="tab2" class="tab_content">
+					<div class="grade2">
+						<div class="table-responsive">
+							<table class="table ">
+								<thead>
+									<tr>
+										<td WIDTH="15%">주 문 번 호</td>
+										<td WIDTH="30%">신  청  인</td>
+										<td WIDTH="22%">요 청 날 짜</td>
+										<td WIDTH="8%">수락 / 거부</td>
+									</tr>
+								</thead>
+								<tbody id="receive"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- #tab2 -->
+				<!-- <div id="tab3" class="tab_content">3333Halo: Reach is the culmination of the superlative combat, sensational multiplayer, and seamless online integration that are the hallmarks of this superb series.</div> -->
+				<!-- #tab3 -->
+			</div>
+			<!-- .tab_container -->
+		</div>
+		<!-- #container -->
+	</section>
+	<section>
+		<!-- 간격을 벌리기 위한 추가 섹션 -->
+	</section>
+	<section>
+    <!-- 간격을 벌리기 위한 추가 섹션 -->
+  </section>
 	<footer class="bg-light-gray">
-		<div class="container" >
+		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
 					<span class="copyright">Copyright &copy; 산책할개 2016</span>
@@ -242,6 +264,83 @@ font-weight: bold;
 			</div>
 		</div>
 	</footer>
+	<!-- 알림상세 -->
+	<div id='inex1' class='container' style="display: none;">
+		<h3>신청-상세정보</h3>
+		제공인 : <strong id="petname"></strong>
+		<div >
+			신청날짜 : <strong id='date1'></strong>
+		</div>
+
+		<div class="">관련 지침및 요청 사항</div>
+		<div style='border: 1px solid black; width: 320px;'>
+			<strong id="conts1"></strong>
+		</div>
+		<div >
+			<div class="question">
+				Q. 반려동물을 기관에 등록하였습니까? <strong id='answer1-1'></strong>
+			</div>
+			<div class="question">
+				Q. 중성화 수술을 하였습니까? <strong id='answer1-2'></strong>
+			</div>
+			<div class="question">
+				Q. 다른 동물과 친화적입니까? <strong id='answer1-3'></strong>
+			</div>
+			<div class="question">
+				Q. 어린이나 사람과 친화적입니까? <strong id='answer1-4'></strong>
+			</div>
+			<div class="question">
+				Q. 잘 짖습니까? <strong id='answer1-5'></strong>
+			</div>
+			<div class="question">
+				Q. 지병을 갖고있습니까? <strong id='answer1-6'></strong>
+			</div>
+			<div class="question">
+				Q. 식사시간이 정해져 있다면 알려주세요? <strong id='answer1-7'></strong>
+			</div>
+			<div class="question">
+				Q. 훈련이 되어있다면 알려주세요 <strong id='answer1-8'></strong>
+			</div>
+		</div>
+	</div>
+	  <!-- 알림상세 -->
+  <div id='inex2' class='container' style="display: none;">
+    <h3>신청-상세정보</h3>
+    신청인 : <strong id="reqname"></strong>
+    <div >
+      신청날짜 : <strong id='date2'></strong>
+    </div>
+    <div >관련 지침및 요청 사항</div>
+    <div style='border: 1px solid black; width: 320px;'>
+      <strong id="conts2"></strong>
+    </div>
+    <div >
+      <div class="question">
+        Q. 반려동물을 기관에 등록하였습니까? <strong id='answer2-1'></strong>
+      </div>
+      <div class="question">
+        Q. 중성화 수술을 하였습니까? <strong id='answer2-2'></strong>
+      </div>
+      <div class="question">
+        Q. 다른 동물과 친화적입니까? <strong id='answer2-3'></strong>
+      </div>
+      <div class="question">
+        Q. 어린이나 사람과 친화적입니까? <strong id='answer2-4'></strong>
+      </div>
+      <div class="question">
+        Q. 잘 짖습니까? <strong id='answer2-5'></strong>
+      </div>
+      <div class="question">
+        Q. 지병을 갖고있습니까? <strong id='answer2-6'></strong>
+      </div>
+      <div class="question">
+        Q. 식사시간이 정해져 있다면 알려주세요? <strong id='answer2-7'></strong>
+      </div>
+      <div class="question">
+        Q. 훈련이 되어있다면 알려주세요 <strong id='answer2-8'></strong>
+      </div>
+    </div>
+  </div>
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<!-- Plugin JavaScript -->
@@ -259,14 +358,25 @@ font-weight: bold;
 	<script src="../bower_components/handlebars/handlebars.min.js"></script>
 	<script id="temp1" type="text/x-handlebars-template">
 {{#each list}}
-<tr>
-  <td>{{req}}</td>
-  <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{name}}</a></td>
-  <td>{{date}}</td>
-  <td>{{stat}}</td>
+<tr class="myrequestdetail">
+  <td data-no="{{req}}">{{req}}</td>
+  <td data-no="{{req}}">{{nick}}</td>
+  <td data-no="{{req}}">{{date}}</td>
+  <td data-no="{{req}}">{{stat}}</td>
+</tr>
+{{/each}}
+  </script>
+	<script id="temp2" type="text/x-handlebars-template">
+{{#each list}}
+<tr class="getrequestdetail">
+  <td data-no="{{req}}">{{req}}</td>
+  <td data-no="{{req}}">{{name}}</td>
+  <td data-no="{{req}}">{{date}}</td>
+  <td data-no="{{req}}">{{stat}}</td>
 </tr>
 {{/each}}
 	</script>
+	<!-- <td><a href="#" onclick="onclickDetail(event)" data-no="{{req}}">{{name}}</a></td> -->
 	<script type="text/javascript">
 		$(window).load(function() {
 			$('#loading').hide();
@@ -275,18 +385,166 @@ font-weight: bold;
 			location.href = "../main/index.html"
 			event.preventDefault();
 		}
-		$(function() {
-			$.getJSON("../ajax/member/detail.do?", function(result) {
-				if (result.gra == 2) {
-					$(".grade2").css("display", "");
-					$(".grade1").css("display", "none");
-				} else {
-					$(".grade1").css("display", "");
-					$(".grade2").css("display", "none");
-				}
-			});
-		})
 		$(document).ready(function() {
+    $.getJSON("../ajax/request/myrequestlist.do", function(result) {
+        var templateData = $('#temp1').html();
+        var template = Handlebars.compile(templateData);
+        var html = template(result);
+        $("#send").append(html);
+        $(".myrequestdetail").on("click", function() {
+        	var req = event.target.getAttribute("data-no");
+        	  $.getJSON("../ajax/request/detail.do?req="
+        		      + req, function(result) {
+        		    $("#petname").html(result.pname+ "<br>");
+        		    $("#date1").html(result.request.date + "<br>");
+        		    $("#conts1").html(result.request.conts);
+        		    $("#answer1-1").html("<br>" + result.request.res);
+        		    $("#answer1-2").html("<br>" + result.request.neut);
+        		    $("#answer1-3").html("<br>" + result.request.anifd);
+        		    $("#answer1-4").html("<br>" + result.request.manfd);
+        		    $("#answer1-5").html("<br>" + result.request.bark);
+        		    $("#answer1-6").html("<br>" + result.request.diz);
+        		    $("#answer1-7").html("<br>" + result.request.meal);
+        		    $("#answer1-8").html("<br>" + result.request.train);
+        		    if (result.request.stat == "대기") {
+        		      $("#inex1").dialog({
+        		        resizable : false,
+        		        height : 600,
+        		        width : 500,
+        		        modal : true,
+        		        buttons : {
+        		          "취소" : function() {
+        		            $.ajax("../ajax/request/delete.do", {
+        		              method : "POST",
+        		              dataType : "json",
+        		              data : {
+        		                req : req
+        		              },
+        		              success : function(result) {
+        		                if (result.status == "success") {
+        		                  location.href = "inquiry.html";
+        		                } else {
+        		                  window.alert("변경 실패입니다!");
+        		                }
+        		              },
+        		              error : function() {
+        		                window.alert("서버 요청 실패입니다!");
+        		              }
+        		            });
+        		            $(this).dialog("close");
+        		          },
+        		          "확인" : function() {
+        		            $(this).dialog("close");
+        		          }
+        		        }
+        		      }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+        		    } else {
+        		      $("#inex1").dialog({
+        		        resizable : false,
+        		        height : 600,
+        		        width : 500,
+        		        modal : true,
+        		        buttons : {
+        		          "확인" : function() {
+        		            $(this).dialog("close");
+        		          }
+        		        }
+        		      }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+        		    }
+        		  });
+     	  })
+      });
+	  $.getJSON("../ajax/request/petrequestlist.do", function(result) {
+		    var templateData = $('#temp2').html();
+		    var template = Handlebars.compile(templateData);
+		    var html = template(result);
+		    $("#receive").append(html);
+		    $(".getrequestdetail").on("click", function() {
+		         var req = event.target.getAttribute("data-no");
+            $.getJSON("../ajax/request/detail.do?req="
+                  + req, function(result) {
+                $("#reqname").html(result.mname+ "<br>");
+                $("#date2").html(result.request.date + "<br>");
+                $("#conts2").html(result.request.conts);
+                $("#answer2-1").html("<br>" + result.request.res);
+                $("#answer2-2").html("<br>" + result.request.neut);
+                $("#answer2-3").html("<br>" + result.request.anifd);
+                $("#answer2-4").html("<br>" + result.request.manfd);
+                $("#answer2-5").html("<br>" + result.request.bark);
+                $("#answer2-6").html("<br>" + result.request.diz);
+                $("#answer2-7").html("<br>" + result.request.meal);
+                $("#answer2-8").html("<br>" + result.request.train);
+                if (result.request.stat == "대기") {
+                    $("#inex2").dialog({
+                      resizable : false,
+                      height : 600,
+                      width : 500,
+                      modal : true,
+                      buttons : {
+                        "수락" : function() {
+                          $.ajax("../ajax/request/update.do", {
+                            method : "POST",
+                            dataType : "json",
+                            data : {
+                              req :req,
+                              stat : "수락"
+                            },
+                            success : function(result) {
+                              if (result.status == "success") {
+                                location.href = "index.html";
+                              } else {
+                                window.alert("변경 실패입니다!");
+                              }
+                            },
+                            error : function() {
+                              window.alert("서버 요청 실패입니다!");
+                            }
+                          });
+                          $(this).dialog("close");
+                        },
+                        "거절" : function() {
+                          $.ajax("../ajax/request/update.do", {
+                            method : "POST",
+                            dataType : "json",
+                            data : {
+                              req : req,
+                              stat : "거절"
+                            },
+                            success : function(result) {
+                              if (result.status == "success") {
+                                location.href = "index.html";
+                              } else {
+                                window.alert("거절 실패입니다!");
+                              }
+                            },
+                            error : function() {
+                              window.alert("서버 요청 실패입니다!");
+                            }
+                          });
+                          $(this).dialog("close");
+                        },
+                        "목록" : function() {
+                          $(this).dialog("close");
+                        }
+                      }
+                    }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+                  } else {
+                    $("#inex2").dialog({
+                      resizable : false,
+                      height : 600,
+                      width : 500,
+                      modal : true,
+                      buttons : {
+                        "목록" : function() {
+                          $(this).dialog("close");
+                        }
+                      }
+                    }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+                  }
+              });
+	        })
+		  });
+	  
 			$("#logout").click(function() {
 				location.href = "../auth/logout.do";
 				event.preventDefault();
@@ -299,10 +557,7 @@ font-weight: bold;
 				location.href = "../resist/resist.html";
 				event.preventDefault();
 			});
-		});
-		
-		$(function () {
-
+			// 탭 메뉴바 설정
 		    $(".tab_content").hide();
 		    $(".tab_content:first").show();
 
@@ -314,6 +569,18 @@ font-weight: bold;
 		        var activeTab = $(this).attr("rel");
 		        $("#" + activeTab).fadeIn()
 		    });
+		    //------------
+		    //멤버의 등급 가져오기
+		      $.getJSON("../ajax/member/detail.do?", function(result) {
+		          if (result.gra == 2) {
+		            $(".grade2").css("display", "");
+		            $(".grade1").css("display", "none");
+		          } else {
+		            $(".grade1").css("display", "");
+		            $(".grade2").css("display", "none");
+		          }
+		        });
+		    ///------------
 		});
 	</script>
 </body>

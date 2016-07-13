@@ -11,6 +11,7 @@ public interface RequestService {
   Request retrieve(int req);
   List<Request> list(int pageNo, int pageSize);
   List<Petrequest> petrequestlist(int pageNo, int pageSize, int pno);
+  List<Petrequest> myrequestlist(int pageNo, int pageSize, int mno);
   void change(Request Request);
   int countPage(int pageSize);
 }
