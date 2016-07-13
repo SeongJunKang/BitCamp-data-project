@@ -559,21 +559,5 @@
 </tr>
 {{/each}}
 </script>
-<script>
-
-$("#addBtn").click(function(event) {
-  $.post("../ajax/request/add.do", {
-      title: $("#fTitle").val(),
-      content: $("#fContent").val()
-    }, function(result) {
-      if (result.status == "success") {
-        location.href = "index.html";
-      } else {
-        window.alert("등록 실패입니다!");
-      }
-    }, "json"
-  );
-});
-</script>
 </body>
 </html>
