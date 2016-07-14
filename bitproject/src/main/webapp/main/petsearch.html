@@ -279,23 +279,19 @@ margin-left: 24px;
 		    var maxHeight = $(document).height();
 		    var currentScroll = $(window).scrollTop() + $(window).height();
 		    if (maxHeight <= currentScroll + 100) {
-		    	  $.ajax({});
+		    	  $.ajax({
+		    		  
+		    	  });
           }
       }); 
 	    // 기본으로 최신순을 뿌려준다.
       $(function() {
-         $.ajax({
-            url : "../ajax/petsitter/list.do",
-            dataType : "json",
-            data: {
-            	order: "pno"
-            },
-            success : function(result) {
+         $.getJSON("../ajax/petsitter/list.do?order=pno",
+            function(result) {
               var templateData = $( "#sitterlist").html();
               var template = Handlebars .compile(templateData);
               var html = template(result);
               $("#petsitter").append(html);
-            }
           })
       });
       
@@ -303,75 +299,43 @@ margin-left: 24px;
       var TagText = $(".section-subheading");
       $("#latest").click(function() {
           TagText.text($("#latest").text());
-          $(function() {
-              $.ajax({
-                 url : "../ajax/petsitter/list.do",
-                 dataType : "json",
-                 data :{
-                     order: "pno"
-                 },
-                 success : function(result) {
-                   var templateData = $( "#sitterlist").html();
-                   var template = Handlebars .compile(templateData);
-                   var html = template(result);
-                   $("#petsitter").html(html);
-                 }
-               })
-           });
+          $.getJSON("../ajax/petsitter/list.do?order=pno",
+              function(result) {
+                var templateData = $( "#sitterlist").html();
+                var template = Handlebars .compile(templateData);
+                var html = template(result);
+                $("#petsitter").append(html);
+           })
         });
       $("#popu").click(function() {
     	  TagText.text($("#popu").text());
-        $(function() {
-            $.ajax({
-            	url : "../ajax/petsitter/list.do",
-               dataType : "json",
-               data: {
-                   order: "likes"
-               },
-               success : function(result) {
-                 var templateData = $( "#sitterlist").html();
-                 var template = Handlebars .compile(templateData);
-                 var html = template(result);
-                 $("#petsitter").html(html);
-               }
-             })
-         });
+    	  $.getJSON("../ajax/petsitter/list.do?order=likes",
+           function(result) {
+             var templateData = $( "#sitterlist").html();
+             var template = Handlebars .compile(templateData);
+             var html = template(result);
+             $("#petsitter").append(html);
+         })
       });
       $("#byname").click(function() {
           TagText.text($("#byname").text());
-          $(function() {
-              $.ajax({
-            	  url : "../ajax/petsitter/list.do",
-                 dataType : "json",
-                 data :{
-                     order: "nick"
-                 },
-                 success : function(result) {
-                   var templateData = $( "#sitterlist").html();
-                   var template = Handlebars .compile(templateData);
-                   var html = template(result);
-                   $("#petsitter").html(html);
-                 }
-               })
-           });
+          $.getJSON("../ajax/petsitter/list.do?order=nick",
+              function(result) {
+                var templateData = $( "#sitterlist").html();
+                var template = Handlebars .compile(templateData);
+                var html = template(result);
+                $("#petsitter").append(html);
+            })
         });
       $("#byprice").click(function() {
           TagText.text($("#byprice").text());
-          $(function() {
-              $.ajax({
-            	  url : "../ajax/petsitter/list.do",
-                 dataType : "json",
-                 data: {
-                     order: "amt"
-                 },
-                 success : function(result) {
-                   var templateData = $( "#sitterlist").html();
-                   var template = Handlebars .compile(templateData);
-                   var html = template(result);
-                   $("#petsitter").html(html);
-                 }
-               })
-           });
+          $.getJSON("../ajax/petsitter/list.do?order=amt",
+              function(result) {
+                var templateData = $( "#sitterlist").html();
+                var template = Handlebars .compile(templateData);
+                var html = template(result);
+                $("#petsitter").append(html);
+            })
         });
       
       $("#bysales").click(function() {

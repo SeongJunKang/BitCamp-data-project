@@ -91,7 +91,7 @@ public class RequestAjaxController {
   public String detail(int req) 
       throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
-    Request request= requestService.retrieve(req);
+    Petrequest request= requestService.retrieve(req);
     result.put("mname",memberService.retrieveByNo(request.getMno()).getName());
     result.put("pname",petsitterService.retrieveByNo(request.getPno()).getNick());
     result.put("request", request);

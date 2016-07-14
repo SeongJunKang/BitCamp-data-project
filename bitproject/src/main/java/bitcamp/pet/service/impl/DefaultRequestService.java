@@ -33,7 +33,7 @@ public class DefaultRequestService implements RequestService {
     }
     return false;
   }*/
-  public Request retrieve(int req) {
+  public Petrequest retrieve(int req) {
     return requestDao.selectOne(req);
   }
   public List<Request> list(int pageNo, int pageSize) {

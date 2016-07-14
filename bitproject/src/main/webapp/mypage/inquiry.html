@@ -268,12 +268,14 @@ tbody tr:hover {
 	<div id='inex1' class='container' style="display: none;">
 		<h3>신청-상세정보</h3>
 		제공인 : <strong id="petname"></strong>
+		전화번호 : <strong id="pettel"></strong>
+		카카오톡 : <strong id="pettalk"></strong>
 		<div >
 			신청날짜 : <strong id='date1'></strong>
 		</div>
-
-		<div class="">관련 지침및 요청 사항</div>
-		<div style='border: 1px solid black; width: 320px;'>
+<hr>
+		<div >관련 지침및 요청 사항</div>
+		<div >
 			<strong id="conts1"></strong>
 		</div>
 		<div >
@@ -307,11 +309,13 @@ tbody tr:hover {
   <div id='inex2' class='container' style="display: none;">
     <h3>신청-상세정보</h3>
     신청인 : <strong id="reqname"></strong>
+    전화번호 : <strong id="reqtel"></strong>
     <div >
       신청날짜 : <strong id='date2'></strong>
     </div>
+    <hr>
     <div >관련 지침및 요청 사항</div>
-    <div style='border: 1px solid black; width: 320px;'>
+    <div >
       <strong id="conts2"></strong>
     </div>
     <div >
@@ -396,6 +400,8 @@ tbody tr:hover {
         	  $.getJSON("../ajax/request/detail.do?req="
         		      + req, function(result) {
         		    $("#petname").html(result.pname+ "<br>");
+        		    $("#pettel").html(result.request.p_tel+ "<br>");
+        		    $("#pettalk").html(result.request.ktalk+ "<br>");
         		    $("#date1").html(result.request.date + "<br>");
         		    $("#conts1").html(result.request.conts);
         		    $("#answer1-1").html("<br>" + result.request.res);
@@ -464,6 +470,7 @@ tbody tr:hover {
             $.getJSON("../ajax/request/detail.do?req="
                   + req, function(result) {
                 $("#reqname").html(result.mname+ "<br>");
+                $("#reqtel").html(result.request.m_tel+ "<br>");
                 $("#date2").html(result.request.date + "<br>");
                 $("#conts2").html(result.request.conts);
                 $("#answer2-1").html("<br>" + result.request.res);
@@ -474,7 +481,6 @@ tbody tr:hover {
                 $("#answer2-6").html("<br>" + result.request.diz);
                 $("#answer2-7").html("<br>" + result.request.meal);
                 $("#answer2-8").html("<br>" + result.request.train);
-                if (result.request.stat == "대기") {
                     $("#inex2").dialog({
                       resizable : false,
                       height : 600,
@@ -528,19 +534,6 @@ tbody tr:hover {
                         }
                       }
                     }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
-                  } else {
-                    $("#inex2").dialog({
-                      resizable : false,
-                      height : 600,
-                      width : 500,
-                      modal : true,
-                      buttons : {
-                        "목록" : function() {
-                          $(this).dialog("close");
-                        }
-                      }
-                    }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
-                  }
               });
 	        })
 		  });

@@ -3,438 +3,479 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>산책할개</title>
-    
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link href="../bower_components/css/agency.css" rel="stylesheet">
-    
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <!-- index CSS -->
-    <link href="../bower_components/css/index.css" rel="stylesheet">
-   
+<title>산책할개</title>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="../bower_components/bootstrap/dist/css/bootstrap.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Custom CSS -->
+<link href="../bower_components/css/agency.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="../bower_components/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!-- index CSS -->
+<link href="../bower_components/css/index.css" rel="stylesheet">
+
 </head>
 
-<body id="page-top" class="index" >
+<body id="page-top" class="index">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top"><img class='logoimg' src='../img/logos/dlogo.PNG'></a>
-            </div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top"><img
+					class='logoimg' src='../img/logos/dlogo.PNG'></a>
+			</div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">DogWalkers</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li class="not_login">
-                        <a class="page-scroll" href="#signin">SignIn/SignUp</a>
-                    </li>
-                    <li class="login">
-                        <a href="#" id="logout">Logout</a>
-                    </li>
-                    <li class="login">
-                        <a href="#" id="mypage">Mypage</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">반려견을 위한 당신의 방문을 환영 합니다!</div>
-                <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
-            </div>
-        </div>
-    </header>
-     <div id="loading">
-     <img id="loading-image" src="../img/ajax-loader.gif">
-     </div>
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">반려견의 산책을 도와드려요.</h3>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">산책범위지정</h4>
-                    <p class="text-muted">원하는 곳에 당신의 반려견을 산책시켜 드립니다.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-road fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">산  책</h4>
-                    <p class="text-muted">당신을 대신해서 도그워커가 반려견과 <br>아름다운 동행을 해드립니다.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">산 책 일 지</h4>
-                    <p class="text-muted">반려견과 즐거운 모습을 사진과 하루 일과를 <br>참고할 수 있습니다.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Portfolio Grid Section -->
-    <section id="portfolio" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">DogWalkers</h2> <button type="submit" class="btn btn-xl fa lookpet">도그워커찾기</button>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-            </div>
-            <div class="row" id="petsitter">
-            <!-- 펫시터들의 정보 불러온다. -->
-            </div>
-        </div>
-    </section>
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">산책할개는 반려견을 당신을 대신해서 산책을 시켜주는 플랫폼입니다. 모든 도그워커와 견주분들에게 최고의 가치를 제공합니다.</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="../img/about/1.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>May 2016</h4>
-                                    <h4 class="subheading">산책할개 시작</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">전문 도그워커들이 활동하고 있는 도그워커 마케팅 플랫폼입니다. 전문 도그워커는 반려동물 케어에 대한 충분한 지식과 자격을 갖추고, 주인이 반려동물과 함께 보낼 수 없는 시간동안 주인 대신 사랑과 정성으로 돌봐주는 전문 직업인입니다. 도그워커들이 자신이 제공하는 펫시팅 유형, 활동 지역, 경력, 스케쥴, 가격, 반려 중인 동물 등 정보를 프로필 형태로 제공함으로써, 소비자는 도그워커들의 표준화된 정보를 열람하고 마음에 드는 도그워커에게 연락하여 예약을 문의할 수 있습니다</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="../img/about/2.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>May 2016</h4>
-                                    <h4 class="subheading">비전과 가치</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">산책할개는 전세계의 모든 서비스 중에서도 가장 높은 서비스 만족과 가치를 제공하는 플랫폼이고자 합니다.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <h4>산책할개
-                                    <br>우리들의
-                                    <br>이야기!</h4>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team Section -->
-    <section id="team"  class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">우리의 팀원을 소개합니다.</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="../img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>배 윤 호</h4>
-                        <p class="text-muted">팀  장</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="../img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>강성준</h4>
-                        <p class="text-muted">팀  원</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="../img/team/3.jpg" class="img-responsive img-circle" alt="">
-                        <h4>이민우</h4>
-                        <p class="text-muted">팀  원</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">연락처를 남겨주세요</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-       <!-- sign Section -->
-   <section id="signin"  class="not_login">
-        <div class="container cont1">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">로그인</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form class="form-horizontal"  name="sentMessage" id="contactForm" novalidate>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-offset-4">
-                                <div class="form-group">
-                               <!--  <label for="email" class="col-sm-2 control-label">Email</label> -->
-                                    <input type="email" class="form-control" placeholder="이메일을 입력해 주세요" name="email" id="inemail" required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                               <!--  <label for="password" class="col-sm-2 control-label">Password</label> -->
-                                    <input type="password" class="form-control" placeholder="비밀번호를 입력해 주세요" name="password" id="inpassword" required data-validation-required-message="Please enter your password">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <button type="button" class="btn btn-xl fa" id="loginbtn">로그인</button>
-                                <button onclick="facebookLogin()" type="button" class="btn btn-xl fa"  style="background-color: #4267B2;"><span class="fa-lg fa-facebook"></span> 로그인</button>
-                                <button type="button" class="btn btn-xl fa signup ">회원가입</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-          <div class="container cont2">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">회원가입</h2>
-                    <h3 class="section-subheading text-muted">빠짐없이 입력해 주세요</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form class="form-horizontal" name="sentMessage" id="contactForm" novalidate>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-offset-4">
-                                <div class="form-group">
-                                <!-- <label for="email" class="col-sm-2 control-label">Email</label> -->
-                                    <input type="email" class="form-control" placeholder="이메일을 입력해 주세요" id="email" onkeyup="checkEmail()" data-stata="no">
-                                    <p id="checkresult" class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                <!-- <label for="password" class="col-sm-2 control-label">Password</label> -->
-                                    <input type="password" class="form-control" onkeyup="pwdCheck()" placeholder="비밀번호를 입력해 주세요" id="password" required data-validation-required-message="Please enter your password">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                <!-- <label for="password" class="col-sm-2 control-label">Password</label> -->
-                                    <input type="password" class="form-control" onkeyup="pwdCheck()" placeholder="비밀번호를 확인해 주세요" id="passwordcheck">
-                                    <p id="checkText"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control upname" placeholder="이름을 입력해 주세요" id="name" required data-validation-required-message="You can't leave this empty."><button type="button" class="btn btn-default gender">남성</button>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                <span id="birthday">생년월일    </span>
-                                 <select class="birth form-control birth1" id="birthdayYear"></select>년
-                                 <select class="birth form-control birth2" id="birthdayMonth"></select>월
-                                 <select class="birth form-control birth3" id="birthdayDay"></select>일
-                                </div>
-                                
-                              <div class="form-group">
-                              <span id="phonenumber">휴대폰번호</span>
-                              <select class="form-control" id="agency">
-                               <option>SKT</option>
-                               <option>LG U+</option>
-                               <option>KT</option>
-                              </select>
-                                
-                                <div class=" input-group1">
-                                  <input type="text" class="form-control" value="010" id="phone1">
-                                </div>-
-                                <div class=" input-group2">
-                                  <input type="text" class="form-control" value="0000"
-                                    id="phone2">
-                                </div>-
-                                <div class=" input-group3">
-                                  <input type="text" class="form-control" value="0000"
-                                    id="phone3">
-                                </div>
-                              </div>
-                            </div>
-                           
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="hidden"><a href="#page-top"></a></li>
+					<li><a class="page-scroll" href="#services">Services</a></li>
+					<li><a class="page-scroll" href="#portfolio">DogWalkers</a></li>
+					<li><a class="page-scroll" href="#about">About</a></li>
+					<li><a class="page-scroll" href="#team">Team</a></li>
+					<li class="not_login"><a class="page-scroll" href="#signin">SignIn/SignUp</a>
+					</li>
+					<li class="login"><a href="#" id="logout">Logout</a></li>
+					<li class="login"><a href="#" id="mypage">Mypage</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Header -->
+	<header>
+		<div class="container">
+			<div class="intro-text">
+				<div class="intro-lead-in">반려견을 위한 당신의 방문을 환영 합니다!</div>
+				<div class="intro-heading">It's Nice To Meet You</div>
+				<a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+			</div>
+		</div>
+	</header>
+	<div id="loading">
+		<img id="loading-image" src="../img/ajax-loader.gif">
+	</div>
+	<!-- Services Section -->
+	<section id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">Services</h2>
+					<h3 class="section-subheading text-muted">반려견의 산책을 도와드려요.</h3>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fa fa-circle fa-stack-2x text-primary"></i> <i
+						class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">산책범위지정</h4>
+					<p class="text-muted">원하는 곳에 당신의 반려견을 산책시켜 드립니다.</p>
+				</div>
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fa fa-circle fa-stack-2x text-primary"></i> <i
+						class="fa fa-road fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">산 책</h4>
+					<p class="text-muted">
+						당신을 대신해서 도그워커가 반려견과 <br>아름다운 동행을 해드립니다.
+					</p>
+				</div>
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fa fa-circle fa-stack-2x text-primary"></i> <i
+						class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">산 책 일 지</h4>
+					<p class="text-muted">
+						반려견과 즐거운 모습을 사진과 하루 일과를 <br>참고할 수 있습니다.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Portfolio Grid Section -->
+	<section id="portfolio" class="bg-light-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">DogWalkers</h2>
+					<button type="submit" class="btn btn-xl fa lookpet">도그워커찾기</button>
+					<h3 class="section-subheading text-muted"></h3>
+				</div>
+			</div>
+			<div class="row" id="petsitter">
+				<!-- 펫시터들의 정보 불러온다. -->
+			</div>
+		</div>
+	</section>
+	<!-- About Section -->
+	<section id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">About</h2>
+					<h3 class="section-subheading text-muted">산책할개는 반려견을 당신을 대신해서
+						산책을 시켜주는 플랫폼입니다. 모든 도그워커와 견주분들에게 최고의 가치를 제공합니다.</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="timeline">
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="../img/about/1.jpg"
+									alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>May 2016</h4>
+									<h4 class="subheading">산책할개 시작</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">전문 도그워커들이 활동하고 있는 도그워커 마케팅 플랫폼입니다. 전문
+										도그워커는 반려동물 케어에 대한 충분한 지식과 자격을 갖추고, 주인이 반려동물과 함께 보낼 수 없는 시간동안
+										주인 대신 사랑과 정성으로 돌봐주는 전문 직업인입니다. 도그워커들이 자신이 제공하는 펫시팅 유형, 활동 지역,
+										경력, 스케쥴, 가격, 반려 중인 동물 등 정보를 프로필 형태로 제공함으로써, 소비자는 도그워커들의 표준화된
+										정보를 열람하고 마음에 드는 도그워커에게 연락하여 예약을 문의할 수 있습니다</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<img class="img-circle img-responsive" src="../img/about/2.jpg"
+									alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>May 2016</h4>
+									<h4 class="subheading">비전과 가치</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">산책할개는 전세계의 모든 서비스 중에서도 가장 높은 서비스 만족과
+										가치를 제공하는 플랫폼이고자 합니다.</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<h4>
+									산책할개 <br>우리들의 <br>이야기!
+								</h4>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Team Section -->
+	<section id="team" class="bg-light-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">우리의 팀원을 소개합니다.</h2>
+					<h3 class="section-subheading text-muted"></h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img src="../img/team/1.jpg" class="img-responsive img-circle"
+							alt="">
+						<h4>배 윤 호</h4>
+						<p class="text-muted">팀 장</p>
+						<ul class="list-inline social-buttons">
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img src="../img/team/2.jpg" class="img-responsive img-circle"
+							alt="">
+						<h4>강성준</h4>
+						<p class="text-muted">팀 원</p>
+						<ul class="list-inline social-buttons">
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img src="../img/team/3.jpg" class="img-responsive img-circle"
+							alt="">
+						<h4>이민우</h4>
+						<p class="text-muted">팀 원</p>
+						<ul class="list-inline social-buttons">
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<p class="large text-muted">연락처를 남겨주세요</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <button type="button" class="btn btn-xl signin fa">로그인</button>
-                                <button type="button" class="btn btn-xl signup fa" id="savebtn"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>가입하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> 
-    </section>
-  
-    <!-- Clients Aside -->
-    <aside class="clients">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="../img/logos/cy1.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="../img/logos/aetuts.jpg" style="height: 50px;"class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="../img/logos/song.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="../img/logos/cy.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </aside>
- 
-    <footer>
-        <div class="container" class="bg-light-gray">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; 산책할개 2016</span>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-	  <div id="dialog-login-fail" title="로그인 실패">
-	    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>로그인에 실패했습니다.<br>등록되지않은 이메일 또는 비밀번호입니다.</p>
-	  </div>
-     <div id="dialog-signup-success" title="회원가입 성공">
-      <p><span class="ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>가입 성공! 산책할개에 오신걸 환영합니다.</p>
-    </div>
-    <div id="dialog-signup-fail" title="회원가입 실패">
-      <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원가입에 실패했습니다.<br> 등록된 정보를 확인하시거나 잠시 후 다시 이용해주세요.</p>
-    </div>
-    <div id="dialog-check-email" title="이메일 중복체크">
-      <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>이메일 중복확인 또는 형식을 맞춰주세요.</p>
-    </div>
-    
-    <!-- 알림창 -->
+	<!-- sign Section -->
+	<section id="signin" class="not_login">
+		<div class="container cont1">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">로그인</h2>
+					<h3 class="section-subheading text-muted"></h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<form class="form-horizontal" name="sentMessage" id="contactForm"
+						novalidate>
+						<div class="row">
+							<div class="col-sm-4 col-md-offset-4">
+								<div class="form-group">
+									<!--  <label for="email" class="col-sm-2 control-label">Email</label> -->
+									<input type="email" class="form-control"
+										placeholder="이메일을 입력해 주세요" name="email" id="inemail" required
+										data-validation-required-message="Please enter your email address.">
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="form-group">
+									<!--  <label for="password" class="col-sm-2 control-label">Password</label> -->
+									<input type="password" class="form-control"
+										placeholder="비밀번호를 입력해 주세요" name="password" id="inpassword"
+										required
+										data-validation-required-message="Please enter your password">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<div class="col-lg-12 text-center">
+								<button type="button" class="btn btn-xl fa" id="loginbtn">로그인</button>
+								<button onclick="facebookLogin()" type="button"
+									class="btn btn-xl fa" style="background-color: #4267B2;">
+									<span class="fa-lg fa-facebook"></span> 로그인
+								</button>
+								<button type="button" class="btn btn-xl fa signup ">회원가입</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container cont2">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading">회원가입</h2>
+					<h3 class="section-subheading text-muted">빠짐없이 입력해 주세요</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<form class="form-horizontal" name="sentMessage" id="contactForm"
+						novalidate>
+						<div class="row">
+							<div class="col-sm-4 col-md-offset-4">
+								<div class="form-group">
+									<!-- <label for="email" class="col-sm-2 control-label">Email</label> -->
+									<input type="email" class="form-control"
+										placeholder="이메일을 입력해 주세요" id="email" onkeyup="checkEmail()"
+										data-stata="no">
+									<p id="checkresult" class="help-block text-danger"></p>
+								</div>
+								<div class="form-group">
+									<!-- <label for="password" class="col-sm-2 control-label">Password</label> -->
+									<input type="password" class="form-control"
+										onkeyup="pwdCheck()" placeholder="비밀번호를 입력해 주세요" id="password"
+										required
+										data-validation-required-message="Please enter your password">
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="form-group">
+									<!-- <label for="password" class="col-sm-2 control-label">Password</label> -->
+									<input type="password" class="form-control"
+										onkeyup="pwdCheck()" placeholder="비밀번호를 확인해 주세요"
+										id="passwordcheck">
+									<p id="checkText"></p>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control upname"
+										placeholder="이름을 입력해 주세요" id="name" required
+										data-validation-required-message="You can't leave this empty.">
+									<button type="button" class="btn btn-default gender">남성</button>
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="form-group">
+									<span id="birthday">생년월일 </span> <select
+										class="birth form-control birth1" id="birthdayYear"></select>년
+									<select class="birth form-control birth2" id="birthdayMonth"></select>월
+									<select class="birth form-control birth3" id="birthdayDay"></select>일
+								</div>
+
+								<div class="form-group">
+									<span id="phonenumber">휴대폰번호</span> <select
+										class="form-control" id="agency">
+										<option>SKT</option>
+										<option>LG U+</option>
+										<option>KT</option>
+									</select>
+
+									<div class=" input-group1">
+										<input type="text" class="form-control" value="010"
+											id="phone1">
+									</div>
+									-
+									<div class=" input-group2">
+										<input type="text" class="form-control" value="0000"
+											id="phone2">
+									</div>
+									-
+									<div class=" input-group3">
+										<input type="text" class="form-control" value="0000"
+											id="phone3">
+									</div>
+								</div>
+							</div>
+
+
+							<div class="clearfix"></div>
+							<div class="col-lg-12 text-center">
+								<button type="button" class="btn btn-xl signin fa">로그인</button>
+								<button type="button" class="btn btn-xl signup fa" id="savebtn">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>가입하기
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Clients Aside -->
+	<aside class="clients">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#"> <img src="../img/logos/cy1.jpg"
+						class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#"> <img src="../img/logos/aetuts.jpg"
+						style="height: 50px;" class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#"> <img src="../img/logos/song.jpg"
+						class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<a href="#"> <img src="../img/logos/cy.jpg"
+						class="img-responsive img-centered" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+	</aside>
+
+	<footer>
+		<div class="container" class="bg-light-gray">
+			<div class="row">
+				<div class="col-md-4">
+					<span class="copyright">Copyright &copy; 산책할개 2016</span>
+				</div>
+				<div class="col-md-4">
+					<ul class="list-inline social-buttons">
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<ul class="list-inline quicklinks">
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Terms of Use</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div id="dialog-login-fail" title="로그인 실패">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 0 7px 20px 0;"></span>로그인에 실패했습니다.<br>등록되지않은
+			이메일 또는 비밀번호입니다.
+		</p>
+	</div>
+	<div id="dialog-signup-success" title="회원가입 성공">
+		<p>
+			<span class="ui-icon-alert"
+				style="float: left; margin: 0 7px 20px 0;"></span>가입 성공! 산책할개에 오신걸
+			환영합니다.
+		</p>
+	</div>
+	<div id="dialog-signup-fail" title="회원가입 실패">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 0 7px 20px 0;"></span>회원가입에 실패했습니다.<br>
+			등록된 정보를 확인하시거나 잠시 후 다시 이용해주세요.
+		</p>
+	</div>
+	<div id="dialog-check-email" title="이메일 중복체크">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin: 0 7px 20px 0;"></span>이메일 중복확인 또는 형식을
+			맞춰주세요.
+		</p>
+	</div>
+
+	<!-- 알림창 -->
 	<div id="ex1" style="display: none;">
 		<div>
 			<h1>신청목록</h1>
@@ -456,80 +497,85 @@
 	<!-- 알림상세 -->
 	<div id='inex1' class='container' style="display: none;">
 		<h3>신청-상세정보</h3>
-		  신청인 : <strong id="reqname"></strong> 
-			<div class="">
-				신청날짜 : <strong id='date'></strong>
+		신청인 : <strong id="reqname"></strong> 전화번호 : <strong id="reqtel"></strong>
+		<div>
+			신청날짜 : <strong id='date'></strong>
+		</div>
+
+		<div>관련 지침및 요청 사항</div>
+		<div>
+			<strong id="conts"></strong>
+		</div>
+		<hr>
+		<div id="ask">
+			<div class="question">
+				Q. 반려동물을 기관에 등록하였습니까? <strong id='answer1'></strong>
+			</div>
+			<div class="question">
+				Q. 중성화 수술을 하였습니까? <strong id='answer2'></strong>
+			</div>
+			<div class="question">
+				Q. 다른 동물과 친화적입니까? <strong id='answer3'></strong>
+			</div>
+			<div class="question">
+				Q. 어린이나 사람과 친화적입니까? <strong id='answer4'></strong>
+			</div>
+			<div class="question">
+				Q. 잘 짖습니까? <strong id='answer5'></strong>
+			</div>
+			<div class="question">
+				Q. 지병을 갖고있습니까? <strong id='answer6'></strong>
+			</div>
+			<div class="question">
+				Q. 식사시간이 정해져 있다면 알려주세요? <strong id='answer7'></strong>
+			</div>
+			<div class="question">
+				Q. 훈련이 되어있다면 알려주세요 <strong id='answer8'></strong>
 			</div>
 
-			<div class="">관련 지침및 요청 사항</div>
-			<div style='border: 1px solid black; width: 320px;'>
-				<strong id="conts"></strong>
-			</div>
-			<div id="ask">
-				<div class="question">
-					Q. 반려동물을 기관에 등록하였습니까? <strong id='answer1'></strong>
-				</div>
-				<div class="question">
-					Q. 중성화 수술을 하였습니까? <strong id='answer2'></strong>
-				</div>
-				<div class="question">
-					Q. 다른 동물과 친화적입니까? <strong id='answer3'></strong>
-				</div>
-				<div class="question">
-					Q. 어린이나 사람과 친화적입니까? <strong id='answer4'></strong>
-				</div>
-				<div class="question">
-					Q. 잘 짖습니까? <strong id='answer5'></strong>
-				</div>
-				<div class="question">
-					Q. 지병을 갖고있습니까? <strong id='answer6'></strong>
-				</div>
-				<div class="question">
-					Q. 식사시간이 정해져 있다면 알려주세요? <strong id='answer7'></strong>
-				</div>
-				<div class="question">
-					Q. 훈련이 되어있다면 알려주세요 <strong id='answer8'></strong>
-				</div>
-
-			</div>
+		</div>
 	</div>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- Modal dialog -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="../bower_components/js/classie.js"></script>
-    <script src="../bower_components/js/cbpAnimatedHeader.js"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="../bower_components/js/jqBootstrapValidation.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../bower_components/js/agency.js"></script>
-    <!-- BirthDay calendar -->
-    <script src="../bower_components/js/main/indexCalendar.js"></script>
-    <!-- pwd check -->
-    <script src="../bower_components/js/pwdCheck.js"></script>
-    <!-- email check -->
-    <script src="../bower_components/js/main/emailCheck.js"></script>
-    <!-- signUp btn-->
-    <script src="../bower_components/js/main/signUp.js"></script>
-    <!-- login btn-->
-    <script src="../bower_components/js/main/loginBtn.js"></script>
-    <!-- Index Petsitter list-->
-    <script src="../bower_components/js/main/indexlist.js"></script>
-    <!-- Loading Index -->
-    <script src="../bower_components/js/main/index.js"></script>
-    <!-- check login -->
-    <script type="text/javascript" src="../LoginCheck.js"></script>
-    <!-- Handlebars  JavaScript -->
-    <script src="../bower_components/handlebars/handlebars.min.js"></script>
-    <!-- Handlebars  Template Code -->
-    <script id="sitterlist" type="text/x-handlebars-template">
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<!-- Modal dialog -->
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="../bower_components/js/classie.js"></script>
+	<script src="../bower_components/js/cbpAnimatedHeader.js"></script>
+	<!-- Contact Form JavaScript -->
+	<script src="../bower_components/js/jqBootstrapValidation.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="../bower_components/js/agency.js"></script>
+	<!-- BirthDay calendar -->
+	<script src="../bower_components/js/main/indexCalendar.js"></script>
+	<!-- pwd check -->
+	<script src="../bower_components/js/pwdCheck.js"></script>
+	<!-- email check -->
+	<script src="../bower_components/js/main/emailCheck.js"></script>
+	<!-- signUp btn-->
+	<script src="../bower_components/js/main/signUp.js"></script>
+	<!-- login btn-->
+	<script src="../bower_components/js/main/loginBtn.js"></script>
+	<!-- Index Petsitter list-->
+	<script src="../bower_components/js/main/indexlist.js"></script>
+	<!-- Loading Index -->
+	<script src="../bower_components/js/main/index.js"></script>
+	<!-- check login -->
+	<script type="text/javascript" src="../LoginCheck.js"></script>
+	<!-- Handlebars  JavaScript -->
+	<script src="../bower_components/handlebars/handlebars.min.js"></script>
+	<!-- Handlebars  Template Code -->
+	<script id="sitterlist" type="text/x-handlebars-template">
     {{#each list}}
       <div class="col-md-4 col-sm-6 portfolio-item">
           <a href="#" onclick="onclickDetail(event)" class="portfolio-link po1" data-pno="{{pno}}" data-toggle="modal">
@@ -547,7 +593,7 @@
      </div>
     {{/each}}
     </script>
-    <script id="temp1" type="text/x-handlebars-template">
+	<script id="temp1" type="text/x-handlebars-template">
 {{#each list}}
 <tr>
   <td>{{req}}</td>

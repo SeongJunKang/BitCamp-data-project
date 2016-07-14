@@ -3,7 +3,9 @@ package bitcamp.pet.vo;
 public class Petrequest {
   int req;
   String nick;
-
+  String ktalk;
+  String p_tel;
+  String m_tel;
   String name;
   String date;
   String conts;
@@ -15,8 +17,41 @@ public class Petrequest {
   String manfd;
   String stat;
   String ans;
+
+  String bark;
+  String diz;
   int pno;
   int mno;
+  public String getBark() {
+    return bark;
+  }
+  public void setBark(String bark) {
+    this.bark = bark;
+  }
+  public String getDiz() {
+    return diz;
+  }
+  public void setDiz(String diz) {
+    this.diz = diz;
+  }
+  public String getKtalk() {
+    return ktalk;
+  }
+  public void setKtalk(String ktalk) {
+    this.ktalk = ktalk;
+  }
+  public String getP_tel() {
+    return p_tel;
+  }
+  public void setP_tel(String p_tel) {
+    this.p_tel = p_tel;
+  }
+  public String getM_tel() {
+    return m_tel;
+  }
+  public void setM_tel(String m_tel) {
+    this.m_tel = m_tel;
+  }
   public String getNick() {
     return nick;
   }

@@ -27,20 +27,24 @@
     where REQ=#{req}
   </update>
    <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
-    select req, p.amt, p.nick, p.pno, r.mno, m.name, date, conts, meal, train, date, res, neut, 
+    select req, p.amt, p.nick,  p.pno,  r.mno, m.name, date, conts, meal, train, date, res, neut, 
     anifd, manfd, bark, diz, ans, stat 
     from request as r 
     left outer join petsitter as p on p.pno = r.pno 
-    left outer join member as m on r.mno = m.mno 
+    left outer join member as m on r.mno = m.mno
     where 
     <if test="pno != null">p.pno=#{pno}</if>
     <if test="mno != null">r.mno=#{mno}</if>
     order by req DESC
   </select>
   
-  <select id="selectOne" parameterType="int" resultMap="RequestMap">
-     select * 
-     from request
+  <select id="selectOne" parameterType="int" resultMap="PetrequestMap">
+     select req, r.mno, r.pno, date, conts, res, neut, anifd,manfd,bark,diz,meal,train,stat,ans
+      ,p.ktalk, pm.tel as p_tel, m.tel as m_tel
+     from request as r
+     left outer join petsitter as p on p.pno = r.pno 
+     left outer join member as m on r.mno = m.mno
+     left outer join member as pm on p.pno = pm.mno  
      where req=#{req}
   </select>
   <select id="selectList" parameterType="map" resultMap="RequestMap">
