@@ -162,8 +162,8 @@ public class PetSitterAjaxController {
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
-  public String list(String order) throws ServletException, IOException {
-    List<PetSitter> list = petsitterService.list(order);
+  public String list(String order, int index) throws ServletException, IOException {
+    List<PetSitter> list = petsitterService.list(order, index);
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
     return new Gson().toJson(result);

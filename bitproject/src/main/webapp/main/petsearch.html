@@ -196,6 +196,8 @@ margin-left: 24px;
             </div>
         </div>
     </footer>
+    <div class="scrolling" id=1>콘덴츠</div>
+<div class="scrolling" id=2>콘덴츠</div>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
 
@@ -275,17 +277,27 @@ margin-left: 24px;
     	  $("#search_btn").click();
       }        
     });
-	   $(document).scroll(function() {
+   
+   
+
+ 	   $(document).scroll(function() {
 		    var maxHeight = $(document).height();
 		    var currentScroll = $(window).scrollTop() + $(window).height();
+		    var no = 0;
 		    if (maxHeight <= currentScroll + 100) {
-		    	  $.ajax({
-		    		  
-		    	  });
+		        $(function() {
+		            $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + no,
+		               function(result) {
+		                 var templateData = $( "#sitterlist").html();
+		                 var template = Handlebars .compile(templateData);
+		                 var html = template(result);
+		                 $("#petsitter").append(html);
+		             })
+		         });
           }
-      }); 
+      });  
 	    // 기본으로 최신순을 뿌려준다.
-      $(function() {
+/*       $(function() {
          $.getJSON("../ajax/petsitter/list.do?order=pno",
             function(result) {
               var templateData = $( "#sitterlist").html();
@@ -293,7 +305,7 @@ margin-left: 24px;
               var html = template(result);
               $("#petsitter").append(html);
           })
-      });
+      }); */
       
       // 
       var TagText = $(".section-subheading");

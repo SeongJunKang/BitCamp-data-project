@@ -88,6 +88,7 @@
     <if test="amt != null">
     order by AMT
     </if>
+    limit #{index},6
 	</select>
 	
 	<select id="search" resultMap="PetSitterMap" parameterType="map">

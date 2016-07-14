@@ -57,8 +57,9 @@ public class DefaultPetSitterService implements PetSitterService {
     return false;
   }
 
-  public List<PetSitter> list(String order) {
+  public List<PetSitter> list(String order, int index) {
     HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("index", index);
     switch(order) {
     case "pno": paramMap.put("pno", order);
       break;
