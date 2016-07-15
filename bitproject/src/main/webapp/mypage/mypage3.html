@@ -119,8 +119,8 @@
                 <span class="input-group-btn">
                    <button id="emailrequest"  class="btn btn-me" type="button">인증하기</button>
                 </span>
-              </div>
                 <span id="emailAuthSpan"></span>
+              </div>
             </td>
           </tr>
          <tr>
@@ -370,12 +370,7 @@
     <!-- mypage Onload -->
     <script src="../bower_components/js/mypage/mypageSubmit.js"></script>
 <script type="text/javascript">
-  $("#emailrequest").click (function() {
- 	  $("#emailrequest").text("다시 보내기");
-    $.getJSON("../email/auth.do", function(result) {
-    	$("#emailAuthSpan").text(result.status);
-    });
-  });
+
 	$('#frm').on('keyup keypress', function(e) {
 	    var keyCode = e.keyCode || e.which;
 	    if (keyCode === 13) { 
