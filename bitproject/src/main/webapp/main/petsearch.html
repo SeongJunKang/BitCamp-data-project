@@ -196,8 +196,8 @@ margin-left: 24px;
             </div>
         </div>
     </footer>
-    <div class="scrolling" id=1>콘덴츠</div>
-<div class="scrolling" id=2>콘덴츠</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
 
@@ -215,6 +215,7 @@ margin-left: 24px;
 
     <!-- Custom Theme JavaScript -->
     <script src="../bower_components/js/agency.js"></script>
+    <script src="jesc.js"></script>
         <script id="sitterlist" type="text/x-handlebars-template">
     {{#each list}}
       <div class="col-md-4 col-sm-6 portfolio-item">
@@ -278,24 +279,27 @@ margin-left: 24px;
       }        
     });
    
-   
+	   sessionStorage.setItem("no", 0);
+	    $(document).scroll(function() {
+	            var maxHeight = $(document).height();
+	            var currentScroll = $(window).scrollTop() + $(window).height();
+	            if (maxHeight <= currentScroll + 10) {
+	                   console.log("before" + sessionStorage.getItem('no'));
+	                    $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
+	                       function(result) {
+	                         var templateData = $( "#sitterlist").html();
+	                         var template = Handlebars .compile(templateData);
+	                         var html = template(result);
+	                         $("#petsitter").append(html);
+	                         sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
+	                         console.log("after" + sessionStorage.getItem('no'));
+	                     })
+	              }
+	          });   
+  
 
- 	   $(document).scroll(function() {
-		    var maxHeight = $(document).height();
-		    var currentScroll = $(window).scrollTop() + $(window).height();
-		    var no = 0;
-		    if (maxHeight <= currentScroll + 100) {
-		        $(function() {
-		            $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + no,
-		               function(result) {
-		                 var templateData = $( "#sitterlist").html();
-		                 var template = Handlebars .compile(templateData);
-		                 var html = template(result);
-		                 $("#petsitter").append(html);
-		             })
-		         });
-          }
-      });  
+		   
+ 	   
 	    // 기본으로 최신순을 뿌려준다.
 /*       $(function() {
          $.getJSON("../ajax/petsitter/list.do?order=pno",
@@ -306,12 +310,11 @@ margin-left: 24px;
               $("#petsitter").append(html);
           })
       }); */
-      
-      // 
       var TagText = $(".section-subheading");
       $("#latest").click(function() {
+    	  sessionStorage.setItem("no", 0);
           TagText.text($("#latest").text());
-          $.getJSON("../ajax/petsitter/list.do?order=pno",
+          $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
@@ -320,8 +323,9 @@ margin-left: 24px;
            })
         });
       $("#popu").click(function() {
+    	  sessionStorage.setItem("no", 0);
     	  TagText.text($("#popu").text());
-    	  $.getJSON("../ajax/petsitter/list.do?order=likes",
+    	  $.getJSON("../ajax/petsitter/list.do?order=likes&index=" + sessionStorage.getItem('no'),
            function(result) {
              var templateData = $( "#sitterlist").html();
              var template = Handlebars .compile(templateData);
@@ -330,8 +334,9 @@ margin-left: 24px;
          })
       });
       $("#byname").click(function() {
+    	  sessionStorage.setItem("no", 0);
           TagText.text($("#byname").text());
-          $.getJSON("../ajax/petsitter/list.do?order=nick",
+          $.getJSON("../ajax/petsitter/list.do?order=nick&index=" + sessionStorage.getItem('no'),
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
@@ -340,8 +345,9 @@ margin-left: 24px;
             })
         });
       $("#byprice").click(function() {
+    	  sessionStorage.setItem("no", 0);
           TagText.text($("#byprice").text());
-          $.getJSON("../ajax/petsitter/list.do?order=amt",
+          $.getJSON("../ajax/petsitter/list.do?order=amt&index=" + sessionStorage.getItem('no'),
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
