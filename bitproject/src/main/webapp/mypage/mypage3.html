@@ -141,7 +141,6 @@
               <div class=" input-group1">
                 <input type="text" class="form-control" value="8470" id="phone3" name="phone3">
               </div>
-              <button type="button" class="btn btn-me" >인증하기</button>
             </td>
           </tr>
           <tr>
@@ -374,7 +373,7 @@
   $("#emailrequest").click (function() {
  	  $("#emailrequest").text("다시 보내기");
     $.getJSON("../email/auth.do", function(result) {
-    	$("#emailAuthSpan").html(result.status);
+    	$("#emailAuthSpan").text(result.status);
     });
   });
 	$('#frm').on('keyup keypress', function(e) {

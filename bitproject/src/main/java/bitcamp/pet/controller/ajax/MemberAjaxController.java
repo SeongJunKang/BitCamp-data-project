@@ -125,6 +125,7 @@ public class MemberAjaxController {
     result.put("tel",member.getTel());
     result.put("gra",member.getGra());
     result.put("agc",member.getAgency());
+    result.put("eauth",member.getEauth());
     try {
       result.put("prof",member.getProf());
     } catch (Exception e) {
