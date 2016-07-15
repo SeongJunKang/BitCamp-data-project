@@ -7,7 +7,6 @@
     <meta name="description" content="">
 
     <title>산책할개</title>
-
    <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -24,19 +23,32 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Mypage css -->
     <link rel="stylesheet" type="text/css" href="../bower_components/css/mypage.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     
-	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<!-- jQuery Dialog -->
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+    
+    <!-- PhotoBox Css -->
+  <link rel="stylesheet" href="../bower_components/css/styles.css">
+  <link rel="stylesheet" href="../bower_components/css/photobox.css">
+  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src='../bower_components/js/jquery.photobox.js'></script>
+  
+    <!-- jQuery Dialog -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- check login -->
     <script type="text/javascript" src="../LoginCheck.js"></script>
     <!-- Daum map API -->
     <script src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
-
+<style type="text/css">
+#wrap {
+margin-right: 250px;
+}
+</style>
 </head>
 
 <body id="page-top" class="index">
@@ -88,10 +100,10 @@
     <div id="container1">
     <form id="frm" method="post" name="frm" onsubmit="return false;">
     <div class="preview img-wrapper"></div>
-	  <div class="file-upload-wrapper">
-	      <input type="file" id="uploadFile" name="uploadFile" class="file-upload-native" accept="image/*"/>
-	      <input type="text" disabled placeholder="프로필 사진을 등록하세요" class="file-upload-text" />
-	  </div>
+    <div class="file-upload-wrapper">
+        <input type="file" id="uploadFile" name="uploadFile" class="file-upload-native" accept="image/*"/>
+        <input type="text" disabled placeholder="프로필 사진을 등록하세요" class="file-upload-text" />
+    </div>
       <div class="table-responsive table1">
       <div id="deletediv">
       <button id="delete" type="button" class="btn btn-me">회원탈퇴</button>
@@ -119,7 +131,6 @@
                 <span class="input-group-btn">
                    <button id="emailrequest"  class="btn btn-me" type="button">인증하기</button>
                 </span>
-                <span id="emailAuthSpan"></span>
               </div>
             </td>
           </tr>
@@ -141,6 +152,7 @@
               <div class=" input-group1">
                 <input type="text" class="form-control" value="8470" id="phone3" name="phone3">
               </div>
+              <button type="button" class="btn btn-me">인증하기</button>
             </td>
           </tr>
           <tr>
@@ -310,7 +322,26 @@
   <div id="dialog-deletef" title="도그워커 등록 정보 삭제">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 도그워커 정보를 삭제 실패했습니다.</p>
   </div>
-
+    <div id='wrap'>
+    <ul id="gallery">
+      <li class="loaded"><a href="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"><img title="산책1" src="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"></a></li>
+      <li class="loaded"><a href="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"><img title="산책2" src="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"></a></li>
+      <li class="loaded"><a href="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"><img title="산책3" src="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"></a></li>
+      <li class="loaded"><a href="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"><img title="산책4" src="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"></a></li>
+      <li class="loaded"><a href="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"><img title="산책5" src="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"></a></li>
+      <li class="loaded"><a href="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"><img title="산책6" src="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"></a></li>
+      <li class="loaded"><a href="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"><img title="산책8" src="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"></a></li>
+      <li class="loaded"><a href="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"><img title="산책9" src="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"></a></li>
+      <li class="loaded"><a href="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"><img title="산책10" src="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"></a></li>
+      <li class="loaded"><a href="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"><img title="산책11" src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"></a></li>
+      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"><img title="산책13" src="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"></a></li>
+      <li class="loaded"><a href="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"><img title="산책14" src="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"></a></li>
+      <li class="loaded"><a href="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"><img title="산책15" src="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"></a></li>
+      
+      
+      </ul>
+  </div>
+  
     <footer>
         <div class="container">
             <div class="row">
@@ -338,7 +369,7 @@
             </div>
         </div>
     </footer>
-    <!-- Bootstrap Core JavaScript -->
+  <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -370,14 +401,20 @@
     <!-- mypage Onload -->
     <script src="../bower_components/js/mypage/mypageSubmit.js"></script>
 <script type="text/javascript">
+$('#gallery').photobox('a', { thumbs:true, loop:false }, callback);
+// using setTimeout to make sure all images were in the DOM, before the history.load() function is looking them up to match the url hash
+setTimeout(window._photobox.history.load, 2000);
+function callback(){
+  console.log('callback for loaded content:', this);
+};  
 
-	$('#frm').on('keyup keypress', function(e) {
-	    var keyCode = e.keyCode || e.which;
-	    if (keyCode === 13) { 
-	      e.preventDefault();
-	      return false;
-	    }
-	  });
+  $('#frm').on('keyup keypress', function(e) {
+      var keyCode = e.keyCode || e.which;
+      if (keyCode === 13) { 
+        e.preventDefault();
+        return false;
+      }
+    });
     $(window).load(function() {     
         $('#loading').hide();   
       }); 
