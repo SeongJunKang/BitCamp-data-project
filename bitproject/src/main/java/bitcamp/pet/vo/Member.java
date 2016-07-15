@@ -10,7 +10,14 @@ public class Member {
   String gen;
   Date bth;
   String agency;
+  String eauth;
+  public String getEauth() {
+    return eauth;
+  }
 
+  public void setEauth(String eauth) {
+    this.eauth = eauth;
+  }
   String tel;
   String qus;
   String ans;

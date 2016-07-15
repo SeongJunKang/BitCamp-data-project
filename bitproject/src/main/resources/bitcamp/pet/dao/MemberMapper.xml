@@ -34,8 +34,11 @@
 		PWD=#{pwd},
 		</if>
 		<if test="tel !=null">
-		TEL=#{tel}
+		TEL=#{tel},
 		</if>
+		<if test="eauth !=null">
+    EAUTH=#{eauth}
+    </if>
 		where MNO=#{mno}
 	</update>
 	<delete id="delete" parameterType="int">
