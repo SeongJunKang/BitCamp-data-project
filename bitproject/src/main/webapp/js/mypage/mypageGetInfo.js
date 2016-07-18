@@ -37,7 +37,8 @@ $(function() {
             var inqur2 = inqur[1].split("시");
             $("#inqur1").val(inqur1[0]);
             $("#inqur2").val(inqur2[0]);
-            var service = result2.ser.split(",");
+            if (result2.ser)
+            	var service = result2.ser.split(",");
             for ( var i in service) {
                if ($("#box1").val() == service[i]) {
                   $("#box1").prop("checked", true)
