@@ -52,8 +52,9 @@ public class EmailAuthController {
               Member member = ((Member)httpsession.getAttribute("loginUser"));
               InternetAddress to = new InternetAddress(member.getEmail());// 이메일 수신자
               msg.setRecipient(Message.RecipientType.TO, to);
-              msg.setSubject("산책할개 이메일 인증 입니다", "UTF-8");          // 이메일 제목
-              msg.setText("<a href = 'http://192.168.0.64:8080/bitproject/main/index.html'>산책할개</a> "
+              msg.setSubject(member.getName()+"님, 산책할개 이메일 인증 입니다", "UTF-8");          // 이메일 제목
+              msg.setText("안녕하세요. "+member.getName() +"님,"
+                  + "<a href = 'http://192.168.0.64:8080/bitproject/main/index.html'>산책할개</a> "
                   + "에 인증하시려면 아래의 링크를 클릭해주세요.<br> "
                   + "<a href='http://192.168.0.64:8080/bitproject/email/complete.do'>인증하기</a>", "UTF-8");                                    // 이메일 내용
               msg.setHeader("content-Type", "text/html");                      // 이메일 헤더
@@ -77,6 +78,9 @@ public class EmailAuthController {
     public String update(HttpSession session) throws ServletException, IOException {
       Member member = (Member) session.getAttribute("loginUser");
       member.setEauth("인증");
+      if (member.getEauth().equals("인증")) {
+        return "이미 처리된 인증 정보입니다.";
+      }
       
       try {
         memberService.change(member); // 회원정보 변경 신청
@@ -93,8 +97,8 @@ public class EmailAuthController {
   class MyAuthentication extends Authenticator {
       PasswordAuthentication pa;
       public MyAuthentication(){
-          String id = "tjdwns8574@gmail.com";       // 구글 ID
-          String pw = "tjdwns535";          // 구글 비밀번호
+          String id = "";       // 구글 ID
+          String pw = "";                  // 구글 비밀번호
           // ID와 비밀번호를 입력한다.
           pa = new PasswordAuthentication(id, pw);
       }
