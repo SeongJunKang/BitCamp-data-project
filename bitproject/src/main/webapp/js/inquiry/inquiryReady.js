@@ -1,0 +1,186 @@
+		$(document).ready(function() {
+    $.getJSON("../ajax/request/myrequestlist.do", function(result) {
+        var templateData = $('#temp1').html();
+        var template = Handlebars.compile(templateData);
+        var html = template(result);
+        $("#send").append(html);
+        $(".myrequestdetail").on("click", function() {
+        	var req = event.target.getAttribute("data-no");
+        	  $.getJSON("../ajax/request/detail.do?req="
+        		      + req, function(result) {
+        		    $("#petname").html(result.pname+ "<br>");
+        		    $("#pettel").html(result.request.p_tel+ "<br>");
+        		    $("#pettalk").html(result.request.ktalk+ "<br>");
+        		    $("#date1").html(result.request.date + "<br>");
+        		    $("#conts1").html(result.request.conts);
+        		    $("#answer1-1").html("<br>" + result.request.res);
+        		    $("#answer1-2").html("<br>" + result.request.neut);
+        		    $("#answer1-3").html("<br>" + result.request.anifd);
+        		    $("#answer1-4").html("<br>" + result.request.manfd);
+        		    $("#answer1-5").html("<br>" + result.request.bark);
+        		    $("#answer1-6").html("<br>" + result.request.diz);
+        		    $("#answer1-7").html("<br>" + result.request.meal);
+        		    $("#answer1-8").html("<br>" + result.request.train);
+        		    if (result.request.stat == "대기") {
+        		      $("#inex1").dialog({
+        		        resizable : false,
+        		        height : 600,
+        		        width : 500,
+        		        modal : true,
+        		        buttons : {
+        		          "취소" : function() {
+        		            $.ajax("../ajax/request/delete.do", {
+        		              method : "POST",
+        		              dataType : "json",
+        		              data : {
+        		                req : req
+        		              },
+        		              success : function(result) {
+        		                if (result.status == "success") {
+        		                  location.href = "inquiry.html";
+        		                } else {
+        		                  window.alert("변경 실패입니다!");
+        		                }
+        		              },
+        		              error : function() {
+        		                window.alert("서버 요청 실패입니다!");
+        		              }
+        		            });
+        		            $(this).dialog("close");
+        		          },
+        		          "확인" : function() {
+        		            $(this).dialog("close");
+        		          }
+        		        }
+        		      }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+        		    } else {
+        		      $("#inex1").dialog({
+        		        resizable : false,
+        		        height : 600,
+        		        width : 500,
+        		        modal : true,
+        		        buttons : {
+        		          "확인" : function() {
+        		            $(this).dialog("close");
+        		          }
+        		        }
+        		      }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+        		    }
+        		  });
+     	  })
+      });
+	  $.getJSON("../ajax/request/petrequestlist.do", function(result) {
+		    var templateData = $('#temp2').html();
+		    var template = Handlebars.compile(templateData);
+		    var html = template(result);
+		    $("#receive").append(html);
+		    $(".getrequestdetail").on("click", function() {
+		         var req = event.target.getAttribute("data-no");
+            $.getJSON("../ajax/request/detail.do?req="
+                  + req, function(result) {
+                $("#reqname").html(result.mname+ "<br>");
+                $("#reqtel").html(result.request.m_tel+ "<br>");
+                $("#date2").html(result.request.date + "<br>");
+                $("#conts2").html(result.request.conts);
+                $("#answer2-1").html("<br>" + result.request.res);
+                $("#answer2-2").html("<br>" + result.request.neut);
+                $("#answer2-3").html("<br>" + result.request.anifd);
+                $("#answer2-4").html("<br>" + result.request.manfd);
+                $("#answer2-5").html("<br>" + result.request.bark);
+                $("#answer2-6").html("<br>" + result.request.diz);
+                $("#answer2-7").html("<br>" + result.request.meal);
+                $("#answer2-8").html("<br>" + result.request.train);
+                    $("#inex2").dialog({
+                      resizable : false,
+                      height : 600,
+                      width : 500,
+                      modal : true,
+                      buttons : {
+                        "수락" : function() {
+                          $.ajax("../ajax/request/update.do", {
+                            method : "POST",
+                            dataType : "json",
+                            data : {
+                              req :req,
+                              stat : "수락"
+                            },
+                            success : function(result) {
+                              if (result.status == "success") {
+                                location.href = "../main/index.html";
+                              } else {
+                                window.alert("변경 실패입니다!");
+                              }
+                            },
+                            error : function() {
+                              window.alert("서버 요청 실패입니다!");
+                            }
+                          });
+                          $(this).dialog("close");
+                        },
+                        "거절" : function() {
+                          $.ajax("../ajax/request/update.do", {
+                            method : "POST",
+                            dataType : "json",
+                            data : {
+                              req : req,
+                              stat : "거절"
+                            },
+                            success : function(result) {
+                              if (result.status == "success") {
+                                location.href = "../main/index.html";
+                              } else {
+                                window.alert("거절 실패입니다!");
+                              }
+                            },
+                            error : function() {
+                              window.alert("서버 요청 실패입니다!");
+                            }
+                          });
+                          $(this).dialog("close");
+                        },
+                        "목록" : function() {
+                          $(this).dialog("close");
+                        }
+                      }
+                    }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+              });
+	        })
+		  });
+	  
+			$("#logout").click(function() {
+				location.href = "../auth/logout.do";
+				event.preventDefault();
+			});
+			$("#mypage").click(function() {
+				location.href = "mypage3.html";
+				event.preventDefault();
+			});
+			$("#resist").click(function(event) {
+				location.href = "../resist/resist.html";
+				event.preventDefault();
+			});
+			// 탭 메뉴바 설정
+		    $(".tab_content").hide();
+		    $(".tab_content:first").show();
+
+		    $("ul.tabs li").click(function () {
+		        $("ul.tabs li").removeClass("active").css("color", "#333");
+		        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+		        $(this).addClass("active").css("color", "#fff");
+		        $(".tab_content").hide()
+		        var activeTab = $(this).attr("rel");
+		        $("#" + activeTab).fadeIn()
+		    });
+		    //------------
+		    //멤버의 등급 가져오기
+		      $.getJSON("../ajax/member/detail.do?", function(result) {
+		          if (result.gra == 2) {
+		            $(".grade2").css("display", "");
+		            $(".grade1").css("display", "none");
+		          } else {
+		            $(".grade1").css("display", "");
+		            $(".grade2").css("display", "none");
+		          }
+		        });
+		    ///------------
+		});
