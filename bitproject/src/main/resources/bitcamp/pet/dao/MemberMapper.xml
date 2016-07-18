@@ -33,11 +33,11 @@
 		<if test="pwd !=null">
 		PWD=#{pwd},
 		</if>
-		<if test="tel !=null">
-		TEL=#{tel},
+		<if test="eauth == null">
+		TEL=#{tel}
 		</if>
 		<if test="eauth !=null">
-    EAUTH=#{eauth}
+    TEL=#{tel}, EAUTH=#{eauth}
     </if>
 		where MNO=#{mno}
 	</update>
