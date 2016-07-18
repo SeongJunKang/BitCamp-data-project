@@ -12,6 +12,8 @@ $('#keyword').keyup(function(e) {
    }
 });
 $(document).ready(function() {
+	
+	$("#complete").css("display","none");
    $(".grade1").css("display", "none");
    $(".grade2").css("display", "none");
    $("#dialog-confirm").css("display", "none");
@@ -36,7 +38,29 @@ $(document).ready(function() {
    });
 
    $("#resist").click(function(event) {
-      location.href = "../resist/resist.html";
+	   $.getJSON("../ajax/member/detail.do?", function(result) {
+		      if (result.eauth == "인증") {
+		    	  location.href = "../resist/resist.html";
+		      } else {
+                  $( "#dialog-resist" ).dialog({
+                      resizable: false,
+                      height:170,
+                      width:385,
+                      show: {
+                          effect: "blind",
+                          duration: 500
+                        },
+                        hide: {
+                          effect: "fadeOut",
+                          duration: 500
+                        },
+                      modal: true,
+                      buttons: {"확인": function() {
+                        $( this ).dialog( "close" );
+                        }}
+                    });
+		      }
+		   });
       event.preventDefault();
    });
      $("#emailrequest").click (function() {

@@ -17,7 +17,6 @@
 	    	   if (sessionStorage.getItem("gra") == 1) {
 	    		   sessionStorage.removeItem("gra");
              if (result.status == "success") {
-                 $(function() {
                      $( "#dialog-confirm2" ).dialog({
                        resizable: false,
                        height:180,
@@ -36,9 +35,7 @@
                          location.href = "mypage3.html"
                          }}
                      });
-                   });
                } else {
-                 $(function() {
                     $( "#dialog-confirm3" ).dialog({
                       resizable: false,
                       height:180,
@@ -55,7 +52,6 @@
                       buttons: {"확인": function() {$( this ).dialog( "close" );}
                       }
                     });
-                  });
                 }
 	    	   } else if (sessionStorage.getItem("gra") == 2) {
 	    		   sessionStorage.removeItem("gra");
