@@ -39,6 +39,7 @@ $(document).ready(function() {
    });
 
    $("#resist").click(function(event) {
+	   /*
 	   $.getJSON("../ajax/member/detail.do?", function(result) {
 		      if (result.eauth == "인증") {
 		    	  location.href = "../resist/resist.html";
@@ -62,6 +63,8 @@ $(document).ready(function() {
                     });
 		      }
 		   });
+		   */
+	   location.href = "../resist/resist.html";
       event.preventDefault();
    });
      $("#emailrequest").click (function() {
