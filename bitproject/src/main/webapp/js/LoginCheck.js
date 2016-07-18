@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 $(function() {
 	$.ajax("../auth/loging.do?", {
 		method : "POST",
