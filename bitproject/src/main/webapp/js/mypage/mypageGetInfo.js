@@ -13,7 +13,7 @@ $(function() {
       sessionStorage.setItem("gra", result.gra);
       if (result.eauth == "인증") {
            $("#emailrequest").css("display","none");
-            $("#complete").css("display","");
+           $("#complete").css("display","");
       }
       if (result.gra == 2) {
          $(".grade2").css("display", "");

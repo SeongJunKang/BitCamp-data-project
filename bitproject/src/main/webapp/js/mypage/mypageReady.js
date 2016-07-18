@@ -16,6 +16,7 @@ $(document).ready(function() {
 	$("#complete").css("display","none");
    $(".grade1").css("display", "none");
    $(".grade2").css("display", "none");
+   $( "#dialog-resist" ).css("display", "none");
    $("#dialog-confirm").css("display", "none");
    $("#dialog-confirm2").css("display", "none");
    $("#dialog-confirm3").css("display", "none");
