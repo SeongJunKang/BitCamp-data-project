@@ -97,8 +97,8 @@ public class EmailAuthController {
   class MyAuthentication extends Authenticator {
       PasswordAuthentication pa;
       public MyAuthentication(){
-          String id = "tjdwns8574@gmail.com ";       // 구글 ID
-          String pw = "tjdwns535";                  // 구글 비밀번호
+          String id = "";       // 구글 ID
+          String pw = "";                  // 구글 비밀번호
           // ID와 비밀번호를 입력한다.
           pa = new PasswordAuthentication(id, pw);
       }
