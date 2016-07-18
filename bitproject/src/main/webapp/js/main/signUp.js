@@ -44,8 +44,8 @@ $(function() {
 						$(function() {
 	                     $( "#dialog-signup-success" ).dialog({
 	                       resizable: false,
-	                       height:180,
-	                       width:300,
+	                       height:150,
+	                       width:400,
 	                       show: {
 	                           effect: "blind",
 	                           duration: 500
@@ -57,10 +57,12 @@ $(function() {
 	                       modal: true,
 	                       buttons: {"확인": function() {
 	                         $( this ).dialog( "close" );
-	                         }}
+	                         }},
+	                       close : function() {
+	                    	   location.href= "index.html"
+	                       }
 	                     });
 						});
-						location.href= "index.html";
 					} else {
 	                 $(function() {
 	                     $( "#dialog-signup-fail" ).dialog({
