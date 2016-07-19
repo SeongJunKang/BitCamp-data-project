@@ -48,7 +48,14 @@
     <script src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
 <style type="text/css">
 #wrap {
-margin-right: 250px;
+margin: 0 auto;
+}
+.detailtext {
+  text-align: left;
+  font-size: 40px;
+  font-style: oblique;
+  font-weight: bold;
+  margin: 40px;
 }
 </style>
 </head>
@@ -308,9 +315,29 @@ margin-right: 250px;
           <button type="submit" id="savebtn" class="btn btn-me">저장</button>
       </div>
       </form>
+      <blockquote>
+        <p class="detailtext">후기사진 업로드</p>
+      </blockquote>
       <form class="photoForm" action="ajax/board/putImg.do" method="post" enctype="multipart/form-data">
          <input type="file" class="file"  id="file-0" name="img"  multiple data-min-file-count="1">
       </form>
+      <div id='wrap'>
+	      <ul id="gallery">
+		      <li class="loaded"><a href="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"><img title="산책1" src="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"></a></li>
+		      <li class="loaded"><a href="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"><img title="산책2" src="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"></a></li>
+		      <li class="loaded"><a href="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"><img title="산책3" src="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"></a></li>
+		      <li class="loaded"><a href="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"><img title="산책4" src="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"></a></li>
+		      <li class="loaded"><a href="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"><img title="산책5" src="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"></a></li>
+		      <li class="loaded"><a href="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"><img title="산책6" src="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"></a></li>
+		      <li class="loaded"><a href="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"><img title="산책8" src="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"></a></li>
+		      <li class="loaded"><a href="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"><img title="산책9" src="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"></a></li>
+		      <li class="loaded"><a href="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"><img title="산책10" src="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"></a></li>
+		      <li class="loaded"><a href="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"><img title="산책11" src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"></a></li>
+		      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"><img title="산책13" src="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"></a></li>
+		      <li class="loaded"><a href="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"><img title="산책14" src="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"></a></li>
+		      <li class="loaded"><a href="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"><img title="산책15" src="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"></a></li>
+	      </ul>
+      </div>
     </div>
   </div>
   <div id="dialog-confirm" title="회원 탈퇴 확인">
@@ -331,25 +358,7 @@ margin-right: 250px;
   <div id="dialog-resist" title="이메일 인증 확인">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>도그워커에 등록하려면 이메일 인증해야 합니다.</p>
   </div>
-    <div id='wrap'>
-    <ul id="gallery">
-      <li class="loaded"><a href="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"><img title="산책1" src="http://cfile27.uf.tistory.com/image/230977375594E1AB280F05"></a></li>
-      <li class="loaded"><a href="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"><img title="산책2" src="http://www.nemopan.com/files/attach/images/6296/585/060/007/%EC%95%84%EB%A7%8C%EB%8B%A4-%EC%82%AC%EC%9D%B4%ED%94%84%EB%A6%AC%EB%93%9C_002.jpg"></a></li>
-      <li class="loaded"><a href="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"><img title="산책3" src="http://file.instiz.net/data/file/20140701/8/f/c/8fc92e25ca028fe8bbf3a26b45c260d4.jpg"></a></li>
-      <li class="loaded"><a href="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"><img title="산책4" src="http://cfile3.uf.tistory.com/image/120BF4114A35EC45634C22"></a></li>
-      <li class="loaded"><a href="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"><img title="산책5" src="http://file.instiz.net/data/file/20130731/9/9/6/9960152581abcf1cc4421200c643e150"></a></li>
-      <li class="loaded"><a href="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"><img title="산책6" src="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"></a></li>
-      <li class="loaded"><a href="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"><img title="산책8" src="http://cfile6.uf.tistory.com/image/2503554A530A567418389C"></a></li>
-      <li class="loaded"><a href="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"><img title="산책9" src="http://cfs16.tistory.com/image/11/tistory/2010/11/05/09/28/4cd34fc9ba640"></a></li>
-      <li class="loaded"><a href="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"><img title="산책10" src="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"></a></li>
-      <li class="loaded"><a href="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"><img title="산책11" src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/13391111_838188152981145_379204155_n.jpg?ig_cache_key=MTI2Nzk1MjcxMDQxMDU5MjczMQ%3D%3D.2"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"><img title="산책13" src="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"></a></li>
-      <li class="loaded"><a href="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"><img title="산책14" src="http://66.media.tumblr.com/441fa40e843bb3233f3eacfde7e2eb14/tumblr_o8ksheCRB51u5rbuuo1_1280.jpg"></a></li>
-      <li class="loaded"><a href="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"><img title="산책15" src="http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=642245840f686f143abe458e7d13ea1f&name=P1210942.jpg"></a></li>
-      
-      
-      </ul>
-  </div>
+    
   
     <footer>
         <div class="container">
