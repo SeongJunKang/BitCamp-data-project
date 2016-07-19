@@ -166,6 +166,13 @@ margin-left: 24px;
             </div>
             <div class="row" id="petsitter">
             </div>
+            <div class='row' id='hehe'>
+            <nav>
+              <ul class="pagination" style="margin-left:45%;">
+							   
+							  </ul>
+							</nav>
+            </div>
         </div>
     </section>
     
@@ -213,9 +220,9 @@ margin-left: 24px;
     <script src="../js/agency.js"></script>
     <script src="jesc.js"></script>
     <script type="text/javascript" src="../js/LoginCheck.js"></script>
-        <script id="sitterlist" type="text/x-handlebars-template">
+    <script id="sitterlist" type="text/x-handlebars-template">
     {{#each list}}
-      <div class="col-md-4 col-sm-6 portfolio-item">
+      <div data-pno="{{pno}}" class="col-md-4 col-sm-6 portfolio-item">
           <a href="#" onclick="onclickDetail(event)" class="portfolio-link po1" data-pno="{{pno}}" data-toggle="modal">
               <div class="portfolio-hover">
                   <div class="portfolio-hover-content">
@@ -234,7 +241,128 @@ margin-left: 24px;
     <!-- Handlebars  JavaScript -->
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script type="text/javascript">
-
+     function pre() {
+    	 console.log(sessionStorage.getItem("nowpage") )
+    	 if(sessionStorage.getItem("nowpage") > 1)
+    	 gopage(sessionStorage.getItem("nowpage")*1-1)
+     }
+     function next() {
+    	 console.log(sessionStorage.getItem("nowpage") )
+         if(sessionStorage.getItem("nowpage") < sessionStorage.getItem("totalPage"))
+         gopage(sessionStorage.getItem("nowpage")*1+1)
+       }
+  
+     gopage(1) ;
+    function gopage(i) {
+    sessionStorage.setItem("nowpage",i);
+    	$.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=" + i,
+              function(result) {
+    	          $("#petsitter").empty();
+                var templateData = $( "#sitterlist").html();
+                var template = Handlebars .compile(templateData);
+                var html = template(result);
+                $("#petsitter").append(html);
+            })
+            
+            
+         var TagText = $(".section-subheading");
+        $("#latest").click(function(event) {
+           $("#petsitter").empty();
+          event.preventDefault();
+            TagText.text($("#latest").text());
+            gopage(1);
+       /*      $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo="+i,
+                function(result) {
+                  var templateData = $( "#sitterlist").html();
+                  var template = Handlebars .compile(templateData);
+                  var html = template(result);
+                  $("#petsitter").append(html);
+             }); */
+           });  
+             
+        $("#popu").click(function() {
+            $("#petsitter").empty();
+            event.preventDefault();
+          TagText.text($("#popu").text());
+          $.getJSON("../ajax/petsitter/list.do?order=likes&pageNo="+ i,
+             function(result) {
+               var templateData = $( "#sitterlist").html();
+               var template = Handlebars .compile(templateData);
+               var html = template(result);
+               $("#petsitter").append(html);
+           });
+          prio(likes);
+          $.getJSON("../ajax/petsitter/list.do?order=likes", function(result){
+        	     var pagingTag=$(".pagination"); 
+        	      sessionStorage.setItem("totalPage", result.totalPage);
+        	     $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+        	     for(var i=1 ; i <= result.totalPage; i++) {
+        	      $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+        	     }
+        	     $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+        	   })  
+        });
+        $("#byname").click(function() {
+              $("#petsitter").empty();
+            event.preventDefault();
+            TagText.text($("#byname").text());
+            $.getJSON("../ajax/petsitter/list.do?order=nick&pageNo=" + i,
+                function(result) {
+                  var templateData = $( "#sitterlist").html();
+                  var template = Handlebars .compile(templateData);
+                  var html = template(result);
+                  $("#petsitter").append(html);
+              });
+            $.getJSON("../ajax/petsitter/list.do?order=nick", function(result){
+                var pagingTag=$(".pagination"); 
+                 sessionStorage.setItem("totalPage", result.totalPage);
+                $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+                for(var i=1 ; i <= result.totalPage; i++) {
+                 $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+                }
+                $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+              })  
+          });
+        $("#byprice").click(function() {
+              $("#petsitter").empty();
+            event.preventDefault();
+            TagText.text($("#byprice").text());
+            $.getJSON("../ajax/petsitter/list.do?order=amt&pageNo=" +i,
+                function(result) {
+                  var templateData = $( "#sitterlist").html();
+                  var template = Handlebars .compile(templateData);
+                  var html = template(result);
+                  $("#petsitter").append(html);
+              });
+            $.getJSON("../ajax/petsitter/list.do?order=amt", function(result){
+            	     var pagingTag=$(".pagination"); 
+            	      sessionStorage.setItem("totalPage", result.totalPage);
+            	     $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+            	     for(var i=1 ; i <= result.totalPage; i++) {
+            	      $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+            	     }
+            	     $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+            	   })  
+          });
+        
+        $("#bysales").click(function() {
+            TagText.text($("#bysales").text());
+          });
+   };
+   
+   $(function prio(str){
+	   $.getJSON("../ajax/petsitter/list.do?order="+str, function(result){
+		   var pagingTag=$(".pagination"); 
+		    sessionStorage.setItem("totalPage", result.totalPage);
+		   $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+		   for(var i=1 ; i <= result.totalPage; i++) {
+			  $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+		   }
+		   $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+	   })  
+	   
+   });
+   
    $(document).ready(function () {// Add contents for max height
 	   $(".selected_location").click(function(event) {
 		     $("#select_location").text($(this).text());
@@ -275,28 +403,39 @@ margin-left: 24px;
     	  $("#search_btn").click();
       }        
     });
-   
-	   sessionStorage.setItem("no", 0);
-	    $(document).scroll(function() {
-	            var maxHeight = $(document).height();
-	            var currentScroll = $(window).scrollTop() + $(window).height();
-	            if (maxHeight <= currentScroll + 10) {
-	                   console.log("before" + sessionStorage.getItem('no'));
-	                    $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
-	                       function(result) {
-	                         var templateData = $( "#sitterlist").html();
-	                         var template = Handlebars .compile(templateData);
-	                         var html = template(result);
-	                         $("#petsitter").append(html);
-	                         sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
-	                         console.log("after" + sessionStorage.getItem('no'));
-	                     })
-	              }
-	          });   
-  
 
-		   
- 	   
+ 	 /* $(function() {
+ 		   sessionStorage.setItem("no", 0);
+     $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
+                    function(result) {
+                      var templateData = $( "#sitterlist").html();
+                      var template = Handlebars .compile(templateData);
+                      var html = template(result);
+                      $("#petsitter").append(html);
+                      sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
+                      console.log("after" + sessionStorage.getItem('no'));
+                  })
+ 	   }); */
+/*	   $(document).scroll(function() {
+	       var maxHeight = $(document).height();
+	       var currentScroll = $(window).scrollTop() + $(window).height();
+	       if (maxHeight <= currentScroll) {
+	              console.log("before" + sessionStorage.getItem('no'));
+	               $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
+	                  function(result) {
+	                    var templateData = $( "#sitterlist").html();
+	                    var template = Handlebars .compile(templateData);
+	                    var html = template(result);
+	                    $("#petsitter").append(html);
+	                    sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
+	                    console.log("after" + sessionStorage.getItem('no'));
+	                })
+	                
+	                
+	         }
+	     });    */
+	     
+	   
 	    // 기본으로 최신순을 뿌려준다.
 /*       $(function() {
          $.getJSON("../ajax/petsitter/list.do?order=pno",
@@ -307,22 +446,25 @@ margin-left: 24px;
               $("#petsitter").append(html);
           })
       }); */
-      var TagText = $(".section-subheading");
-      $("#latest").click(function() {
-    	  sessionStorage.setItem("no", 0);
+/*       var TagText = $(".section-subheading");
+      $("#latest").click(function(event) {
+        	  $("#petsitter").empty();
+    	  event.preventDefault();
           TagText.text($("#latest").text());
-          $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
+          $.getJSON("../ajax/petsitter/list.do?order=pno",
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
                 var html = template(result);
                 $("#petsitter").append(html);
            })
-        });
+         });  
+           
       $("#popu").click(function() {
-    	  sessionStorage.setItem("no", 0);
+    		  $("#petsitter").empty();
+          event.preventDefault();
     	  TagText.text($("#popu").text());
-    	  $.getJSON("../ajax/petsitter/list.do?order=likes&index=" + sessionStorage.getItem('no'),
+    	  $.getJSON("../ajax/petsitter/list.do?order=likes&pageNo="+ i,
            function(result) {
              var templateData = $( "#sitterlist").html();
              var template = Handlebars .compile(templateData);
@@ -331,9 +473,10 @@ margin-left: 24px;
          })
       });
       $("#byname").click(function() {
-    	  sessionStorage.setItem("no", 0);
+        	  $("#petsitter").empty();
+          event.preventDefault();
           TagText.text($("#byname").text());
-          $.getJSON("../ajax/petsitter/list.do?order=nick&index=" + sessionStorage.getItem('no'),
+          $.getJSON("../ajax/petsitter/list.do?order=nick&pageNo=" + i,
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
@@ -342,9 +485,10 @@ margin-left: 24px;
             })
         });
       $("#byprice").click(function() {
-    	  sessionStorage.setItem("no", 0);
+        	  $("#petsitter").empty();
+          event.preventDefault();
           TagText.text($("#byprice").text());
-          $.getJSON("../ajax/petsitter/list.do?order=amt&index=" + sessionStorage.getItem('no'),
+          $.getJSON("../ajax/petsitter/list.do?order=amt&pageNo=" +i,
               function(result) {
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
@@ -355,9 +499,12 @@ margin-left: 24px;
       
       $("#bysales").click(function() {
           TagText.text($("#bysales").text());
-        });
+        }); */
       
     });
+   
+
+
     var search = document.querySelector(".search");
 /*     var list = search.getElementsByTagName("p");
     for (var i = 0; i < list.length; i++) {

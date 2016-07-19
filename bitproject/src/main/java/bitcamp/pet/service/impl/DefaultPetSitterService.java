@@ -57,9 +57,25 @@ public class DefaultPetSitterService implements PetSitterService {
     return false;
   }
 
-  public List<PetSitter> list(String order, int index) {
+/*  public List<PetSitter> list(String order, int index) {
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("index", index);
+    switch(order) {
+    case "pno": paramMap.put("pno", order);
+      break;
+    case "likes":paramMap.put("likes", order);
+      break;
+    case "nick":paramMap.put("nick", order);
+      break;
+    case "amt":paramMap.put("amt", order);
+      break;
+    }
+    return petsitterDao.selectList(paramMap);
+  }*/
+  public List<PetSitter> list(String order,int pageNo, int pageSize) {
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
     switch(order) {
     case "pno": paramMap.put("pno", order);
       break;

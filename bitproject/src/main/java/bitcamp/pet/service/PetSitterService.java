@@ -14,7 +14,8 @@ public interface PetSitterService {
   int countPage(int pageSize);
   boolean exist(int no);
   
-  List<PetSitter> list(String order, int index);
+//  List<PetSitter> list(String order, int index);
+  List<PetSitter> list(String order, int pageNo, int pageSize);
   List<PetSitter> mainlist();
   List<PetSitter> search(String index);
 }

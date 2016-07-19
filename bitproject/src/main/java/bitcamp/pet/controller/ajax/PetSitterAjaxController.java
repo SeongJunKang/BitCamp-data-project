@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -160,11 +161,45 @@ public class PetSitterAjaxController {
     return  new Gson().toJson(result);
   }
   
-  @RequestMapping(produces="application/json;charset=UTF-8", value="list")
+/*  @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
   public String list(String order, int index) throws ServletException, IOException {
     List<PetSitter> list = petsitterService.list(order, index);
     HashMap<String,Object> result = new HashMap<>();
+    result.put("list", list);
+    return new Gson().toJson(result);
+  }*/
+  @RequestMapping(produces="application/json;charset=UTF-8", value="list")
+  @ResponseBody
+  public String list(String order,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="9") int pageSize) throws ServletException, IOException {
+    // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
+    if (pageNo < 0) { // 1페이지 부터 시작
+      pageNo = 1;
+    }
+    
+    int totalPage =petsitterService.countPage(pageSize);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+      pageNo = totalPage;
+    }
+    
+    if (pageSize < 3) { // 최소 3개
+      pageSize = 3; 
+      
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    
+    
+    List<PetSitter> list = petsitterService.list(order, pageNo, pageSize);
+    HashMap<String,Object> result = new HashMap<>();
+    
+    
+    
+    result.put("pageNo", pageNo);
+    result.put("pageSize", pageSize);
+    result.put("totalPage", totalPage);
     result.put("list", list);
     return new Gson().toJson(result);
   }
