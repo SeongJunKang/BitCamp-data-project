@@ -54,9 +54,7 @@ $(function() {
             }
             $("#lat").val(result2.lat);
             $("#lnt").val(result2.lnt);
-            sessionStorage.setItem("lat", result2.lat);
-            sessionStorage.setItem("lnt", result2.lnt);
-            sessionStorage.setItem("rad", result2.rad);
+
          })
       } else {
          $(".grade1").css("display", "");
