@@ -241,6 +241,8 @@ margin-left: 24px;
     <!-- Handlebars  JavaScript -->
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script type="text/javascript">
+    var thisMenu ="pno";
+    
      function pre() {
     	 console.log(sessionStorage.getItem("nowpage") )
     	 if(sessionStorage.getItem("nowpage") > 1)
@@ -255,8 +257,9 @@ margin-left: 24px;
      gopage(1) ;
     function gopage(i) {
     sessionStorage.setItem("nowpage",i);
-    	$.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=" + i,
+    	$.getJSON("../ajax/petsitter/list.do?order="+thisMenu +"&pageNo=" + i,
               function(result) {
+    			console.log(thisMenu);
     	          $("#petsitter").empty();
                 var templateData = $( "#sitterlist").html();
                 var template = Handlebars .compile(templateData);
@@ -264,94 +267,80 @@ margin-left: 24px;
                 $("#petsitter").append(html);
             })
             
-            
-         var TagText = $(".section-subheading");
-        $("#latest").click(function(event) {
-           $("#petsitter").empty();
-          event.preventDefault();
-            TagText.text($("#latest").text());
-            gopage(1);
-       /*      $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo="+i,
-                function(result) {
-                  var templateData = $( "#sitterlist").html();
-                  var template = Handlebars .compile(templateData);
-                  var html = template(result);
-                  $("#petsitter").append(html);
-             }); */
-           });  
-             
-        $("#popu").click(function() {
-            $("#petsitter").empty();
-            event.preventDefault();
-          TagText.text($("#popu").text());
-          $.getJSON("../ajax/petsitter/list.do?order=likes&pageNo="+ i,
-             function(result) {
-               var templateData = $( "#sitterlist").html();
-               var template = Handlebars .compile(templateData);
-               var html = template(result);
-               $("#petsitter").append(html);
-           });
-          prio(likes);
-          $.getJSON("../ajax/petsitter/list.do?order=likes", function(result){
-        	     var pagingTag=$(".pagination"); 
-        	      sessionStorage.setItem("totalPage", result.totalPage);
-        	     $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
-        	     for(var i=1 ; i <= result.totalPage; i++) {
-        	      $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
-        	     }
-        	     $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
-        	   })  
-        });
-        $("#byname").click(function() {
-              $("#petsitter").empty();
-            event.preventDefault();
-            TagText.text($("#byname").text());
-            $.getJSON("../ajax/petsitter/list.do?order=nick&pageNo=" + i,
-                function(result) {
-                  var templateData = $( "#sitterlist").html();
-                  var template = Handlebars .compile(templateData);
-                  var html = template(result);
-                  $("#petsitter").append(html);
-              });
-            $.getJSON("../ajax/petsitter/list.do?order=nick", function(result){
-                var pagingTag=$(".pagination"); 
-                 sessionStorage.setItem("totalPage", result.totalPage);
-                $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
-                for(var i=1 ; i <= result.totalPage; i++) {
-                 $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
-                }
-                $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
-              })  
-          });
-        $("#byprice").click(function() {
-              $("#petsitter").empty();
-            event.preventDefault();
-            TagText.text($("#byprice").text());
-            $.getJSON("../ajax/petsitter/list.do?order=amt&pageNo=" +i,
-                function(result) {
-                  var templateData = $( "#sitterlist").html();
-                  var template = Handlebars .compile(templateData);
-                  var html = template(result);
-                  $("#petsitter").append(html);
-              });
-            $.getJSON("../ajax/petsitter/list.do?order=amt", function(result){
-            	     var pagingTag=$(".pagination"); 
-            	      sessionStorage.setItem("totalPage", result.totalPage);
-            	     $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
-            	     for(var i=1 ; i <= result.totalPage; i++) {
-            	      $("<li class=''>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
-            	     }
-            	     $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
-            	   })  
-          });
-        
-        $("#bysales").click(function() {
-            TagText.text($("#bysales").text());
-          });
+            var TagText = $(".section-subheading");
+    	   $("#latest").click(function(event) {
+    	       thisMenu = "latest";
+    	      $("#petsitter").empty();
+    	     event.preventDefault();
+    	       TagText.text($("#latest").text());
+    	        $.getJSON("../ajax/petsitter/list.do?order="+thisMenu +"&pageNo="+i,
+    	           function(result) {
+    	        	console.log(thisMenu);
+    	             var templateData = $( "#sitterlist").html();
+    	             var template = Handlebars .compile(templateData);
+    	             var html = template(result);
+    	             $("#petsitter").append(html);
+    	        }); 
+    	        prio(thisMenu);
+    	      });  
+    	        
+    	   $("#popu").click(function() {
+    	       thisMenu = "likes";         
+    	       event.preventDefault();
+    	       $("#petsitter").empty();
+    	     TagText.text($("#popu").text());
+    	     $.getJSON("../ajax/petsitter/list.do?order="+thisMenu +"&pageNo="+ i,
+    	        function(result) {
+    	    	 console.log(thisMenu);
+    	          var templateData = $( "#sitterlist").html();
+    	          var template = Handlebars .compile(templateData);
+    	          var html = template(result);
+    	          $("#petsitter").append(html);
+    	      });
+    	     prio(thisMenu);
+    	   });
+    	   $("#byname").click(function() {
+    	       thisMenu = "nick";
+    	         $("#petsitter").empty();
+    	       event.preventDefault();
+    	       TagText.text($("#byname").text());
+    	       $.getJSON("../ajax/petsitter/list.do?order="+thisMenu +"&pageNo=" + i,
+    	           function(result) {
+    	    	   console.log(thisMenu);
+    	             var templateData = $( "#sitterlist").html();
+    	             var template = Handlebars .compile(templateData);
+    	             var html = template(result);
+    	             $("#petsitter").append(html);
+    	         });
+    	       prio(thisMenu);
+    	     });
+    	   $("#byprice").click(function() {
+    	       thisMenu = "amt";
+    	      
+    	         $("#petsitter").empty();
+    	       event.preventDefault();
+    	       TagText.text($("#byprice").text());
+    	       $.getJSON("../ajax/petsitter/list.do?order="+thisMenu +"&pageNo=" +i,
+    	           function(result) {
+    	    	   console.log(thisMenu);
+    	             var templateData = $( "#sitterlist").html();
+    	             var template = Handlebars .compile(templateData);
+    	             var html = template(result);
+    	             $("#petsitter").append(html);
+    	         });
+    	       prio(thisMenu);
+    	     });
+    	   
+    	   $("#bysales").click(function() {
+    	       TagText.text($("#bysales").text());
+    	     });
    };
+   console.log(3)
+
    
-   $(function prio(str){
-	   $.getJSON("../ajax/petsitter/list.do?order="+str, function(result){
+   $(function prio(st){
+	   $.getJSON("../ajax/petsitter/list.do?order="+st, function(result){
+		   console.log("st="+st)
 		   var pagingTag=$(".pagination"); 
 		    sessionStorage.setItem("totalPage", result.totalPage);
 		   $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
