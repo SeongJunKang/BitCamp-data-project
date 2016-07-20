@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.pet.dao.UpPhotoDao">
+	<resultMap type="UpPhoto" id="UpPhotoMap">
+		<id column="PNO" property="pno" />
+		<result column="PTOS" property="ptos" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="UpPhoto">
+		insert into UpPhoto(PNO,PTOS)
+		values(#{pno},#{ptos})
+	</insert>
+	
+	<delete id="delete" parameterType="map">
+		delete from UpPhoto
+		where PNO=#{pno} and PTOS=#{ptos}
+	</delete>
+	
+	<select id="selectList" resultMap="UpPhoto" parameterType="int">
+		select pno, ptos from upphoto where pno =#{pno}
+	</select>
+	
+</mapper>

@@ -261,3 +261,9 @@ alter table request add STAT varchar(12) not null;
 alter table request column STAT set default '대기';
 
 alter table member add EAUTH varchar(10);
+
+CREATE TABLE UPPHOTO (
+  PNO   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  PTOS  VARCHAR(255) NULL     COMMENT '업로드사진' -- 업로드사진
+);
+alter table upphoto add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
