@@ -7,11 +7,12 @@
 	<resultMap type="UpPhoto" id="UpPhotoMap">
 		<id column="PNO" property="pno" />
 		<result column="PTOS" property="ptos" />
+		<result column="PATH" property="path" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="UpPhoto">
-		insert into UpPhoto(PNO,PTOS)
-		values(#{pno},#{ptos})
+		insert into UpPhoto(PNO,PATH,PTOS)
+		values(#{pno},#{path},#{ptos})
 	</insert>
 	
 	<delete id="delete" parameterType="map">
@@ -20,7 +21,7 @@
 	</delete>
 	
 	<select id="selectList" resultMap="UpPhotoMap" parameterType="int">
-		select pno, ptos from upphoto where pno =#{pno}
+		select pno, ptos,path from upphoto where pno =#{pno}
 	</select>
 	
 </mapper>

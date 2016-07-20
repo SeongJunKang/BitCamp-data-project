@@ -8,9 +8,7 @@ import bitcamp.pet.vo.UpPhoto;
 public interface UpPhotoDao {
 
   int insert(UpPhoto UpPhoto);
-
   int delete(Map<String, Object> paramMap);
-  
   List<UpPhoto> selectList(int pno);
   
 }

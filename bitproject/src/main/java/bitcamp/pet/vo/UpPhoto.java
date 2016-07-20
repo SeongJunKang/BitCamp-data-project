@@ -3,6 +3,7 @@ package bitcamp.pet.vo;
 public class UpPhoto {
 
   int pno;
+  String path;
   String ptos;
 
   public int getPno() {
@@ -16,5 +17,11 @@ public class UpPhoto {
   }
   public void setPtos(String ptos) {
     this.ptos = ptos;
+  }
+  public String getPath() {
+    return path;
+  }
+  public void setPath(String path) {
+    this.path = path;
   }
 }
