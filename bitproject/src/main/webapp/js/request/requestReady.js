@@ -3,9 +3,6 @@
  */
   var pno = location.href.split("=")[1];  // 현재 보는 펫시터 번호
     $(document).ready(function(){
-    	$("#dialog-request").css("display","none");
-    	$("#dialog-success").css("display","none");
-    	$("#dialog-fail").css("display","none");
       $('#date').bootstrapMaterialDatePicker
       ({
         time: false,

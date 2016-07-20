@@ -1,10 +1,6 @@
 $(document).ready(function() {
    $('.cont1').css("display", "");
    $('.cont2').css("display", "none");
-   $('#dialog-login-fail').css("display", "none");
-   $('#dialog-signup-success').css("display", "none");
-   $('#dialog-signup-fail').css("display", "none");
-   $('#dialog-check-email').css("display", "none");
    $.getJSON("../ajax/request/petrequestlist.do", function(result) {
       if (result.status == "success") {
          var templateData = $('#temp1').html();
@@ -46,7 +42,7 @@ $(document).ready(function() {
       $(window).load(function() {
          $('#loading').hide();
       });
-      location.href = "../mypage/testmypage3.html"
+      location.href = "../mypage/mypage3.html"
       event.preventDefault();
    });
    $(".lookpet").click(function() {

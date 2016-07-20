@@ -16,12 +16,6 @@ $(document).ready(function() {
 	$("#complete").css("display","none");
    $(".grade1").css("display", "none");
    $(".grade2").css("display", "none");
-   $( "#dialog-resist" ).css("display", "none");
-   $("#dialog-confirm").css("display", "none");
-   $("#dialog-confirm2").css("display", "none");
-   $("#dialog-confirm3").css("display", "none");
-   $("#dialog-deletef").css("display", "none");
-   $("#dialog-deletec").css("display", "none");
    $("#logout").click(function() {
       location.href = "../auth/logout.do";
       event.preventDefault();
@@ -39,31 +33,13 @@ $(document).ready(function() {
    });
 
    $("#resist").click(function(event) {
-	   /*
 	   $.getJSON("../ajax/member/detail.do?", function(result) {
 		      if (result.eauth == "인증") {
 		    	  location.href = "../resist/resist.html";
 		      } else {
-                  $( "#dialog-resist" ).dialog({
-                      resizable: false,
-                      height:170,
-                      width:385,
-                      show: {
-                          effect: "blind",
-                          duration: 500
-                        },
-                        hide: {
-                          effect: "fadeOut",
-                          duration: 500
-                        },
-                      modal: true,
-                      buttons: {"확인": function() {
-                        $( this ).dialog( "close" );
-                        }}
-                    });
+		    	  swal("이메일 인증","도그워커에 등록하려면 이메일 인증해야 합니다..", "error");
 		      }
 		   });
-		   */
 	   location.href = "../resist/resist.html";
       event.preventDefault();
    });

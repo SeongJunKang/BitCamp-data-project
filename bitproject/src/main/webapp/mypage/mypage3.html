@@ -23,6 +23,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Mypage css -->
     <link rel="stylesheet" type="text/css" href="../css/mypage.css">
+    <!-- Multiple file input css -->
+    <link rel="stylesheet" type="text/css" href="../css/fileinput.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     
@@ -49,6 +51,13 @@
 <style type="text/css">
 #wrap {
   margin-right: 0 auto;
+}
+.detailtext {
+  text-align: left;
+  font-size: 40px;
+  font-style: oblique;
+  font-weight: bold;
+  margin: 40px;
 }
 </style>
 </head>
@@ -304,46 +313,20 @@
           </table>
         </div>
       </div>
-    <div id='wrap'>
-    <ul id="gallery">
-      
-      <li class="loaded"><a href="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"><img title="산책1" src="https://i.ytimg.com/vi/aYvzmL4HXcc/maxresdefault.jpg"></a></li>
-      <li class="loaded"><a href="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"><img title="산책2" src="https://i.ytimg.com/vi/vVIao0u08Sc/maxresdefault.jpg"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e15/13256765_1769864886566577_1632848714_n.jpg?ig_cache_key=MTI1ODAzNjY0NjUwOTY3NzkxMg%3D%3D.2"><img title="산책3" src="https://scontent.cdninstagram.com/t51.2885-15/e15/13256765_1769864886566577_1632848714_n.jpg?ig_cache_key=MTI1ODAzNjY0NjUwOTY3NzkxMg%3D%3D.2"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"><img title="산책4" src="https://scontent.cdninstagram.com/t51.2885-15/e35/13167189_494414767435669_480374509_n.jpg?ig_cache_key=MTI1NDIwMjU1MzI1NTMyNTkzOQ%3D%3D.2"></a></li>
-      <li class="loaded"><a href="http://img.phinf.pholar.net/20160504_153/14622886940980CLLM_JPEG/p?type=f720_960"><img title="산책5" src="http://img.phinf.pholar.net/20160504_153/14622886940980CLLM_JPEG/p?type=f720_960"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e15/11085071_1626329474269030_1202855724_n.jpg?ig_cache_key=OTU2MTUyNzM3OTY4MDgxODc4.2"><img title="산책6" src="https://scontent.cdninstagram.com/t51.2885-15/e15/11085071_1626329474269030_1202855724_n.jpg?ig_cache_key=OTU2MTUyNzM3OTY4MDgxODc4.2"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/t51.2885-15/e15/10554056_1441081212823044_1904396291_n.jpg?ig_cache_key=NzY2NTI0NjgxNzEyNTEwMjk0.2"><img title="산책7" src="https://scontent.cdninstagram.com/t51.2885-15/e15/10554056_1441081212823044_1904396291_n.jpg?ig_cache_key=NzY2NTI0NjgxNzEyNTEwMjk0.2"></a></li>
-      <li class="loaded"><a href="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s640x640/e35/sh0.08/11378125_1448327268805065_658856743_n.jpg"><img title="산책8" src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s640x640/e35/sh0.08/11378125_1448327268805065_658856743_n.jpg"></a></li>
-      <li class="loaded"><a href="http://66.media.tumblr.com/4e4b73a0c7c6e8d00a4703b92f2bf4fb/tumblr_o5k72w8VVw1s6dlr8o1_500.jpg"><img title="산책9" src="http://66.media.tumblr.com/4e4b73a0c7c6e8d00a4703b92f2bf4fb/tumblr_o5k72w8VVw1s6dlr8o1_500.jpg"></a></li>
-      <li class="loaded"><a href="http://img.tenasia.hankyung.com/webwp_kr/wp-content/uploads/2015/10/2015102813270913225.jpg"><img title="산책10" src="http://img.tenasia.hankyung.com/webwp_kr/wp-content/uploads/2015/10/2015102813270913225.jpg"></a></li>
-      </ul>
-  </div>
       <div id="save">
           <button type="submit" id="savebtn" class="btn btn-me">저장</button>
       </div>
       </form>
+      <p class="detailtext">후기사진 업로드</p>
+      <form class="photoForm" action="../ajax/upphoto/putImg.do" method="post" enctype="multipart/form-data">
+         <input type="file" class="file"  id="file-0" name="img"  multiple data-min-file-count="1">
+      </form>
+      <div id='wrap'>
+        <ul id="gallery">
+        </ul>
+      </div>
     </div>
   </div>
-  <div id="dialog-confirm" title="회원 탈퇴 확인">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>정말로 회원 탈퇴하시겠습니까?<br>데이터가 복구되지 않습니다.</p>
-  </div>
-  <div id="dialog-confirm2" title="회원 정보 변경">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원 정보를 변경하였습니다</p>
-  </div>
-  <div id="dialog-confirm3" title="회원 정보 변경">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원 정보를 변경하지못했습니다</p>
-  </div>
-  <div id="dialog-deletec" title="도그워커 등록 정보 삭제">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 도그워커 정보를 삭제하시겠습니까 ?.</p>
-  </div>
-  <div id="dialog-deletef" title="도그워커 등록 정보 삭제">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 도그워커 정보를 삭제 실패했습니다.</p>
-  </div>
-  <div id="dialog-resist" title="이메일 인증 확인">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>도그워커에 등록하려면 이메일 인증해야 합니다.</p>
-  </div>
-  
     <footer>
         <div class="container">
             <div class="row">
@@ -399,9 +382,21 @@
     <script src="../js/mypage/mypageReady.js"></script>
     <!-- mypage Onload -->
     <script src="../js/mypage/mypageSubmit.js"></script>
-     <!-- SweetAlert -->
+    <!-- SweetAlert -->
     <script src="../js/sweetalert.min.js"></script>
+    <!-- file input js  -->
+    <script src="../js/fileinput.js"></script>
+    <script src="../bower_components/handlebars/handlebars.min.js"></script>
+    <script id="reviewImg" type="text/x-handlebars-template">
+            {{#each list}}
+              <li class="loaded"><a href="../{{path}}{{ptos}}"><img title="../{{path}}{{ptos}}" src="../{{path}}{{ptos}}"></a></li>
+            {{/each}}
+    </script>
 <script type="text/javascript">
+
+$("#file-0").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif'],
+});
 $('#gallery').photobox('a', { thumbs:true, loop:false }, callback);
 // using setTimeout to make sure all images were in the DOM, before the history.load() function is looking them up to match the url hash
 setTimeout(window._photobox.history.load, 2000);

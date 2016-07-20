@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	$("#walkrange").css("display", "none");
-	$("#dialog-confirm").css("display", "none");
 	$(".map_wrap").css("display", "none");
 	$("#mypage").click(function() {
 		location.href = "../mypage/mypage3.html"
@@ -33,6 +32,5 @@ function gotoRequest(event) {
 		location.href = "../request/request.html?no=" + pno;
 	} else {
 		swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
-		
 	}
 }

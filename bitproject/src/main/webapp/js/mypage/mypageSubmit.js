@@ -14,44 +14,25 @@
 	       contentType: false,
 	       processData: false,
 	       success:  function(result) {
-	    	   if (sessionStorage.getItem("gra") == 1) {
+	    	 if (sessionStorage.getItem("gra") == 1) {
 	    		   sessionStorage.removeItem("gra");
              if (result.status == "success") {
-                     $( "#dialog-confirm2" ).dialog({
-                       resizable: false,
-                       height:180,
-                       width:300,
-                       show: {
-                           effect: "blind",
-                           duration: 500
-                         },
-                         hide: {
-                           effect: "fadeOut",
-                           duration: 500
-                         },
-                       modal: true,
-                       buttons: {"확인": function() {
-                         $( this ).dialog( "close" );
-                         location.href = "mypage3.html"
-                         }}
-                     });
+         		swal({   
+        			title: "회원 정보 변경",   
+        			text: "회원 정보를 변경하였습니다.",   
+        			type: "success",   
+        			showCancelButton: false,   
+        			confirmButtonText: "확인",   
+        			closeOnConfirm: false,   
+        			closeOnCancel: false 
+        			}, 
+        			function(isConfirm) {   
+        				if (isConfirm) {  
+        					location.href = "mypage3.html";
+        				} 
+        			});
                } else {
-                    $( "#dialog-confirm3" ).dialog({
-                      resizable: false,
-                      height:180,
-                      width:300,
-                      show: {
-                          effect: "blind",
-                          duration: 500
-                        },
-                        hide: {
-                          effect: "fadeOut",
-                          duration: 500
-                        },
-                      modal: true,
-                      buttons: {"확인": function() {$( this ).dialog( "close" );}
-                      }
-                    });
+            	   swal("회원정보 변경 실패","회원 정보를 변경하지못했습니다", "error");
                 }
 	    	   } else if (sessionStorage.getItem("gra") == 2) {
 	    		   sessionStorage.removeItem("gra");
@@ -65,45 +46,22 @@
 	             processData: false,
 	             success : function(result) {
                  if (result.status == "success") {
-                     $(function() {
-                         $( "#dialog-confirm2" ).dialog({
-                           resizable: false,
-                           height:180,
-                           width:300,
-                           show: {
-                               effect: "blind",
-                               duration: 500
-                             },
-                             hide: {
-                               effect: "fadeOut",
-                               duration: 500
-                             },
-                           modal: true,
-                           buttons: {"확인": function() {
-                        	   $( this ).dialog( "close" );
-                        	   location.href = "mypage3.html"
-                        	   }}
-                         });
-                       });
+              		swal({   
+            			title: "회원 정보 변경",   
+            			text: "회원 정보를 변경하였습니다.",   
+            			type: "success",   
+            			showCancelButton: false,   
+            			confirmButtonText: "확인",   
+            			closeOnConfirm: false,   
+            			closeOnCancel: false 
+            			}, 
+            			function(isConfirm) {   
+            				if (isConfirm) {  
+            					location.href = "mypage3.html";
+            				} 
+            			});
                    } else {
-                     $(function() {
-                        $( "#dialog-confirm3" ).dialog({
-                          resizable: false,
-                          height:180,
-                          width:300,
-                          show: {
-                              effect: "blind",
-                              duration: 500
-                            },
-                            hide: {
-                              effect: "fadeOut",
-                              duration: 500
-                            },
-                          modal: true,
-                          buttons: {"확인": function() {$( this ).dialog( "close" );}
-                          }
-                        });
-                      });
+                	  swal("회원정보 변경 실패","회원 정보를 변경하지못했습니다", "error");
                     }
                   },
                   error : function() {

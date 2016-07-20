@@ -20,7 +20,8 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- Custom CSS -->
 <link href="../css/agency.css" rel="stylesheet">
-
+<!-- SweetAlert -->
+    <link rel="stylesheet" href="../css/sweetalert.css">
 <!-- Custom Fonts -->
 <link href="../font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
@@ -459,35 +460,6 @@
 			</div>
 		</div>
 	</footer>
-	<div id="dialog-login-fail" title="로그인 실패">
-		<p>
-			<span class="ui-icon ui-icon-alert"
-				style="float: left; margin: 0 7px 20px 0;"></span>로그인에 실패했습니다.<br>등록되지않은
-			이메일 또는 비밀번호입니다.
-		</p>
-	</div>
-	<div id="dialog-signup-success" title="회원가입 성공">
-		<p>
-			<span class="ui-icon-alert"
-				style="float: left; margin: 0 7px 20px 0;"></span>가입 성공! 산책할개에 오신걸
-			환영합니다.
-		</p>
-	</div>
-	<div id="dialog-signup-fail" title="회원가입 실패">
-		<p>
-			<span class="ui-icon ui-icon-alert"
-				style="float: left; margin: 0 7px 20px 0;"></span>회원가입에 실패했습니다.<br>
-			등록된 정보를 확인하시거나 잠시 후 다시 이용해주세요.
-		</p>
-	</div>
-	<div id="dialog-check-email" title="이메일 중복체크">
-		<p>
-			<span class="ui-icon ui-icon-alert"
-				style="float: left; margin: 0 7px 20px 0;"></span>이메일 중복확인 또는 형식을
-			맞춰주세요.
-		</p>
-	</div>
-
 	<!-- 알림창 -->
 	<div id="ex1" style="display: none;">
 		<div>
@@ -584,6 +556,8 @@
 	<script src="../js/main/index.js"></script>
 	<!-- check login -->
 	<script type="text/javascript" src="../js/LoginCheck.js"></script>
+	<!-- SweetAlert -->
+	<script src="../js/sweetalert.min.js"></script>
 	<!-- Handlebars  JavaScript -->
 	<script src="../bower_components/handlebars/handlebars.min.js"></script>
 	<!-- Handlebars  Template Code -->

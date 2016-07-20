@@ -1,25 +1,7 @@
 $(function() {
 	$("#savebtn").click(function() {
 		if ($("#email").attr("data-state") != "ok") {
-			$(function() {
-                $( "#dialog-check-email" ).dialog({
-                  resizable: false,
-                  height:180,
-                  width:300,
-                  show: {
-                      effect: "blind",
-                      duration: 500
-                    },
-                    hide: {
-                      effect: "fadeOut",
-                      duration: 500
-                    },
-                  modal: true,
-                  buttons: {"확인": function() {
-                    $( this ).dialog( "close" );
-                    }}
-                });
-			});
+			swal("회원가입 실패", "이메일 중복확인 또는 형식을 맞춰주세요.", "error");
 		} else {
 			if ( $("#password").val() == "" ) {
 				$("#checkText").css("display","none");
@@ -41,48 +23,23 @@ $(function() {
 					$("#birthdayDay").val() 
 				},  function(result) {
 					if (result.status == "success") {
-						$(function() {
-	                     $( "#dialog-signup-success" ).dialog({
-	                       resizable: false,
-	                       height:150,
-	                       width:400,
-	                       show: {
-	                           effect: "blind",
-	                           duration: 500
-	                         },
-	                         hide: {
-	                           effect: "fadeOut",
-	                           duration: 500
-	                         },
-	                       modal: true,
-	                       buttons: {"확인": function() {
-	                         $( this ).dialog( "close" );
-	                         }},
-	                       close : function() {
-	                    	   location.href= "index.html"
-	                       }
-	                     });
-						});
+						swal({   
+							title: "회원가입 완료",   
+							text: "산책할개에 오신것을 환영합니다.",   
+							type: "success",   
+							showCancelButton: false,   
+							confirmButtonColor: "#DD6B55",   
+							confirmButtonText: "확인",   
+							closeOnConfirm: false,   
+							closeOnCancel: false 
+							}, 
+							function(isConfirm) {   
+								if (isConfirm) {  
+									location.href= "index.html"
+								}
+							});
 					} else {
-	                 $(function() {
-	                     $( "#dialog-signup-fail" ).dialog({
-	                       resizable: false,
-	                       height:180,
-	                       width:300,
-	                       show: {
-	                           effect: "blind",
-	                           duration: 500
-	                         },
-	                         hide: {
-	                           effect: "fadeOut",
-	                           duration: 500
-	                         },
-	                       modal: true,
-	                       buttons: {"확인": function() {
-	                         $( this ).dialog( "close" );
-	                         }}
-	                     });
-	                   });
+						swal("회원가입 실패", "등록된 정보를 확인하시거나 잠시 후 다시 이용해주세요.", "error");
 					}
 				}, "json");
 			}
