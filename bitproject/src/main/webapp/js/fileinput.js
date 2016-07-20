@@ -322,10 +322,10 @@
         '<div class="input-group {class}">\n' +
         '   {caption}\n' +
         '   <div class="input-group-btn">\n' +
-        '       {remove}\n' +
-        '       {cancel}\n' +
-        '       {upload}\n' +
-        '       {browse}\n' +
+        '       {remove}\n' +	//remove
+        '       {cancel}\n' +	//cancel
+        '       {upload}\n' +	//upload
+        '       {browse}\n' +	//browse
         '   </div>\n' +
         '</div>';
     tMain2 = '{preview}\n<div class="kv-upload-progress hide"></div>\n{remove}\n{cancel}\n{upload}\n{browse}\n';
@@ -3203,12 +3203,12 @@
     $.fn.fileinputLocales.en = {
         fileSingle: 'file',
         filePlural: 'files',
-        browseLabel: 'Browse &hellip;',
-        removeLabel: 'Remove',
+        browseLabel: '찾기 &hellip;',
+        removeLabel: '초기화',
         removeTitle: 'Clear selected files',
         cancelLabel: 'Cancel',
         cancelTitle: 'Abort ongoing upload',
-        uploadLabel: 'Upload',
+        uploadLabel: '업로드',
         uploadTitle: 'Upload selected files',
         msgNo: 'No',
         msgNoFilesSelected: 'No files selected',
