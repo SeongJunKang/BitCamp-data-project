@@ -39,11 +39,11 @@
         		                if (result.status == "success") {
         		                  location.href = "inquiry.html";
         		                } else {
-        		                  window.alert("변경 실패입니다!");
+        		                  swal("변경 실패입니다!", " ", "warning");
         		                }
         		              },
         		              error : function() {
-        		                window.alert("서버 요청 실패입니다!");
+        		                swal("서버 요청 실패입니다!", " ", "warning");
         		              }
         		            });
         		            $(this).dialog("close");
@@ -108,11 +108,11 @@
                               if (result.status == "success") {
                                 location.href = "../main/index.html";
                               } else {
-                                window.alert("변경 실패입니다!");
+                                swal("변경 실패입니다!", " ", "warning");
                               }
                             },
                             error : function() {
-                              window.alert("서버 요청 실패입니다!");
+                              swal("서버 요청 실패입니다!", " ", "warning");
                             }
                           });
                           $(this).dialog("close");
@@ -129,11 +129,11 @@
                               if (result.status == "success") {
                                 location.href = "../main/index.html";
                               } else {
-                                window.alert("거절 실패입니다!");
+                                swal("거절 실패입니다!", " ", "warning");
                               }
                             },
                             error : function() {
-                              window.alert("서버 요청 실패입니다!");
+                              swal("서버 요청 실패입니다!", " ", "warning");
                             }
                           });
                           $(this).dialog("close");

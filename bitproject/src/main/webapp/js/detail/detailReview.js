@@ -2,7 +2,7 @@
 $(function(){
    $("#sendReview").click(function() {
 		if (sessionStorage.getItem("login") != "success") {
-			window.alert("로그인 해야 이용할 수 있습니다.");
+			swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
 			return;
 		}
       $.ajax("../ajax/userreview/add.do?", {
@@ -16,9 +16,9 @@ $(function(){
             if (result.status == "success") {
             	location.href = "detail.html?no="+pno;
             } else if ( result.status == "failure") {
-            	window.alert("댓글 등록에 실패했습니다.")
+            	swal("댓글 등록에 실패했습니다.", " ", "warning")
             } else {
-            	window.alert("댓글 등록은 하나만 가능합니다.")
+            	swal("댓글 등록은 하나만 가능합니다.", " ", "warning")
             }
           }
       });
@@ -49,7 +49,7 @@ $(function() {
 				          },
 				          success : function(result) {
 				            if (result.status == "failure") {
-				            	window.alert("댓글 수정에 실패했습니다.");
+				            	swal("댓글 수정에 실패했습니다.", " ", "warning");
 				            	location.href = "detail.html?no="+pno;
 				            }
 				          }
@@ -67,7 +67,7 @@ $(function() {
 			          },
 			          success : function(result) {
 			            if (result.status == "failure") {
-			            	window.alert("댓글 삭제에 실패했습니다.");
+			            	swal("댓글 삭제에 실패했습니다.", " ", "warning");
 			            } else {
 			            	location.href = "detail.html?no="+pno;
 			            }

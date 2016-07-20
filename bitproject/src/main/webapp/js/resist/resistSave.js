@@ -1,7 +1,7 @@
 $(function() {
    $("#savebtn").click(function() {
       if ($("#checknick").attr("data-state") == "no") {
-         window.alert("닉네임 체크를 클릭해주세요.")
+         swal("닉네임 체크를 클릭해주세요.", " ", "warning");
       } else {
           var checklist="";
             $("input[name=box]:checked").each(function() {
@@ -39,7 +39,7 @@ $(function() {
                  sessionStorage.removeItem("lnt");
                 location.href = "../main/index.html";
               } else {
-                window.alert("등록 실패입니다.");
+                swal("등록 실패입니다.", " ", "warning");
               }
             }, "json");
           $.post("../ajax/member/upgrade.do?", {
@@ -48,7 +48,7 @@ $(function() {
                if (result.status == "success") {
                   location.href = "../main/index.html";
                 } else {
-                  window.alert("등록 실패입니다.");
+                  swal("등록 실패입니다.", " ", "warning");
                 }
            }, "json");
       }

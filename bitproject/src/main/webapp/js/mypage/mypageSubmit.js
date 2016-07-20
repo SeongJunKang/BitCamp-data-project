@@ -107,7 +107,7 @@
                     }
                   },
                   error : function() {
-                    window.alert("서버요청 실패입니다.");
+                	  swal("서버요청 실패입니다.", " ", "warning");
                   }
 	           });
 	    	    }

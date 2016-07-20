@@ -32,6 +32,7 @@ function gotoRequest(event) {
 		var pno = location.href.split("=")[1];
 		location.href = "../request/request.html?no=" + pno;
 	} else {
-		window.alert("로그인 해야 이용할 수 있습니다.");
+		swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
+		
 	}
 }

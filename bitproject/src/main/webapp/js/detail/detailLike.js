@@ -10,7 +10,7 @@ $(function(){
         var heart = document.getElementById("heart");
         heart.onclick = function() {
           if (!sessionStorage.getItem("login")) {
-              window.alert("로그인 해야 이용할 수 있습니다.");
+              swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
           } else {
             var state = heart.getAttribute("data-state");
             if (state == "before") {

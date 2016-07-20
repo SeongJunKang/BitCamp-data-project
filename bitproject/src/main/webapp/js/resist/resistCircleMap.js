@@ -228,7 +228,7 @@
          var keyword = document.getElementById('keyword').value;
 
          if (!keyword.replace(/^\s+|\s+$/g, '')) {
-             alert('키워드를 입력해주세요!');
+             swal("키워드를 입력해주세요!", " ", "warning");
              return false;
          }
 
@@ -248,12 +248,12 @@
 
          } else if (status === daum.maps.services.Status.ZERO_RESULT) {
 
-             alert('검색 결과가 존재하지 않습니다.');
+             swal("검색 결과가 존재하지 않습니다.", " ", "warning");
              return;
 
          } else if (status === daum.maps.services.Status.ERROR) {
 
-             alert('검색 결과 중 오류가 발생했습니다.');
+             swal("검색 결과 중 오류가 발생했습니다.", " ", "warning");
              return;
 
          }
