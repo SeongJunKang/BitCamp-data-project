@@ -19,7 +19,7 @@
 		where PNO=#{pno} and PTOS=#{ptos}
 	</delete>
 	
-	<select id="selectList" resultMap="UpPhoto" parameterType="int">
+	<select id="selectList" resultMap="UpPhotoMap" parameterType="int">
 		select pno, ptos from upphoto where pno =#{pno}
 	</select>
 	

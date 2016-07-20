@@ -46,7 +46,7 @@ $(document).ready(function() {
       $(window).load(function() {
          $('#loading').hide();
       });
-      location.href = "../mypage/mypage3.html"
+      location.href = "../mypage/testmypage3.html"
       event.preventDefault();
    });
    $(".lookpet").click(function() {

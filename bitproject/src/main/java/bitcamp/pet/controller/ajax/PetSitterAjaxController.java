@@ -128,10 +128,10 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String detail(HttpSession session) 
       throws ServletException, IOException {
-    PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(
-        ((Member)session.getAttribute("loginUser")).getMno());
     HashMap<String,Object> result = new HashMap<>();
     try {
+      PetSitter petsitter = (PetSitter)petsitterService.retrieveByNo(
+          ((Member)session.getAttribute("loginUser")).getMno());
       //select BANK,BKNM,ACC,SER,INQUR,PET,ADDR_1,ADDR_2,INTRO,RAD,LAT,LNT,REG from PETSITTER
       result.put("nick",petsitter.getNick());   // 닉네임
       result.put("amt",petsitter.getAmt());     // 가격
