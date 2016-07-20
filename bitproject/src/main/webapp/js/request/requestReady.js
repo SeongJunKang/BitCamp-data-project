@@ -30,7 +30,7 @@
       });
       $(function() {
 	   	  $("#admit").click(function() {
-	   		  if ( window.confirm("도그워커에게 산책대행을 신청하시겠습니까 ?") == true) { 
+	   		  if ( swal("산책대행을 신청하시겠습니까 ?") == true) { 
 	          $.post("../ajax/request/add.do", {
               pno : pno,
               date : $('#date-format').val(),
@@ -45,7 +45,7 @@
               train : $('#training').val()
               }, function(result) {
                 if (result.status == "success") {
-             	   swal("도그워커에게 신청에 성공했습니다.", " ", "warning");
+             	   swal("도그워커에게 신청에 성공했습니다.");
                 	 location.href = "../main/index.html";
                 } else if (result.status == "failure") {
              	   swal("도그워커에게 신청에 실패했습니다. <br> 모든 항목에 입력을 해주세요.", " ", "warning");
