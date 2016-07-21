@@ -1,4 +1,4 @@
-		$(document).ready(function() {
+$(document).ready(function() {
     $.getJSON("../ajax/request/myrequestlist.do", function(result) {
         var templateData = $('#temp1').html();
         var template = Handlebars.compile(templateData);
@@ -39,11 +39,11 @@
         		                if (result.status == "success") {
         		                  location.href = "inquiry.html";
         		                } else {
-        		                  swal("변경 실패입니다!", " ", "warning");
+        		                  swal("변경 실패입니다!", " ", "error");
         		                }
         		              },
         		              error : function() {
-        		                swal("서버 요청 실패입니다!", " ", "warning");
+        		                swal("서버 요청 실패입니다!", " ", "error");
         		              }
         		            });
         		            $(this).dialog("close");
@@ -108,11 +108,11 @@
                               if (result.status == "success") {
                                 location.href = "../main/index.html";
                               } else {
-                                swal("변경 실패입니다!", " ", "warning");
+                                swal("변경 실패입니다!", " ", "error");
                               }
                             },
                             error : function() {
-                              swal("서버 요청 실패입니다!", " ", "warning");
+                              swal("서버 요청 실패입니다!", " ", "error");
                             }
                           });
                           $(this).dialog("close");
@@ -129,11 +129,11 @@
                               if (result.status == "success") {
                                 location.href = "../main/index.html";
                               } else {
-                                swal("거절 실패입니다!", " ", "warning");
+                                swal("거절 실패입니다!", " ", "error");
                               }
                             },
                             error : function() {
-                              swal("서버 요청 실패입니다!", " ", "warning");
+                              swal("서버 요청 실패입니다!", " ", "error");
                             }
                           });
                           $(this).dialog("close");
