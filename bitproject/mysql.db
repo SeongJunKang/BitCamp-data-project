@@ -273,3 +273,6 @@ CREATE UNIQUE INDEX UIX_UPPHOTO
     PTOS ASC -- 사진이름
   );
 alter table upphoto add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
+
+
+
