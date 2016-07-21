@@ -68,7 +68,6 @@ public class PetSitterAjaxController {
       memberService.change(member);
     } catch(Exception e) {
       result.put("status", "failure"); 
-      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
@@ -81,7 +80,6 @@ public class PetSitterAjaxController {
       petsitterService.delete(((Member)session.getAttribute("loginUser")).getMno());
       result.put("status", "success");
     } catch (Exception e) {
-      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
@@ -227,7 +225,6 @@ public class PetSitterAjaxController {
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");
-      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
@@ -246,7 +243,6 @@ public class PetSitterAjaxController {
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");
-      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
@@ -284,7 +280,6 @@ public class PetSitterAjaxController {
       result.put("status", "success");
     } catch(Exception e) {
       result.put("status", "failure");
-      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }

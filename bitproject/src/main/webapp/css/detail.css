@@ -208,10 +208,6 @@ hr {
   margin: 0 auto;
 }
 
-#backbtn, #gotoRequest {
-  margin-bottom: 10px;
-}
-
 #setlike {
   text-align: right;
   margin-top: -20px;

@@ -9,7 +9,7 @@ $(function() {
 			confirmButtonText: "삭제",   
 			cancelButtonText: "취소",   
 			closeOnConfirm: false,   
-			closeOnCancel: false 
+			closeOnCancel: true 
 			}, 
 			function(isConfirm) {   
 				if (isConfirm) {  
@@ -32,8 +32,6 @@ $(function() {
 								location.href = "../auth/logout.do";
 							}
 						});
-				} else {
-					swal("회원 탈퇴를 취소했습니다.","","warning");   
 				} 
 			});
 

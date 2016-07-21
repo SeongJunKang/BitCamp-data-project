@@ -64,10 +64,9 @@ public class RequestAjaxController {
     
     try {
       result.put("status", "success");
-     requestService.add(request);
+      requestService.add(request);
     } catch(Exception e) {
       result.put("status", "failure"); 
-      e.printStackTrace();
     }
     return new Gson().toJson(result);
   }
@@ -225,7 +224,6 @@ public class RequestAjaxController {
       requestService.change(request);
       result.put("status", "success");
     } catch (Exception e) {
-      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
@@ -242,7 +240,6 @@ public class RequestAjaxController {
       result.put("accrue", requestService.getAccrue(pno));
       result.put("status", "success");
     } catch (Exception e) {
-      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);
