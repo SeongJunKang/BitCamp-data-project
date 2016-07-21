@@ -58,7 +58,7 @@ public class UpPhotoAjaxController {
   
 
   @RequestMapping(value = "putImg", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-  public String putImg(MultipartFile[] img, HttpSession session) throws ServletException, IOException {
+  public String add(MultipartFile[] img, HttpSession session) throws ServletException, IOException {
     Member member = ((Member) session.getAttribute("loginUser"));
     HashMap<String, Object> result = new HashMap<>();
     int pno = member.getMno();
@@ -88,5 +88,19 @@ public class UpPhotoAjaxController {
       }
     }
     return "redirect:../../mypage/mypage3.html";
+  }
+  
+  @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
+  @ResponseBody
+  public String delete(HttpSession session) throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      memberService.delete(((Member)session.getAttribute("loginUser")).getMno());
+      result.put("status", "success");
+    } catch (Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
   }
 }

@@ -3,7 +3,11 @@
     (c) 2013 Yair Even Or <http://dropthebit.com>
 
     MIT-style license.
+
 */
+// $("#delBtn").click(function () {
+//   location.href = "delete.do?no=" + $("#fNo").val();
+// })
 
 
 ;(function($, doc, win){
@@ -28,7 +32,7 @@
         // Preload images
         preload = {}, preloadPrev = new Image(), preloadNext = new Image(),
         // DOM elements
-        closeBtn, image, video, prevBtn, nextBtn, thumbsToggler, caption, captionText, pbLoader, autoplayBtn, thumbs, wrapper,
+        closeBtn, image, video, prevBtn, nextBtn, thumbsToggler, caption, captionText, pbLoader, deleteBtn, autoplayBtn, thumbs, wrapper,
 
         defaults = {
             single        : false,        // if "true" - gallery will only show a single image, with no way to navigate
@@ -55,6 +59,8 @@
 
         // DOM structure
         overlay =   $('<div id="pbOverlay">').append(
+
+                        deleteBtn = $('<span id="pbDeleteBtn" class="fa-stack fa-4x"><div class="fa fa-trash fa-stack-1x fa-inverse"></div></span>').on('click', close)[0],
                         thumbsToggler = $('<input type="checkbox" id="pbThumbsToggler" checked hidden>'),
                         pbLoader = $('<div class="pbLoader"><b></b><b></b><b></b></div>'),
                         prevBtn = $('<div id="pbPrevBtn" class="prevNext"><b></b></div>').on('click', next_prev),
@@ -67,6 +73,7 @@
                         autoplayBtn = $('<div id="pbAutoplayBtn">').append(
                             $('<div class="pbProgress">')
                         ),
+
                         caption = $('<div id="pbCaption">').append(
                             '<label for="pbThumbsToggler" title="thumbnails on/off"></label>',
                             captionText = $('<div class="pbCaptionText">').append('<div class="title"></div><div class="counter">'),
