@@ -37,10 +37,9 @@ $(document).ready(function() {
 		      if (result.eauth == "인증") {
 		    	  location.href = "../resist/resist.html";
 		      } else {
-		    	  swal("이메일 인증","도그워커에 등록하려면 이메일 인증해야 합니다..", "error");
+		    	  swal("이메일 인증","도그워커에 등록하려면 이메일 인증해야 합니다.", "error");
 		      }
 		   });
-	   location.href = "../resist/resist.html";
       event.preventDefault();
    });
      $("#emailrequest").click (function() {

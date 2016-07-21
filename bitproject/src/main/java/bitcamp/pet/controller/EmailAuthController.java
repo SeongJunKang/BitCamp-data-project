@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,7 +57,7 @@ public class EmailAuthController {
               msg.setText("안녕하세요. "+member.getName() +"님,"
                   + "<a href = 'http://192.168.0.64:8080/bitproject/main/index.html'>산책할개</a> "
                   + "에 인증하시려면 아래의 링크를 클릭해주세요.<br> "
-                  + "<a href='http://192.168.0.64:8080/bitproject/email/complete.do'>인증하기</a>", "UTF-8");                                    // 이메일 내용
+                  + "<a href='http://192.168.0.64:8080/bitproject/email/complete.do?mno="+member.getMno()+"'>인증하기</a>", "UTF-8");                                    // 이메일 내용
               msg.setHeader("content-Type", "text/html");                      // 이메일 헤더
               javax.mail.Transport.send(msg);                                  // 메일보내기
               result.put("status", "이메일 인증 대기중");
@@ -72,23 +73,43 @@ public class EmailAuthController {
   
   @Autowired
   MemberService memberService;
-   
+  
     @RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8", value = "complete")
-    @ResponseBody
-    public String update(HttpSession session) throws ServletException, IOException {
+    public String update(int mno,HttpSession session,Model model) throws ServletException, IOException {
       Member member = (Member) session.getAttribute("loginUser");
-      member.setEauth("인증");
-      if (member.getEauth().equals("인증")) {
-        return "이미 처리된 인증 정보입니다.";
+      if (member == null) {
+        model.addAttribute("type","warning");
+        model.addAttribute("eauth","산책할개에 로그인을 먼저 해주세요.");
+        return "email/EmailAuth";
+      }
+      
+      if ( member.getMno() != mno) {
+        model.addAttribute("type","error");
+        model.addAttribute("eauth","올바르지않은 경로입니다.");
+        return "email/EmailAuth";
       }
       
       try {
+        if (member.getEauth().equals("인증")) {
+          model.addAttribute("type","error");
+          model.addAttribute("eauth","이미 처리된 인증 정보입니다.");
+          return "email/EmailAuth";
+        }
+      } catch (Exception e) {
+      }
+      member.setEauth("인증");
+      
+      try {
         memberService.change(member); // 회원정보 변경 신청
-        return "산책할게에 오신걸 환영합니다. 인증 성공했습니다.";
+        model.addAttribute("type","success");
+        model.addAttribute("eauth","산책할개에 오신걸 환영합니다. 인증 성공했습니다.");
+        return "email/EmailAuth";
       } catch (Exception e) {
         e.printStackTrace();
       }
-      return "실패했습니다. 로그인 후 다시 시도해주세요";
+      model.addAttribute("type","error");
+      model.addAttribute("eauth","실패했습니다. 잠시 후 다시 시도해주세요");
+      return "email/EmailAuth";
     }
   }
 
