@@ -87,6 +87,6 @@ public class UpPhotoAjaxController {
         }
       }
     }
-    return "redirect:../../mypage/testmypage3.html";
+    return "redirect:../../mypage/mypage3.html";
   }
 }
