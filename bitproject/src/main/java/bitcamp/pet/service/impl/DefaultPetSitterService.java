@@ -102,8 +102,10 @@ public class DefaultPetSitterService implements PetSitterService {
   }
 
   @Override
-  public List<PetSitter> search(String index) {
+  public List<PetSitter> search(String index,int pageNo, int pageSize) {
     HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
     if ( index.equals("전체") ) {
       paramMap.put("pno", "pno");
       return petsitterDao.selectList(paramMap);

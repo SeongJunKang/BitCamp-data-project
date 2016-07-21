@@ -262,13 +262,13 @@ ul.pagination li a {
     var thisMenu ="pno";
     //이전버튼
      function pre() {
-    	 console.log(sessionStorage.getItem("nowpage") )
+    	// console.log(sessionStorage.getItem("nowpage") )
     	 if(sessionStorage.getItem("nowpage") > 1)
     	 gopage(sessionStorage.getItem("nowpage")*1-1)
      }
     //다음버튼
      function next() {
-    	 console.log(sessionStorage.getItem("nowpage") )
+    	// console.log(sessionStorage.getItem("nowpage") )
          if(sessionStorage.getItem("nowpage") < sessionStorage.getItem("totalPage"))
          gopage(sessionStorage.getItem("nowpage")*1+1)
        }

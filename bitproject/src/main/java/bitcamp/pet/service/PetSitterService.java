@@ -17,5 +17,5 @@ public interface PetSitterService {
 //  List<PetSitter> list(String order, int index);
   List<PetSitter> list(String order, int pageNo, int pageSize);
   List<PetSitter> mainlist();
-  List<PetSitter> search(String index);
+  List<PetSitter> search(String index, int pageNo, int pageSize);
 }

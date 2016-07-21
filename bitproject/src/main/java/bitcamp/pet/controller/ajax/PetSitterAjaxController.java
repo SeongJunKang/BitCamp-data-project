@@ -300,9 +300,27 @@ public class PetSitterAjaxController {
   
   @RequestMapping(produces="application/json;charset=UTF-8", value="search")
   @ResponseBody
-  public String search(String index) throws ServletException, IOException {
+  public String search(String index,
+      @RequestParam(defaultValue="1") int pageNo, 
+      @RequestParam(defaultValue="9") int pageSize) throws ServletException, IOException {
+    if (pageNo < 0) { // 1페이지 부터 시작
+      pageNo = 1;
+    }
+    
+    int totalPage =petsitterService.countPage(pageSize);
+    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+      pageNo = totalPage;
+    }
+    
+    if (pageSize < 3) { // 최소 3개
+      pageSize = 3; 
+      
+    } else if (pageSize > 50) { // 최대 50개 
+      pageSize = 50;
+    }
+    
 //    try {
-      List<PetSitter> list = petsitterService.search(index);
+      List<PetSitter> list = petsitterService.search(index, pageNo, pageSize);
 //    } catch (Exception e){}
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);

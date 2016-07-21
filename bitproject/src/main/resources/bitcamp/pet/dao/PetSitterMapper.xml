@@ -93,7 +93,14 @@
 	
 	<select id="search" resultMap="PetSitterMap" parameterType="map">
      select PNO,NICK,IMG,REG from PETSITTER where REG like #{index}
-  </select> 
+     limit #{startIndex}, #{length}
+  </select>
+  
+    <select id="searchConunt" resultType='int'>
+     select count(*) from petsitter where reg like #{index}
+    </select> 
+	
+	
 	
   <select id="mainList" resultMap="PetSitterMap">
      select PNO,NICK,IMG,REG from PETSITTER
