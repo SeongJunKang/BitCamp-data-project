@@ -8,9 +8,9 @@ $(document).ready(function() {
          var list_length = result.list.length
          for (var i = 0; i < list_length; i++) {
             if (result.list[i].stat != "대기") {
-               result.list.splice(i, i); // 리스트에서 제거하는 역할
-               list_length -= 1; // 제거했으니 길이도 줄어듬
-               i -= 1; // 길이가 줄어드니 다시 제자리반복.
+               result.list.splice(i, 1); 
+               list_length -= 1; 
+               i -= 1; 
             }
          }
          var html = template(result);
