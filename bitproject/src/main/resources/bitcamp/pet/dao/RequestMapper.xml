@@ -60,6 +60,10 @@
     select count(*) 
     from request
   </select>
+    
+  <select id="accrue" resultType="int" parameterType="int">
+    select count(*) from request where pno=#{pno}
+  </select>
 </mapper>
 
 

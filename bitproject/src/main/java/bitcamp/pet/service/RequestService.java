@@ -14,4 +14,5 @@ public interface RequestService {
   List<Petrequest> myrequestlist(int pageNo, int pageSize, int mno);
   void change(Request Request);
   int countPage(int pageSize);
+  int getAccrue(int pno);
 }

@@ -17,10 +17,23 @@ $(function() {
 						method : "POST",
 						dataType : "json"
 					});
-					swal("회원 정보가 삭제되었습니다.", "success");   
-					location.href = "../auth/logout.do";
+					swal({   
+						title: "회원 탈퇴",   
+						text: "회원 정보가 삭제되었습니다.",   
+						type: "success",   
+						showCancelButton: false,   
+						confirmButtonColor: "#DD6B55",   
+						confirmButtonText: "확인",   
+						closeOnConfirm: false,   
+						closeOnCancel: false 
+						}, 
+						function(isConfirm) {   
+							if (isConfirm) {  
+								location.href = "../auth/logout.do";
+							}
+						});
 				} else {
-					swal("회원 정보 삭제에 실패하였습니다.", "error");   
+					swal("회원 탈퇴를 취소했습니다.","","warning");   
 				} 
 			});
 

@@ -79,6 +79,12 @@ public class DefaultRequestService implements RequestService {
     return requestDao.selectListpet(paramMap);
   }
 
+  @Override
+  public int getAccrue(int pno) {
+    // TODO Auto-generated method stub
+    return requestDao.accrue(pno);
+  }
+
 
 /*  @Override
   public List<Request> list(String order, int pno) {

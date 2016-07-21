@@ -231,4 +231,22 @@ public class RequestAjaxController {
     return new Gson().toJson(result);
   }
   
+  @RequestMapping(value="accrue",
+      method=RequestMethod.POST,
+      produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String accrue(int pno) throws ServletException, IOException {
+    
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      result.put("accrue", requestService.getAccrue(pno));
+      result.put("status", "success");
+    } catch (Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
+  
 }

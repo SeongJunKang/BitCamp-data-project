@@ -36,7 +36,7 @@ public class UpPhotoAjaxController {
   @Autowired
   ServletContext servletContext;
   
-  @RequestMapping(produces="application/json;charset=UTF-8", value="list")
+  @RequestMapping(produces="application/json;charset=UTF-8", value="list",method = RequestMethod.POST)
   @ResponseBody
   public String list(int pno) throws ServletException, IOException {
     Member member = memberService.retrieveByNo(pno); 

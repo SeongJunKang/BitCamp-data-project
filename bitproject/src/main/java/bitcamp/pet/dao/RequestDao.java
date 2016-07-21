@@ -23,4 +23,5 @@ public interface RequestDao {
   int delete(int req);
   int isPetSitter(Map<String,Object> paramMap);
   int countAll();
+  int accrue(int pno);
 }

@@ -18,6 +18,37 @@ $(document).ready(function() {
 			}
 		}
 	});
+	$.ajax("../ajax/request/accrue.do?", {
+		method : "POST",
+		dataType : "json",
+		data : {
+			pno : location.href.split("=")[1]
+		},
+		success : function(result) {
+			if (result.status == "success") {
+				$("#accrue").text("누적신청 : "+result.accrue);
+			}
+		}
+	});
+	
+	$.ajax("../ajax/upphoto/list.do", {
+		method : "POST",
+		dataType : "json",
+		data : {
+			pno : location.href.split("=")[1]
+		},
+		success : function(result) {
+			if (result.list.length > 0) {
+		         var templateData = $( "#reviewImg").html();
+		         var template = Handlebars .compile(templateData);
+		         var html = template(result);
+		         $("#gallery").append(html);
+			} else {
+				$("#walkpicture").css("display","none");
+			}
+		}
+	});
+
 	$("#login").click(function() {
 		location.href = "../main/index.html#clients"
 	});

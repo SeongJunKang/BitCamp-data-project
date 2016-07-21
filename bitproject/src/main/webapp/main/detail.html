@@ -92,6 +92,8 @@
           <span id="titlesen"></span><br>
         </span>
         <div id="back">
+          <button type="button" id="accrue" onclick="gotoRequest()"
+            class="btn btn-xl fa">누적신청 :</button>
           <button type="button" id="gotoRequest" onclick="gotoRequest()"
             class="btn btn-xl fa">신청</button>
         </div>
@@ -150,7 +152,7 @@
            <div id="map"></div>
         </div>
 
-        <p class="detailtext">산 책 사 진</p>
+        <p class="detailtext" id="walkpicture">산 책 사 진</p>
         <div id='wrap'>
   	      <ul id="gallery">
   	      </ul>
@@ -238,18 +240,7 @@ function callback(){
   {{/each}}
 </script>
 <script type="text/javascript">
-$(function() {
-    $.ajax({
-       url : "../ajax/upphoto/mylist.do",
-       dataType : "json",
-       success : function(result) {
-         var templateData = $( "#reviewImg").html();
-         var template = Handlebars .compile(templateData);
-         var html = template(result);
-         $("#gallery").append(html);
-       }
-     })
-  });
+
 </script>
 
     <!-- Dialog from jQuery -->
