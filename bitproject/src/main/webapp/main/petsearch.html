@@ -158,7 +158,7 @@ ul.pagination li a {
 								      <div class="input-group-btn">
 								        <button style="background-color: #fed136;" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="select_location">지역</span> <span class="caret"></span></button>
 								         <ul class="dropdown-menu">
-								          <li><a href="#" class="selected_location">전체</a></li>
+								          <li><a href="#" class="selected_location" >전체</a></li>
 								          <li><a href="#" class="selected_location">서울</a></li>
 								          <li><a href="#" class="selected_location">경기</a></li>
 								          <li><a href="#" class="selected_location">인천</a></li>
@@ -186,7 +186,7 @@ ul.pagination li a {
             </div>
             <div class='row' id='hehe'>
             <nav>
-              <ul class="pagination" style="margin-left:43%;">
+              <ul class="pagination" style="margin:0 auto; display: tables;">
 							   
 							  </ul>
 							</nav>
@@ -290,6 +290,7 @@ ul.pagination li a {
             var TagText = $(".section-subheading");
     	   $("#latest").click(function(event) {
     	       thisMenu = "latest";
+    	       prio(thisMenu);
     	      $("#petsitter").empty();
     	     event.preventDefault();
     	       TagText.text($("#latest").text());
@@ -305,7 +306,8 @@ ul.pagination li a {
     	      });  
     	        
     	   $("#popu").click(function() {
-    	       thisMenu = "likes";         
+    	       thisMenu = "likes";    
+    	       prio(thisMenu);
     	       event.preventDefault();
     	       $("#petsitter").empty();
     	     TagText.text($("#popu").text());
@@ -321,6 +323,7 @@ ul.pagination li a {
     	   });
     	   $("#byname").click(function() {
     	       thisMenu = "nick";
+    	       prio(thisMenu);
     	         $("#petsitter").empty();
     	       event.preventDefault();
     	       TagText.text($("#byname").text());
@@ -336,6 +339,7 @@ ul.pagination li a {
     	     });
     	   $("#byprice").click(function() {
     	       thisMenu = "amt";
+    	       prio(thisMenu);
     	         $("#petsitter").empty();
     	       event.preventDefault();
     	       TagText.text($("#byprice").text());
@@ -353,12 +357,74 @@ ul.pagination li a {
     	   $("#bysales").click(function() {
     	       TagText.text($("#bysales").text());
     	     });
+    	   
+    	   //레디안에있던거
+    	   $(".selected_location").click(function(event) {
+    //		  console.log($("#select_location").val());
+               $(".pagination").empty();
+    	         $("#select_location").text($(this).text());
+    	         console.log($("#select_location").text());
+    	         $(function() {
+    	             $.ajax({
+    	                url : "../ajax/petsitter/search.do?pageNo="+i,
+    	                dataType : "json",
+    	                data :{
+    	                   index: $("#select_location").text()
+    	                },
+    	                success : function(result) {
+    	                  var templateData = $( "#sitterlist").html();
+    	                  var template = Handlebars .compile(templateData);
+    	                  var html = template(result);
+    	                  $("#petsitter").html(html);
+    	                  var pagingTag=$(".pagination"); 
+    	                    sessionStorage.setItem("totalPage", result.totalPage);
+    	                  $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+    	                    for(var i=1 ; i <= result.totalPage; i++) {
+    	                     $("<li>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+    	                    }
+    	                    $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+    	                }
+    	              })
+    	          });
+    	         event.preventDefault();
+    	     }); 
+    	     $("#search_btn").click(function() {
+    	    	 
+    	         $(".pagination").empty();
+    	         $.ajax({
+    	            url : "../ajax/petsitter/search.do?pageNo="+i,
+    	            dataType : "json",
+    	            data :{
+    	               index: $("#search_input").val()
+    	            },
+    	            success : function(result) {
+    	              var templateData = $( "#sitterlist").html();
+    	              var template = Handlebars .compile(templateData);
+    	              var html = template(result);
+    	              $("#petsitter").html(html);
+    	              var pagingTag=$(".pagination"); 
+    	              sessionStorage.setItem("totalPage", result.totalPage);
+    	              $("<li>").html("<a href='javascript:pre()' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>").appendTo(pagingTag);
+    	              for(var i=1 ; i <= result.totalPage; i++) {
+    	               $("<li>").html("<a href='javascript:gopage("+i+")'>"+i+"</a></li>").appendTo(pagingTag);
+    	              }
+    	              $("<li>").html("<a href='javascript:next()' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>").appendTo(pagingTag);
+    	            }
+    	          })
+    	     })
+    	      $('#search_input').keyup(function(e) {
+    	        if (e.keyCode == 13) {
+    	          $("#search_btn").click();
+    	        }        
+    	      }); 
+    	     
    };
   
 
-   
-   $(function prio(thisMenu){
+   prio(thisMenu);
+   function prio(thisMenu){
 	   $.getJSON("../ajax/petsitter/list.do?order="+thisMenu, function(result){
+		   $(".pagination").empty();
 		   console.log("st="+thisMenu)
 		   var pagingTag=$(".pagination"); 
 		    sessionStorage.setItem("totalPage", result.totalPage);
@@ -370,10 +436,9 @@ ul.pagination li a {
 	   })  
 	   
    }
-   );
    
    $(document).ready(function () {// Add contents for max height
-	   $(".selected_location").click(function(event) {
+	   /* $(".selected_location").click(function(event) {
 		     $("#select_location").text($(this).text());
          $(function() {
              $.ajax({
@@ -392,7 +457,27 @@ ul.pagination li a {
           });
 		     event.preventDefault();
 	   }); 
-   $("#search_btn").click(function() {
+	   $("#search_btn").click(function() {
+	       $.ajax({
+	          url : "../ajax/petsitter/search.do",
+	          dataType : "json",
+	          data :{
+	             index: $("#search_input").val()
+	          },
+	          success : function(result) {
+	            var templateData = $( "#sitterlist").html();
+	            var template = Handlebars .compile(templateData);
+	            var html = template(result);
+	            $("#petsitter").html(html);
+	          }
+	        })
+	   })
+	    $('#search_input').keyup(function(e) {
+	      if (e.keyCode == 13) {
+	        $("#search_btn").click();
+	      }        
+	    }); */
+/*    $("#search_btn").click(function() {
        $.ajax({
           url : "../ajax/petsitter/search.do",
           dataType : "json",
@@ -411,104 +496,8 @@ ul.pagination li a {
       if (e.keyCode == 13) {
     	  $("#search_btn").click();
       }        
-    });
+    }); */
 
- 	 /* $(function() {
- 		   sessionStorage.setItem("no", 0);
-     $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
-                    function(result) {
-                      var templateData = $( "#sitterlist").html();
-                      var template = Handlebars .compile(templateData);
-                      var html = template(result);
-                      $("#petsitter").append(html);
-                      sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
-                      console.log("after" + sessionStorage.getItem('no'));
-                  })
- 	   }); */
-/*	   $(document).scroll(function() {
-	       var maxHeight = $(document).height();
-	       var currentScroll = $(window).scrollTop() + $(window).height();
-	       if (maxHeight <= currentScroll) {
-	              console.log("before" + sessionStorage.getItem('no'));
-	               $.getJSON("../ajax/petsitter/list.do?order=pno&index=" + sessionStorage.getItem('no'),
-	                  function(result) {
-	                    var templateData = $( "#sitterlist").html();
-	                    var template = Handlebars .compile(templateData);
-	                    var html = template(result);
-	                    $("#petsitter").append(html);
-	                    sessionStorage.setItem("no", parseInt(sessionStorage.getItem('no'))+6);
-	                    console.log("after" + sessionStorage.getItem('no'));
-	                })
-	                
-	                
-	         }
-	     });    */
-	     
-	   
-	    // 기본으로 최신순을 뿌려준다.
-/*       $(function() {
-         $.getJSON("../ajax/petsitter/list.do?order=pno",
-            function(result) {
-              var templateData = $( "#sitterlist").html();
-              var template = Handlebars .compile(templateData);
-              var html = template(result);
-              $("#petsitter").append(html);
-          })
-      }); */
-/*       var TagText = $(".section-subheading");
-      $("#latest").click(function(event) {
-        	  $("#petsitter").empty();
-    	  event.preventDefault();
-          TagText.text($("#latest").text());
-          $.getJSON("../ajax/petsitter/list.do?order=pno",
-              function(result) {
-                var templateData = $( "#sitterlist").html();
-                var template = Handlebars .compile(templateData);
-                var html = template(result);
-                $("#petsitter").append(html);
-           })
-         });  
-           
-      $("#popu").click(function() {
-    		  $("#petsitter").empty();
-          event.preventDefault();
-    	  TagText.text($("#popu").text());
-    	  $.getJSON("../ajax/petsitter/list.do?order=likes&pageNo="+ i,
-           function(result) {
-             var templateData = $( "#sitterlist").html();
-             var template = Handlebars .compile(templateData);
-             var html = template(result);
-             $("#petsitter").append(html);
-         })
-      });
-      $("#byname").click(function() {
-        	  $("#petsitter").empty();
-          event.preventDefault();
-          TagText.text($("#byname").text());
-          $.getJSON("../ajax/petsitter/list.do?order=nick&pageNo=" + i,
-              function(result) {
-                var templateData = $( "#sitterlist").html();
-                var template = Handlebars .compile(templateData);
-                var html = template(result);
-                $("#petsitter").append(html);
-            })
-        });
-      $("#byprice").click(function() {
-        	  $("#petsitter").empty();
-          event.preventDefault();
-          TagText.text($("#byprice").text());
-          $.getJSON("../ajax/petsitter/list.do?order=amt&pageNo=" +i,
-              function(result) {
-                var templateData = $( "#sitterlist").html();
-                var template = Handlebars .compile(templateData);
-                var html = template(result);
-                $("#petsitter").append(html);
-            })
-        });
-      
-      $("#bysales").click(function() {
-          TagText.text($("#bysales").text());
-        }); */
       
     });
    

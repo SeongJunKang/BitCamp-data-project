@@ -96,7 +96,7 @@
      limit #{startIndex}, #{length}
   </select>
   
-    <select id="searchConunt" resultType='int'>
+    <select id="searchCount" resultType='int' parameterType='String'>
      select count(*) from petsitter where reg like #{index}
     </select> 
 	

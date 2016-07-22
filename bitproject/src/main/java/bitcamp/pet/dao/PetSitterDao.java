@@ -28,4 +28,6 @@ public interface PetSitterDao {
   int isPetSitter(Map<String,Object> paramMap);
 
   int countAll();
+  
+  int searchCount(String index);
 }

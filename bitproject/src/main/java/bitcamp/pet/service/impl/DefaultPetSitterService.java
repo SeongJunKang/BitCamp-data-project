@@ -104,8 +104,11 @@ public class DefaultPetSitterService implements PetSitterService {
   @Override
   public List<PetSitter> search(String index,int pageNo, int pageSize) {
     HashMap<String, Object> paramMap = new HashMap<>();
+    System.out.println("vpdlw넘버"+pageNo);
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    System.out.println(paramMap.get("startIndex")+"이게 스타트인덱스");
     paramMap.put("length", pageSize);
+    System.out.println(paramMap.get("length") +"이게 길이");
     if ( index.equals("전체") ) {
       paramMap.put("pno", "pno");
       return petsitterDao.selectList(paramMap);
@@ -113,8 +116,33 @@ public class DefaultPetSitterService implements PetSitterService {
     paramMap.put("index", "%"+index+"%");
     return petsitterDao.search(paramMap);
   }
+/*  public int countPage(int pageSize) {
+    int count = petsitterDao.countAll();
+    int pages = count / pageSize;
+    if ((count % pageSize) > 0) {
+      pages++;
+    }
+    return pages;
+  }*/
+  @Override
+  public int searchCount(String index,int pageSize) {
+    int count = petsitterDao.searchCount("%"+index+"%");
+    System.out.println(count+"카운트");
+    System.out.println(index + "이건 뭐나와야하지 신주쿠");
+    int pages= count/pageSize;
+    if(pages == 0) {
+      pages=1;
+    }
+    //int pages = count / pageSize;
+   
+    else if((count % pageSize) > 0 ) {
+      pages++;
+    }
+    System.out.println(pages + "서비스 패이지");
+    return pages;
+  }
 }
 /*
- * # Service 객체 - 비즈니스 로직을 수행한다. - 트랜잭션을 제어한다 - 메서드의 이름은 업무 용어에 가깝게 정의하라 - 업무
+ * #Service 객체 - 비즈니스 로직을 수행한다. - 트랜잭션을 제어한다 - 메서드의 이름은 업무 용어에 가깝게 정의하라 - 업무
  * 처리에 필요하다면, 여러 개의 DAO 를 사용할 수 있다.
  */

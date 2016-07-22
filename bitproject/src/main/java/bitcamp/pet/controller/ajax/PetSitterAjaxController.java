@@ -306,8 +306,10 @@ public class PetSitterAjaxController {
     if (pageNo < 0) { // 1페이지 부터 시작
       pageNo = 1;
     }
-    
-    int totalPage =petsitterService.countPage(pageSize);
+    System.out.println("indexcontroller"+index);
+    System.out.println("pageNocontroller"+pageNo);
+    int totalPage =petsitterService.searchCount(index, pageSize);
+    System.out.println(petsitterService.searchCount(index, pageSize) +"컨트롤러 카운터");
     if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
       pageNo = totalPage;
     }
@@ -323,6 +325,9 @@ public class PetSitterAjaxController {
       List<PetSitter> list = petsitterService.search(index, pageNo, pageSize);
 //    } catch (Exception e){}
     HashMap<String,Object> result = new HashMap<>();
+    result.put("pageNo", pageNo);
+    result.put("pageSize", pageSize);
+    result.put("totalPage", totalPage);
     result.put("list", list);
     return new Gson().toJson(result);
   }
