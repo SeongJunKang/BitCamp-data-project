@@ -619,23 +619,50 @@
 
     function delete_img(event) {
       var imgPath = caption.find('.title').find('span').text().split('/');
-      $.ajax({
-      	url : "../ajax/upphoto/delete.do",
-      	dataType : "json",
-        data : {
-          ptos : imgPath[imgPath.length - 1],
-          location : location.href
-        },
-      	success : function(result) {
-      		if (result.status == "success") {
-            location.href = "mypage3.html";
-          } else if (result.status == "gomypage") {
-            swal("사진 삭제 실패","마이페이지에서 삭제가 가능합니다.","warning");
-          } else {
-            swal("사진 삭제 실패","사진삭제에 실패했습니다.","error");
-          }
-      	}
-      })
+		swal({   
+			title: "사진 삭제",   
+			text: "사진을 삭제하시겠습니까 ?",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonText: "삭제",   
+			cancelButtonText: "취소",   
+			closeOnConfirm: false,   
+			closeOnCancel: true 
+			}, 
+			function(isConfirm) {   
+				if (isConfirm) {  
+				      $.ajax({
+				        	url : "../ajax/upphoto/delete.do",
+				        	dataType : "json",
+				          data : {
+				            ptos : imgPath[imgPath.length - 1],
+				            location : location.href
+				          },
+				        	success : function(result) {
+				        		if (result.status == "success") {
+									swal({   
+										title: "사진 삭제 완료",   
+										text: "사진이 삭제되었습니다.",   
+										type: "success",   
+										showCancelButton: false,   
+										confirmButtonText: "확인",   
+										closeOnConfirm: false,   
+										}, 
+										function(isConfirm) {   
+											if (isConfirm) {  
+												location.href = "mypage3.html";
+											}
+										});
+					            } else if (result.status == "gomypage") {
+					              swal("사진 삭제 실패","마이페이지에서 삭제가 가능합니다.","warning");
+					            } else {
+					              swal("사진 삭제 실패","사진삭제에 실패했습니다.","error");
+					            }
+				        	}
+				        })
+				}
+			});
+
     }
 
     // serves as a callback for pbPrevBtn / pbNextBtn buttons but also is called on keypress events

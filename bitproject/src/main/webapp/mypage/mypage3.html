@@ -14,7 +14,8 @@
 
     <!-- Custom CSS -->
     <link href="../css/agency.css" rel="stylesheet">
-
+    <!-- Custom CSS -->
+    <link href="../css/sweetalert.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -91,6 +92,7 @@
     </nav>
 
     <!-- Services Section -->
+    <section>
     <div id="inbody">
     <div id="loading">
     <img id="loading-image" src="../img/ajax-loader.gif">
@@ -151,7 +153,6 @@
               <div class=" input-group1">
                 <input type="text" class="form-control" value="8470" id="phone3" name="phone3">
               </div>
-              <button type="button" class="btn btn-me">인증하기</button>
             </td>
           </tr>
           <tr>
@@ -304,17 +305,17 @@
           <button type="submit" id="savebtn" class="btn btn-me">저장</button>
       </div>
       </form>
-        <p class="detailtext">후기사진 업로드</p>
-      <form class="photoForm" action="../ajax/upphoto/putImg.do" method="post" enctype="multipart/form-data">
+        <p class="detailtext grade2">후기사진 업로드</p>
+      <form class="photoForm grade2" action="../ajax/upphoto/putImg.do" method="post" enctype="multipart/form-data">
          <input type="file" class="file"  id="file-0" name="img"  multiple data-min-file-count="1">
       </form>
-      <div id='wrap'>
+      <div id='wrap grade2'>
          <ul id="gallery">
          </ul>
       </div>
     </div>
   </div>
-  
+  </section>
 
     <footer>
         <div class="container">
@@ -365,20 +366,22 @@
     <script src="../js/checkLogin.js"></script>
     <!-- Drawing Circle on Map -->
     <script src ="../js/mypage/drawingCircleMap.js"></script>
-    <!-- mypage IMG -->
-    <script src="../js/mypage/mypageImg.js"></script>
     <!-- mypage Ready -->
     <script src="../js/mypage/mypageReady.js"></script>
     <!-- mypage Onload -->
     <script src="../js/mypage/mypageSubmit.js"></script>
     <!-- file input js  -->
     <script src="../js/fileinput.js"></script>
+    <!-- file input js  -->
+    <script src="../js/sweetalert.min.js"></script>
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script id="reviewImg" type="text/x-handlebars-template">
             {{#each list}}
               <li class="loaded"><a href="../{{path}}{{ptos}}" data-img="{{ptos}}"><img title="../{{path}}{{ptos}}" src="../{{path}}{{ptos}}"></a></li>
             {{/each}}
     </script>
+    <!-- mypage IMG -->
+    <script src="../js/mypage/mypageImg.js"></script>
 <script type="text/javascript">
 
    $("#file-0").fileinput({
