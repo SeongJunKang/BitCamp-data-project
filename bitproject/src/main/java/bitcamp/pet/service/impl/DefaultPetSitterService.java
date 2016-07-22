@@ -127,18 +127,13 @@ public class DefaultPetSitterService implements PetSitterService {
   @Override
   public int searchCount(String index,int pageSize) {
     int count = petsitterDao.searchCount("%"+index+"%");
-    System.out.println(count+"카운트");
-    System.out.println(index + "이건 뭐나와야하지 신주쿠");
     int pages= count/pageSize;
     if(pages == 0) {
       pages=1;
     }
-    //int pages = count / pageSize;
-   
     else if((count % pageSize) > 0 ) {
       pages++;
     }
-    System.out.println(pages + "서비스 패이지");
     return pages;
   }
 }
