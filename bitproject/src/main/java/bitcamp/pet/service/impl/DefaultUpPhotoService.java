@@ -1,5 +1,3 @@
-//defaultupphotoservice.java
-
 package bitcamp.pet.service.impl;
 
 import java.util.HashMap;

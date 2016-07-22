@@ -1,5 +1,3 @@
-//upphotoajaxcontroller.java
-
 package bitcamp.pet.controller.ajax;
 
 import java.io.File;

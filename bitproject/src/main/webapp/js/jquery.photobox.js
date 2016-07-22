@@ -1,4 +1,4 @@
-/*!jquery photobox
+/*
     photobox v1.9.9
     (c) 2013 Yair Even Or <http://dropthebit.com>
 
@@ -620,21 +620,21 @@
     function delete_img(event) {
       var imgPath = caption.find('.title').find('span').text().split('/');
       $.ajax({
-         url : "../ajax/upphoto/delete.do",
-         dataType : "json",
+      	url : "../ajax/upphoto/delete.do",
+      	dataType : "json",
         data : {
           ptos : imgPath[imgPath.length - 1],
           location : location.href
         },
-         success : function(result) {
-            if (result.status == "success") {
+      	success : function(result) {
+      		if (result.status == "success") {
             location.href = "mypage3.html";
           } else if (result.status == "gomypage") {
             swal("사진 삭제 실패","마이페이지에서 삭제가 가능합니다.","warning");
           } else {
             swal("사진 삭제 실패","사진삭제에 실패했습니다.","error");
           }
-         }
+      	}
       })
     }
 
@@ -782,4 +782,291 @@
         save : function(){
             // only save to history urls which are not already in the hash
             if('pushState' in window.history && decodeURIComponent(window.location.hash.slice(1)) != activeURL && options.history ){
-                window.history.pushState( 'photobox', doc.title + '-' + images[activeImage][1], w
+                window.history.pushState( 'photobox', doc.title + '-' + images[activeImage][1], window.location.pathname + window.location.search + '#' + encodeURIComponent(activeURL) );
+            }
+        },
+        load : function(){
+            if( options && !options.history ) return false;
+            var hash = decodeURIComponent( window.location.hash.slice(1) ), i, j;
+            if( !hash && overlay.hasClass('show') )
+                close();
+
+            $('a[href="' + hash + '"]').trigger('click.photobox');
+        },
+        clear : function(){
+            if( options.history && 'pushState' in window.history )
+                window.history.pushState('photobox', doc.title, window.location.pathname + window.location.search);
+        }
+    };
+
+    // Add Photobox special `onpopstate` to the `onpopstate` function
+    window.onpopstate = (function(){
+        var cached = window.onpopstate;
+        return function(event){
+            cached && cached.apply(this, arguments);
+            if( event.state == 'photobox' )
+                history.load();
+        }
+    })();
+
+    // handles all image loading error (if image is dead)
+    function imageError(){
+        overlay.addClass('error');
+        image[0].src = blankImg; // set the source to a blank image
+        preload.onerror = null;
+    }
+
+    // Shows the content (image/video) on the screen
+    function showContent(firstTime){
+        var out, showSaftyTimer;
+        showSaftyTimer = setTimeout(show, 2000);
+
+        // hides the current image and prepare ground for an image change
+        pbLoader.fadeOut(300, function(){
+            overlay.removeClass("pbLoading");
+            pbLoader.removeAttr('style');
+        });
+        overlay.addClass('pbHide');
+
+        image.add(video).removeAttr('style').removeClass('zoomable'); // while transitioning an image, do not apply the 'zoomable' class
+
+        // check which element needs to transition-out:
+        if( !firstTime && imageLinks[lastActive].rel == 'video' ){
+            out = video;
+            image.addClass('prepare');
+        }
+        else
+            out = image;
+
+        if( firstTime || isOldIE )
+            show();
+        else
+            out.on(transitionend, show);
+
+        // in case the 'transitionend' didn't fire
+        // after hiding the last seen image, show the new one
+        function show(){
+            clearTimeout(showSaftyTimer);
+            out.off(transitionend).css({'transition':'none'});
+            overlay.removeClass('video');
+            if( activeType == 'video' ){
+                image[0].src = blankImg;
+                video.addClass('prepare');
+                overlay.addClass('video');
+            }
+            else
+                image.prop({ 'src':activeURL, 'class':'prepare' });
+
+            // filthy hack for the transitionend event, but cannot work without it:
+            setTimeout(function(){
+                image.add(video).removeAttr('style').removeClass('prepare');
+                overlay.removeClass('pbHide next prev');
+                setTimeout(function(){
+                    image.add(video).on(transitionend, showDone);
+                    if(isOldIE) showDone(); // IE9 and below don't support transitionEnd...
+                }, 0);
+            },50);
+        }
+    }
+
+    // a callback whenever a transition of an image or a video is done
+    function showDone(){
+        image.add(video).off(transitionend).addClass('zoomable');
+        if( activeType == 'video' )
+            video.removeClass('pbHide');
+        else{
+            autoplayBtn && options.autoplay && APControl.play();
+        }
+        if( photobox && typeof photobox.callback == 'function' )
+            photobox.callback.apply(imageLinks[activeImage]);
+    }
+
+    function scrollZoom(e, deltaY, deltaX){
+        if( deltaX ) return false;
+
+        if( activeType == 'video' ){
+            var zoomLevel = video.data('zoom') || 1;
+            zoomLevel += (deltaY / 10);
+            if( zoomLevel < 0.5 )
+                return false;
+
+            video.data('zoom', zoomLevel).css({width:624*zoomLevel, height:351*zoomLevel});
+        }
+        else{
+            var zoomLevel = image.data('zoom') || 1,
+                getSize = image[0].getBoundingClientRect();
+
+            zoomLevel += (deltaY / 10);
+
+            if( zoomLevel < 0.1 )
+                zoomLevel = 0.1;
+
+            raf(function() {
+                image.data('zoom', zoomLevel).css({'transform':'scale('+ zoomLevel +')'});
+            });
+
+            // check if image (by mouse) movement should take effect (if image is larger than the window
+            if( getSize.height > docElm.clientHeight || getSize.width > docElm.clientWidth ){
+                $(doc).on('mousemove.photobox', imageReposition);
+            }
+            else{
+                $(doc).off('mousemove.photobox');
+                image[0].style[transformOrigin] = '50% 50%';
+            }
+        }
+        return false;
+    }
+
+    function thumbsResize(e, delta){
+        e.preventDefault();
+        e.stopPropagation(); // stop the event from bubbling up to the Overlay and enlarge the content itself
+        var thumbList = photobox.thumbsList, h;
+        thumbList.css('height', thumbList[0].clientHeight + (delta * 10) );
+        h = caption[0].clientHeight / 2;
+        wrapper[0].style.cssText = "margin-top: -"+ h +"px; padding: "+ h +"px 0;";
+        thumbs.hide().show(0);
+        //thumbs.trigger('mouseenter').trigger('mousemove');
+    }
+
+    // moves the image around during zoom mode on mousemove event
+    function imageReposition(e){
+        var y = (e.clientY / docElm.clientHeight) * (docElm.clientHeight + 200) - 100, // extend the range of the Y axis by 100 each side
+            yDelta = y / docElm.clientHeight * 100,
+            xDelta = e.clientX / docElm.clientWidth * 100,
+            origin = xDelta.toFixed(2)+'% ' + yDelta.toFixed(2) +'%';
+
+        raf(function() {
+            image[0].style[transformOrigin] = origin;
+        });
+    }
+
+    function stop(){
+        clearTimeout(APControl.autoPlayTimer);
+        $(doc).off('mousemove.photobox');
+        preload.onload = function(){};
+        preload.src = preloadPrev.src = preloadNext.src = activeURL;
+    }
+
+    function close(){
+        if( !overlay.hasClass('show') )
+            return false;
+
+        stop();
+        video.find('iframe').prop('src','').empty();
+        Photobox.prototype.setup();
+        history.clear();
+
+        overlay.removeClass('on video').addClass('pbHide');
+        activeImage = -1;
+
+        image.on(transitionend, hide);
+        isOldIE && hide();
+
+        // the "photobox" instance might be needed for async transitionEnd functions, so give it some time before clearing it
+        setTimeout(function(){
+            photobox = null;
+        },1000);
+
+        function hide(){
+            if( overlay[0].className == '' ) return; // if already hidden
+            overlay.removeClass('show pbHide error pbLoading');
+            image.removeAttr('class').removeAttr('style').off().data('zoom',1);
+            // a hack to change the image src to nothing, because you can't do that in CHROME
+            image[0].src = blankImg;
+
+            caption.find('.title').empty();
+
+            if(noPointerEvents) // pointer-events lack support in IE, so just hide the overlay
+                setTimeout(function(){ overlay.hide(); }, 200);
+
+            options.hideFlash && $('iframe, object, embed').css('visibility', 'visible');
+        }
+
+        // fall-back if the 'transitionend' event didn't fire
+        setTimeout(hide, 500);
+        // callback after closing the gallery
+        if( typeof options.afterClose === 'function' )
+            options.afterClose(overlay);
+    }
+
+
+    /**
+    * jQuery Plugin to add basic "swipe" support on touch-enabled devices
+    *
+    * @author Yair Even Or
+    * @version 1.0.0 (March 20, 2013)
+    */
+    $.event.special.swipe = {
+        setup: function(){
+            $(this).bind('touchstart', $.event.special.swipe.handler);
+        },
+
+        teardown: function(){
+            $(this).unbind('touchstart', $.event.special.swipe.handler);
+        },
+
+        handler: function(event){
+            var args = [].slice.call( arguments, 1 ), // clone arguments array, remove original event from cloned array
+                touches = event.originalEvent.touches,
+                startX, startY,
+                deltaX = 0, deltaY = 0,
+                that = this;
+
+            event = $.event.fix(event);
+
+            if( touches.length == 1 ){
+                startX = touches[0].pageX;
+                startY = touches[0].pageY;
+                this.addEventListener('touchmove', onTouchMove, false);
+            }
+
+            function cancelTouch(){
+                that.removeEventListener('touchmove', onTouchMove);
+                startX = startY = null;
+            }
+
+            function onTouchMove(e){
+                e.preventDefault();
+
+                var Dx = startX - e.touches[0].pageX,
+                    Dy = startY - e.touches[0].pageY;
+
+                if( Math.abs(Dx) >= 20 ){
+                    cancelTouch();
+                    deltaX = (Dx > 0) ? -1 : 1;
+                }
+                else if( Math.abs(Dy) >= 20 ){
+                    cancelTouch();
+                    deltaY = (Dy > 0) ? 1 : -1;
+                }
+
+                event.type = 'swipe';
+                args.unshift(event, deltaX, deltaY); // add back the new event to the front of the arguments with the delatas
+                return ($.event.dispatch || $.event.handle).apply(that, args);
+            }
+        }
+    };
+
+    /* MouseWheel plugin
+     * ! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
+     * Licensed under the MIT License (LICENSE.txt).
+     *
+     * Version: 3.1.11
+     *
+     * Requires: jQuery 1.2.2+
+     */
+    !function(a){"function"==typeof define&&define.amd?define(["jquery"],a):"object"==typeof exports?module.exports=a:a(jQuery)}(function(a){function b(b){var g=b||window.event,h=i.call(arguments,1),j=0,l=0,m=0,n=0,o=0,p=0;if(b=a.event.fix(g),b.type="mousewheel","detail"in g&&(m=-1*g.detail),"wheelDelta"in g&&(m=g.wheelDelta),"wheelDeltaY"in g&&(m=g.wheelDeltaY),"wheelDeltaX"in g&&(l=-1*g.wheelDeltaX),"axis"in g&&g.axis===g.HORIZONTAL_AXIS&&(l=-1*m,m=0),j=0===m?l:m,"deltaY"in g&&(m=-1*g.deltaY,j=m),"deltaX"in g&&(l=g.deltaX,0===m&&(j=-1*l)),0!==m||0!==l){if(1===g.deltaMode){var q=a.data(this,"mousewheel-line-height");j*=q,m*=q,l*=q}else if(2===g.deltaMode){var r=a.data(this,"mousewheel-page-height");j*=r,m*=r,l*=r}if(n=Math.max(Math.abs(m),Math.abs(l)),(!f||f>n)&&(f=n,d(g,n)&&(f/=40)),d(g,n)&&(j/=40,l/=40,m/=40),j=Math[j>=1?"floor":"ceil"](j/f),l=Math[l>=1?"floor":"ceil"](l/f),m=Math[m>=1?"floor":"ceil"](m/f),k.settings.normalizeOffset&&this.getBoundingClientRect){var s=this.getBoundingClientRect();o=b.clientX-s.left,p=b.clientY-s.top}return b.deltaX=l,b.deltaY=m,b.deltaFactor=f,b.offsetX=o,b.offsetY=p,b.deltaMode=0,h.unshift(b,j,l,m),e&&clearTimeout(e),e=setTimeout(c,200),(a.event.dispatch||a.event.handle).apply(this,h)}}function c(){f=null}function d(a,b){return k.settings.adjustOldDeltas&&"mousewheel"===a.type&&b%120===0}var e,f,g=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],i=Array.prototype.slice;if(a.event.fixHooks)for(var j=g.length;j;)a.event.fixHooks[g[--j]]=a.event.mouseHooks;var k=a.event.special.mousewheel={version:"3.1.11",setup:function(){if(this.addEventListener)for(var c=h.length;c;)this.addEventListener(h[--c],b,!1);else this.onmousewheel=b;a.data(this,"mousewheel-line-height",k.getLineHeight(this)),a.data(this,"mousewheel-page-height",k.getPageHeight(this))},teardown:function(){if(this.removeEventListener)for(var c=h.length;c;)this.removeEventListener(h[--c],b,!1);else this.onmousewheel=null;a.removeData(this,"mousewheel-line-height"),a.removeData(this,"mousewheel-page-height")},getLineHeight:function(b){var c=a(b)["offsetParent"in a.fn?"offsetParent":"parent"]();return c.length||(c=a("body")),parseInt(c.css("fontSize"),10)},getPageHeight:function(b){return a(b).height()},settings:{adjustOldDeltas:!0,normalizeOffset:!0}};a.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})});
+
+    ////////////// ON DOCUMENT READY /////////////////
+    $(doc).ready(prepareDOM);
+
+    // Expose:
+    window._photobox = {
+        DOM      : {
+            overlay : overlay
+        },
+        close    : close,
+        history  : history,
+        defaults : defaults
+    };
+})(jQuery, document, window);

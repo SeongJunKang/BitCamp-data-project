@@ -1,5 +1,4 @@
 /**
- *mypageimg
  */
 function maskImgs() {
    // $('.img-wrapper img').imagesLoaded({}, function() {
