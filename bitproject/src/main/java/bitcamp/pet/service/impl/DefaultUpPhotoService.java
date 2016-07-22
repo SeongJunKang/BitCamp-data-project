@@ -1,3 +1,5 @@
+//defaultupphotoservice.java
+
 package bitcamp.pet.service.impl;
 
 import java.util.HashMap;
@@ -14,7 +16,7 @@ import bitcamp.pet.vo.UpPhoto;
 public class DefaultUpPhotoService implements UpPhotoService {
   @Autowired
   UpPhotoDao upphotoDao;
-  
+
   @Override
   public void add(UpPhoto upphoto) {
     upphotoDao.insert(upphoto);

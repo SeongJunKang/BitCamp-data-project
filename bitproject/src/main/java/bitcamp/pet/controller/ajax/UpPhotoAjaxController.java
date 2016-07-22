@@ -1,3 +1,5 @@
+//upphotoajaxcontroller.java
+
 package bitcamp.pet.controller.ajax;
 
 import java.io.File;
@@ -29,33 +31,33 @@ public class UpPhotoAjaxController {
 
   @Autowired
   MemberService memberService;
-  
+
   @Autowired
   UpPhotoService upphotoService;
 
   @Autowired
   ServletContext servletContext;
-  
+
   @RequestMapping(produces="application/json;charset=UTF-8", value="list",method = RequestMethod.POST)
   @ResponseBody
   public String list(int pno) throws ServletException, IOException {
-    Member member = memberService.retrieveByNo(pno); 
+    Member member = memberService.retrieveByNo(pno);
     List<UpPhoto> list = upphotoService.list(member.getMno());
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
     return new Gson().toJson(result);
   }
-  
+
   @RequestMapping(produces="application/json;charset=UTF-8", value="mylist")
   @ResponseBody
   public String list(HttpSession session) throws ServletException, IOException {
-    Member member = (Member)session.getAttribute("loginUser"); 
+    Member member = (Member)session.getAttribute("loginUser");
     List<UpPhoto> list = upphotoService.list(member.getMno());
     HashMap<String,Object> result = new HashMap<>();
     result.put("list", list);
     return new Gson().toJson(result);
   }
-  
+
 
   @RequestMapping(value = "putImg", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
   public String add(MultipartFile[] img, HttpSession session) throws ServletException, IOException {
@@ -63,7 +65,7 @@ public class UpPhotoAjaxController {
     HashMap<String, Object> result = new HashMap<>();
     int pno = member.getMno();
     String dirPath = servletContext.getRealPath("/img/photos/" + member.getEmail());
-    File dir = new File(dirPath); 
+    File dir = new File(dirPath);
     if (!dir.exists()) {
       dir.mkdirs();
     }
@@ -89,13 +91,18 @@ public class UpPhotoAjaxController {
     }
     return "redirect:../../mypage/mypage3.html";
   }
-  
+
   @RequestMapping(produces="application/json;charset=UTF-8", value="delete")
   @ResponseBody
-  public String delete(HttpSession session) throws ServletException, IOException {
+  public String delete(HttpSession session,String location,String ptos) throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
     try {
-      memberService.delete(((Member)session.getAttribute("loginUser")).getMno());
+      Member member = ((Member)session.getAttribute("loginUser"));
+      if (!location.contains("mypage")) {
+        result.put("status", "gomypage");
+        return new Gson().toJson(result);
+      }
+      upphotoService.delete(member.getMno(),ptos);
       result.put("status", "success");
     } catch (Exception e) {
       e.printStackTrace();

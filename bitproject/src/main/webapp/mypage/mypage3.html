@@ -1,3 +1,4 @@
+//testmypage
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,19 +28,17 @@
     <link rel="stylesheet" type="text/css" href="../css/fileinput.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    
-    
+
+
     <!-- PhotoBox Css -->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/photobox.css">
   <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src='../js/jquery.photobox.js'></script>
-  <!-- SweetAlert -->
-  <link rel="stylesheet" href="../css/sweetalert.css">
-  
+
     <!-- jQuery Dialog -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
@@ -48,18 +47,7 @@
     <script type="text/javascript" src="../js/LoginCheck.js"></script>
     <!-- Daum map API -->
     <script src="http://apis.daum.net/maps/maps3.js?apikey=7ae134637aef8f4bb01892e30a801547&libraries=services"></script>
-<style type="text/css">
-#wrap {
-  margin-right: 0 auto;
-}
-.detailtext {
-  text-align: left;
-  font-size: 40px;
-  font-style: oblique;
-  font-weight: bold;
-  margin: 40px;
-}
-</style>
+
 </head>
 
 <body id="page-top" class="index">
@@ -164,6 +152,7 @@
               <div class=" input-group1">
                 <input type="text" class="form-control" value="8470" id="phone3" name="phone3">
               </div>
+              <button type="button" class="btn btn-me">인증하기</button>
             </td>
           </tr>
           <tr>
@@ -189,7 +178,7 @@
                 <input type="password" id="passwordchk" onkeyup="pwdCheck()" name="passwordchk" class="form-control" placeholder="바뀌는경우만입력" >
                 <span id="checkText"></span>
               </div>
-              
+
             </td>
           </tr>
         </table>
@@ -235,13 +224,13 @@
               <td class="th"><span class="thtext">추가서비스</span></td>
               <td class="td">
                 <label class="checkbox-inline">
-                  <input type="checkbox" name="box" id="box1"  value="간식 제공">간식 제공 
+                  <input type="checkbox" name="box" id="box1"  value="간식 제공">간식 제공
                 </label>
                 <label class="checkbox-inline">
                   <input type="checkbox" name="box" id="box2"  value="픽업">픽업
                 </label>
                 <label class="checkbox-inline">
-                  <input type="checkbox" name="box" id="box3"  value="배변봉투 제공">배변봉투 제공 
+                  <input type="checkbox" name="box" id="box3"  value="배변봉투 제공">배변봉투 제공
                 </label>
                 <label class="checkbox-inline">
                   <input type="checkbox" name="box"  id="box4" value="목줄/리드줄 보유">  목줄/리드줄 보유
@@ -254,7 +243,7 @@
             <tr>
               <td class="th"><span class="thtext">문의시간*</span></td>
               <td class="td">
-                <input type="text" class="form-control width-control" name="inqur1" id="inqur1">시 ~ 
+                <input type="text" class="form-control width-control" name="inqur1" id="inqur1">시 ~
                 <input type="text" class="form-control width-control" name="inqur2" id="inqur2">시</td>
             </tr>
             <tr>
@@ -281,7 +270,7 @@
               <td class="td" colspan="2">
                 <div>
                   반경 : <input type="text" class="form-control" id="radian" name="rad" readonly="readonly">m
-                  <span class="radiandiv"> 
+                  <span class="radiandiv">
                   <button class="btn btn-me" type="button" onclick="ex_map()">지도 설정 상세보기</button></span>
                 </div>
                 <div class="map_wrap">
@@ -290,8 +279,8 @@
                       <div class="option">
                           <div>
                               <!-- <form onsubmit="searchPlaces(); return false;"> -->
-                                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15"> 
-                                  <button type="button" onclick="searchPlaces()" >검색하기</button> 
+                                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15">
+                                  <button type="button" onclick="searchPlaces()" >검색하기</button>
                               <!-- </form> -->
                           </div>
                       </div>
@@ -316,16 +305,36 @@
           <button type="submit" id="savebtn" class="btn btn-me">저장</button>
       </div>
       </form>
-      <p class="detailtext grade2">후기사진 업로드</p>
-      <form class="photoForm grade2" action="../ajax/upphoto/putImg.do" method="post" enctype="multipart/form-data">
+        <p class="detailtext">후기사진 업로드</p>
+      <form class="photoForm" action="../ajax/upphoto/putImg.do" method="post" enctype="multipart/form-data">
          <input type="file" class="file"  id="file-0" name="img"  multiple data-min-file-count="1">
       </form>
-      <div id='wrap grade2'>
-        <ul id="gallery">
-        </ul>
+      <div id='wrap'>
+         <ul id="gallery">
+         </ul>
       </div>
     </div>
   </div>
+  <!-- <div id="dialog-confirm" title="회원 탈퇴 확인">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>정말로 회원 탈퇴하시겠습니까?<br>데이터가 복구되지 않습니다.</p>
+  </div>
+  <div id="dialog-confirm2" title="회원 정보 변경">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원 정보를 변경하였습니다</p>
+  </div>
+  <div id="dialog-confirm3" title="회원 정보 변경">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>회원 정보를 변경하지못했습니다</p>
+  </div>
+  <div id="dialog-deletec" title="도그워커 등록 정보 삭제">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 도그워커 정보를 삭제하시겠습니까 ?.</p>
+  </div>
+  <div id="dialog-deletef" title="도그워커 등록 정보 삭제">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>등록된 도그워커 정보를 삭제 실패했습니다.</p>
+  </div>
+  <div id="dialog-resist" title="이메일 인증 확인">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>도그워커에 등록하려면 이메일 인증해야 합니다.</p>
+  </div> -->
+
+
     <footer>
         <div class="container">
             <div class="row">
@@ -381,38 +390,48 @@
     <script src="../js/mypage/mypageReady.js"></script>
     <!-- mypage Onload -->
     <script src="../js/mypage/mypageSubmit.js"></script>
-    <!-- SweetAlert -->
-    <script src="../js/sweetalert.min.js"></script>
     <!-- file input js  -->
     <script src="../js/fileinput.js"></script>
     <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <script id="reviewImg" type="text/x-handlebars-template">
             {{#each list}}
-              <li class="loaded"><a href="../{{path}}{{ptos}}"><img title="../{{path}}{{ptos}}" src="../{{path}}{{ptos}}"></a></li>
+              <li class="loaded"><a href="../{{path}}{{ptos}}" data-img="{{ptos}}"><img title="../{{path}}{{ptos}}" src="../{{path}}{{ptos}}"></a></li>
             {{/each}}
     </script>
 <script type="text/javascript">
+/* $(function() {
+    $.ajax({
+       url : "../ajax/upphoto/mylist.do",
+       dataType : "json",
+       success : function(result) {
+         var templateData = $( "#reviewImg").html();
+         var template = Handlebars .compile(templateData);
+         var html = template(result);
+         $("#gallery").append(html);
+       }
+     })
+  }); */
 
-$("#file-0").fileinput({
-    'allowedFileExtensions' : ['jpg', 'png','gif'],
-});
-$('#gallery').photobox('a', { thumbs:true, loop:false }, callback);
-// using setTimeout to make sure all images were in the DOM, before the history.load() function is looking them up to match the url hash
-setTimeout(window._photobox.history.load, 2000);
-function callback(){
-  console.log('callback for loaded content:', this);
-};  
-
+  /*  $('#gallery').photobox('a', { thumbs:true, loop:false }, callback);
+   // using setTimeout to make sure all images were in the DOM, before the history.load() function is looking them up to match the url hash
+   setTimeout(window._photobox.history.load, 2000);
+   function callback(){
+     console.log('callback for loaded content:', this);
+     
+   }; */
+   $("#file-0").fileinput({
+       'allowedFileExtensions' : ['jpg', 'png','gif'],
+   });
   $('#frm').on('keyup keypress', function(e) {
       var keyCode = e.keyCode || e.which;
-      if (keyCode === 13) { 
+      if (keyCode === 13) {
         e.preventDefault();
         return false;
       }
     });
-    $(window).load(function() {     
-        $('#loading').hide();   
-      }); 
+    $(window).load(function() {
+        $('#loading').hide();
+      });
   </script>
 </body>
 </html>
