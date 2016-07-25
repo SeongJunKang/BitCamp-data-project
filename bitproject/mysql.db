@@ -165,20 +165,20 @@ alter table upphoto add foreign key (pno) references testdb.petsitter (pno) on d
 
 
 -- 여성멤버
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('eunyoung@gmail.com','111a','김은영','여성','1982-05-23','SKT','010-1267-1452','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('heeju@hanmail.net','111a','김희주','여성','1985-07-20','SKT','010-8237-1232','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('eunseo@gmail.com','111a','나은서','여성','1981-04-21','LG U+','010-5667-1442','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('silversnow@naver.com','111a','백은설','여성','1981-12-20','LG U+','010-8667-1662','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('jena@gmail.com','111a','이예나','여성','1991-11-12','KT','010-5796-9646','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('Ayeong@naver.com','111a','박아영','여성','1995-01-18','LG U+','010-8767-1642','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('LeeEun@naver.com','111a','함이은','여성','1989-05-10','SKT','010-6474-1743','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('Iniesta@hanmail.net','111a','안인혜','여성','1987-01-23','KT','010-3947-2487','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('seungA@gmail.com','111a','배승아','여성','1981-07-20','SKT','010-1923-1486','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('kimsina@gmail.com','111a','김신아','여성','1983-02-24','LG U+','010-4532-4680','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('songhee@gmail.com','111a','배송희','여성','1987-01-22','KT','010-4531-6786','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('soyeon@naver.com','111a','이소연','여성','1983-11-11','LG U+','010-7453-8564','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('Yu-jin@gmail.com','111a','이유진','여성','1992-03-25','SKT','010-9841-1234','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('se-eun@naver.com','111a','윤세은','여성','1990-06-12','LG U+','010-3853-5435','1')
-Insert into Member (email, pwd, name, gen, bth, agc, tel, gra ) values('seunghee@hanmail.net','111a','김승희','여성','1995-07-12','SKT','010-1235-4312','1')
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('eunyoung@gmail.com','111a','김은영','여성','1982-05-23','SKT','010-1267-1452','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('heeju@hanmail.net','111a','김희주','여성','1985-07-20','SKT','010-8237-1232','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('eunseo@gmail.com','111a','나은서','여성','1981-04-21','LG U+','010-5667-1442','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH ) values('silversnow@naver.com','111a','백은설','여성','1981-12-20','LG U+','010-8667-1662','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH ) values('jena@gmail.com','111a','이예나','여성','1991-11-12','KT','010-5796-9646','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH ) values('Ayeong@naver.com','111a','박아영','여성','1995-01-18','LG U+','010-8767-1642','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('LeeEun@naver.com','111a','함이은','여성','1989-05-10','SKT','010-6474-1743','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('Iniesta@hanmail.net','111a','안인혜','여성','1987-01-23','KT','010-3947-2487','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('seungA@gmail.com','111a','배승아','여성','1981-07-20','SKT','010-1923-1486','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('kimsina@gmail.com','111a','김신아','여성','1983-02-24','LG U+','010-4532-4680','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('songhee@gmail.com','111a','배송희','여성','1987-01-22','KT','010-4531-6786','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('soyeon@naver.com','111a','이소연','여성','1983-11-11','LG U+','010-7453-8564','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('Yu-jin@gmail.com','111a','이유진','여성','1992-03-25','SKT','010-9841-1234','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('se-eun@naver.com','111a','윤세은','여성','1990-06-12','LG U+','010-3853-5435','1','인증');
+Insert into Member (email, pwd, name, gen, bth, agc, tel, gra, EAUTH) values('seunghee@hanmail.net','111a','김승희','여성','1995-07-12','SKT','010-1235-4312','1','인증');
 
 
