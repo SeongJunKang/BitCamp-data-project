@@ -307,9 +307,9 @@ public class PetSitterAjaxController {
       pageNo = 1;
     }
     int totalPage =petsitterService.searchCount(index, pageSize);
-    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+/*    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
       pageNo = totalPage;
-    }
+    }*/
     
     if (pageSize < 3) { // 최소 3개
       pageSize = 3; 
