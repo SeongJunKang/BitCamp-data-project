@@ -111,7 +111,7 @@
     $("#more-btn").click(function() {
       switch ($(".section-subheading").text()) {
         case "최신순":
-               $.getJSON("../ajax/petsitter/list.do?order=latest&pageNo="+$("#moreNo").val(),
+               $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo="+$("#moreNo").val(),
                         function(result) {
                           var templateData = $(
                               "#sitterlist").html();
@@ -187,7 +187,7 @@
       $("#moreNo").val(2);
       $("#petsitter").empty();
       TagText.text($("#latest").text());
-      $.getJSON("../ajax/petsitter/list.do?order=latest&pageNo=1",
+      $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=1",
               function(result) {
                 var templateData = $(
                     "#sitterlist").html();
