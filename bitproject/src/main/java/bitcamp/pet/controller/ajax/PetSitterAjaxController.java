@@ -171,17 +171,17 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String list(String order,
       @RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="9") int pageSize) throws ServletException, IOException {
+      @RequestParam(defaultValue="6") int pageSize) throws ServletException, IOException {
     // 페이지 번호와 페이지 당 출력 개수의 유효성 검사
     if (pageNo < 0) { // 1페이지 부터 시작
       pageNo = 1;
     }
     
     int totalPage =petsitterService.countPage(pageSize);
-    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
+/*    if (pageNo > totalPage) { // 가장 큰 페이지 번호를 넘지 않게 한다.
       pageNo = totalPage;
     }
-    
+*/    
     if (pageSize < 3) { // 최소 3개
       pageSize = 3; 
       
