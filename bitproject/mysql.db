@@ -7,14 +7,14 @@ DROP TABLE IF EXISTS petsitter RESTRICT;
 -- 신청
 DROP TABLE IF EXISTS request RESTRICT;
 
--- 펫시터산책후기
-DROP TABLE IF EXISTS petreview RESTRICT;
-
 -- 사용자후기
 DROP TABLE IF EXISTS userreview RESTRICT;
 
 -- 좋아요
 DROP TABLE IF EXISTS likes RESTRICT;
+
+-- 후기사진등록
+DROP TABLE IF EXISTS upphoto RESTRICT;
 
 -- 회원
 CREATE TABLE MEMBER (
@@ -27,6 +27,7 @@ CREATE TABLE MEMBER (
   AGC   VARCHAR(10)  NOT NULL COMMENT '통신사', -- 통신사
   TEL   VARCHAR(30)  NOT NULL COMMENT '핸드폰번호', -- 핸드폰번호
   GRA   INTEGER      NOT NULL COMMENT '등급', -- 등급
+  EAUTH VARCHAR(10)  NULL     COMMENT '이메일인증', -- 이메일인증
   PROF  VARCHAR(255) NULL     COMMENT '프로필사진' -- 프로필사진
 )
 COMMENT '회원';
@@ -59,16 +60,17 @@ CREATE TABLE petsitter (
   ACC    VARCHAR(20)  NOT NULL COMMENT '계좌', -- 계좌
   SER    TEXT         NULL     COMMENT '추가서비스', -- 추가서비스
   INQUR  VARCHAR(20)  NOT NULL COMMENT '문의시간', -- 문의시간
-  PET    VARCHAR(20)  NULL     COMMENT '반려동물유무', -- 반려동물유무
+  PET    VARCHAR(20)  NULL     DEFAULT 0 COMMENT '반려동물유무', -- 반려동물유무
   ADDR_1 VARCHAR(255) NOT NULL COMMENT '우편번호', -- 우편번호
   ADDR_2 VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
-  RAD    INTEGER      NULL     COMMENT '반지름', -- 반지름
+  ADDR_3 VARCHAR(255) NOT NULL COMMENT '상세주소2', -- 상세주소
+  RAD    INTEGER      NULL     DEFAULT 0 COMMENT '반지름', -- 반지름
   LAT    VARCHAR(20)  NULL     COMMENT '위도', -- 위도
   LNT    VARCHAR(20)  NULL     COMMENT '경도', -- 경도
   HOS    INTEGER      NOT NULL COMMENT '동물병원', -- 동물병원
   INTRO  TEXT         NOT NULL COMMENT '소개', -- 소개
-  LIKES  INTEGER      NULL     COMMENT '좋아요', -- 좋아요
-  PETG   INTEGER      NULL     COMMENT '펫시터등급', -- 펫시터등급
+  LIKES  INTEGER      NULL     DEFAULT 0 COMMENT '좋아요', -- 좋아요
+  PETG   INTEGER      NULL     DEFAULT 1 COMMENT '펫시터등급', -- 펫시터등급
   IMG    VARCHAR(255) NULL     COMMENT '사진' -- 사진
 )
 COMMENT '펫시터';
@@ -82,13 +84,21 @@ ALTER TABLE petsitter
 
 -- 신청
 CREATE TABLE request (
-  REQ   INTEGER NOT NULL COMMENT '신청번호', -- 신청번호
-  MNO   INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  PNO   INTEGER NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
-  CDT   DATE    NULL     COMMENT '신청일', -- 신청일
-  CONTS TEXT    NULL     COMMENT '내용', -- 내용
-  STAT  TEXT    NULL     COMMENT '상태', -- 상태
-  ANS   TEXT    NULL     COMMENT '답변' -- 답변
+  REQ   INTEGER      NOT NULL COMMENT '신청번호', -- 신청번호
+  MNO   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  PNO   INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
+  CONTS DATE         NULL     COMMENT '상세정보', -- 상세정보
+  MEAL  TEXT         NULL     COMMENT '밥먹는시간', -- 밥먹는시간
+  TRAIN TEXT         NULL     COMMENT '교육', -- 교육
+  ANS   TEXT         NULL     COMMENT '답변', -- 답변
+  DATE  VARCHAR(100) NOT NULL COMMENT '신청날짜', -- 신청날짜
+  RES   VARCHAR(12)  NOT NULL COMMENT '기관등록', -- 기관등록
+  NEUT  VARCHAR(12)  NOT NULL COMMENT '중성화', -- 중성화
+  ANIFD VARCHAR(12)  NOT NULL COMMENT '동물친화성', -- 동물친화성
+  MANFD VARCHAR(12)  NOT NULL COMMENT '인간친화성', -- 인간친화성
+  BARK  VARCHAR(12)  NOT NULL COMMENT '짖다', -- 짖다
+  DIZ   VARCHAR(12)  NOT NULL COMMENT '질병', -- 질병
+  STAT  VARCHAR(12)  NOT NULL DEFAULT '대기' COMMENT '상태' -- 상태
 )
 COMMENT '신청';
 
@@ -102,34 +112,13 @@ ALTER TABLE request
 ALTER TABLE request
   MODIFY COLUMN REQ INTEGER NOT NULL AUTO_INCREMENT COMMENT '신청번호';
 
--- 펫시터산책후기
-CREATE TABLE petreview (
-  PBNO  INTEGER      NOT NULL COMMENT '산책후기번호', -- 산책후기번호
-  PNO   INTEGER      NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
-  PIC   VARCHAR(255) NULL     COMMENT '사진', -- 사진
-  VIDEO VARCHAR(255) NULL     COMMENT '동영상', -- 동영상
-  PREV  TEXT         NOT NULL COMMENT '후기', -- 후기
-  PDT   DATE         NULL     COMMENT '날짜' -- 날짜
-)
-COMMENT '펫시터산책후기';
-
--- 펫시터산책후기
-ALTER TABLE petreview
-  ADD CONSTRAINT PK_petreview -- 펫시터산책후기 기본키
-    PRIMARY KEY (
-      PBNO -- 산책후기번호
-    );
-
-ALTER TABLE petreview
-  MODIFY COLUMN PBNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '산책후기번호';
-
 -- 사용자후기
 CREATE TABLE userreview (
   MBNO INTEGER NOT NULL COMMENT '게시물번호', -- 게시물번호
   PNO  INTEGER NULL     COMMENT '펫시터회원번호', -- 펫시터회원번호
   MNO  INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
   BREV TEXT    NOT NULL COMMENT '글', -- 글
-  BDT  DATE    NULL     COMMENT '날짜' -- 날짜
+  BDT  DATETIME    NULL     COMMENT '날짜' -- 날짜
 )
 COMMENT '사용자후기';
 
@@ -150,118 +139,6 @@ CREATE TABLE likes (
 )
 COMMENT '좋아요';
 
--- 펫시터
-ALTER TABLE petsitter
-  ADD CONSTRAINT FK_MEMBER_TO_petsitter -- 회원 -> 펫시터
-    FOREIGN KEY (
-      PNO -- 펫시터회원번호
-    )
-    REFERENCES MEMBER ( -- 회원
-      MNO -- 회원번호
-    );
-
--- 신청
-ALTER TABLE request
-  ADD CONSTRAINT FK_MEMBER_TO_request -- 회원 -> 신청
-    FOREIGN KEY (
-      MNO -- 회원번호
-    )
-    REFERENCES MEMBER ( -- 회원
-      MNO -- 회원번호
-    );
-
--- 신청
-ALTER TABLE request
-  ADD CONSTRAINT FK_petsitter_TO_request -- 펫시터 -> 신청
-    FOREIGN KEY (
-      PNO -- 펫시터회원번호
-    )
-    REFERENCES petsitter ( -- 펫시터
-      PNO -- 펫시터회원번호
-    );
-
--- 펫시터산책후기
-ALTER TABLE petreview
-  ADD CONSTRAINT FK_petsitter_TO_petreview -- 펫시터 -> 펫시터산책후기
-    FOREIGN KEY (
-      PNO -- 펫시터회원번호
-    )
-    REFERENCES petsitter ( -- 펫시터
-      PNO -- 펫시터회원번호
-    );
-
--- 사용자후기
-ALTER TABLE userreview
-  ADD CONSTRAINT FK_MEMBER_TO_userreview -- 회원 -> 사용자후기
-    FOREIGN KEY (
-      MNO -- 회원번호
-    )
-    REFERENCES MEMBER ( -- 회원
-      MNO -- 회원번호
-    );
-
--- 사용자후기
-ALTER TABLE userreview
-  ADD CONSTRAINT FK_petsitter_TO_userreview -- 펫시터 -> 사용자후기2
-    FOREIGN KEY (
-      PNO -- 펫시터회원번호
-    )
-    REFERENCES petsitter ( -- 펫시터
-      PNO -- 펫시터회원번호
-    );
-
--- 좋아요
-ALTER TABLE likes
-  ADD CONSTRAINT FK_MEMBER_TO_likes -- 회원 -> 좋아요
-    FOREIGN KEY (
-      MNO -- 사용자번호
-    )
-    REFERENCES MEMBER ( -- 회원
-      MNO -- 회원번호
-    );
-
--- 좋아요
-ALTER TABLE likes
-  ADD CONSTRAINT FK_petsitter_TO_likes -- 펫시터 -> 좋아요2
-    FOREIGN KEY (
-      PNO -- 펫시터회원번호
-    )
-    REFERENCES petsitter ( -- 펫시터
-      PNO -- 펫시터회원번호
-    );
-alter table petsitter alter column rad set default 0;
-alter table petsitter alter column likes set default 0;
-alter table petsitter alter column petg set default 1;
-alter table petsitter alter column pet set default 0;
-ALTER TABLE petsitter DROP FOREIGN KEY  FK_MEMBER_TO_petsitter ;
-alter table petsitter add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
-
-ALTER TABLE likes DROP FOREIGN KEY  FK_MEMBER_TO_likes ;
-ALTER TABLE likes DROP FOREIGN KEY  FK_petsitter_TO_likes ;
-alter table likes add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
-
-ALTER TABLE  userreview DROP FOREIGN KEY  userreview_ibfk_1 ;
-ALTER TABLE userreview MODIFY BDT DATETIME;
-alter table userreview add foreign key (mbno) references testdb.petsitter (pno) on delete cascade on update cascade;
-
-alter table petsitter add ADDR_3 varchar(255) after ADDR_2;
-alter table request change CONTS MEAL text;
-alter table request change cdt CONTS text;
-alter table request change STAT TRAIN text;
-alter table request drop ANS;
-alter table request add DATE varchar(100) not null;
-alter table request add RES varchar(12) not null;
-alter table request add NEUT varchar(12) not null;
-alter table request add ANIFD varchar(12) not null;
-alter table request add MANFD varchar(12) not null;
-alter table request add BARK varchar(12) not null;
-alter table request add DIZ varchar(12) not null;
-alter table request add ANS text;
-alter table request add STAT varchar(12) not null;
-alter table request column STAT set default '대기';
-
-alter table member add EAUTH varchar(10);
-
 CREATE TABLE UPPHOTO (
   PNO   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
   PATH  VARCHAR(255) not NULL COMMENT '업로드경로', -- 업로드경로
@@ -272,7 +149,20 @@ CREATE UNIQUE INDEX UIX_UPPHOTO
     PNO ASC, -- 펫시터넘버
     PTOS ASC -- 사진이름
   );
+  
+-- 멤버가 삭제되면 멤버와 같은 펫시터 삭제
+alter table petsitter add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
+-- 좋아요 누른 회원이 사라지면 좋아요 삭제
+alter table likes add foreign key (pno) references testdb.member (mno) on delete cascade on update cascade;
+-- 좋아요 눌린 펫시터가 사라지면 좋아요 삭제
+alter table likes add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
+-- 후기가 펫시터가 사라지면 글 삭제
+alter table userreview add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
+-- 후기가 회원이 탈퇴하면 글 삭제
+alter table userreview add foreign key (mbno) references testdb.petsitter (mno) on delete cascade on update cascade;
+-- 올린 사진을 펫시터가 펫시터를 그만두면 삭제.
 alter table upphoto add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
+
 
 
 
