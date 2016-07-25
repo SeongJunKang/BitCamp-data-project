@@ -302,7 +302,7 @@ public class PetSitterAjaxController {
   @ResponseBody
   public String search(String index,
       @RequestParam(defaultValue="1") int pageNo, 
-      @RequestParam(defaultValue="9") int pageSize) throws ServletException, IOException {
+      @RequestParam(defaultValue="6") int pageSize) throws ServletException, IOException {
     if (pageNo < 0) { // 1페이지 부터 시작
       pageNo = 1;
     }
