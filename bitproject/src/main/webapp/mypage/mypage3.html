@@ -261,7 +261,8 @@
             </tr>
             <tr>
               <td class="th"><span class="thtext">상세주소*</span></td>
-              <td class="td"><input type="text" class="form-control width-control" name="addr2" id="addr2"></td>
+              <td class="td"><input type="text" class="form-control"  onclick="openDaumZipAddress()" readonly="readonly" id="addr2" name="addr2">
+                             <input type="text" class="form-control" id="addr3" name="addr3"></td>
             </tr>
             <tr>
               <td class="th" colspan="2"><span class="thtext">산책범위 지정하기</span></td>
@@ -269,9 +270,11 @@
             <tr>
               <td class="td" colspan="2">
                 <div>
-                  반경 : <input type="text" class="form-control" id="radian" name="rad" readonly="readonly">m
-                  <span class="radiandiv">
+                  반경 : <input type="text" class="form-control" id="radian" readonly="readonly" name="rad">m
+                  <span class="radiandiv"> 
                   <button class="btn btn-me" type="button" onclick="ex_map()">지도 설정 상세보기</button></span>
+                  <input type="hidden" id="lat" name="lat">
+                  <input type="hidden" id="lnt" name="lnt">
                 </div>
                 <div class="map_wrap">
                   <div id="map" ></div>
@@ -279,9 +282,9 @@
                       <div class="option">
                           <div>
                               <!-- <form onsubmit="searchPlaces(); return false;"> -->
-                                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15">
-                                  <button type="button" onclick="searchPlaces()" >검색하기</button>
-                              <!-- </form> -->
+                                  키워드 : <input type="text" placeholder="키워드를 입력해주세요" id="keyword" size="15"> 
+                                  <button type="button" onclick="searchPlaces()" >검색하기</button> 
+                              <!-- </form>  -->
                           </div>
                       </div>
                       <hr>
@@ -289,8 +292,6 @@
                       <div id="pagination"></div>
                   </div>
               </div>
-              <input type="hidden" name="lat" id="lat">
-              <input type="hidden" name="lnt" id="lnt">
             </tr>
             <tr>
               <td class="th" colspan="2"><span class="thtext">반려동물을 잘 산책할 수 있다는 자기 소개를 적어주세요~ *</span></td>

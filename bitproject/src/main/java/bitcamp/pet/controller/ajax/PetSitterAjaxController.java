@@ -280,6 +280,7 @@ public class PetSitterAjaxController {
       petsitterService.setInfo(petsitter);
       result.put("status", "success");
     } catch(Exception e) {
+      e.printStackTrace();
       result.put("status", "failure");
     }
     return new Gson().toJson(result);

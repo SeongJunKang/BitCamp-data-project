@@ -130,7 +130,12 @@ hr {
 .form-control {
   display: inline-block;
 }
-
+#addr2 {
+  width: 35%;
+}
+#addr3 {
+  width: 35%;
+}
 .btn-me {
   color: #ffffff;
   background-color: #fed136;

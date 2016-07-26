@@ -1,7 +1,7 @@
 $(function() {
    $("#savebtn").click(function() {
       if ($("#checknick").attr("data-state") == "no") {
-         swal("닉네임 체크를 클릭해주세요.", " ", "warning");
+         swal("닉네임 체크", "닉네임 체크를 클릭해주세요.", "warning");
       } else {
           var checklist="";
             $("input[name=box]:checked").each(function() {

@@ -31,6 +31,7 @@ $(function() {
             $("#animal").val(result2.pet);
             $("#addr1").val(result2.addr_1);
             $("#addr2").val(result2.addr_2);
+            $("#addr3").val(result2.addr_3);
             $("#intro").val(result2.intro);
             var inqur = result2.inqur.split("~");
             var inqur1 = inqur[0].split("시");
