@@ -163,8 +163,8 @@
           circles.push(radiusObj);   
           // 그리기 상태를 그리고 있지 않는 상태로 바꿉니다
           drawingFlag = false;
-          sessionStorage.setItem("lat", centerPosition.bb);
-          sessionStorage.setItem("lnt", centerPosition.ab);
+          $("#lat").val(centerPosition.bb);
+          $("#lnt").val(centerPosition.ab);
           // 중심 좌표를 초기화 합니다  
           centerPosition = null;
           

@@ -67,6 +67,7 @@ public class PetSitterAjaxController {
       member.setGra(2);
       memberService.change(member);
     } catch(Exception e) {
+      e.printStackTrace();
       result.put("status", "failure"); 
     }
     return new Gson().toJson(result);

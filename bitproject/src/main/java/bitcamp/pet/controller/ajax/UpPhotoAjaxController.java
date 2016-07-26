@@ -39,21 +39,33 @@ public class UpPhotoAjaxController {
   @RequestMapping(produces="application/json;charset=UTF-8", value="list",method = RequestMethod.POST)
   @ResponseBody
   public String list(int pno) throws ServletException, IOException {
-    Member member = memberService.retrieveByNo(pno);
-    List<UpPhoto> list = upphotoService.list(member.getMno());
     HashMap<String,Object> result = new HashMap<>();
-    result.put("list", list);
-    return new Gson().toJson(result);
+    try {
+      Member member = memberService.retrieveByNo(pno);
+      List<UpPhoto> list = upphotoService.list(member.getMno());
+      result.put("status", "success");
+      result.put("list", list);
+      return new Gson().toJson(result);
+    } catch(Exception e) {
+      result.put("status", "failure");
+      return new Gson().toJson(result);
+    }
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="mylist")
   @ResponseBody
   public String list(HttpSession session) throws ServletException, IOException {
-    Member member = (Member)session.getAttribute("loginUser");
-    List<UpPhoto> list = upphotoService.list(member.getMno());
     HashMap<String,Object> result = new HashMap<>();
-    result.put("list", list);
-    return new Gson().toJson(result);
+    try {
+      Member member = (Member)session.getAttribute("loginUser");
+      List<UpPhoto> list = upphotoService.list(member.getMno());
+      result.put("status", "success");
+      result.put("list", list);
+      return new Gson().toJson(result);
+    } catch (Exception e) {
+      result.put("status", "failure");
+      return new Gson().toJson(result);
+    }
   }
 
 

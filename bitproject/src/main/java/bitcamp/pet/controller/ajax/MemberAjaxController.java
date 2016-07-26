@@ -100,14 +100,19 @@ public class MemberAjaxController {
   @ResponseBody
   public String birth(int mno) 
       throws ServletException, IOException {
-    Member member = memberService.retrieveByNo(mno);
     HashMap<String,Object> result = new HashMap<>();
-    result.put("bth",member.getBth());
-    result.put("status", "success");
-    if(result.get("bth") ==null) {
+    try {
+      Member member = memberService.retrieveByNo(mno);
+      result.put("bth",member.getBth());
+      result.put("status", "success");
+      if(result.get("bth") ==null) {
+        result.put("status", "failure");
+      }
+      return  new Gson().toJson(result);
+    } catch(Exception e) {
       result.put("status", "failure");
+      return  new Gson().toJson(result);
     }
-    return  new Gson().toJson(result);
   }
 
   @RequestMapping(produces="application/json;charset=UTF-8", value="detail")

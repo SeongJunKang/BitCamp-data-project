@@ -14,6 +14,8 @@
     <link href="../css/agency.css" rel="stylesheet">
     <!-- Dialog from jQuery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="../css/sweetalert.css">
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -150,6 +152,8 @@
 	                반경 : <input type="text" class="form-control" id="radian" readonly="readonly">m
 	                <span class="radiandiv"> 
 	                <button class="btn btn-me" type="button" onclick="ex_map()">지도 설정 상세보기</button></span>
+	                <input type="hidden" id="lat">
+	                <input type="hidden" id="lnt">
                 </div>
                 <div class="map_wrap">
 							    <div id="map" ></div>
@@ -236,6 +240,8 @@
     <script src ="../js/resist/resistSave.js"></script>
     <!-- Daum post API -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+      <!-- SweetAlert -->
+  <script src="../js/sweetalert.min.js"></script>
   <script type="text/javascript">
 
   function goMain(event) {

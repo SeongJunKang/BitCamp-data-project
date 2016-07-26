@@ -29,28 +29,40 @@ $(function() {
               addr_2 :$("#addr2").val(),
               addr_3 :$("#addr3").val(),
               rad : radian,
-              lat : sessionStorage.getItem("lat"),
-              lnt : sessionStorage.getItem("lnt"),
+              lat : $("#lat").val(),
+              lnt : $("#lnt").val(),
               intro :$("#intro").val(),
               hospital : $("#hospital").val()
             }, function(result) {
               if (result.status == "success") {
-                 sessionStorage.removeItem("lat");
-                 sessionStorage.removeItem("lnt");
-                location.href = "../main/index.html";
+                  $.post("../ajax/member/upgrade.do?", {
+                      gra :  2
+                    }, function(result) {
+                      if (result.status == "success") {
+                    	  swal({   
+      						title: "도그워커 등록 완료",   
+      						text: "산책할개에 도그워커로 오신것을 환영합니다.",   
+      						type: "success",   
+      						showCancelButton: false,   
+      						confirmButtonColor: "#DD6B55",   
+      						confirmButtonText: "확인",   
+      						closeOnConfirm: false,   
+      						closeOnCancel: false 
+      						}, 
+      						function(isConfirm) {   
+      							if (isConfirm) {  
+      								location.href = "../main/index.html";
+      							}
+      						});
+                       } else {
+                         swal("등록 실패입니다.", " ", "warning");
+                       }
+                  }, "json");
               } else {
                 swal("등록 실패입니다.", " ", "warning");
               }
             }, "json");
-          $.post("../ajax/member/upgrade.do?", {
-               gra :  2
-             }, function(result) {
-               if (result.status == "success") {
-                  location.href = "../main/index.html";
-                } else {
-                  swal("등록 실패입니다.", " ", "warning");
-                }
-           }, "json");
+
       }
    });
 })
