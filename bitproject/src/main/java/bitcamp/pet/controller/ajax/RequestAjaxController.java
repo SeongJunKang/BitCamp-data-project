@@ -66,6 +66,7 @@ public class RequestAjaxController {
       result.put("status", "success");
       requestService.add(request);
     } catch(Exception e) {
+      e.printStackTrace();
       result.put("status", "failure"); 
     }
     return new Gson().toJson(result);

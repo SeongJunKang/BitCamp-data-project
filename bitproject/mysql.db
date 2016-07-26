@@ -87,7 +87,7 @@ CREATE TABLE request (
   REQ   INTEGER      NOT NULL COMMENT '신청번호', -- 신청번호
   MNO   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
   PNO   INTEGER      NOT NULL COMMENT '펫시터회원번호', -- 펫시터회원번호
-  CONTS DATE         NULL     COMMENT '상세정보', -- 상세정보
+  CONTS TEXT         NULL     COMMENT '상세정보', -- 상세정보
   MEAL  TEXT         NULL     COMMENT '밥먹는시간', -- 밥먹는시간
   TRAIN TEXT         NULL     COMMENT '교육', -- 교육
   ANS   TEXT         NULL     COMMENT '답변', -- 답변

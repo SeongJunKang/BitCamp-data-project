@@ -20,5 +20,9 @@ $(function() {
         	$("#loginbtn").click();
         }        
     });
-
+    $('#inemail').keyup(function(e) {
+        if (e.keyCode == 13) {
+        	$("#loginbtn").click();
+        }        
+    });
 })   
