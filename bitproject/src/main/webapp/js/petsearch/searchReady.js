@@ -1,8 +1,23 @@
 
-  $(document).ready(function() {
+  $(document).ready(function(event) {
 	  var TagText = $(".section-subheading");
+	  if (location.href.split("#").length < 2) {
+	      $("#moreNo").val(2);
+	      $("#petsitter").empty();
+	      TagText.text($("#latest").text());
+	      $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=1",
+	              function(result) {
+	                var templateData = $(
+	                    "#sitterlist").html();
+	                var template = Handlebars
+	                    .compile(templateData);
+	                var html = template(result);
+	                $("#petsitter").append(html);
+	              });
+	  }
+	  
       $("#latest").click(function(event) {
-              event.preventDefault();
+    	  event.preventDefault();
               $("#moreNo").val(2);
               $("#petsitter").empty();
               TagText.text($("#latest").text());
@@ -17,8 +32,8 @@
                       });
             });
   
-    $("#popu").click(function() {
-              event.preventDefault();
+    $("#popu").click(function(event) {
+    		  event.preventDefault();
               $("#moreNo").val(2);
               $("#petsitter").empty();
               TagText.text($("#popu").text());
@@ -33,10 +48,10 @@
                       });
             });
   
-    $("#byname").click(function() {
+    $("#byname").click(function(event) {
+    		  event.preventDefault();
               $("#moreNo").val(2);
               $("#petsitter").empty();
-              event.preventDefault();
               TagText.text($("#byname").text());
               $.getJSON("../ajax/petsitter/list.do?order=nick&pageNo=1",
                       function(result) {
@@ -48,7 +63,7 @@
                         $("#petsitter").append(html);
                       });
             });
-    $("#byprice").click(function() {
+    $("#byprice").click(function(event) {
               $("#moreNo").val(2);
               $("#petsitter").empty();
               event.preventDefault();
@@ -222,22 +237,3 @@
       }
     })
   })
-  
-    
-
-  function ready() {
-	  var TagText = $(".section-subheading");
-      $("#moreNo").val(2);
-      $("#petsitter").empty();
-      TagText.text($("#latest").text());
-      $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=1",
-              function(result) {
-                var templateData = $(
-                    "#sitterlist").html();
-                var template = Handlebars
-                    .compile(templateData);
-                var html = template(result);
-                $("#petsitter").append(html);
-              });
-  }
-  ready();
