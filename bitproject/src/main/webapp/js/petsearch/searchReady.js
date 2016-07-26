@@ -6,7 +6,7 @@
               $("#moreNo").val(2);
               $("#petsitter").empty();
               TagText.text($("#latest").text());
-              $.getJSON("../ajax/petsitter/list.do?order=latest&pageNo=1",
+              $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo=1",
                       function(result) {
                         var templateData = $(
                             "#sitterlist").html();
@@ -65,8 +65,11 @@
             });
   
     $(".selected_location").click(function(event) {
+    	event.preventDefault();
       $(".pagination").empty();
       $("#select_location").text($(this).text());
+      $(".section-subheading").text("지역별");
+      $("#moreNo").val(2);
       $.ajax({
         url : "../ajax/petsitter/search.do?pageNo=1",
         dataType : "json",
@@ -78,14 +81,15 @@
           var template = Handlebars.compile(templateData);
           var html = template(result);
           $("#petsitter").html(html);
-          var pagingTag = $(".pagination");
         }
       })
-      event.preventDefault();
     });
   
     $("#search_btn").click(function() {
+    	event.preventDefault();
       $(".pagination").empty();
+      $(".section-subheading").text("검색별");
+      $("#moreNo").val(2);
       $.ajax({
         url : "../ajax/petsitter/search.do?pageNo=1",
         dataType : "json",
@@ -97,7 +101,6 @@
           var template = Handlebars.compile(templateData);
           var html = template(result);
           $("#petsitter").html(html);
-          var pagingTag = $(".pagination");
         }
       })
     })
@@ -110,6 +113,46 @@
     
     $("#more-btn").click(function() {
       switch ($(".section-subheading").text()) {
+	    case "검색별":
+	        $.ajax({
+	            url : "../ajax/petsitter/search.do?pageNo="+$("#moreNo").val(),
+	            dataType : "json",
+	            data : {
+	              index : $("#search_input").val()
+	            },
+	            success : function(result) {
+	              var templateData = $("#sitterlist").html();
+	              var template = Handlebars.compile(templateData);
+	              var html = template(result);
+	              $("#petsitter").append(html);
+                  if (result.list.length > 0) {
+                      $("#moreNo").val($("#moreNo").val() * 1 + 1);
+                  } else {
+                	  swal("도그워커 검색","모든 도그워커를 검색했습니다.", "warning");
+                  }
+	            }
+	          })
+	    	  break;
+	    case "지역별":
+	        $.ajax({
+	            url : "../ajax/petsitter/search.do?pageNo="+$("#moreNo").val(),
+	            dataType : "json",
+	            data : {
+	              index : $("#select_location").text()
+	            },
+	            success : function(result) {
+	              var templateData = $("#sitterlist").html();
+	              var template = Handlebars.compile(templateData);
+	              var html = template(result);
+	              $("#petsitter").append(html);
+                  if (result.list.length > 0) {
+                      $("#moreNo").val($("#moreNo").val() * 1 + 1);
+                  } else {
+                	  swal("도그워커 검색","모든 도그워커를 검색했습니다.", "warning");
+                  }
+	            }
+	          })
+	    	  break;
         case "최신순":
                $.getJSON("../ajax/petsitter/list.do?order=pno&pageNo="+$("#moreNo").val(),
                         function(result) {
