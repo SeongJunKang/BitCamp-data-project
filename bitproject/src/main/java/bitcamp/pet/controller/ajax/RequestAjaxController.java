@@ -91,8 +91,12 @@ public class RequestAjaxController {
   public String detail(int req) 
       throws ServletException, IOException {
     HashMap<String,Object> result = new HashMap<>();
-    Petrequest request= requestService.retrieve(req);
-    result.put("mname",memberService.retrieveByNo(request.getMno()).getName());
+    Petrequest request= requestService.retrieve(req); 
+    if (memberService.retrieveByNo(request.getMno()) == null) {
+      result.put("mname","회원 탈퇴");
+    } else {
+      result.put("mname",memberService.retrieveByNo(request.getMno()).getName());
+    }
     result.put("pname",petsitterService.retrieveByNo(request.getPno()).getNick());
     result.put("request", request);
 /*    HashMap<String,Object> result = new HashMap<>();
@@ -161,7 +165,6 @@ public class RequestAjaxController {
     HashMap<String,Object> result = new HashMap<>();
     if ((Member)session.getAttribute("loginUser") != null) {
       List<Petrequest> list = requestService.petrequestlist(pageNo, pageSize, ((Member)session.getAttribute("loginUser")).getMno());
-    
       result.put("pageNo", pageNo);
       result.put("pageSize", pageSize);
       result.put("totalPage", totalPage);

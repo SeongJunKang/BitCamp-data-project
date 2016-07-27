@@ -7,6 +7,9 @@ $(document).ready(function() {
          var template = Handlebars.compile(templateData);
          var list_length = result.list.length
          for (var i = 0; i < list_length; i++) {
+        	 if (!result.list[i].name) {
+        		 result.list[i].name="회원 탈퇴";
+        	 }
             if (result.list[i].stat != "대기") {
                result.list.splice(i, 1); 
                list_length -= 1; 
@@ -88,7 +91,10 @@ function requestDetail(event) {
    var reqNo  = event.target.getAttribute("data-no"); 
    $.getJSON("../ajax/request/detail.do?req="+reqNo, function(result) {
       $("#reqname").html(result.mname + "<br>");
-      $("#reqtel").html(result.request.m_tel + "<br>");
+      if (result.request.m_tel)
+    	  $("#reqtel").html(result.request.m_tel + "<br>");
+      else 
+    	  $("#reqtel").html("회원 탈퇴<br>");
       $("#date").html(result.request.date + "<br>");
       $("#conts").html(result.request.conts);
       $("#answer1").html("<br>" + result.request.res);

@@ -27,8 +27,7 @@
     where REQ=#{req}
   </update>
    <select id="selectListpet" resultMap="PetrequestMap" parameterType="map">
-    select req, p.amt, p.nick,  p.pno,  r.mno, m.name, date, conts, meal, train, date, res, neut, 
-    anifd, manfd, bark, diz, ans, stat 
+    select req, p.nick,  p.pno, r.mno, m.name, date, ans, stat 
     from request as r 
     left outer join petsitter as p on p.pno = r.pno 
     left outer join member as m on r.mno = m.mno

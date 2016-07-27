@@ -2,14 +2,26 @@ $(document).ready(function() {
     $.getJSON("../ajax/request/myrequestlist.do", function(result) {
         var templateData = $('#temp1').html();
         var template = Handlebars.compile(templateData);
+        for (var i = 0; i < result.list.length; i++) {
+        	if (!result.list[i].nick)
+        		result.list[i].nick="회원 탈퇴";
+        }
         var html = template(result);
         $("#send").append(html);
         $(".myrequestdetail").on("click", function() {
         	var req = event.target.getAttribute("data-no");
         	  $.getJSON("../ajax/request/detail.do?req="
         		      + req, function(result) {
-        		    $("#petname").html(result.pname+ "<br>");
-        		    $("#pettel").html(result.request.p_tel+ "<br>");
+        		    	  if(result.pname) 
+        		    		  $("#petname").html(result.pname+ "<br>");
+        		    	  else 
+        		    		  $("#petname").html("도그워커 탈퇴<br>");
+        		    	  
+        		    	  if(result.pname) 
+        		    		  $("#pettel").html(result.request.p_tel+ "<br>");
+        		    	  else 
+        		    		  $("#petname").html("도그워커 탈퇴<br>");
+        		    
         		    $("#pettalk").html(result.request.ktalk+ "<br>");
         		    $("#date1").html(result.request.date + "<br>");
         		    $("#conts1").html(result.request.conts);
@@ -72,14 +84,24 @@ $(document).ready(function() {
 	  $.getJSON("../ajax/request/petrequestlist.do", function(result) {
 		    var templateData = $('#temp2').html();
 		    var template = Handlebars.compile(templateData);
+		    for (var i = 0; i < result.list.length; i++) {
+		    	if (!result.list[i].name)
+		    		result.list[i].name="회원 탈퇴";
+		    }
 		    var html = template(result);
 		    $("#receive").append(html);
 		    $(".getrequestdetail").on("click", function() {
 		         var req = event.target.getAttribute("data-no");
             $.getJSON("../ajax/request/detail.do?req="
                   + req, function(result) {
-                $("#reqname").html(result.mname+ "<br>");
-                $("#reqtel").html(result.request.m_tel+ "<br>");
+                	  if(result.mname)
+                		  $("#reqname").html(result.mname+ "<br>");
+                	  else 
+                		  $("#reqname").html("회원 탈퇴<br>");
+                	  if(result.request.m_tel)
+                		  $("#reqtel").html(result.request.m_tel+ "<br>");
+                	  else 
+                		  $("#reqtel").html("회원 탈퇴<br>");
                 $("#date2").html(result.request.date + "<br>");
                 $("#conts2").html(result.request.conts);
                 $("#answer2-1").html("<br>" + result.request.res);

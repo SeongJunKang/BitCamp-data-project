@@ -582,10 +582,10 @@
 	<script id="temp1" type="text/x-handlebars-template">
 {{#each list}}
 <tr>
-  <td>{{req}}</td>
+  <td><a href="#" onclick="requestDetail(event)" data-no="{{req}}">{{req}}</a></td>
   <td><a href="#" onclick="requestDetail(event)" data-no="{{req}}">{{name}}</a></td>
-  <td>{{date}}</td>
-  <td>{{stat}}</td>
+  <td><a href="#" onclick="requestDetail(event)" data-no="{{req}}">{{date}}</a></td>
+  <td><a href="#" onclick="requestDetail(event)" data-no="{{req}}">{{stat}}</a></td>
 </tr>
 {{/each}}
 </script>
