@@ -40,6 +40,11 @@
 		where MNO=#{mno} and PNO=#{pno}
 	</delete>
 	
+	 <delete id="deleteAll" parameterType="map">
+    delete from USERREVIEW
+    where MNO=#{mno}
+  </delete>
+	
 	<select id="selectList" resultMap="UserReviewDataMap" parameterType="map">
 		select USERREVIEW.BREV, USERREVIEW.BDT, MEMBER.NAME , MEMBER.PROF, MEMBER.MNO
 		from USERREVIEW left outer join MEMBER on USERREVIEW.MNO = MEMBER.MNO

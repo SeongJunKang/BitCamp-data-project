@@ -16,8 +16,26 @@ $(document).ready(function() {
                i -= 1; 
             }
          }
-         var html = template(result);
-         $("#requestTable tbody").append(html);
+    	 var html = template(result);
+    	 $("#requestTable tbody").append(html);
+	      if (result.list.length != 0) {
+	         $("#ex1").dialog({
+	            resizable : false,
+	            height : 400,
+	            width : 600,
+	            modal : true,
+	            buttons : {
+	               "상세보기" : function() {
+	                  $(this).dialog("close");
+	                  location.href = '../mypage/inquiry.html'
+	               },
+	               "확인" : function() {
+	                  $(this).dialog("close");
+	               }
+	            }
+	         }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+	      }
+    	 
       }
    });
    $(window).load(function() {
@@ -56,25 +74,6 @@ $(document).ready(function() {
       event.preventDefault();
    });
 
-   $.getJSON("../ajax/request/petrequestlist.do", function(result) {
-      if ((result.status == "success") && (result.list.length != 0)) {
-         $("#ex1").dialog({
-            resizable : false,
-            height : 400,
-            width : 600,
-            modal : true,
-            buttons : {
-               "상세보기" : function() {
-                  $(this).dialog("close");
-                  location.href = '../mypage/inquiry.html'
-               },
-               "확인" : function() {
-                  $(this).dialog("close");
-               }
-            }
-         }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
-      }
-   })
 });
 
 function onclickDetail(event) {

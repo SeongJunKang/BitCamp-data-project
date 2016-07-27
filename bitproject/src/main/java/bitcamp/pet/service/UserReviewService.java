@@ -10,4 +10,5 @@ public interface UserReviewService {
   void change(UserReview userreview);
   List<UserReview> list(int pno,int page);
   UserReview retrieveByNo(int mno, int pno);
+  void deleteAll(int mno);
 }

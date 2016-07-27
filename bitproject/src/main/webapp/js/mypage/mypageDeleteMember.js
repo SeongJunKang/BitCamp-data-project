@@ -15,23 +15,28 @@ $(function() {
 				if (isConfirm) {  
 					$.ajax("../ajax/member/delete.do?", {
 						method : "POST",
-						dataType : "json"
-					});
-					swal({   
-						title: "회원 탈퇴",   
-						text: "회원 정보가 삭제되었습니다.",   
-						type: "success",   
-						showCancelButton: false,   
-						confirmButtonColor: "#DD6B55",   
-						confirmButtonText: "확인",   
-						closeOnConfirm: false,   
-						closeOnCancel: false 
-						}, 
-						function(isConfirm) {   
-							if (isConfirm) {  
-								location.href = "../auth/logout.do";
+						dataType : "json",
+						success : function(result) {
+							if (result.status == "success") {
+								swal({   
+									title: "회원 탈퇴",   
+									text: "회원 정보가 삭제되었습니다.",   
+									type: "success",   
+									showCancelButton: false,   
+									confirmButtonColor: "#DD6B55",   
+									confirmButtonText: "확인",   
+									closeOnConfirm: false,   
+									closeOnCancel: false 
+									}, 
+									function(isConfirm) {   
+										if (isConfirm) {  
+											location.href = "../auth/logout.do";
+										}
+									});
 							}
-						});
+						}
+					});
+
 				} 
 			});
 

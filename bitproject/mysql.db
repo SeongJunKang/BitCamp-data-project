@@ -159,7 +159,7 @@ alter table likes add foreign key (pno) references testdb.petsitter (pno) on del
 -- 후기가 펫시터가 사라지면 글 삭제
 alter table userreview add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
 -- 후기가 회원이 탈퇴하면 글 삭제
-alter table userreview add foreign key (mbno) references testdb.petsitter (mno) on delete cascade on update cascade;
+alter table userreview add foreign key (mno) references testdb.member (mno) on delete cascade on update cascade;
 -- 올린 사진을 펫시터가 펫시터를 그만두면 삭제.
 alter table upphoto add foreign key (pno) references testdb.petsitter (pno) on delete cascade on update cascade;
 

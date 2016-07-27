@@ -66,6 +66,19 @@ public class UserReviewAjaxController {
     return new Gson().toJson(result);
   }
   
+  @RequestMapping(produces="application/json;charset=UTF-8", value="deleteAll")
+  @ResponseBody
+  public String deleteAll(HttpSession session) throws ServletException, IOException {
+    HashMap<String,Object> result = new HashMap<>();
+    try {
+      userreviewService.deleteAll(((Member)session.getAttribute("loginUser")).getMno());
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
   @RequestMapping(produces="application/json;charset=UTF-8", value="list")
   @ResponseBody
   public String list(HttpSession session,int pno) throws ServletException, IOException {
