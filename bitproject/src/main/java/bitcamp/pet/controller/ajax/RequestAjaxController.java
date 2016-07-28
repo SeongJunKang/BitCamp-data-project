@@ -44,8 +44,13 @@ public class RequestAjaxController {
       throws ServletException, IOException {
     Member member = (Member)session.getAttribute("loginUser");
     HashMap<String,Object> result = new HashMap<>();
-    if (member.getMno() == pno) {
-      result.put("status", "same");
+    try {
+      if (member.getMno() == pno) {
+        result.put("status", "same");
+        return new Gson().toJson(result);
+      }
+    } catch(Exception e) {
+      result.put("status", "failure");
       return new Gson().toJson(result);
     }
     Request request = new Request();

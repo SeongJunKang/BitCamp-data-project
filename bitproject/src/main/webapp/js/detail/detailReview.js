@@ -58,22 +58,37 @@ $(function() {
 				}
 			});
 			$("#review_delete_"+result.userNo).click(function() {
-				if (window.confirm("댓글을 삭제하시겠습니까?") == true) {
-			      $.ajax("../ajax/userreview/delete.do?", {
-			          method : "POST",
-			          dataType : "json",
-			          data : {
-			            pno : pno
-			          },
-			          success : function(result) {
-			            if (result.status == "failure") {
-			            	swal("댓글 삭제에 실패했습니다.", " ", "warning");
-			            } else {
-			            	location.href = "detail.html?no="+pno;
-			            }
-			          }
-			      });
-				}
+				
+				swal({   
+					title: "댓글 삭제",   
+					text: "댓글을 삭제하시겠습니까?",   
+					type: "warning",   
+					showCancelButton: true,   
+					confirmButtonColor: "#DD6B55",   
+					confirmButtonText: "삭제",   
+					cancelButtonText: "취소",   
+					closeOnConfirm: false,   
+					closeOnCancel: true 
+					}, 
+					function(isConfirm) {   
+						if (isConfirm) {  
+						      $.ajax("../ajax/userreview/delete.do?", {
+						          method : "POST",
+						          dataType : "json",
+						          data : {
+						            pno : pno
+						          },
+						          success : function(result) {
+						            if (result.status == "failure") {
+						            	swal("댓글 삭제에 실패했습니다.", " ", "warning");
+						            } else {
+						            	location.href = "detail.html?no="+pno;
+						            }
+						          }
+						      });
+
+						} 
+					});
 			});
 		}
 	})

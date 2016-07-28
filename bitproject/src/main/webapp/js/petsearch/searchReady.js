@@ -100,8 +100,7 @@
       })
     });
   
-    $("#search_btn").click(function() {
-    	event.preventDefault();
+    $("#search_btn").click(function(event) {
       $(".pagination").empty();
       $(".section-subheading").text("검색별");
       $("#moreNo").val(2);
