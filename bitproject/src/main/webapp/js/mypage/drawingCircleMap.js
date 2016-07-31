@@ -477,11 +477,10 @@ function ex_map() {
 			'width=960, height=355,location=no,resizable=no, scrollbars=no');
 }
 function openDaumZipAddress() {
-	new daum.Postcode({
-		oncomplete : function(data) {
-			$('#addr1').val(data.postcode1 + "-" + data.postcode2);
-			$('#addr2').val(data.address);
-			console.log(data);
-		}
-	}).open();
+    new daum.Postcode({
+        oncomplete: function(data) {
+            $('#addr1').val(data.postcode1+"-"+data.postcode2);
+            $('#addr2').val(data.address);
+        }
+    }).open();
 }

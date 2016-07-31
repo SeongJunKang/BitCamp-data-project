@@ -256,7 +256,7 @@
             </tr>
             <tr>
               <td class="th"><span class="thtext">우편번호*</span></td>
-              <td class="td"><input type="text" class="form-control width-control" id="addr1" name="addr1"> <button type="button" class="btn btn-me">우편번호검색</button>
+              <td class="td"><input type="text" class="form-control width-control" onclick="openDaumZipAddress()" id="addr1" name="addr1"> <button type="button" class="btn btn-me" onclick="openDaumZipAddress()">우편번호검색</button>
               </td>
             </tr>
             <tr>
@@ -317,7 +317,7 @@
     </div>
   </div>
   </section>
-
+  <section>
     <footer>
         <div class="container">
             <div class="row">
@@ -345,6 +345,7 @@
             </div>
         </div>
     </footer>
+    </section>
   <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Plugin JavaScript -->
