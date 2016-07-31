@@ -19,7 +19,7 @@ if (lat) {
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 		center : new daum.maps.LatLng(lat, lnt, 17), // 지도의 중심좌표
-		level : 7
+		level : 5
 	// 지도의 확대 레벨
 	};
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
@@ -218,8 +218,9 @@ daum.maps.event.addListener(map, 'rightclick', function(mouseEvent) {
 		circles.push(radiusObj);
 		// 그리기 상태를 그리고 있지 않는 상태로 바꿉니다
 		drawingFlag = false;
-		$("#lat").val(centerPosition.bb);
-		$("#lnt").val(centerPosition.ab);
+		$("#lat").val(centerPosition.cb);
+		$("#lnt").val(centerPosition.bb);
+		console.log(centerPosition)
 		// 중심 좌표를 초기화 합니다  
 		centerPosition = null;
 

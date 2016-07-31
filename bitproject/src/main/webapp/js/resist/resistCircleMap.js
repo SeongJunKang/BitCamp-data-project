@@ -163,9 +163,10 @@
           circles.push(radiusObj);   
           // 그리기 상태를 그리고 있지 않는 상태로 바꿉니다
           drawingFlag = false;
-          $("#lat").val(centerPosition.bb);
-          $("#lnt").val(centerPosition.ab);
+          $("#lat").val(centerPosition.cb);
+          $("#lnt").val(centerPosition.bb);
           // 중심 좌표를 초기화 합니다  
+          console.log(centerPosition)
           centerPosition = null;
           
           // 그려지고 있는 원, 선, 커스텀오버레이를 지도에서 제거합니다
@@ -425,7 +426,6 @@
           oncomplete: function(data) {
               $('#addr1').val(data.postcode1+"-"+data.postcode2);
               $('#addr2').val(data.address);
-              console.log(data);
           }
       }).open();
   }

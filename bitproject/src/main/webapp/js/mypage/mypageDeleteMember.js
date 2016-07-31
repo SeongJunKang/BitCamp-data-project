@@ -18,6 +18,10 @@ $(function() {
 						dataType : "json",
 						success : function(result) {
 							if (result.status == "success") {
+								$.ajax("../ajax/userreview/deleteAll.do?", {
+									method : "POST",
+									dataType : "json"
+								});
 								swal({   
 									title: "회원 탈퇴",   
 									text: "회원 정보가 삭제되었습니다.",   
