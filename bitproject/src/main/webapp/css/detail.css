@@ -1,4 +1,37 @@
 @CHARSET "UTF-8";
+
+ .heart {
+    margin-top : 10px;
+  float: right;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  background-image:url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
+  background-position: left;
+  background-repeat:no-repeat;
+  background-size:2900%;
+}
+
+.heart:hover {
+  background-position:right;
+}
+.is_animating {
+  animation: heart-burst .8s steps(28) 1;
+}
+
+.is_ranimating {
+  animation: heart-rburst .8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+  from {background-position:left;}
+  to { background-position:right;}
+}
+
+@keyframes heart-rburst {
+  from {background-position:right;}
+  to { background-position:left;}
+}
 .form-control {
   display: inline-block;
 }
@@ -210,12 +243,12 @@ hr {
 
 #setlike {
   text-align: right;
-  margin-top: -20px;
+  margin-top: -30px;
+  margin-right: 17px;
 }
 
 #setlike2 {
   text-align: left;
-  margin-top: -12px;
 }
 
 .form-control {

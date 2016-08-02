@@ -1,21 +1,20 @@
 $(function(){
 	var pno = location.href.split("=")[1]; 
+	
         $.getJSON("../ajax/likes/byno.do?pno="+pno, 
           function( result) {
             if ( result.status =="success") {
-                heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
-                heart.setAttribute("data-state", "after");
+                $(".heart").css("background-position", "right");
+                $(".heart").attr("data-state", "after");
             }
         });
-        var heart = document.getElementById("heart");
-        heart.onclick = function() {
-          if (!sessionStorage.getItem("login")) {
-              swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
-          } else {
-            var state = heart.getAttribute("data-state");
+        
+    	$(".heart").on('animationend', function(){
+    		if (sessionStorage.getItem("login")) {
+    			var state = $(".heart").attr("data-state");
             if (state == "before") {
-              heart.setAttribute("src", "../img/detail/web_heart_animation2.png");
-              heart.setAttribute("data-state", "after");
+              $(".heart").css("background-position", "right");
+              $(".heart").attr("data-state", "after");
               $("#like").html($("#like").html() * 1 + 1);
               $.ajax("../ajax/likes/add.do?", {
                 method : "POST",
@@ -23,16 +22,18 @@ $(function(){
                 data : {
                   pno : pno
                 }});
+              $(this).toggleClass('is_animating');
             } else {
-              heart.setAttribute("data-state", "before");
-              heart.setAttribute("src", "../img/detail/web_heart_animation1.png");
-              $("#like").html($("#like").html() * 1 - 1);
+            	$(".heart").css("background-position", "left");
+        	  $(".heart").attr("data-state", "before");
+              $("#like").html($("#like").html() * 1 - 1); 
               $.ajax("../ajax/likes/delete.do?", {
                 method : "POST",
                 dataType : "json",
                 data : {
                   pno : pno
                 }});
+              $(this).toggleClass('is_ranimating');
             }
             $.ajax("../ajax/petsitter/like.do?", {
                 method : "POST",
@@ -42,5 +43,18 @@ $(function(){
                   likes : $("#like").html() 
                 }});
           }
-        }
+  		});
+    	$(".heart").on('click touchstart', function(){
+    		if (sessionStorage.getItem("login")) {
+    			var state = $(".heart").attr("data-state");
+    			if (state == "before") {
+    				$(this).toggleClass('is_animating');
+    			} else {
+    				$(this).toggleClass('is_ranimating');
+    			}
+    		}else {    		
+                swal("로그인 해야 이용할 수 있습니다.", " ", "warning");
+            }
+  		});
+
 })
