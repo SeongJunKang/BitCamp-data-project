@@ -177,10 +177,16 @@ $(document).ready(function() {
 				location.href = "mypage3.html";
 				event.preventDefault();
 			});
-			$("#resist").click(function(event) {
-				location.href = "../resist/resist.html";
-				event.preventDefault();
-			});
+			   $("#resist").click(function(event) {
+				   $.getJSON("../ajax/member/detail.do?", function(result) {
+					      if (result.eauth == "인증") {
+					    	  location.href = "../resist/resist.html";
+					      } else {
+					    	  swal("이메일 인증","도그워커에 등록하려면 이메일 인증해야 합니다.", "error");
+					      }
+					   });
+			      event.preventDefault();
+			   });
 			// 탭 메뉴바 설정
 		    $(".tab_content").hide();
 		    $(".tab_content:first").show();

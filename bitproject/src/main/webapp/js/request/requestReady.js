@@ -40,8 +40,9 @@
 				}, 
 				function(isConfirm) {   
 					if (isConfirm) {  
+						var number = pno.replace("#", "");
 				          $.post("../ajax/request/add.do", {
-				              pno : pno,
+				              pno : number,
 				              date : $('#date-format').val(),
 				              conts : $('#requirement').val(),
 				              res : $("input[type=radio][name=resist]:checked").val(),
