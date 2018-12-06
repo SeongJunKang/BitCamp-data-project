@@ -1,0 +1,40 @@
+<!-- 주제: 변수의 사용법 - 변수의 호이스팅(hoisting) -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 자바스크립트는 변수 선언 위치에 상관없이 
+  모든 변수 선언을 맨 위로 올려서 먼저 실행한다.
+ */
+m();
+a = 20;
+
+console.log(a); // a is not defined
+
+var a; // 이 변수 선언은 자바스크립트를 실행하기 전에 맨 위로 끌어올려져서
+       // 먼저 실행된다.
+
+function m() { // 자바스크립트가 실행되기 전에 함수 선언이 제일 먼저 실행된다.
+	console.log("haha");
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

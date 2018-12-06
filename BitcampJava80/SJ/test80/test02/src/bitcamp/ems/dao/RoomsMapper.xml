@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.ems.dao.RoomsDao">
+  <resultMap type="Rooms" id="RoomsMap">
+    <id     column="RNO"  property="rno"/>
+    <result column="RNM"  property="rnm"/>
+  </resultMap>
+  <insert id="insert" parameterType="Rooms">
+    insert into ROOMS(RNO,RNM)
+    values(#{rno},#{rnm})
+  </insert>
+  <update id="update" parameterType="Rooms">
+    update ROOMS set
+      RNM=#{rnm}
+    where RNO=#{rno}
+  </update>
+  <delete id="delete" parameterType="map">
+    delete from ROOMS
+    where RNO=#{rno}
+  </delete>
+  <select id="selectList" resultMap="RoomsMap">
+    select RNO, RNM 
+    from ROOMS
+  </select>
+    <select id="selectOne" parameterType="map" resultMap="RoomsMap">
+    select RNO, RNM
+    from ROOMS
+    where RNO=#{rno}
+  </select>
+</mapper>

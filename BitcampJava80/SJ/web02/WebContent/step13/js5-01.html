@@ -1,0 +1,68 @@
+<!-- 이벤트 처리 - 이벤트 리스너 등록 
+이벤트 리스너는 등록된 순서대로 호출된다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 05</title>
+<style type="text/css">
+div {
+	border: 1px solid red;
+	margin: 10px;
+	padding: 10px;
+}
+</style>
+</head>
+
+<body>
+	<div id="nav">
+		<a id="menu01"
+			href="http://bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+			data-no="10" data-title="okok">센터소개</a><br> <a id="menu02"
+			href="http://bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+			data-no="20" data-title="lala">과정안내</a><br> <a id="menu03"
+			href="http://bitcamp.co.kr/employment/supportlist.bit?menu=1"
+			data-no="30" data-title="haha">취업센터</a><br>
+	</div>
+	<div id="d2">
+		<button id="btn1">버튼1</button>
+		<button id="btn2">버튼2</button>
+		<button id="btn3">버튼3</button>
+	</div>
+	<div id="d3"></div>
+	<script>
+		// 이벤트 리스너 등록
+
+		// 방법 1) onxxxx 프로퍼티 사용
+		// IE 8이하 버전에서 사용가능
+		var e = document.querySelector("#btn1")
+		e.onclick = function(event) {
+			window.alert("okok")
+		}
+		// 방법 2) addEventListener 사용
+		// => IE 9 이상에서만 사용 가능
+		// => 함수를 여러개 등록할 수 있다.
+		// => 등록된 순서대로 호출된다.
+		var e2 = document.querySelector("#btn2")
+		e2.addEventListener("click", function(event) {
+			window.alert("nono")
+		})
+		e2.addEventListener("click", function(event) {
+			window.alert("2번쨰야 임마")
+		})
+		// 확인) on xxx와 addEventListener() 모두 사용할 때 호출 순서?
+		// => 등록된 순서대로 호출 , 단 섞어쓰지 말 것.
+		var e3 = document.querySelector("#btn3")
+		e3.addEventListener("click", function(event) {
+			window.alert("이것은")
+		})
+		e3.onclick = function(event) {
+			window.alert("okok")
+		}
+		e3.addEventListener("click", function(event) {
+			window.alert("한글이다")
+		})
+	</script>
+</body>
+</html>

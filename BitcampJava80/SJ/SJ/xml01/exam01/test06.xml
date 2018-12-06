@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 내용에 <를 포함핧 수 없다. -->
+<book>
+	<title>자바 프로그래밍</title>
+	<content>
+	if (a < 10)  <!-- Xml파서는 < 를 만나면 태그의 시작으로 인식. -->
+	   okok;
+	</content>
+</book>

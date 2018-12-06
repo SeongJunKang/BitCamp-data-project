@@ -1,0 +1,63 @@
+<!-- 이벤트 처리 - IE8 이하에서 실행가능한 이벤트 리스너 등록
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 05</title>
+<style type="text/css">
+div {
+	border: 1px solid red;
+	margin: 10px;
+	padding: 10px;
+}
+
+a {
+	display: inline-block;
+}
+</style>
+</head>
+
+<body>
+	<div id="content">
+		content
+		<div id="nav">
+			nav <a id="menu01"
+				href="http://bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+				data-no="10" data-title="okok">센터소개</a><br> <a id="menu02"
+				href="http://bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+				data-no="20" data-title="lala">과정안내</a><br> <a id="menu03"
+				href="http://bitcamp.co.kr/employment/supportlist.bit?menu=1"
+				data-no="30" data-title="haha">취업센터</a><br>
+		</div>
+		<div id="d2">
+			d2
+			<button id="btn1">버튼1</button>
+			<button id="btn2">버튼2</button>
+			<button id="btn3">버튼3</button>
+		</div>
+		<div id="d3">d3</div>
+	</div>
+	<script>
+		var aTag1 = document.querySelector("#menu01")
+		var aTag2 = document.querySelector("#menu02")
+
+		if (document.addEventListener) { // IE 9 이상
+			aTag1.addEventListener("click", function(e) {
+				window.alert("오호라 눌럿군.")
+			});
+			aTag2.addEventListener("click", function(e) {
+				window.alert("오호라 눌럿군. 하지만 가지않지")
+				e.preventDefault();
+			});
+		} else if (document.attachEvent) { // IE 8이하
+			aTag1.attachEvent("click", function(e) {
+				window.alert("attach1")
+			});
+			aTag2.attachEvent("click", function(e) {
+				window.alert("attach2")
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- 주제: 함수 사용법 - 클로저(closure) -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 함수 안에 선언된 함수를 가리킨다.
+- factory method 패턴 구현!
+*/
+
+function createCalc(op) { // <== 팩토리 메서드
+  switch (op) {
+  case "+": 
+	  return function(a, b) { return a + b; };
+  case "-": 
+	  return function(a, b) { return a - b; };
+  case "*": 
+	  return function(a, b) { return a * b; };
+  case "/": 
+	  return function(a, b) { return a / b; };
+  default: 
+	  return function(a, b) {throw "지원하지 않는 연산자 입니다.";}
+  }	
+}
+
+var func = createCalc("-");
+console.log(func(10, 20));
+
+func = createCalc("%");
+console.log(func(10, 20));
+
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

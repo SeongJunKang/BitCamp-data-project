@@ -1,0 +1,92 @@
+<!-- 주제: 셀렉트 사용법 - 클래스 선택
+=> 어떤 부모의 자식인지 상관없이 같은 의미를 지니는 태그에 대해
+   같은 그룹으로 묶는 방법 
+  <태그명 class="클래스명">...</태그명>
+
+=> 한 태그는 여러 클래스에 소속될 수 있다.   
+  <태그명 class="클래스명1 클래스명2 클래스명3">...</태그명>
+  
+1) 태그 선택
+   태그명 {}
+   
+2) 아이디 선택
+   #아이디 {}
+   
+3) 클래스를 선택
+   .클래스명 {}
+   
+4) 자손을 선택
+   태그 자손태그 {}
+   태그 > 자식태그 {}
+   
+5) 조건으로 태그를 선택
+   태그#아이디 {}
+   태그.클래스명 {}
+   태그[속성명] {}
+   태그[속성명=값] {}
+   태그:상태 {}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.c1 {
+  color: red;
+}
+
+.c2 {
+  border: 1px solid blue;
+}
+
+.c3 {
+  background-color: yellow;
+}
+
+.c2, .c3 {
+  text-decoration: overline;
+}
+
+h2.c3 {
+  border-left: 10px solid green;
+}
+
+h1.c2.c1 {
+  border-right: 30px solid red;
+}
+</style>
+</head>
+<body>
+<h1 class="c1 c2">제목1</h1>
+<h2>제목1-1</h2>
+<p>간단한 문장</p>
+
+<h1 class="c2">제목2</h1>
+<h2>제목2-1</h2>
+<p>간단한 문장</p>
+
+<h1 class="c1">제목3</h1>
+<h2>제목3-1</h2>
+<p>간단한 문장</p>
+
+<h1 class="c2">제목4</h1>
+<h2 class="c3">제목4-1</h2>
+<p>간단한 문장</p>
+
+<h1 class="c3">제목5</h1>
+<h2 class="c3">제목5-1</h2>
+<p>간단한 문장</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

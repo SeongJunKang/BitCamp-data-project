@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="e1" class="step33.exam04.Engine"
+          p:cc="3000" p:valve="16" p:type="디젤"/>
+    
+    <bean id="e2" class="step33.exam04.Engine"
+          p:cc="800" p:valve="16" p:type="가솔린"/>
+
+    <bean id="c1" class="step33.exam04.Car"
+          p:model="소나타" p:maker="비트자동차" p:engine-ref="e2"/>
+</beans>
+
+
+
+
+
+
+
+
+
+

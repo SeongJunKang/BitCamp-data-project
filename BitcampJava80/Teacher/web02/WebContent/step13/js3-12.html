@@ -1,0 +1,57 @@
+<!-- 주제: 객체 사용법 - 인스턴스 함수3 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+var s01 = {name:"홍길동", kor:100, math:90, eng:100,
+		sum: function() {
+		  return this.kor + this.math + this.eng;
+	  },
+	  aver: function() {
+		  return this.sum() / 3;
+	  }
+};
+
+var s02 = {name:"임꺽정", kor:80, math:80, eng:90,
+    sum: function() {
+      return this.kor + this.math + this.eng;
+    },
+    aver: function() {
+      return this.sum() / 3;
+    }
+};
+
+var s03 = {name:"이순신", kor:100, math:100, eng:100,
+    sum: function() {
+      return this.kor + this.math + this.eng;
+    },
+    aver: function() {
+      return this.sum() / 3;
+    }
+};
+
+
+console.log(s01, s01.sum(), s01.aver());
+console.log(s02, s02.sum(), s02.aver());
+console.log(s03, s03.sum(), s03.aver());
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!-- 함수사용법 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 02</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		/*
+		- 함수 선언은 항상 제일 먼저 실행된다.
+		- 특징
+		  1) 리턴 타입이 없다.
+		  2) 파라미터 선언할 때 var를 넣으면 안된다.
+		  3) 파라미터 개수와 상관없이 호출할 때 아규먼트를 건넬 수 있다.
+		 */
+		console.log(plus(10, 20))
+		console.log(plus(10, 20, 30, 40))
+		/* 파라미터에 var 이 들어가있어 에러가 난다.
+		function plus(var a, var b) {
+		  return a + b;
+		 }
+		 */
+		function plus(a, b) {
+			return a + b
+		}
+	</script>
+</body>
+</html>

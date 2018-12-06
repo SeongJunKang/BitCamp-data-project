@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml element 작성 규칙 정의하기.
+1)엘리먼트 정의하기.
+    => <!ELEMENT 태그명 (콘텐츠규칙)>
+    => #PCDATA (Parsed Character Data) :
+         콘텐츠가 문자열임을 선언. XML 파서가 분석하는 문자열.
+    => XML 파서가 문자열을 분석했을 때 다른 엘리먼트(태그)가 있다면 오류 발생.
+
+# 용어정리
+=> Well-formed XML : XML 작성 규칙에 따라 만든 XML 문서
+=> Validate XML : (Well-formed XML + DTD 규칙) 에 따라 작성된 규칙.
+=> DTD : Document Type Definition. XML 문서의 엘리먼트 사용 규칙을 정의한 것.
+        규칙이 있어야만 XML 문서를 작성하는 쪽이나 읽는 쪽이 일관되게 작업할 수 있다.
+-->
+<!DOCTYPE books [
+    <!ELEMENT books (#PCDATA)>
+]>
+<books>
+		자바 프로그래밍,자바 기초 문법에 대한 설명입니다,비트출판사,32000
+</books>

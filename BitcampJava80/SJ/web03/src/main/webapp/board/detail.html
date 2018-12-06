@@ -1,0 +1,118 @@
+
+<!DOCTYPE html PUBLIC >
+<html>
+<head>
+<meta charset="UTF-8">
+<head>
+<title>게시판 EL</title>
+</head>
+<body>
+	<h1>게시판 - 상세정보</h1>
+	<form>
+		<input id="fNo" type='hidden' name='no'> 
+		제목 : <input	id="fTitle" type='text' name='title'><br>
+		내용 :	<textarea id="fContent" name='content' rows='5' cols='60'></textarea>	<br>
+		<button id="changebtn" type="button">변경</button>
+		<button id="deletebtn" type="button">삭제</button>
+		<button id="listbtn" type="button">목록</button>
+		<button type='reset'>초기화</button>
+	</form>
+	<script type="text/javascript">
+	  var no = location.href.split("=")[1];
+		var xhr;
+		if (window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest()
+		} else {
+			xhr = new ActiveXObject("Microsoft.XMLHTTP")
+		}
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var result = JSON.parse(xhr.responseText);
+				document.getElementById("fNo").value = result.no;
+				document.getElementById("fTitle").value = result.title;
+				document.getElementById("fContent").value = result.content;
+			} else if (xhr.readyState == 4 && xhr.status != 200) {
+				console.log("서버 요청에 문제 발생");
+			}
+		}
+		xhr.open("GET", "../ajax/board/detail.do?no="+no, true);
+		xhr.send(null);
+		var changeBtn = document.querySelector("#changebtn")
+		changeBtn.onclick = function() {
+			   var xhr;
+			    if (window.XMLHttpRequest) {
+			      xhr = new XMLHttpRequest()
+			    } else {
+			      xhr = new ActiveXObject("Microsoft.XMLHTTP")
+			    }
+
+			    xhr.onreadystatechange = function() {
+			      if (xhr.readyState == 4 && xhr.status == 200) {
+			        var result = JSON.parse(xhr.responseText);
+			        if (result.status == "success") {
+			        	location.href = "board.html";
+			        } else {
+			        	window.alert("변경실패입니다.");
+			        }
+			      } else if (xhr.readyState == 4 && xhr.status != 200) {
+			        console.log("서버 요청에 문제 발생");
+			      }
+			    }
+			    xhr.open("POST", "../ajax/board/update.do?", true);
+			    //POST 요청할 때
+			    //1) 콘텐츠 타입 요청 헤더를 추가하라
+			    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    //2) 서버에 보낼 데이터를 send()의 파라미터값으로 넘겨라
+			    xhr.send("no="+document.querySelector("#fNo").value
+			    		+"&title="+document.querySelector("#fTitle").value
+			    		+"&content="+document.querySelector("#fContent").value);
+		}
+    var deleteBtn = document.querySelector("#deletebtn")
+    deleteBtn.onclick = function() {
+    	var xhr;
+        if (window.XMLHttpRequest) {
+          xhr = new XMLHttpRequest()
+        } else {
+          xhr = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = JSON.parse(xhr.responseText);
+            if (result.status == "success") {
+              location.href = "board.html";
+            } else {
+              window.alert("삭제실패입니다.");
+            }
+          } else if (xhr.readyState == 4 && xhr.status != 200) {
+            console.log("서버 요청에 문제 발생");
+          }
+        }
+        xhr.open("POST", "../ajax/board/delete.do?", true);
+        //POST 요청할 때
+        //1) 콘텐츠 타입 요청 헤더를 추가하라
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //2) 서버에 보낼 데이터를 send()의 파라미터값으로 넘겨라
+        xhr.send("no="+document.querySelector("#fNo").value);
+    }
+    var listBtn = document.querySelector("#listbtn")
+    listBtn.onclick = function() {
+    	location.href = "board.html";
+    }
+	</script>
+	<style>
+#copyright {
+	background-color: lightgray;
+	text-align: center;
+}
+
+#copyHead {
+	font-style: italic;
+	color: gray;
+}
+</style>
+	<p id="copyright">
+		<font id="copyHead">Copyright</font> 이 예제는 비트캠프 "Java80기"의 훈련 내용입니다.
+	</p>
+</body>
+</html>

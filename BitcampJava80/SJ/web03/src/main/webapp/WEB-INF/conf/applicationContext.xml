@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	      http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan base-package="bitcamp.pms">
+		<context:exclude-filter type="regex"
+			expression="bitcamp.pms.controller.*" />
+	</context:component-scan>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:bitcamp/pms/dao/*Mapper.xml" />
+		<property name="typeAliasesPackage" value="bitcamp.pms.vo" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="bitcamp.pms.dao" />
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/java80db" />
+		<property name="username" value="java80" />
+		<property name="password" value="1111" />
+	</bean>
+	
+	 <bean id="txManager"
+    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"></property>
+  </bean>
+
+  <tx:advice id="txAdvice" transaction-manager="txManager">
+    <tx:attributes>
+      <tx:method name="exist*" read-only="true"/>
+      <tx:method name="retrive*" read-only="true" />
+      <tx:method name="list*" read-only="true" />
+      <tx:method name="count*" read-only="true" />
+      <tx:method name="*" />
+    </tx:attributes>
+  </tx:advice>
+  
+	<!-- 스프링 AOP기능 활성화 -->
+	<aop:aspectj-autoproxy/>
+  <!-- 포인트 컷(특정조건에해당하는메서드에 대해)으로 AOP필터 적용 -->
+  <aop:config>
+    <!-- 포인트 컷 선언 => 필터를 적용할 대상 클래스와 메서드를 지정 -->
+    <aop:pointcut id="serviceOperationPointCut" expression="execution(* *..service.impl.*.*(..))" />
+    <!-- 포인트 컷과 어드바이스를 연결 => 대상 메서드를 만나면 txAdvice 규칙에 따라 트랜잭션을 적용한다. => 즉 대상 
+      메서드를 호출할 때 마다 txAdvice 규칙에 정의된 대로 트랜잭션을 다뤄라! -->
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperationPointCut" />
+  </aop:config>
+</beans> 

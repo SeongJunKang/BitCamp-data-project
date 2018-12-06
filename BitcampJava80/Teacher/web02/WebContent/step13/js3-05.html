@@ -1,0 +1,43 @@
+<!-- 주제: 객체 사용법 - 객체 생성5 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+//5) Object.create()를 이용하여 객체 생성 + 원형 객체를 지정한다.
+//=> 원형 객체를 준비한다.
+var prototypeObj = {
+		name: "아무나",
+		kor: 0,
+		eng: 0,
+		math: 0
+};
+
+//=> 원형 객체를 파라미터로 넘긴다.
+var obj3 = Object.create(prototypeObj); 
+console.log(obj3);
+
+//=> 물론 다음과 기본 원형을 가지고 새 객체를 만들 수 있다.
+var obj4 = Object.create(Object.prototype); // new Object()와 같다.
+console.log(obj4);
+console.log(obj4.toString());
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

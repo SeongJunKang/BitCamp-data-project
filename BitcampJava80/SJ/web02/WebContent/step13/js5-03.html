@@ -1,0 +1,67 @@
+<!-- 이벤트 처리 - 이벤트 전달 순서 - 타겟과 버블
+=> 이벤트 발생
+1) body 태그에게 전달
+2) 그 자신 태그에게 전달(반복) : capture phase
+3) 이벤트가 발생된 태그에 전달 : target phase
+4) 부모 태그에 전달(반복)      : bubble phase
+5) body 태그에 전달 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 05</title>
+<style type="text/css">
+div {
+	border: 1px solid red;
+	margin: 10px;
+	padding: 10px;
+}
+
+a {
+	display: inline-block;
+}
+</style>
+</head>
+
+<body>
+	<div id="content">
+		content
+		<div id="nav">
+			nav <a id="menu01"
+				href="http://bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+				data-no="10" data-title="okok">센터소개</a><br> <a id="menu02"
+				href="http://bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+				data-no="20" data-title="lala">과정안내</a><br> <a id="menu03"
+				href="http://bitcamp.co.kr/employment/supportlist.bit?menu=1"
+				data-no="30" data-title="haha">취업센터</a><br>
+		</div>
+		<div id="d2">
+			d2
+			<button id="btn1">버튼1</button>
+			<button id="btn2">버튼2</button>
+			<button id="btn3">버튼3</button>
+		</div>
+		<div id="d3">d3</div>
+	</div>
+	<script>
+		var content = document.querySelector("#content")
+		var d2 = document.querySelector("#d2")
+		var button = document.querySelector("#btn1")
+
+		// addEventListener()으로 등록한 리스너는 target, bubble 단계에서 
+		// 이벤트를 받게되면 호출된다.
+		// content.addEventListener( 이벤트명 , 함수객체 );
+		
+		content.addEventListener("click", function() {
+			console.log("content...2")
+		});
+		d2.addEventListener("click", function() {
+			console.log("d2...2")
+		});
+		btn1.addEventListener("click", function() {
+			console.log("btn ...2")
+		});
+	</script>
+</body>
+</html>

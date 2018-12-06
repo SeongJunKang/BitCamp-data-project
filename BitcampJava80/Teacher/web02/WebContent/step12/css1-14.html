@@ -1,0 +1,77 @@
+<!-- 주제: 셀렉트 사용법 - 임의의 속성으로 태그 선택
+=> HTML5에 정의된 속성이 아닌 사용자가 임의로 붙인 속성도 
+   셀렉터 조건으로 사용할 수 있다.
+   
+1) 태그 선택
+   태그명 {}
+   
+2) 아이디 선택
+   #아이디 {}
+   
+3) 클래스를 선택
+   .클래스명 {}
+   
+4) 자손을 선택
+   태그 자손태그 {}
+   태그 > 자식태그 {}
+   
+5) 조건으로 태그를 선택
+   태그#아이디 {}
+   태그.클래스명 {}
+   태그[속성명] {}
+   태그[속성명=값] {}
+   태그:상태 {}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+input[okok] {
+  background-color: yellow;
+}
+
+a[company^="f"] { /* company 속성 값이 f로 시작하는 a 태그를 선택 */
+  border: 1px solid red;
+}
+
+a[company$="x"] { /* company 속성 값이 x로 끝나는 a 태그를 선택 */
+  background-color: gray;
+}
+
+a[programming~="vb"] { /* 속성의 값 중에서 004 토큰(양쪽 공백으로 구분)을 포함하는 a 태그 */
+  border-left: 10px solid red;
+}
+</style>
+</head>
+<body>
+<a href="http://www.microsoft.com" company="f001" programming="c c++ java vb">마이크로소프트</a><br>
+<a href="http://www.oracle.com" company="f002x" programming="c c++ java">오라클</a><br>
+<a href="http://www.redhat.com" company="f003" programming="c c++>레드햇</a><br>
+<a href="http://www.google.com"  company="f004x" programming="c c++ java">구글</a><br>
+<a href="http://www.google.com"  company="k004" programming="c java">네이버</a><br>
+<a href="http://www.google.com"  company="k004x" programming="java vb">카카오</a><br>
+<a href="http://www.google.com"  company="k004" programming="cvb">쿠팡</a><br>
+
+t1: <input okok type="text" name="name01a"><br>
+t2: <input nono type="text" name="name02b" value="xxx"><br>
+t3: <input okok type="text" name="name03b"><br>
+t4: <input nono type="password" name="t4" value="yyy"><br>
+t5: <input type="checkbox" name="t5"><br>
+t6: <input type="checkbox" name="t6"><br>
+t7: <input type="radio" name="t7" value="aaa"><br>
+t7: <input type="radio" name="t7" value="bbb"><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

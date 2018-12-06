@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- 공유 의존 객체가 아닌 개별 의존 객체를 주입하기  -->
+    <bean id="e1" class="step33.exam04.Engine"
+          p:cc="3000" p:valve="16" p:type="디젤"/>
+
+    <!-- 미리 생성된 e1 객체를 주입한다. -->
+    <bean id="c1" class="step33.exam04.Car"
+          p:model="소나타" p:maker="비트자동차" p:engine-ref="e1"/>
+    
+    <!-- 미리 생성된 e1 객체를 주입한다. -->      
+    <bean id="c2" class="step33.exam04.Car"
+          p:model="티코" p:maker="비트자동차" p:engine-ref="e1"/>
+          
+    <!-- 의존 객체를 별도로 생성하여 주입하고 싶다면, -->
+    <bean id="c3" class="step33.exam04.Car"
+          p:model="아반테" p:maker="비트자동차">
+      <property name="engine">
+        <bean class="step33.exam04.Engine" p:cc="1490" p:valve="16" p:type="가솔린"/>
+      </property>
+    </bean>
+    <bean id="c4" class="step33.exam04.Car"
+          p:model="그랜저" p:maker="비트자동차">
+      <property name="engine">
+        <bean class="step33.exam04.Engine" p:cc="3000" p:valve="16" p:type="가솔린"/>
+      </property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

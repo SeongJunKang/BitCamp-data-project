@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1) 셋터 호출
+    => property 이름 = setter - "set" + 첫 알파벳 소문자 
+    => 빈 컨테이너는 셋터를 호출할 때 문자열을 아규먼트 타입에 맞게 자동으로 바꾼다. 
+       단, primitive type에 대해서만 자동으로 변경한다.-->
+    <bean id="c1" class="step33.exam03.Car">
+      <property name="model"><value>티코</value></property>
+      <property name="cc"><value>800</value></property>
+      <property name="maker"><value>비트자동차</value></property>
+    </bean>
+    
+    <!-- 2) value 태그 대신 value 속성 사용하기 -->
+    <bean id="c2" class="step33.exam03.Car">
+      <property name="model" value="소나타"/>
+      <property name="cc" value="1980"/>
+      <property name="maker" value="비트자동차"/>
+    </bean>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+

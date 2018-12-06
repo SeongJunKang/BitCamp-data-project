@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDao">
+	<sql id="select01">
+		select MEMD, AUTH, NM, ADDRE, TEL, PHOTO, EMAIL, PWD
+		from MEMBERS
+	</sql>
+  <resultMap type="Member" id="MemberMap"></resultMap>
+	<insert id="insert" parameterType="Member">
+		insert into MEMBERS(AUTH,NM,ADDRE,TEL,PHOTO,EMAIL,PWD)
+		values(#{auth},#{nm},#{addre},#{tel},#{photo},#{email},#{pwd})
+	</insert>
+	<update id="update" parameterType="Member">
+		update MEMBERS set
+		MN=#{nm},
+		ADDRE=#{addre},
+		TEL=#{tel}
+		PHOTO=#{photo},
+		EMAIL=#{email},
+		PWD=#{pwd}
+		where MNO=#{no}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from MEMBERS
+		where MEMD=#{no}
+	</delete>
+	<select id="selectList" resultMap="MemberMap">
+		<include refid="select01"/>
+		order by MEMD asc
+	</select>
+	<select id="selectOne" parameterType="map" resultMap="MemberMap">
+	   <include refid="select01"/>
+	   where
+	   <if test="no != null">
+	   MEMD=#{no}
+	   </if>
+	   <if test="email != null">
+	   EMAIL=#{email}
+	   </if>
+		
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

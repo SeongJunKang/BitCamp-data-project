@@ -1,0 +1,52 @@
+<!-- 주제: 객체 사용법 - Object.defineProperty()의 프로퍼티 옵션 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+var obj1 = Object.create(Object.prototype); // new Object()와 같다.
+obj1.name = "홍길동";
+
+Object.defineProperty(obj1, "kor", {
+    value: 100,
+    writable: true /* 변경할 수 있는 지 지정한다. (기본: false) */
+});
+
+Object.defineProperty(obj1, "eng", {
+    value: 90,
+    writable: true
+});
+
+Object.defineProperty(obj1, "math", {
+    value: 80,
+    writable: true
+});
+
+console.log(obj1);
+
+// 프로퍼티 값 변경 후 출력
+obj1.name = "임꺽정";
+obj1.kor = 70;
+obj1.eng = 60;
+obj1.math = 50;
+console.log(obj1);
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

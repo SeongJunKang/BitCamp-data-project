@@ -1,0 +1,41 @@
+<!-- 주제: 객체 사용법 - 인스턴스 함수 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+var score = {
+		name: "홍길동",
+		"kor": 100,
+		'math': 90,
+		eng: 100
+}; 
+
+score.sum = function() {
+	// 객체 변수에 접근하려면 반드시 this 키워드를 사용해야 한다.
+	// this를 생략할 수 없다.
+	return this.kor + this.math + this.eng;
+};
+
+console.log(score);
+console.log(score.sum());
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

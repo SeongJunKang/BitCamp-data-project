@@ -1,0 +1,83 @@
+<!-- 주제: 이벤트 처리 - 이벤트 리스너 등록
+=> 각 태그는 자신의 특성에 따라 특정 이벤트가 발생된다.
+=> 이벤트가 발생되면 그 태그에 지정된 이름의 함수를 호출한다.
+=> 만약 그 이름으로 등록된 함수가 없다면 호출하지 않는다. 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+<div id="d2">
+  <button id="btn1">버튼1</button>
+  <button id="btn2">버튼2</button>
+  <button id="btn3">버튼3</button>
+</div>
+<div id="d3"></div>
+<script>
+// 이벤트 리스너(이벤트가 발생했을 때 호출되는 함수) 추가
+//방법1) onXXXX 프로퍼티 사용 
+//=> IE 8 이하 버전에서도 사용 가능
+var e = document.querySelector("#btn1");
+e.onclick = function(event) {
+	window.alert("okok");
+}
+
+//방법2) addEventListener() 사용
+//=> IE 9 이상에서만 가능
+//=> 함수를 여러 개 등록할 수 있다.
+//=> 등록한 순서대로 호출된다.
+var e2 = document.querySelector("#btn2");
+e2.addEventListener("click", function(event) {
+	window.alert('nono');
+});
+
+e2.addEventListener("click", function(event) {
+  window.alert('hahahaha');
+});
+
+//확인) onXXX와 addEventListener() 모두 사용할 때 호출 순서?
+// => 설정한 순서대로 호출된다.
+var e3 = document.querySelector("#btn3");
+e3.addEventListener("click", function(event) {
+  window.alert('11111');
+});
+e3.onclick = function(event) {
+  window.alert('22222');
+}
+e3.addEventListener("click", function(event) {
+  window.alert('33333');
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

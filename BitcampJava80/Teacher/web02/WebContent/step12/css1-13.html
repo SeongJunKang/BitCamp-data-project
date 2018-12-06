@@ -1,0 +1,86 @@
+<!-- 주제: 셀렉트 사용법 - 이웃 태그가 누구인지를 조건으로 선택 
+=> 이웃하고 있는 태그를 조건으로 대상 선택
+t1 + t2 => t1 다음에 바로 오는 t2 형제를 선택하라!
+t1 ~ t2 => t1 이후에 오는 t2 형제를 선택하라! 
+
+1) 태그 선택
+   태그명 {}
+   
+2) 아이디 선택
+   #아이디 {}
+   
+3) 클래스를 선택
+   .클래스명 {}
+   
+4) 자손을 선택
+   태그 자손태그 {}
+   태그 > 자식태그 {}
+   
+5) 조건으로 태그를 선택
+   태그#아이디 {}
+   태그.클래스명 {}
+   태그[속성명] {}
+   태그[속성명=값] {}
+   태그:상태 {}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div + h2 { /* div 다음에 바로 오는 h2 형제 선택 */
+  border: 1px solid red;
+}
+
+h2 + h3 { /* h2 다음에 바로 오는 h3 형제 태그를 선택 */
+  background-color: blue;
+}
+
+h2 ~ h3 {
+  border-left: yellow 30px solid;
+}
+</style>
+</head>
+<body>
+
+<div id="d1" class="l1">
+  <div id="d11" class="l2">
+    <h2>aaaaa</h2>
+		<h1>제목1</h1>
+		<h1>제목2</h1>
+		<h1>제목3</h1>
+		<h1>제목4</h1>
+		<h1>제목5</h1>
+		<h1>제목6</h1>
+		<h1>제목7</h1>
+	</div>
+	
+	<h2>bbbbb</h2>
+	<h3>ccccc</h3>
+	<div class="l2">
+		<h1>제목A</h1>
+		<h2>제목A.1</h2>
+		<h1>제목B</h1>
+	  <h2>제목B.1</h2>
+	  <h1>제목C</h1>
+	  <h2>제목C.1</h2>
+	  <h1>제목D</h1>
+	  <h2>제목D.1</h2>
+	</div>
+	<h3>ddddd</h3>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

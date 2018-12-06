@@ -1,0 +1,53 @@
+<!-- 주제: DOM API 사용하기 - 태그의 속성 또는 콘텐츠 알아내기 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+
+<script>
+// HTML 태그에 사용자가 임의의 속성을 추가하고 싶다면,
+// 기존 속성 이름과 충돌나지 않도록 가능한 속성의 이름을 "data-" 로 시작하라!
+
+// 1) 태그 속성 알아내기
+var t1 = document.querySelector("#menu02");
+console.log(t1.href);
+console.log(t1["data-no"]); // 사용자 정의 속성은 이런 식으로 값을 꺼낼 수 없다.
+console.log(t1["data-title"]);
+console.log(t1.getAttribute("data-no")); // 사용자 정의 속성은 getAttribute()로 값을 꺼낼 수 있다.
+console.log(t1.getAttribute("data-title"));
+console.log("--------------------------");
+
+// 2) 태그의 콘텐츠(시작태그와 끝태그 사이의 값) 알아내기
+var t2 = document.querySelector("#nav");
+console.log(t2.textContent); // 값을 뽑을 때 자식 태그의 콘텐츠만 뽑아낸다.
+console.log("---------------------------");
+console.log(t2.innerHTML); // 값을 뽑을 때 태그 정보까지 뽑아낸다.
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

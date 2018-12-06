@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="c1" class="step33.exam09.Car3">
+      <property name="model" value="티코"/>
+      <property name="maker" value="비트자동차"/>
+    </bean>
+    
+    <!-- 주입 가능한 의존 객체가 여러 개 있을 경우, 어떤 객체를 주입하는가?
+        => 예외 발생!
+        => 해결책
+           => @Qualifier를 사용하여 주입할 객체를 지정해야 한다.
+     -->
+    <bean id="e1" class="step33.exam09.Engine">
+      <property name="cc" value="800"/>
+      <property name="valve" value="16"/>
+      <property name="type" value="가솔린"/>
+    </bean>
+    
+    <bean id="e2" class="step33.exam09.Engine">
+      <property name="cc" value="3000"/>
+      <property name="valve" value="16"/>
+      <property name="type" value="가솔린"/>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

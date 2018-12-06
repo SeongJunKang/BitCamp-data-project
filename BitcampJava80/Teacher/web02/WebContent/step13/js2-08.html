@@ -1,0 +1,38 @@
+<!-- 주제: 함수 사용법 - 함수 중복 선언 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 같은 이름으로 함수를 정의하면 이전에 정의된 함수를 덮어쓴다.
+ */
+
+plus(10, 20); // 호출되는 함수는? 두 번째 함수
+
+function plus(a, b) {
+	console.log(a + b)
+}
+                
+function plus(a, b) {
+  console.log("두 번째 함수:", a + b)
+}
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 태그이름은 대소문자를 구분한다.
+    태그 이름에 공백을 넣을 수 없다.
+ -->
+<book>
+	<title>자바 프로그래밍</title>
+	<Author>저자1</Author>
+	<author>저자2 다르다.</author>
+	<authoR>저자 다르다.</authoR    ><!-- 뒤에 공백와도 됨!-->
+	<!--<authoR>저자 다르다.</ authoR> 앞은안됨!-->
+	<!--<authoR>저자 다르다.< /authoR> 앞은안됨 !-->
+</book>

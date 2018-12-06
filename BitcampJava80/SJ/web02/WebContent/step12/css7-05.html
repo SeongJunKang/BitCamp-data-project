@@ -1,0 +1,48 @@
+<!-- Bower를 사용해서 프론트엔드 패키지 관리하기 
+=> 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS07</title>
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<style type="text/css">
+.container {
+  width:800px;
+}
+header {
+  background-color: blue;
+  color: white;
+  height: 50px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+<header>
+테이블 만들기
+</header>
+<div class="container">
+	<table class="table table-hover">
+	  <thead>
+	    <tr><th>번호</th><th>이름</th><th>이메일</th><th>전화</th></tr>
+    </thead>
+			<tbody>
+				<tr><td>1</td><td>홍길동</td><td>hong@test.com</td><td>111-1111</td></tr>
+	      <tr><td>2</td><td>임꺽정</td><td>yim@test.com</td><td>111-2222</td></tr>
+	      <tr><td>3</td><td>이순신</td><td>lee@test.com</td><td>111-3333</td></tr>
+	      <tr><td>4</td><td>홍길동</td><td>hong@test.com</td><td>111-1111</td></tr>
+	      <tr><td>5</td><td>임꺽정</td><td>yim@test.com</td><td>111-2222</td></tr>
+	      <tr><td>6</td><td>이순신</td><td>lee@test.com</td><td>111-3333</td></tr>
+	      <tr><td>7</td><td>홍길동</td><td>hong@test.com</td><td>111-1111</td></tr>
+	      <tr><td>8</td><td>임꺽정</td><td>yim@test.com</td><td>111-2222</td></tr>
+	      <tr><td>9</td><td>이순신</td><td>lee@test.com</td><td>111-3333</td></tr>
+	  </tbody>
+	</table>
+</div>
+</body>
+</html>

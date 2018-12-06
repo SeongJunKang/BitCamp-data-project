@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <title>학생 선택</title>
+    <meta charset="utf-8">
+    <style>
+    div{
+      border : 1px solid gray;
+      width : 70px;
+      height : 30px;
+      text-align: center;
+      padding-top : 10px;
+      float:left;
+    }
+    #copyright {
+      font-size: :80%;
+      clear : left;
+      background-color: lightgray;
+      padding: 20px;
+    }
+    #count{
+      font-size: 3em ;
+      font-weight: bolder;
+      margin-left: 50px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>학생 자동 선택 시스템</h1> <br>
+    <p>이 시스템은 BITCAMP JAVA80기 학생을 자동으로 선택하는 시스템입니다.</p>
+
+    <p>
+      <button id="select_student">학생을 선택하라</button>
+      <span id="count">10</span>
+    </p>
+
+    <div class="student">김양모</div>
+    <div class="student">민경훈</div>
+    <div class="student">이민섭</div>
+    <div class="student">이대희</div>
+    <div class="student">김동래</div>
+    <div class="student">박현신</div>
+    <div class="student">이천배</div>
+    <div class="student">이민우</div>
+    <div class="student">박기석</div>
+    <div class="student">김현지</div>
+    <div class="student">김운남</div>
+    <div class="student">송석원</div>
+    <div class="student">권승협</div>
+    <div class="student">곽용호</div>
+    <div class="student">최춘호</div>
+    <div class="student">송지환</div>
+    <div class="student">신기학</div>
+    <div class="student">배윤호</div>
+    <div class="student">최한비</div>
+    <div class="student">김평일</div>
+    <div class="student">강성준</div>
+    <div class="student">김한준</div>
+    <div class="student">명재환</div>
+
+    <p id="copyright">by <a href ="http://www.bitacademy.com/" target="_blank">BITCAMP</a>.</p>
+
+    <script>
+      var btn = document.getElementById("select_student");// btn id 읽음
+      var selected_no = 0,new_no=0,flag=1;
+
+      btn.onclick = function() {
+        var students = document.querySelectorAll('.student');
+        if(document.getElementById("count").innerHTML==0){
+          document.getElementById("count").innerHTML ='10';
+        }
+        if(flag==1){
+          flag=0;
+          students[selected_no].style["background-color"]= "white"; // 초기값
+
+          var alarm = window.setInterval(function(){
+            new_no = Math.floor(Math.random()*23) ; // 0.xx <=x<23
+            students[selected_no].style["background-color"]= "white"; // 해당 칸 스타일 설정
+            students[new_no].style["background-color"]= "red"; // 해당 칸 스타일 설정
+            selected_no=new_no;
+            //console.log(students[new_no]);
+          },100);
+
+          var countalarm = window.setInterval(function(){
+            var countdiv = document.getElementById("count");
+            var count = countdiv.innerHTML-1;
+            countdiv.innerHTML=count;
+            },1000)
+
+          window.setTimeout(function () {
+            window.clearInterval(alarm);
+            window.clearInterval(countalarm);
+            document.getElementById("count").innerHTML ='0'
+            flag=1;
+          },10000)
+        }
+      };
+
+
+
+    </script>
+  </body>
+</html>

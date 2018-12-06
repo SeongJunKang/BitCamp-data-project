@@ -1,0 +1,62 @@
+<!-- 주제: DOM API 사용하기 - 태그 찾기 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<a id="menu01" href="#">센터소개</a><br>
+<a id="menu02" href="#">과정안내</a><br>
+<a id="menu03" href="#">취업소개</a><br>
+
+<script>
+//1) 아이디로 태그 찾기
+// => 리턴 값은 태그 객체 한 개이다.
+var t1 = document.getElementById("menu01");
+console.log(t1);
+
+//2) 태그 이름으로 태그 찾기
+// => 리턴 값은 태그 목록이다.
+var list = document.getElementsByTagName("a");
+console.log(list);
+console.log("-----------------------");
+
+// => 배열이 아니다. HTMLCollection 객체이다.
+// => 따라서 for ~ in으로 꺼내면 안된다.
+for (var key in list) {
+	console.log(key, list[key]);
+}
+console.log("-----------------------");
+
+// => DOM API로 찾은 태그 목록은 기본 for 문을 사용하여 꺼내야 한다.
+for (var i = 0; i < list.length; i++) {
+	console.log(i, list[i]);
+}
+console.log("-----------------------");
+
+//3) 셀렉터로 태그 찾기
+// => 찾은 갯 수에 상관없이 첫 번째 것만 리턴한다.
+var t2 = document.querySelector("a[id^=menu]"); //id가 menu로 시작하는 a 태그
+console.log(t2);
+
+//4) 셀렉터로 태그 목록 찾기
+// => 리턴 값은 태그 목록이다.
+var list2 = document.querySelectorAll("a[id^=menu]");
+console.log(list2);
+
+//5) 아이디를 사용하여 querySelector()로 태그 찾기
+var t3 = document.querySelector("#menu01");
+console.log(t3);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

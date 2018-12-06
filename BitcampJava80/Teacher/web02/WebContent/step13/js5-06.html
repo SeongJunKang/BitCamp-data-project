@@ -1,0 +1,93 @@
+<!-- 주제: 이벤트 처리 - 버블 단계를 막는 방법2
+=> event.stopPropagation() => 다음 리스너에게 전달하는 것은 막지 않는다.
+=> event.stopImmediatePropagation() => 다음 리스너에게 전달하는 것도 막는다. 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+a {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="nav">nav
+		<a id="menu01" 
+		   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+		   data-no="10"
+		   data-title="okok">센터소개</a><br>
+		<a id="menu02" 
+		   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+		   data-no="20"
+		   data-title="nono">과정안내</a><br>
+		<a id="menu03" 
+		   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+		   data-no="30"
+		   data-title="haha">취업소개</a><br>
+	</div>
+	<div id="d2">d2
+	  <button id="btn1">버튼1</button>
+	  <button id="btn2">버튼2</button>
+	  <button id="btn3">버튼3</button>
+	</div>
+	<div id="d3">d3</div>
+</div>
+
+<script>
+var content = document.querySelector("#content");
+var d2 = document.querySelector("#d2");
+var btn1 = document.querySelector("#btn1");
+
+//=> 부모에게 이벤트를 전달하지 않기.
+
+content.addEventListener("click", function(event) {
+	console.log("content....2");
+	event.stopPropagation(); // 부모에게 이벤트를 전달하지 말라고 설정한다.
+});
+
+d2.addEventListener("click", function(event) {
+  console.log("d2....2");
+  event.stopPropagation(); // 부모에게 이벤트를 전달하지 말라고 설정한다.
+});
+
+btn1.addEventListener("click", function(event) {
+  console.log("btn1...111111");
+  event.stopPropagation(); // 부모에게 이벤트를 전달하지 말라고 설정한다.
+});
+btn1.addEventListener("click", function(event) {
+  console.log("btn1...222222");
+});
+btn1.addEventListener("click", function(event) {
+  console.log("btn1...333333");
+});
+
+btn2.addEventListener("click", function(event) {
+  console.log("btn2...111111");
+  event.stopImmediatePropagation(); // 다음 리스너에게도 이벤트를 전달하지 말라고 설정한다.
+});
+btn2.addEventListener("click", function(event) {
+  console.log("btn2...222222");
+});
+btn2.addEventListener("click", function(event) {
+  console.log("btn2...333333");
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

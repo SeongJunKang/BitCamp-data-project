@@ -1,0 +1,85 @@
+<!-- 주제: 셀렉트 사용법 - 상태 조건으로 태그 선택2
+=> 특정 상태에 해당하는 태그를 선택
+셀렉터:first-child  => 대상 태그가 자신이 속한 부모의 첫 번째 자식이라면  
+셀렉터:last-child  => 대상 태그가 자신이 속한 부모의 마지막 번째 자식이라면
+  
+1) 태그 선택
+   태그명 {}
+   
+2) 아이디 선택
+   #아이디 {}
+   
+3) 클래스를 선택
+   .클래스명 {}
+   
+4) 자손을 선택
+   태그 자손태그 {}
+   태그 > 자식태그 {}
+   
+5) 조건으로 태그를 선택
+   태그#아이디 {}
+   태그.클래스명 {}
+   태그[속성명] {}
+   태그[속성명=값] {}
+   태그:상태 {}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+h1:first-child {
+  border: 1px solid red;
+}
+
+div:last-child {
+  border: 3px solid blue;
+}
+</style>
+</head>
+<body>
+<div id="d1" class="l1">
+  <div id="d11" class="l2">
+		<h1>제목1</h1>
+		<h2>제목1-1</h2>
+		<p>간단한 문장</p>
+	</div>
+	
+	<h1>제목2</h1>
+	<h2>제목2-1</h2>
+	<p>간단한 문장</p>
+</div>
+
+<h1>제목3</h1>
+<h2>제목3-1</h2>
+<p>간단한 문장</p>
+
+<div id="d2" class="l1">
+  <div id="d21" class="l2">
+		<h1 class="c2">제목4</h1>
+		<h2 class="c3">제목4-1</h2>
+		<p>간단한 문장</p>
+	</div>
+	
+	<div id="d22" class="l2">
+		<h1 class="c3">제목5</h1>
+		<div id="d221" class="l3">
+			<h2 class="c3">제목5-1</h2>
+			<p>간단한 문장</p>
+		</div>
+  </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

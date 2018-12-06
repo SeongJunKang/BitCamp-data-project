@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true">
+
+  <!-- 웹 애플리케이션에 대한 설명을 기술한다.(선택) -->
+  <description>이 웹 애플리케이션은 프로젝트 관리 기능을 제공합니다.</description>
+  
+  <!-- 톰캣 서버의 관리 화면에 출력할 웹 애프리케이션 제목.(선택) -->
+  <display-name>BIT Project Management System</display-name>
+  
+  <!-- 서블릿 클래스 정보 등록. -->
+  <servlet>
+    <servlet-name>Front Controller</servlet-name>
+    <servlet-class>bitcamp.pms.servlet.ProjectServlet</servlet-class>
+  </servlet>
+    
+  <!-- 서블릿 클래스에 URL을 지정. -->
+  <servlet-mapping>
+    <servlet-name>Front Controller</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+

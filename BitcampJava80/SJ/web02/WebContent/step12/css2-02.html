@@ -1,0 +1,54 @@
+<!-- 폰트 다루기 - 폰트의 상속 
+=> CSS 속성은 상속되는 것과 상속되지 않는 것으로 나뉜다.
+   상속되는 속성은 자식 태그에 그대로 적용된다.
+1) 상속되는 속성
+  - font-family, font-style, font-variant, font, color, text-align 등 
+2) 상속되는 않는 속성
+  - background 관련, margin 관련, padding 관련, border 관련 속성들,
+    text-decoration 등
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 02</title>
+<style>
+body {
+	font-family: aaa, bbb, ccc, sans-serif;
+	/*
+  의미
+  aaa 폰트 찾아라 없다면,
+  bbb 폰트 찾아라 없다면,
+  ccc 폰트 찾아라 없다면,
+  웹 브라우저에 기본 고딕체로 지정된것을 저장하라.
+  */
+	color: red;
+	background-color: yellow;
+	/* 자식 태그의 배경은 투명모드라서 부모의 배경색이 그대로 투영된다.*/
+}
+
+p {
+	/*p 태그는 부모의 폰트를 사용하지 않곘다.*/
+	font-family: 궁서체, sans-serif;
+}
+
+h2 {
+	color: blue;
+}
+</style>
+</head>
+<body>
+<h1>제목1ABICabic</h1>
+<h2>제목1-1</h2>
+<p>간단한문장</p>
+
+<h1>제목2ABCabc</h1>
+<h2 style="color: green;">제목2-1</h2>
+<p>간단한문장</p>
+
+<h1>제목3ABCabc</h1>
+<h2>제목3-1</h2>
+<p>간단한문장</p>
+</body>
+</html>

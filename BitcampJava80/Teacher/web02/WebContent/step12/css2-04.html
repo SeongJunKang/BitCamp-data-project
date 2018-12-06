@@ -1,0 +1,57 @@
+<!-- 주제: 폰트 다루기 - 폰트 스타일 지정
+=> 폰트의 모양을 지정한다.
+normal, bold, italic, oblique
+
+italic : 폰트에 들어 있는 이탤릭 체를 사용한다.
+         (현재 대부분의 브라우저는 이탤릭 체가 없어도 프로그램 상에서 강제로 
+          기울인다.)
+oblique : 폰트에 들어 있는 이탤릭 체 대신 프로그램에서 폰트를 강제로 기울인다. 
+          이탤릭체를 포함하고 있지 않은 폰트를 사용할 때 주로 적용한다.
+          프로그램으로 폰트를 기울이기 때문에 
+          이탤릭 체를 직접 사용하는 것 보다 매끄럽지 못하다.   
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body {
+  font-family: Times New Roman, Geneva, Arial, sans-serif;
+}
+
+h1 {
+  /* font-style: italic; */ /* 폰트에 들어 있는 이탤릭 체를 사용하라 */
+  font-style: oblique; /* 프로그램 상에서 강제로 폰트를 기울인다. */
+}
+
+h2 {
+}
+
+</style>
+</head>
+<body>
+<h1>제목1ABICabic</h1>
+<h2>제목1-1</h2>
+<p>간단한 문장</p>
+
+<h1>제목2ABICabic</h1>
+<h2 style="color:green;">제목2-1</h2>
+<p>간단한 문장</p>
+
+<h1>제목3ABICabic</h1>
+<h2>제목3-1</h2>
+<p>간단한 문장</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

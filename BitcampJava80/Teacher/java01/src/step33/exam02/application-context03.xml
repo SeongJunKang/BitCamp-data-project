@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1) 값을 넘기는 방법 -->
+    <bean id="c1" class="step33.exam02.Car">
+      <constructor-arg type="int" value="800"/>
+      <constructor-arg type="java.lang.String" value="티코"/>
+    </bean>
+    
+    <!-- 2) type 속성 생략 -->
+    <bean id="c2" class="step33.exam02.Car">
+      <constructor-arg value="티코"/>
+      <constructor-arg value="800"/>
+    </bean>
+    
+    <!-- 3) index 속성 -->
+    <bean id="c3" class="step33.exam02.Car">
+      <constructor-arg index="1" value="800" type="int"/>
+      <constructor-arg index="0" value="티코"/>
+    </bean>
+    
+  
+</beans>
+
+
+
+
+
+
+
+
+
+

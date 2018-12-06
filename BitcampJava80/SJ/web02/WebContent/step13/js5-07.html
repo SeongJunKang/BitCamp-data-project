@@ -1,0 +1,57 @@
+<!-- 이벤트 처리 - 이벤트에 설정된 기본 액션을 막기
+=> a 태그의 경우 "click" 이벤트가 발생하면,
+   기본으로 href 속성에 지정된 URL을 요청한다.
+=> 이런 기본 행동을 막는 방법 ?
+   e.preventDefault();
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 05</title>
+<style type="text/css">
+div {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+a {
+  display: inline-block;
+}
+</style>
+</head>
+
+<body>
+  <div id="content">
+    content
+    <div id="nav">
+      nav <a id="menu01"
+        href="http://bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+        data-no="10" data-title="okok">센터소개</a><br> <a id="menu02"
+        href="http://bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+        data-no="20" data-title="lala">과정안내</a><br> <a id="menu03"
+        href="http://bitcamp.co.kr/employment/supportlist.bit?menu=1"
+        data-no="30" data-title="haha">취업센터</a><br>
+    </div>
+    <div id="d2">
+      d2
+      <button id="btn1">버튼1</button>
+      <button id="btn2">버튼2</button>
+      <button id="btn3">버튼3</button>
+    </div>
+    <div id="d3">d3</div>
+  </div>
+  <script>
+    var aTag1 = document.querySelector("#menu01")
+    var aTag2 = document.querySelector("#menu02")
+    aTag1.addEventListener("click", function(e) {
+      window.alert("오호라 눌럿군.")
+    });
+    aTag2.addEventListener("click", function(e) {
+      window.alert("오호라 눌럿군.")
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>

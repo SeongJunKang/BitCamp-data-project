@@ -1,0 +1,59 @@
+<!-- 주제: DOM API 사용하기 - 태그의 콘텐츠 설정하기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+<div id="d2"></div>
+<div id="d3"></div>
+<script>
+var text = "안녕하세요. <a href='http://www.bitcamp.co.kr'>비트캠프</a>입니다.";
+
+// 1) textContent => 값을 단순 텍스트로 취급한다. 설사 태그가 있더라도 
+//                   일반 텍스트로 간주한다.
+//                   보통 게시물의 제목이나 내용을 출력할 때 많이 사용한다.
+// 왜? 제목이 게시물에 임의의 자바스크립트 코드가 있다 하더라도
+//     일반 텍스트로 출력하기 때문에 자바스크립트가 실행되지 않는다.
+//     단순 해킹 방지!
+var t1 = document.querySelector("#d2");
+t1.textContent = text;
+
+// 2) innerHTML => 값에 태그가 포함되는 것을 허용한다.
+//                 태그가 포함되어 있으면 해당 태그를 생성한다.
+//                 자식 태그를 추가하고 싶을 때 많이 사용한다.
+var t1 = document.querySelector("#d3");
+t1.innerHTML = text;
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

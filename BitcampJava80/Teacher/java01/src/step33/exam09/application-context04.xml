@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    
+    <bean id="c1" class="step33.exam09.Car2">
+      <property name="model" value="티코"/>
+      <property name="maker" value="비트자동차"/>
+    </bean>
+    
+    <!-- 만약에 의존 객체를 준비하지 않는다면?  예외 발생!
+      => @Autowired는 기본이 필수 이다.
+      => 선택으로 바꾸는 방법은? required 속성 값을 false 하라!
+    -->  
+    <!--  
+    <bean id="e1" class="step33.exam09.Engine">
+      <property name="cc" value="800"/>
+      <property name="valve" value="16"/>
+      <property name="type" value="가솔린"/>
+    </bean>
+    -->
+</beans>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!-- 주제: 함수 사용법 - 익명 함수와 일반 함수 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 호이스팅의 대상은 일반 함수이다.
+- 익명함수는 변수 할당문을 실행할 때 정의되지 때문에
+  그 전에 사용해서는 안된다.
+ */
+
+plus(10, 20);
+//minus(10, 20); // 익명함수가 만들어지기 전이기 때문에 호출할 수 없다.
+
+function plus(a, b) {
+	console.log(a + b)
+}
+                
+var minus = function(a, b) {
+	console.log(a - b);
+}
+
+minus(10, 20);
+
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

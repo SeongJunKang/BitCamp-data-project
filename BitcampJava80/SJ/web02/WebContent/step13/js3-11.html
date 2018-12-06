@@ -1,0 +1,28 @@
+<!-- 객체 사용법 - -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 03</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		var score = {
+			name : "홍길동",
+			kor : 100,
+			math : 90,
+			eng : 100,
+			sum : function() {
+				  return this.kor + this.math + this.eng
+			},
+		  aver : function() {
+			   return this.sum() / 3
+		  }
+		}
+		console.log(score)
+		console.log(score.sum())
+		console.log(score.aver())
+	</script>
+</body>
+</html>

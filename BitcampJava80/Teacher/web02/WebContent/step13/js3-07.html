@@ -1,0 +1,43 @@
+<!-- 주제: 객체 사용법 - Object.defineProperty()를 사용하여 프로퍼티 추가하기2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+var obj1 = Object.create(Object.prototype); // new Object()와 같다.
+obj1.name = "홍길동";
+
+var option = new Object();
+option.value = 100;
+Object.defineProperty(obj1, "kor", option);
+
+var option2 = {
+		value: 90
+};
+Object.defineProperty(obj1, "eng", option2);
+
+Object.defineProperty(obj1, "math", {
+    value: 80
+});
+
+console.log(obj1);
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

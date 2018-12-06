@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.pms.dao.LectsDao">
+	<sql id="select01">
+		select LNO, TITL, ST_DT, EN_DT, FI_DT
+		from LECTS
+	</sql>
+	<resultMap type="Lects" id="LectsMap" />
+	<insert id="insert" parameterType="Lects">
+		insert into
+		LECTS(TITL,DESCT,ST_DT,EN_DT,DAY_HR,TOT_HR,FI_DT,RNO)
+		values(#{titl},#{desct},#{st_dt},#{en_dt},#{day_hr},
+		#{tot_hr},#{fi_dt},#{rno})
+	</insert>
+	<update id="update" parameterType="Lects">
+		update LECTS set
+		TITL=#{titl},
+		DESCT=#{desct},
+		ST_DT=#{st_dt},
+		EN_DT=#{en_dt},
+		DAY_HR=#{day_hr},
+		TOT_HR=#{tot_hr},
+		FI_DT=#{fi_dt},
+		RNO=#{rno}
+		where LNO=#{lno}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from LECTS
+		where
+		LNO=#{no}
+	</delete>
+	<select id="selectList" resultMap="LectsMap">
+		<include refid="select01" />
+		order by LNO asc
+	</select>
+	<select id="selectOne" parameterType="map" resultMap="LectsMap">
+		select TITL,DESCT,ST_DT,EN_DT,DAY_HR,TOT_HR,FI_DT from LECTS
+		where LNO=#{lno}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

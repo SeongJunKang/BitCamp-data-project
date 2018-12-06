@@ -1,0 +1,53 @@
+<!-- 주제: DOM API 사용하기 - 태그 생성하고 추가하기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+<div id="d2"></div>
+<div id="d3"></div>
+<script>
+// 1) 태그 생성하기
+var t1 = document.createElement("a");
+t1.href = "http://www.bitcamp.co.kr";
+t1.textContent = "비트캠프";
+
+window.alert("지금 태그를 추가하겠습니다.");
+
+// 2) 태그를 다른 태그의 자식으로 붙이기
+var t2 = document.querySelector("#d2");
+t2.appendChild(t1);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

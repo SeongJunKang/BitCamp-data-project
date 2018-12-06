@@ -1,0 +1,45 @@
+<!-- 주제: 객체 사용법 - 객체 생성을 단순화 시키는 방법1 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+function makeStudent(n, k, m, e) {
+	return {name:n, kor:k, math:m, eng:e,
+			sum: function() {
+			  return this.kor + this.math + this.eng;
+		  },
+		  aver: function() {
+			  return this.sum() / 3;
+		  }
+	};
+}
+
+var s01 = makeStudent("홍길동", 100, 100, 100);
+var s02 = makeStudent("임꺽정", 90, 90, 90);
+var s03 = makeStudent("이순신", 80, 80, 90);
+
+
+console.log(s01, s01.sum(), s01.aver());
+console.log(s02, s02.sum(), s02.aver());
+console.log(s03, s03.sum(), s03.aver());
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

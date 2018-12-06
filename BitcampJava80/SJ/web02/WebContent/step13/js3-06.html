@@ -1,0 +1,19 @@
+<!-- 객체 사용법 - Object.defineProperty 를 사용-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 03</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		var obj1 = Object.create(Object.prototype)
+		obj1.name = "홍길동";
+		Object.defineProperty(obj1,"kor",{/*옵션정보를 담은 객체*/})
+		Object.defineProperty(obj1,"eng",{/*옵션정보를 담은 객체*/})
+		Object.defineProperty(obj1,"math",{/*옵션정보를 담은 객체*/})
+		console.log(obj1)
+	</script>
+</body>
+</html>

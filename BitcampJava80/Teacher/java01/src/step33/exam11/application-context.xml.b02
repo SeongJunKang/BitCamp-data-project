@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="step33.exam11"/>
+    
+    <!-- Mybatis SqlSessionFactory 객체를 준비 : Mybatis Spring 연동 라이브러리 사용 
+      주목
+      => 클래스명이 "SqlSessionFactoryBean"이다.
+      => 그러나 분명한 것은 이 객체가 리턴하는 것은 SqlSessionFactory 객체라는 것이다.
+    -->
+    <bean id="sqlSessionFactory" 
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+      <!-- mybatis 자체 DB 커넥션 풀을 사용할 수 없다.
+           스프링에서 관리하는 DB 커넥션 풀을 사용해야 한다. -->
+      <property name="dataSource" ref="dataSource"/>
+              
+      <property name="configLocation" value="step33/exam11/mybatis-config.xml"/>
+    </bean>
+   
+    <!-- 스프링의 DB 커넥션 풀 준비하기 -->
+    <bean id="dataSource" 
+          class="org.apache.commons.dbcp.BasicDataSource" 
+          destroy-method="close">
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://localhost:3306/java80db" />
+		    <property name="username" value="java80" />
+		    <property name="password" value="1111" />
+		</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

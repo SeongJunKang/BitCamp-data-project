@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1) "yyyy"-(m)m-(d)d" 형식의 문자열을 해석하여 
+	         java.util.Date 객체로 만들어주는 공장을 준비한다. 
+	-->
+	<bean id="simpleDateForMat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd"/>
+	</bean>
+	<!-- 직접 java.util.Date 객체 주입 -->
+	<bean id="c1" class="step33$Spring_Ioc.exam08.Car">
+		<property name="model" value="티코" />
+		<property name="maker" value="비트자동차" />
+		<property name="madeDate">
+			<bean factory-bean="simpleDateForMat" factory-method="parse">
+			<constructor-arg value="2016-4-25"/>
+			</bean>
+		</property>
+		<!--  자바코드 :
+		Date d = simpleDateFormat.parse("2016-4-25");
+		c1.setMadeDate(d);
+		 -->
+	</bean>
+
+
+</beans>

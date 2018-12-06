@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+=>XML 엘리먼트 작성 규칙 정의
+속성 (Attribute) 선언
+<!ATTLIST 엘리먼트명
+속성명 타입 기타옵션.
+>
+
+ #속성타입
+ ID : 아이디 값. 문서 안에서 중복되면 안된다. 숫자로 시작하면 안된다. 
+ IDRED : ID 값을 가리킨다.
+ NMTOKEN : ID 처럼 XML 이름짓는 규칙에 따라 값을 넣어야 한다. 단 중복 허용.
+ 
+ => 개수 지정
+ #REQUIRED  : 필수 속성
+ #IMPLIED   : 선택 속성
+ #FIXED     : 상수 속성, 지정된 값 외에 넣을 수 없다.
+ '기본값'   : 속성을 생략했을 때 기본으로 설정되는 값. 
+ -->
+<!DOCTYPE books [
+    <!ELEMENT books (press+,book*)>
+    <!ELEMENT book EMPTY>
+    <!ATTLIST book
+        title   CDATA #REQUIRED
+        content CDATA #IMPLIED
+        location (local|foreign) "local"
+        type CDATA #FIXED "paper"
+        press IDREF #REQUIRED
+        price CDATA #REQUIRED
+        author NMTOKEN  #IMPLIED
+    >
+    <!ELEMENT press (name,tel?,web?)>
+    <!ATTLIST press
+    id ID #REQUIRED 
+    >
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT tel (#PCDATA)>
+    <!ELEMENT web (#PCDATA)>
+]>
+<books>
+    <press id="p001">
+    <name>비트출판사</name>
+    </press>
+    <book 
+    title="자바프로그래밍"
+    content="자바 기초 문법 책."
+    type="paper" price="32000"
+    press="p001" author="홍길동"/>
+    <book 
+    title="자바프로그래밍2"
+    location="foreign"
+    price="42000"
+    press="p001"/>
+</books>

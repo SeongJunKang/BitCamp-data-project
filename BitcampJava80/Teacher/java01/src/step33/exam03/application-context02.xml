@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1) "c" 네임스페이스를 사용하여 호출할 생성자 선택하기 
+      => c:생성자파라미터명="값"
+      => 만약 해당 이름의 파라미터가 있는 생성자를 못 찾으면 예외 발생!
+    -->
+    <bean id="c1" class="step33.exam03.Car" c:model="티코" c:cc="800"/>
+    
+    <!-- 2) "p" 네임스페이스를 사용하여 셋터 호출하기
+    => p:프로퍼티명="값"
+    => 만약 지정한 이름과 일치하는 프로퍼티(셋터)를 못 찾으면 예외 발생! -->
+    <bean id="c2" class="step33.exam03.Car" p:model="티코" p:cc="800"/>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+

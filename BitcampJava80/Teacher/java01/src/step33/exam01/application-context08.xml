@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- scope 속성
+    => 객체 생성 정책을 지정한다.
+    => singleton : 객체를 한 개만 생성(기본)
+    => prototype : getBean()을 호출할 때 마다 새 객체를 생성하여 리턴한다.
+    => request: WEB 애플리케이션에서 사용됨. 요청 마다 객체 생성.
+    => session: WEB 애플리케이션에서 사용됨. 세션 마다 객체 생성.
+     -->
+    <bean id="c1" class="step33.exam01.Car"/>
+</beans>
+
+
+
+
+
+
+

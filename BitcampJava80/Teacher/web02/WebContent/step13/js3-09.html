@@ -1,0 +1,56 @@
+<!-- 주제: 객체 사용법 - Object.defineProperty()의 프로퍼티 옵션2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+var obj1 = Object.create(Object.prototype); // new Object()와 같다.
+obj1.name = "홍길동";
+
+Object.defineProperty(obj1, "kor", {
+    value: 100,
+    writable: true, /* 변경할 수 있는 지 지정한다. (기본: false) */
+    enumerable: true /* for ~ in 조회 허락여부 지정. (기본: false) */
+});
+
+Object.defineProperty(obj1, "eng", {
+    value: 90,
+    writable: true,
+    enumerable: true
+});
+
+Object.defineProperty(obj1, "math", {
+    value: 80,
+    writable: true
+});
+
+console.log(obj1);
+console.log("--------------------------");
+
+// for ~ in 반복문을 사용하면 객체에 존재하는 프로퍼티를 꺼낼 수 있다.
+// => for ~ in 문으로 조회하는 것이 허락된 프로퍼티만 꺼낼 수 있다.
+for (var key in obj1) {
+	console.log(key, "=", obj1[key]);
+}
+
+
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

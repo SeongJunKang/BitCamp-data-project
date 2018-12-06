@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- String을 java.util.Date으로 바꿔주는 프로퍼티 변환기를 설치한다. 
+    => 스프링 프레임워크는 많은 일을 할 수 있다.
+    => 그 일을 수행하는 클래스들을 스프링에서 기본으로 제공한다.
+    => 만약 스프링이 그 일을 하도록 만들고 싶다면, 
+       그 일을 처리하는 객체를 등록하라!
+    -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+	    <property name="customEditors">
+	        <map>
+	            <entry key="java.util.Date" value="step33.exam08.DatePropertyEditor"/>
+	        </map>
+	    </property>
+    </bean>
+
+    <bean id="c1" class="step33.exam08.Car">
+      <property name="model" value="티코"/>
+      <property name="maker" value="비트자동차"/>
+      <property name="madeDate" value="2016-4-25"/>
+    </bean>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+

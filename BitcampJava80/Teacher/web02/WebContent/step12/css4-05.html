@@ -1,0 +1,109 @@
+<!-- 주제: 색상 및 배경 다루기 - 배경 이미지 크기를 설정
+=> background-size => CSS3에 추가됨
+=> 배경 그림의 크기를 지정한다.
+=> % : 태그 크기를 기준으로 배경 크기를 결정한다.
+=> px : 태그 크기에 상관없이 배경 크기를 명시적으로 결정한다. 
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#d1 {
+  border: 10px dashed red;
+  width: 500px; 
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: yellow;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+}
+
+#d2 { 
+  border: 10px dashed green;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: red;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+  background-size: 50% 50%;  /* 순서: 너비 높이. 너비와 높이를 50% 점유하라! */ 
+}
+
+#d3 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: gray;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px 100px;  /* 순서: 너비 높이. 너비와 높이를 100px로 만들어라! */ 
+}
+
+#d4 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: olive;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px; /* 너비 값만 지정하면 
+                    높이는 이미지 고유 비율에 따라 자동으로 결정된다. */
+}
+
+#d5 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+  background-size: auto 50px; /* 너비는 자동, 높이는 값 지정. 
+                    높이에 따라 너비가 자동으로 결정된다. */
+}
+</style>
+</head>
+<body>
+<div id="d1">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d2">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d3">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d4">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d5">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

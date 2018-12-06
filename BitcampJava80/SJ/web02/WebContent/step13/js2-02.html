@@ -1,0 +1,36 @@
+<!-- 함수사용법 - 파라미터와 아규먼트배열 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 02</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		/* 
+		# arguments 배열
+		- 자바 스크립트 함수는 모든 파라미터 값을 arguments 라는 이름의 배열에 보관한다.
+		  따라서 함수의 파라미터 선언과 상관없이 값을 다룰 수 있다.
+	  - 파라미터 변수에 상관없이 모든 아규먼트 값은 arguments 배열에 저장된다.
+	  - 
+	   왜?
+			   => 파라미터 개수로 함수를 구분할 수 없다.
+		 */
+		function m(a, b) {
+			console.log(a)
+			console.log(b)
+			console.log(arguments[0])
+			console.log(arguments[1])
+			console.log(arguments[2])
+			console.log(arguments[3])
+		}
+		m()
+		m(10)
+		m(10, 20)
+		m(10, 20, 30)
+		m(10, 20, 30, 40)
+		m(10, 20, 30, 40, 50)
+	</script>
+</body>
+</html>

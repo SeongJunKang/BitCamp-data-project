@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!--  SQL 문을 모아둔 태그
+        namespace : SQL문을 찾을 때 사용할 패키지명
+        가능한 DAO 클래스 이름과 같게.
+     -->
+<mapper namespace="MemberDao">
+
+<!-- SQL문을 선언하는 태그
+    mybatis는 이 태그에 선언된 SQL문을 실행할 것이다.  
+    id : SQL문을 찾을 때 사용할 식별자
+    resultType : SELECT 결과를 담을 때 사용할 값 객체의 이름이다.
+    select 문은 select 태그에 선언.
+    insert, update , delete 문에 대해서도 같은 이름의 태그가 있다.
+    insert 태그에 update 문을 넣더라도 오류는 아니지만, 
+    가능한 그 SQL문을 위해 준비한 태그를 사용하라 
+ -->
+ 
+ <!--
+ step30.exam01.Member 클래스의 프로퍼티는 ?
+ no name email password tel  
+  -->
+  
+  <!--
+  MEMBERS 테이블의 컬럼은?
+  MNO MNAME EMAIL PWD TEL 
+   -->
+  <select id="selectList" resultType="step30$mybatis.exam01.Member">
+    select 
+      MNO as no,
+      MNAME as name,
+      EMAIL,
+      PWD as password,
+      TEL
+     from MEMBERS
+  </select>
+  
+</mapper>

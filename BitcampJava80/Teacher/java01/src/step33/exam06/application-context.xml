@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="c1" class="step33.exam06.Car">
+      <property name="model" value="소나타"/>
+      <property name="maker" value="비트자동차"/>
+      <!-- 맵 객체 주입하기 -->
+      <property name="specs">
+        <map>
+          <entry>
+            <key><value>sunroof</value></key>
+            <value>yes</value>
+          </entry>
+          <entry key="airbag" value="dual"/>
+          <entry key="sparetire">
+            <bean class="step33.exam06.Tire" p:rim="75" p:width="225"/>
+          </entry>
+        </map>
+      </property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

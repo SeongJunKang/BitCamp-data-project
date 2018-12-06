@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    같은 클래스의 익명 객체를 여러 개 생성할 경우,
+    첫 번째 경우 : step33.exam01.Car#0, step33.exam01.Car
+    두 번째 경우 : step33.exam01.Car#1 기타 이름이 없다.
+    세 번째 경우 : step33.exam01.Car#2 기타 이름이 없다.
+    네 번째 경우 : step33.exam01.Car#3 기타 이름이 없다.
+    다섯 번째 경우 : step33.exam01.Car#4 기타 이름이 없다.
+     -->
+    
+    <bean class="step33$Spring_Ioc.exam01.Car"/>
+    <bean class="step33$Spring_Ioc.exam01.Car"/>
+    <bean class="step33$Spring_Ioc.exam01.Car"/>
+    <bean class="step33$Spring_Ioc.exam01.Car"/>
+    <bean class="step33$Spring_Ioc.exam01.Car"/>
+    
+
+</beans>

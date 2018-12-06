@@ -1,0 +1,116 @@
+<!-- 주제: 폼 만들기. <form>, <input>, <select>, <button> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+<p>
+text:  <input type="hidden" name="t0" value="숨겨진값"><br>
+type="hidden"인 입력상자는 화면에 보이지 않는다.<br>
+화면에 보여지지 않지만 서버에 값을 보내고 싶을 때 사용한다. 
+</p>
+<p>
+text:  <input type="text" name="t1" value="홍길동"><br>
+text:  <input type="text" name="t2" placeholder="이름을 입력하세요."><br>
+일반 텍스트 입력 상자.<br>
+name을 지정하지 않으면 서버에 보내지 않는다.<br>
+값을 입력하지 않으면 빈 문자열을 보낸다.<br>
+텍스트 상자의 값을 지정하려면 value 속성을 사용하라!<br>
+입력할 값에 대해 안내 문구를 출력하려면 placeholder 속성을 사용하라!
+</p>
+<p>
+password: <input type="password" name="p1"><br>
+암호를 입력할 때 주로 사용한다. 입력 텍스트가 보이지 않는다.
+</p>
+<p>
+checkbox: <input type="checkbox" name="genre" value="thriller">스릴러
+          <input type="checkbox" name="genre" value="sf">SF
+          <input type="checkbox" name="genre" value="drama">드라마<br>
+사용자에게 여러 개의 값을 선택하게 만들 때 사용한다. <br>
+체크한 항목의 값이 파라미터로 서버에 전달된다.<br>
+체크하지 않으면 서버에 전달되지 않는다.<br>
+value 속성에 값을 지정하지 않으면 기본 값이 "on"이다.
+</p>
+<p>
+radio: <input type="radio" name="color" value="black">검정
+       <input type="radio" name="color" value="red" checked>빨강
+       <input type="radio" name="color" value="blue">파랑
+       <input type="radio" name="flower" value="rose" checked>장미
+       <input type="radio" name="flower" value="backhab">백합
+       <input type="radio" name="flower" value="jindalae">진달래<br>
+같은 이름을 가진 라디오 버튼끼리 배타적 선택을 할 수 있다.<br>
+value 속성의 값을 지정하지 않으면 "on" 을 기본 값으로 사용한다.
+</p>
+<p>
+file: <input type="file"><br>
+form 태그의 enctype을 "multipart/form-data" 로 지정해야만 서버에 파일을 보낼 수 있다.
+</p>
+<p>
+button: <input type="button" value="일반버튼"><br>
+일반 버튼은 자바스크립트로 리스너를 등록하지 않는한 특별한 동작을 하지 않는다.
+</p>
+<p>
+reset: <input type="reset"><br>
+폼 안에 있는 모든 항목을 초기 상태로 설정한다.
+</p>
+<p>
+submit: <input type="submit"><br>
+서버에 get/post 요청을 보낸다.<br>
+action 속성에 URL을 지정하지 않으면 현재 URL을 다시 요청한다.
+</p>
+<p>
+color: <input type="color" name="mycolor"><br>
+서버에 값을 보낼 때 #rrggbb 형식으로 보낸다.예) #00ff00<br>
+단 "#" 문자는 URL 인코딩해서 보내기 때문에 %23이 될 것이다.<br>
+서버 개발자는 신경쓰지 말라! 서버에서는 %23이 다시 "#"으로 바뀔 것이다.
+</p>
+<p>
+date: <input type="date" name="mydate"><br>
+날짜 값은 yyyy-MM-dd 형식으로 보낸다.
+</p>
+<p>
+<select name="state">
+  <option value="0">선택안함</option>
+  <option value="1" selected>졸업 예정자</option>
+  <option value="2">미취업자</option>
+  <option value="3">재취업자</option>
+  <option value="4">재직자</option>
+</select><br>
+selected 속성 이름만 있어도 해당 항목이 선택된다.<br>
+option의 value를 지정하지 않으면 option 태그의 콘텐츠가 사용된다.<br>
+<select name="state2" multiple>
+  <option value="1" selected>Java</option>
+  <option value="2">C</option>
+  <option value="3">C++</option>
+  <option value="4">C#</option>
+  <option value="4">Python</option>
+  <option value="4">PHP</option>
+</select><br>
+multiple 속성을 붙이면, 한 번에 여러 개의 값을 선택할 수 있다.<br>
+Ctrl/Shift 키를 이용하여 여러 개의 값을 선택할 수 있다<br>
+서버에 보낼 때는 같은 이름으로 선택된 값을 여러 개 보낸다.<br>
+(예: state2=2&state3=4)
+</p>
+<p>
+<button>기본이 제출 버튼=submit</button><br>
+<button type="button">일반 버튼은 반드시 type을 button이라 지정해야 한다.</button><br>
+<button type="reset">button 태그로 reset 버튼도 만들 수 있다.</button>
+</p>
+<p>
+<textarea name="content" rows="5" cols="60">test</textarea><br>
+여러 줄 입력 가능. 
+</p>
+
+</form>
+</body>
+</html>
+
+
+
+
+
+
+

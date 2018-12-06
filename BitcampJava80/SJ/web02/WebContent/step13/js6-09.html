@@ -1,0 +1,84 @@
+<!-- 이벤트 처리 - AJAX(Asynchronous Javascript And XML) 사용법 - 다른 사이트에 비동기 요청하기
+=> HTML을 다운로드 받은 사이트가 아닌 다른 사이트에 
+   AJAX 요청을 할 수 없다.
+   이유 ? 보안 때문에.
+   HTML을 다운로드한 사이트 아닌 다른 사이트로 마구잡이 요청을 보낼 수 있기 때문이다.
+=> 해결책?
+   1) 웹 브라우저에서 직접 요청하는 것이 아니라,
+      서버의 중계 프로그램을 통해 요청하는 방법
+    =>  
+   2) 그 사이트에서 응답할 때, 응답헤더에 다음 헤닥 있으면 된다.
+    =>  Access-Control-Allow-Origin : *
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 06</title>
+<style type="text/css">
+div, a {
+	border: 1px solid red;
+	margin: 10px;
+	padding: 10px;
+}
+
+#d2 {
+	height: auto;
+}
+</style>
+</head>
+
+<body>
+	<div id="content">
+		<div id="d1">
+			<button id="btn1" data-menu="1">버튼1</button>
+			<button id="btn2" data-menu="2">버튼2</button>
+			<button id="btn3" data-menu="3">버튼3</button>
+		</div>
+		<div id="d2">d2</div>
+	</div>
+	<script>
+		var btn1 = document.querySelector("#btn1")
+		var btn2 = document.querySelector("#btn2")
+		var btn3 = document.querySelector("#btn3")
+		var d2 = document.querySelector("#d2")
+
+		if (document.addEventListener) {
+			btn1.addEventListener("click", onclickMenu);
+			btn2.addEventListener("click", onclickMenu);
+			btn3.addEventListener("click", onclickMenu);
+		} else if (document.attachEvent) {
+			btn1.attachEvent("click", onclickMenu);
+			btn2.attachEvent("click", onclickMenu);
+			btn3.attachEvent("click", onclickMenu);
+		}
+		function onclickMenu(e) {
+			var xhr;
+			if (window.XMLHttpRequest) {
+				xhr = new XMLHttpRequest()
+			} else { //
+				xhr = new ActiveXObject("Microsoft.XMLHTTP")
+			}
+			xhr.onreadystatechange = function() {
+				// 서버가 응답을 완료하고, 응답 상태도 200일 때
+				// 서버 데이터를 처리하면 된다.
+				// => 비동기 요청의 완성!
+				console.log(xhr.readyState);
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					d2.innerHTML = xhr.responseText;
+				} else if (xhr.readyState == 4 && xhr.status != 200) {
+					console.log("서버 요청에 문제 발생");
+				}
+			}
+			
+			xhr.open("GET", "http://192.168.0.28:8080/web02/step13/js6-ajax02.jsp?menu="
+					+ this.getAttribute("data-menu"), true)
+			xhr.send(null)
+			var a = document.createElement("a");
+			a.href = "http://www.bitcamp.co.kr";
+			a.innerHTML = "비트캠프";
+			document.body.appendChild(a);
+		}
+	</script>
+</body>
+</html>

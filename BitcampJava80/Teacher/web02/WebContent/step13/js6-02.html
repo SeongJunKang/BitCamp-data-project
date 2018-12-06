@@ -1,0 +1,66 @@
+<!-- 주제: AJAX(Asynchronous Javascript And XML) 사용법 - 파라미터 값 보내기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+#d2 {
+  height: 200px;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="d1">
+	  <button id="btn1">버튼1</button>
+	  <button id="btn2">버튼2</button>
+	  <button id="btn3">버튼3</button>
+	</div>
+	<div id="d2"></div>
+</div>
+
+<script>
+var btn1 = document.querySelector("#btn1");
+var btn2 = document.querySelector("#btn2");
+var btn3 = document.querySelector("#btn3");
+
+var d2 = document.querySelector("#d2");
+
+btn1.addEventListener("click", function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "js6-ajax01.jsp?menu=1", false);
+  xhr.send(null); 
+  d2.innerHTML = xhr.responseText;
+});
+
+btn2.addEventListener("click", function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "js6-ajax01.jsp?menu=2", false);
+  xhr.send(null); 
+  d2.innerHTML = xhr.responseText;
+});
+
+btn3.addEventListener("click", function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "js6-ajax01.jsp?menu=3", false);
+  xhr.send(null); 
+  d2.innerHTML = xhr.responseText;
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<!-- 주제: AJAX(Asynchronous Javascript And XML) 개요
+=> 현재 웹 페이지를 그대로 둔 상태에서
+   별도로 서버에 요청하는 방법
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+#d2 {
+  height: 200px;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="d1">
+	  <button id="btn1">버튼1</button>
+	  <button id="btn2">버튼2</button>
+	  <button id="btn3">버튼3</button>
+	</div>
+	<div id="d2"></div>
+</div>
+
+<script>
+var btn1 = document.querySelector("#btn1");
+var d2 = document.querySelector("#d2");
+
+btn1.addEventListener("click", function(event) {
+  //1) AJAX를 실행할 객체를 준비한다.
+  var xhr = new XMLHttpRequest();
+  
+  //2) 서버에 연결한다.
+  xhr.open("GET", "js6-ajax01.jsp", false); // 동기 요청으로 설정한다.
+  // 동기 요청? 
+  // 서버에 요청한 후, 결과를 받을 때 까지 리턴하지 않는 것.
+  
+  //3) 서버에 요청 정보를 보낸다.
+  xhr.send(null); // <== 동기로 요청했기 때문에 서버에서 결과를 모두 받을 때까지 리턴하지 않는다.
+  
+  //4) 서버가 보낸 결과를 꺼낸다.
+  //console.log(xhr.responseText);
+  window.alert("서버가 보낸 결과를 출력하겠습니다!");
+  d2.innerHTML = xhr.responseText;
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button type="button" id="btn1">btn1 헤더 보내기</button><br>
+<button type="button" id="btn2">btn2 헤더 보내기</button><br>
+<button type="button" id="btn3">btn3,btn4 헤더 보내기</button><br>
+
+<script>
+var btn1 = document.getElementById("btn1");
+var btn2 = document.getElementById("btn2");
+var btn3 = document.getElementById("btn3");
+
+btn1.onclick = function() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'controller08.do', false);
+	xhr.setRequestHeader("bit1", "hahaha");
+	xhr.send();
+};
+
+btn2.onclick = function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'controller08.do', false);
+  xhr.setRequestHeader("bit2", "hahaha");
+  xhr.send();
+};
+
+btn3.onclick = function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'controller08.do', false);
+  xhr.setRequestHeader("bit3", "hahaha");
+  xhr.setRequestHeader("bit4", "hahaha");
+  xhr.send();
+};
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

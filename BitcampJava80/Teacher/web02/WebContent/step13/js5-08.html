@@ -1,0 +1,75 @@
+<!-- 주제: 이벤트 처리 - IE8 이하에서 이벤트 리스너 등록하기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+a {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="nav">nav
+		<a id="menu01" 
+		   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+		   data-no="10"
+		   data-title="okok">센터소개</a><br>
+		<a id="menu02" 
+		   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+		   data-no="20"
+		   data-title="nono">과정안내</a><br>
+		<a id="menu03" 
+		   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+		   data-no="30"
+		   data-title="haha">취업소개</a><br>
+	</div>
+	<div id="d2">d2
+	  <button id="btn1">버튼1</button>
+	  <button id="btn2">버튼2</button>
+	  <button id="btn3">버튼3</button>
+	</div>
+	<div id="d3">d3</div>
+</div>
+
+<script>
+var a1 = document.querySelector("#menu01");
+var a2 = document.querySelector("#menu02");
+
+if (document.addEventListener) { // IE9 이상
+	a1.addEventListener("click", function(event) {
+	  window.alert("오호라.. 눌렀네...ㅋㅋ");
+	});
+	
+	a2.addEventListener("click", function(event) {
+	  window.alert("오호라.. 눌렀네...ㅋㅋ");
+	  event.preventDefault(); // 기본으로 설정된 행동을 하지 말라!
+	});
+} else if (document.attachEvent) { // IE8 이하
+	a1.attachEvent("onclick", function() {
+    window.alert("attachEvent...");
+  });
+  
+  a2.attachEvent("onclick", function() {
+    window.alert("attachEvent...");
+  });
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!-- 주제: 함수 사용법 - 익명 함수2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 함수에 이름이 없기 때문에 정의하자마자 즉시 변수에 주소를 저장해야 한다.
+- 또는 즉시 호출해야 한다.
+ */
+
+// A 개발자가 만든 함수를 가져왔다고 가정하자!
+function minus(a, b) {
+	console.log(a - b);
+}
+
+// B 개발자가 만든 함수를 가져온다고 가정하자!
+console.log(
+	(function(a, b) {
+		return a - b;
+	})(10, 20)
+);
+
+// C 개발자는 A개발자가 만든 함수를 호출하려 한다.
+minus(100, 50); // OK
+                
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

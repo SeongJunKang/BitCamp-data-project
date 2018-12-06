@@ -1,0 +1,26 @@
+<!-- 객체생성5 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 03</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		 //5) Object.create()를 이용하여 객체 생성 + 원형 객체를 지정한다.
+		 //=> 원형 객체를 준비한다.
+		 var prototypeObj = {
+				 name : "아무나",
+				 kor : 0,
+				 eng : 0,
+				 math : 0
+		 }
+		 // 원형 객체를 파라미터로 넘긴다
+		 var obj3 = Object.create({prototypeObj});
+		 console.log(obj3)
+		 var obj4 = Object.create(Object.prototype);
+     console.log(obj4)
+	</script>
+</body>
+</html>

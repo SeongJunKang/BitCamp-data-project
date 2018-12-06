@@ -1,0 +1,112 @@
+<!-- DOM API 사용 - 개요 
+=> DOM(Document Object Model) API
+  - 태그를 자바스크립트 객체로 다룬다.
+  - 웹 브라우저는 HTML 렌더링 할 때 태그를 자바스크립트 객체 트리 구조로 준비한다.
+  - "DOM Tree" 라 부른다.
+  - DOM 트리에 태그를 조회하고 추가하고 제거하는 다양한 객체와 함수를 구비하고 있다.
+  - 웹 페이지 UI를 다루려면 반드시 DOM API를 사용해야 한다.
+  - 각 태그의 특징에 맞춰 객체를 준비하는 전문 생성자 함수가 있다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 04</title>
+<style>
+header {
+	background-color: blue;
+	color: white;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+nav {
+	float: left;
+	background-color: yellow;
+	width: 98px;
+	border: 1px solid lightgray;
+	padding: 10px;
+}
+
+section {
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin-left: 120px;
+}
+
+footer {
+	text-align: center;
+	background-color: lightgray;
+}
+
+#compno {
+	text-decoration: underline;
+	color: gray;
+	font-style: italic;
+	font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+	<header>
+		<img
+			src="http://search1.daumcdn.net/search/statics/common/img/p/daumlogo_140516.gif">
+		비트캠프 자바 80기
+	</header>
+	<nav>
+		<a id="menu01" href="http://www.daum.net">센터소개</a><br>
+		<a id="menu02" href="#">과정안내</a><br>
+		<a id="menu03" href="#">취업센터</a><br>
+	</nav>
+	<section>
+		01. 과정목표 - 자바 기반 웹 프로그래밍과 모바일프로그래밍에 대한 융합개발 <br> 02. 교육대상 <br>
+		- 프로그래밍에 대한 기초과정을 습득한자<br> - 프로그래밍 진입을 희망하는 교육의지가 있는 입문자<br>
+		- SW 프로그래밍 기술을 개발 업무에 이용하려고 하는 프로그래머<br> - 향후 프로그래머로써 SW 프로그래밍 및
+		모바일 프로그램을 개발하려고 하는 자<br> 03. 교육안내<br> - 교육기간 21차: 2016.04.18
+		~ 2016.10.11. 22차: 2016.05.23 ~ 2016.11.14.<br> - 교육시간 : (이론,실습)
+		09:00 ~ 18:00 / (그룹스터디) 19:00 ~ 21:00<br> - 교육장소 : 비트캠프 강남 <br>
+		- 모집정원 : 기수별 30명 모집 <br> 04. 교육비용 <br> - 전액 국비지원(무료)<br>
+		- 훈련수당 매월 최대 316,000원 5개월간 지급<br> - 지원대상에 따라 훈련수당은 변동가능합니다.<br>
+	</section>
+	<footer>
+		이 사이트의 모든 권한은 자바 80기에 있습니다.<br> 비트캠프 | 사업자등록번호: <span id="compno">214-85-24928</span>
+		|(주)비트교육센터 서초지점 대표 조현정<br> 전화번호: 02)3486-9600 | 팩스: 02)6007-1245
+		| 메일: bit@bitacademy.net <br>
+		<address>서울시 서초구 서초동 1327-15번지 비트아카데미 빌딩 3층</address>
+	</footer>
+	<script>
+	//DOM API
+		var url1 = "http://bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1";
+		var url2 = "http://bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3";
+		var url3 = "http://bitcamp.co.kr/employment/supportlist.bit?menu=1";
+		//1) DOM 트리에서 a 태그 객체(element)를 찾는다.
+		var a1 = document.getElementById("menu01");
+		var a2 = document.getElementById("menu02");
+		var a3 = document.getElementById("menu03");
+		
+		// 2) 각 a 태그 객체에 클릭했을 때 호출될 메서드를 등록한다.
+		// => "click" 이라는 이벤트에 대해 호출되는 메서드
+		// => click event listener라 부른다.
+		a1.onclick = function(e) {
+			//3) a 태그 객체의 콘텐츠를 출력한다.
+			window.alert(a1.textContent);
+			//4) a 태그 객체의 기본 기능(지정된 URL을 요청)을 막자
+			e.preventDefault();
+			// 5) 자바스크립트를 사용하여 웹 브라우저에게 다른 사이트로 가라고 명령하기.
+			location.href = url1;
+		}
+		a2.onclick = function(e) {
+			window.alert(a2.textContent);
+			e.preventDefault();
+      location.href = url2;
+		}
+		a3.onclick = function(e) {
+			window.alert(a3.textContent);
+			e.preventDefault();
+      location.href = url3;
+		}
+		
+	</script>
+</body>
+</html>

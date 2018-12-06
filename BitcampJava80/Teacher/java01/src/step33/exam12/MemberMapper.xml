@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 네임스페이스 이름은 "인터페이스 이름 + 패키지 이름" 이어야 한다. -->  
+<mapper namespace="step33.exam12.MemberDao">
+
+  <resultMap type="Member" id="MemberMap">
+    <id     column="MNO"    property="no"/>
+    <result column="MNAME"  property="name"/>
+    <result column="PWD"    property="password"/>
+  </resultMap>
+  
+  <!-- SQL 아이디는 DAO 인터페이스의 메서드명과 같아야 한다. -->
+  <insert id="insert" parameterType="Member">
+    insert into MEMBERS(MNAME,EMAIL,PWD,TEL)
+    values(#{name},#{email},#{password},#{tel})
+  </insert>
+  
+  <update id="update" parameterType="Member">
+    update MEMBERS set
+      MNAME=#{name},
+      EMAIL=#{email},
+      TEL=#{tel}
+    where MNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from MEMBERS
+    where MNO=#{no}
+  </delete>
+
+  <select id="selectList" resultMap="MemberMap">
+    select MNO, MNAME, EMAIL, PWD, TEL 
+    from MEMBERS
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

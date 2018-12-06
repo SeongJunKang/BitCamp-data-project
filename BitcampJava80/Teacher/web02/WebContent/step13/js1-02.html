@@ -1,0 +1,48 @@
+<!-- 주제: 변수의 사용법 - 변수 선언과 window 객체 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+/*
+# 변수 선언과 window 객체
+- 자바스크립트에서 선언하는 변수는 window 내장 객체에 등록된다.
+- 즉 자바의 맵 객체에 추가하는 것과 유사하다.
+  예) HashMap window = new HashMap();
+- 자바스크립트의 객체는 자바의 맵 객체처럼 사용된다.
+ */
+ 
+name = "홍길동"; // java: window.put("name", "홍길동");
+age = 20;        // java: window.put("age", 20);
+
+console.log(name); // java: window.get("name");
+console.log(age);  // java: window.get("age");
+
+window.tel = "111-2222"; // window를 생략하지 않아도 된다.
+window.email = "hong@test.com"; 
+
+console.log(tel);   // window를 생략해도 된다.
+console.log(email); // window를 생략해도 된다.
+console.log(window.name); 
+console.log(window.age);
+
+window.name = 3.14; // java: window.put("name", 3.14);
+console.log(name);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

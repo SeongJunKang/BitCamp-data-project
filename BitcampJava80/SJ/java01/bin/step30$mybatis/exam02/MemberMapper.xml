@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="MemberDao">
+
+  <select id="selectList" resultType="step30$mybatis.exam02.Member">
+    select 
+      MNO as no,
+      MNAME as name,
+      EMAIL,
+      PWD as password,
+      TEL
+     from MEMBERS
+  </select>
+  <insert id="insert" parameterType="step30$mybatis.exam02.Member">
+    insert into MEMBERS(MNAME,EMAIL,PWD,TEL)
+    values(#{name},#{email},#{password},#{tel})
+  </insert>
+  <update id="update" parameterType="step30$mybatis.exam02.Member">
+    update MEMBERS set
+    MNAME = #{name},
+    EMAIL = #{email},
+    TEL = #{tel}
+    where MNO = #{no}
+  </update>
+  <delete id="delete" parameterType="int">
+  delete from MEMBERS
+  where MNO=#{no}
+  </delete>
+</mapper>

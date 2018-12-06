@@ -1,0 +1,32 @@
+<!-- 함수사용법 - 클로저(closure) : 익명함수 내부에서 만드는 함수 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 02</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		/*
+		- 중첩 함수가 바깥 함수의 변수를 사용한다면,
+		  그 변수는 클로저마다 별도로 관리한다.
+		- 바깥 함수의 변수를 사용하는 클로저는
+		  그 변수를 복제하여 내부에서 별도로 관리한다.
+		- factory method 패턴 구현
+		 */
+		function getInterestCalculator(interestPercent) { //바깥함수
+			var interestRate = interestPercent / 100;
+			return function(money, month) {
+				// 클로저에서 사용하는 바깥 함수의 로컬변수는
+				// 클로저가 별도로 관리하는 메모리에 복제된다.
+				// 따라서 바깥 함수의 호출이 끝난후 바깥 함수의 로컬변수가 삭제되더라도
+				// 클로저는 아무 영향을 받지 않는다.
+				return money * (interestRate * (month / 12))
+			}
+		}
+		var interestFunc1 = getInterestCalculator(9)
+		console.log("100만원 => ",interestFunc1(1000000,6))
+	</script>
+</body>
+</html>

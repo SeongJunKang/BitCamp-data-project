@@ -1,0 +1,24 @@
+<!-- 변수의 사용법 - "use strict"  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 01</title>
+</head>
+<body>
+	<script type="text/javascript">
+	"use strict" // 특별한 명령어다. 자바스크립트 엔진에게 보내는 특수 명령.
+	/*
+	- 자바스크립트는 블록 범위 제한을 지원하지 않는다.
+	*/
+	var a = 10;
+	 {
+		 var b = 20;
+		 a = 30 ;
+	 }
+	console.log("a=",a);
+	console.log("b=",b);
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- 주제: 객체 사용법 - 객체 생성을 단순화 시키는 방법2(계속) -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+
+/* 
+# 생성자 함수
+- 생성자 역할을 하는 함수는 일반 함수와 다르게 사용해야 하기 때문에
+  다른 개발자가 바로 알아 볼 수 있도록 보통 대문자로 함수 이름을 시작한다.
+- 그리고 클래스는 아니지만 클래스인 것처럼 구조체인 것처럼 보이도록
+  명사형으로 함수 이름을 짓는다.
+ */
+ 
+function Student(n, k, m, e) {
+	this.name = n;
+	this.kor = k;
+	this.math = m;
+	this.eng = e;
+	this.sum = function() {
+	  return this.kor + this.math + this.eng;
+  };
+  this.aver = function() {
+	  return this.sum() / 3;
+  }
+}
+
+var s01 = new Student("홍길동", 100, 100, 100);
+var s02 = new Student("임꺽정", 90, 90, 90);
+var s03 = new Student("이순신", 80, 80, 90);
+
+
+console.log(s01, s01.sum(), s01.aver());
+console.log(s02, s02.sum(), s02.aver());
+console.log(s03, s03.sum(), s03.aver());
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

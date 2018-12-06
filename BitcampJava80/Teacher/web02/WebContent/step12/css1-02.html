@@ -1,0 +1,74 @@
+<!-- 주제: 셀렉트 사용법 - 아이디 선택
+=> 태그에 아이디를 부여하는 방법
+   <태그명 id="아이디">...</태그명>
+=> 아이디 변수명과 같다. 절대 HTML 페이지에서 중복되어서는 안된다.   
+
+1) 태그 선택
+   태그명 {}
+   
+2) 아이디 선택
+   #아이디 {}
+   
+3) 클래스를 선택
+   .클래스명 {}
+   
+4) 자손을 선택
+   태그 자손태그 {}
+   태그 > 자식태그 {}
+   
+5) 조건으로 태그를 선택
+   태그#아이디 {}
+   태그.클래스명 {}
+   태그[속성명] {}
+   태그[속성명=값] {}
+   태그:상태 {}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#header1 {
+  color: red;
+}
+
+#header2 {
+  color: blue;
+}
+
+#header1, #header2, #header3 {
+  text-decoration: line-through;
+}
+
+h1#header3 {
+  background-color: yellow;
+}
+
+</style>
+</head>
+<body>
+<h1 id="header1">제목1</h1>
+<h2>제목1-1</h2>
+<p>간단한 문장</p>
+
+<h1 id="header2">제목2</h1>
+<h2>제목2-1</h2>
+<p>간단한 문장</p>
+
+<h1 id="header3">제목3</h1>
+<h2>제목3-1</h2>
+<p>간단한 문장</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

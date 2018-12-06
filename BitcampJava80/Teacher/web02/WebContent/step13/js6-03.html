@@ -1,0 +1,57 @@
+<!-- 주제: AJAX(Asynchronous Javascript And XML) 사용법 - 파라미터 값 보내기2
+=> 리스너를 여러 버튼에서 공유하기 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+#d2 {
+  height: 200px;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="d1">
+	  <button id="btn1" data-menu="1">버튼1</button>
+	  <button id="btn2" data-menu="2">버튼2</button>
+	  <button id="btn3" data-menu="3">버튼3</button>
+	</div>
+	<div id="d2"></div>
+</div>
+
+<script>
+var btn1 = document.querySelector("#btn1");
+var btn2 = document.querySelector("#btn2");
+var btn3 = document.querySelector("#btn3");
+
+var d2 = document.querySelector("#d2");
+
+btn1.addEventListener("click", onclickMenu);
+btn2.addEventListener("click", onclickMenu);
+btn3.addEventListener("click", onclickMenu);
+
+function onclickMenu(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "js6-ajax01.jsp?menu=" + this.getAttribute("data-menu"), false);
+  xhr.send(null); 
+  d2.innerHTML = xhr.responseText;
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

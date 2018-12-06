@@ -1,0 +1,36 @@
+<!-- 주제: 변수의 사용법 - 특수 문자를 포함하는 변수 선언하기 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 자바스크립트에서 변수는 맵 객체에 저장되는 방식이기 때문에
+  특수 문자를 포함하는 변수를 선언할 수 있다.
+  단, 일반적인 선언으로는 안된다.
+ */
+//var ㅋㅋ^^? = 20;     // 문법 오류!
+//window.ㅋㅋ^^? = 20;  // 문법 오류! 
+window["ㅋㅋ^^?"] = 20;
+
+console.log(window["ㅋㅋ^^?"]);
+console.log(window['ㅋㅋ^^?']); // 자바스크립트는 문자열을 다룰 때 "", '' 둘 다 사용 가능하다.
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

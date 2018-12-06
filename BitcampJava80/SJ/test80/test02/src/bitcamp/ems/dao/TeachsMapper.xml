@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.ems.dao.TeachsDao">
+    <resultMap type="Teachs" id="TeachsMap">
+        <id column="TNO" property="tno" />
+        <result column="TNM" property="tnm" />
+        <result column="TEL" property="tel" />
+        <result column="EMAIL" property="email" />
+        <result column="PHOT" property="phot" />
+    </resultMap>
+    <insert id="insert" parameterType="Teachs">
+        insert into TEACHS(TNM,TEL,EMAIL,PHOT)
+        values(#{tnm},#{tel},#{email},#{phot})
+    </insert>
+    <update id="update" parameterType="Teachs">
+        update TEACHS set
+        TNM=#{tnm},
+        TEL=#{tel},
+        EMAIL=#{email},
+        PHOT=#{phot}
+        where TNO=#{tno}
+    </update>
+    <delete id="delete" parameterType="int">
+        delete from TEACHS
+        where TNO=#{tno}
+    </delete>
+    <select id="selectList" resultMap="TeachsMap">
+        select TNO, TEL, TNM, EMAIL, PHOT
+        from TEACHS
+    </select>
+    <select id="selectOne" parameterType="int" resultMap="TeachsMap">
+        select TNO, TEL, TNM, EMAIL, PHOT
+        from TEACHS
+        where TNO=#{tno}
+    </select>
+</mapper>

@@ -1,0 +1,92 @@
+<!-- 주제: 색상 및 배경 다루기 - 배경 스타일 설정 단축 문법
+=> background: 반복 이미지url 위치지정; 
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#d1 {
+  border: 10px dashed red;
+  width: 500px; 
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background-color: yellow;
+  background-image: url("back01.jpg");
+  background-repeat: no-repeat;
+}
+
+#d2 { 
+  border: 10px dashed green;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background: red url("back01.jpg") no-repeat left center;
+}
+
+#d3 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background: gray url("back01.jpg") no-repeat -70px 100px;
+}
+
+#d4 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background: pink url("back01.jpg") no-repeat -70px 100px/50% 50%;
+}
+
+#d5 {
+  border: 10px dashed blue;
+  width: 500px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  background: pink url("back01.jpg") no-repeat center center/100px auto;
+}
+</style>
+</head>
+<body>
+<div id="d1">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d2">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d3">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d4">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d5">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

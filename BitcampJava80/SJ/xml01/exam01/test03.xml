@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML(Element) version(attribute) 반드시 첫번째 라인-->
+
+<!-- 루트 엘리먼트는 한개여야 한다.
+root element?
+ -> 가장 바깥 쪽 엘리먼트
+ -->
+ 
+ <!--  내용이 없을 떄 끝 태그를 생략 할 수 있다.
+    대신 시작 태그에 / 를 붙여야 한다.
+  -->
+<book>
+    <title>자바 프로그래밍</title>
+    <local></local>
+    
+</book>

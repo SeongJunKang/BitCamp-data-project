@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE books [
+    <!ELEMENT books (book)>
+    <!ELEMENT book (title,content,press,price)>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT content (#PCDATA)>
+    <!ELEMENT press (#PCDATA)>
+    <!ELEMENT price (#PCDATA)>
+]>
+<books>
+    <book>
+    <!-- 자식 엘리먼트 작성 시 주의사항.
+        순서를 지켜라. 콤마(,)로 나열된 순서대로 작성해야한다.
+        개수를 반드시 지켜라.
+     -->
+    <title>자바 프로그래밍,</title>
+    <content>자바 기초 문법에 대한 설명입니다.</content>
+    <press>비트출판사</press>
+    <price>32,000</price>
+	</book>
+</books>

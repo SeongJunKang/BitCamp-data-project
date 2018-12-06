@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+<h1>게시판-목록</h1>
+<p><a href='new.do'>새 글</a></p>
+<table id="boardTable" border='1'>
+<thead>
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+  <th>조회수</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<p> 이 예제는 비트캠프 "자바80"기의 훈련내용입니다.</p>
+
+<script>
+
+loadBoardList();
+
+function loadBoardList() {
+  var xhr;
+  if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest();
+  } else { // IE6 이하 
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var result = JSON.parse(xhr.responseText);
+        var list = result.list;
+        var tbody = document.querySelector("#boardTable tbody");
+        
+        for (var i in list) {
+          var tr = document.createElement("tr");
+          tr.innerHTML = "<td>" + list[i].no + "</td>" +
+            "<td><a href='#' onclick='onclickDetail(event)' data-no='" + list[i].no + "'>" + list[i].title + "</a></td>" +
+            "<td>" + list[i].createdDate + "</td>" +
+            "<td>" + list[i].views + "</td>";
+          tbody.appendChild(tr);
+        }
+        
+    } else if (xhr.readyState == 4 && xhr.status != 200) {
+        console.log("서버 요청에 문제 발생!");
+    }
+  };
+  
+  xhr.open("GET", "../ajax/board/list.do", true);
+  xhr.send(null); 
+}
+
+// 태그에 선언된 onclick 속성에서 호출한 것이기 때문에
+// 다음 함수는 이벤트 리스너가 아니다.
+function onclickDetail(event) {
+	location.href = "detail.html?no=" + event.target.getAttribute("data-no");
+	event.preventDefault(); // 원래 a 태그의 행위를 막는다.
+}
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

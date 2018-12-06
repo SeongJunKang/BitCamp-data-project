@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>게시판</title>
+</head>
+<body>
+<h1>게시판-상세정보</h1>
+<form>
+<input id="fNo" type='hidden' name='no'>
+제목: <input id="fTitle" type='text' name='title'><br>
+내용: <textarea id="fContent" name='content' rows='5' cols='60'></textarea><br>
+<button id='changeBtn' type='button'>변경</button>
+<button id='deleteBtn' type='button'>삭제</button>
+<button type='reset'>초기화</button>
+</form>
+
+<p> 이 예제는 비트캠프 "자바80"기의 훈련내용입니다.</p>
+
+<script>
+var no = location.href.split("=")[1];
+
+var xhr;
+if (window.XMLHttpRequest) {
+  xhr = new XMLHttpRequest();
+} else { // IE6 이하 
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4 && xhr.status == 200) {
+      var result = JSON.parse(xhr.responseText);
+      document.getElementById("fNo").value = result.no;
+      document.getElementById("fTitle").value = result.title;
+      document.getElementById("fContent").value = result.content;
+      
+  } else if (xhr.readyState == 4 && xhr.status != 200) {
+      console.log("서버 요청에 문제 발생!");
+  }
+};
+
+xhr.open("GET", "../ajax/board/detail.do?no=" + no, true);
+xhr.send(null); 
+
+var changeBtn = document.querySelector("#changeBtn");
+changeBtn.onclick = function(event) {
+	var xhr;
+	if (window.XMLHttpRequest) {
+	  xhr = new XMLHttpRequest();
+	} else { // IE6 이하 
+	  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState == 4 && xhr.status == 200) {
+	      var result = JSON.parse(xhr.responseText);
+	      if (result.status == "success") {
+	    	  location.href = "board.html";
+	      } else {
+	    	  window.alert("변경 실패입니다!");
+	      }
+	      
+	  } else if (xhr.readyState == 4 && xhr.status != 200) {
+	      console.log("서버 요청에 문제 발생!");
+	  }
+	};
+
+	xhr.open("POST", "../ajax/board/update.do", true);
+	//POST 요청할 때
+	//1) 콘텐츠 타입 요청 헤더를 추가하라!
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
+	//2) 서버에 보낼 데이터를 send()의 파라미터 값으로 넘겨라!
+	xhr.send(
+			"no=" + document.querySelector("#fNo").value + 
+			"&title=" + document.querySelector("#fTitle").value +
+			"&content=" + document.querySelector("#fContent").value
+  ); 
+}
+
+var deleteBtn = document.querySelector("#deleteBtn");
+deleteBtn.onclick = function(event) {
+  alert("삭제하겠다!");
+}
+
+
+
+</script>
+
+</body>
+</html>

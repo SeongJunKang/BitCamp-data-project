@@ -1,0 +1,31 @@
+/* 주제: 메서드에 인스턴스 주소를 쉽게 전달하기  */
+package step07;
+
+public class Exam05 {
+  public static void main(String[] args) {
+    // 문제: 2 * 3 + 6 - 7 = ?
+    // 문제: 3 - 7 * 2 + 27 = ?  (단, 연산자 우선순위 무시한다. 순서대로 계산할 것);
+
+    Calculator4 calc1 = new Calculator4();
+    Calculator4 calc2 = new Calculator4();
+
+    // 인스턴스의 주소를 파라미터가 아닌 메서드 이름 앞에 기술한다.
+    // => 그 메서드가 어떤 인스턴스에 대해 작업을 수행하는지
+    //    직관적으로 알 수 있다.
+    calc1.plus(2); // 0 + 2
+    calc2.plus(3); // 0 + 3
+
+    calc1.multiple(3); // 0 + 2 * 3
+    calc2.minus(7); // 0 + 3 - 7
+
+    calc1.plus(6); // 0 + 2 * 3 + 6
+    calc2.multiple(2); // 0 + 3 - 7 * 2
+
+    calc1.minus(7); // 0 + 2 * 3 + 6 - 7
+    calc2.plus(27); // 0 + 3 - 7 * 2 + 27
+
+    System.out.println(calc1.result);
+    System.out.println(calc2.result);
+
+  }
+}

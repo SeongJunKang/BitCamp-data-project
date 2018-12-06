@@ -1,0 +1,51 @@
+<!-- 셀렉트 사용법 - 속성조건으로 태그선택
+=> 태그의 속성 및 속성 값에 따라 선택 
+1) 태그 선택
+    태그명 {}
+    
+2) 아이디 선택
+    #아이디 {}
+    
+3) 클래스 선택
+    .클래스명 {}
+    
+4) 자손을 선택
+    태그 자손태그 {}
+    태그 > 자식태그 {}
+    
+5) 조건으로 태그를 선택
+		태그#아이디 {}
+		태그.클래스명 {}
+		태그 [속성명]
+    태그 [속성명=값]
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 01</title>
+<style>
+input[value] {
+	border: 3px solid red;
+}
+input[value="xxx"] {
+  background-color: blue;
+  color: white;
+}
+input[type="text"] {
+  border-left: 40px solid black;
+}
+</style>
+</head>
+<body>
+	t1:	<input type="text" name="t1"><br> 
+	t2:	<input type="text" name="t2" value="xxx"><br> 
+	t3:	<input type="text" name="t3"><br> 
+	t4: <input type="password" name="t4" value="yyy"><br> 
+	t5:	<input type="checkbox" name="t5"><br> 
+	t6:	<input type="checkbox" name="t5"><br> 
+	t7:	<input type="radio" name="t7" value="aaa"><br> 
+	t8:	<input type="radio" name="t8" value="bbb"><br> 
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!-- JSON 사용법 - JSON 사용후
+=> JavaScript Object Notation(자바스크립트로 객체를 표기하는 방법)
+=> JSON은 자바스크립트에서 객체를 생성하는 단축 문법과 거의 같다.
+   단, 문자열을 표현할 때 반드시 큰따옴표를 사용해야한다는 제약이 있다.
+   또한 프로퍼티 이름은 반드시 문자열로 표현해야 한다는 제약이있다.
+   예 ) 자바스크립트 객체 단순 표기법
+   {
+      name : "홍길동",
+      age : 20,
+      email : 'hong@test.com'
+   }
+   예 ) JSON 형식 자바스크립트 객체 단순 표기법
+   {
+      "name" : "홍길동",
+      "age" : 20,
+      "email" : "hong@test.com"
+   }
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 07</title>
+</head>
+<body>
+	<button id="btn1" type="button">테이블 데이터 가져오기</button>
+	<br>
+	<table id="list" border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+    <tbody>
+    </tbody>
+	</table>
+	<script>
+		var btn1 = document.querySelector("#btn1")
+		var tbody = document.querySelector("#list tbody")
+
+		if (document.addEventListener) {
+			btn1.addEventListener("click", onclickMenu);
+		} else if (document.attachEvent) {
+			btn1.attachEvent("click", onclickMenu);
+		}
+
+		function onclickMenu(e) {
+			var xhr;
+			if (window.XMLHttpRequest) {
+				xhr = new XMLHttpRequest()
+			} else { //
+				xhr = new ActiveXObject("Microsoft.XMLHTTP")
+			}
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var list = JSON.parse(xhr.responseText);
+					for (var index in list ) {
+						var tr = document.createElement("tr");
+						tr.innerHTML = 
+						"<td>"+list[index].no +"</td>"+
+						"<td>"+list[index].title +"</td>"+
+						"<td>"+list[index].write +"</td>"+
+						"<td>"+list[index].views+"</td>";
+						tbody.appendChild(tr);
+					} 
+				} else if (xhr.readyState == 4 && xhr.status != 200) {
+					console.log("서버 요청에 문제 발생");
+				}
+			}
+
+			xhr.open("GET", "js7-ajax02.jsp", true)
+			xhr.send(null)
+		}
+	</script>
+</body>
+</html>

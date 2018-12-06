@@ -1,0 +1,23 @@
+<!-- 함수사용법 - 익명함수. -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 02</title>
+</head>
+<body>
+	<script type="text/javascript">
+		"use strict";
+		/*
+		- 같은 이름으로 함수를 정의하면 이전에 정의된 함수를 덮어쓴다.
+		 */
+		plus(10, 20)  // 호출되는 함수는 두번째함수
+		function plus(a, b) {
+			console.log(a + b)
+		}
+		function plus(a, b) {
+			console.log("두번째함수:",a + b)
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!-- 주제: DOM API 사용하기 - 태그 삭제하기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+<div id="d2"></div>
+<div id="d3"></div>
+<script>
+// 1) 삭제할 태그 찾기
+var t1 = document.querySelector("#menu02");
+var parent = t1.parentElement;
+window.alert("곧 삭제하겠습니다.");
+parent.removeChild(t1);
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp' // = eclipse + wtp
+apply plugin: 'war'   //web archive
+
+// 웹 자원이 있는 폴더 지정하기
+// 지정하지 않으면 src/main/webapp 폴더가 된다.
+webAppDirName = 'www'
+// 자바 소스가 있는 폴더 지정하기
+// 지정하지 않으면 src/main/java 폴더가 된다.
+
+compileJava { 
+  options.encoding="UTF-8"
+}
+task copyToLib(type: Copy) {
+  into "$buildDir/libs"
+  from configurations.runtime
+}
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+            }
+            resources {
+            srcDir 'src'
+            }
+        }
+}
+
+repositories {
+    maven{
+      url 'https://repo.spring.io/libs-milestone'
+    }
+    mavenCentral()
+}
+dependencies {
+    compile 'org.apache.bcel:bcel:5.2'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.mybatis:mybatis:3.3.1'
+    compile 'org.springframework:spring-context:4.3.0.RC1'
+    compile 'org.mybatis:mybatis-spring:1.3.0'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'org.springframework:spring-jdbc:4.3.0.RC1'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+}

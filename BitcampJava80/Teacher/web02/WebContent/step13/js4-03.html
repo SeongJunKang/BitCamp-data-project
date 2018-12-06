@@ -1,0 +1,40 @@
+<!-- 주제: DOM API 사용하기 - 태그의 속성 값 설정하기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="nav">
+<a id="menu01" 
+   href="http://www.bitcamp.co.kr/page/center/intro.jsp?menu=1&sub=1"
+   data-no="10"
+   data-title="okok">센터소개</a><br>
+<a id="menu02" 
+   href="http://www.bitcamp.co.kr/subject/detailView.bit?subjectSeq=175&menu=3"
+   data-no="20"
+   data-title="nono">과정안내</a><br>
+<a id="menu03" 
+   href="http://www.bitcamp.co.kr/employment/supportlist.bit?menu=1"
+   data-no="30"
+   data-title="haha">취업소개</a><br>
+</div>
+
+<script>
+var t1 = document.querySelector("#menu01");
+//t1["data-writer"] = "홍길동"; // 사용자 정의 속성은 이런 식으로 추가할 수 없다.
+t1.setAttribute("data-writer", "홍길동");
+console.log(t1);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

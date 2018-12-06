@@ -1,0 +1,60 @@
+<!-- 주제: 상자 다루기 - 안쪽 여백 주기(padding)
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#d1 {
+  border: 2px solid red;
+  width: 500px; /* 내용물의 너비이다. 여백을 포함하지 않은 값이다.*/
+}
+
+#d2 { 
+  /* 실제 너비 = 내용물 너비(500px) + 왼쪽/오른쪽 테두리 두께(4px)
+                 + 안쪽 여백 왼쪽/오른쪽 두께(60px)
+               = 564px
+  */ 
+  border: 2px solid green;
+  width: 500px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+}
+
+#d3 {
+  border: 2px solid blue;
+  width: 500px;
+  /* padding: 10px 20px 30px 40px; */ /* 12시부터 시계 방향으로 테두리 두께를 설정한다*/
+  /* padding: 10px 40px; */  /* top/bottom left/right 값 */
+  padding: 30px; /* all */
+}
+</style>
+</head>
+<body>
+<div id="d1">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d2">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+
+<div id="d3">
+All font-related properties are first reset to their initial values, including those listed in the preceding paragraph. Then, those properties that are given explicit values in the 'font' shorthand are set to those values. For a definition of allowed and initial values, see the previously defined properties.
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

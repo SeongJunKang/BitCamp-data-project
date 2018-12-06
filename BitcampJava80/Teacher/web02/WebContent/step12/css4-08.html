@@ -1,0 +1,62 @@
+<!-- 주제: 색상 및 배경 다루기 - 배경 그림 넣기 응용편 1
+=> 입력 상자에 체크 그림 넣기
+=> 입력 값의 유효 여부에 따라 배경 그림 파일을 교체한다.
+=> 단점?
+   그림 파일을 교체하는 방식은 실행 자원을 많이 사용한다.
+=> 해결책!
+   한 개의 그림 파일에 성공과 실패 아이콘을 함께 두고,
+   단지 위치 이동으로 처리한다. => 실행 속도가 빠르다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.success {
+  background: url("img01.png") no-repeat right center;
+  padding-right : 25px;
+}
+
+.failure {
+  background: url("img02.png") no-repeat right center;
+  padding-right : 25px;
+}
+
+</style>
+</head>
+<body>
+이메일: <input id="email" type="text" name="email"><span id="checkResult"></span><br>
+암호: <input id="password" type="password" name="password"><br>
+<button type="button">로그인</button>
+
+<script>
+var t1 = document.getElementById("email");
+t1.onkeyup = function(event) {
+	if (t1.value == "admin") { // 중복 이메일로 가정하자!
+		document.getElementById("checkResult").innerHTML = "중복된 이메일입니다.";
+	  t1.className = "failure";
+	  
+	} else if (t1.value.length == 0) {
+		document.getElementById("checkResult").innerHTML = "";
+		t1.className = "";
+		
+	} else { // 신규 이메일로 가정하자!
+		document.getElementById("checkResult").innerHTML = "사용 가능!";
+	  t1.className = "success";
+	}
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

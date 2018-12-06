@@ -1,0 +1,93 @@
+<!-- 주제: AJAX(Asynchronous Javascript And XML) 사용법 - 비동기 요청
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+#d2 {
+  height: 200px;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="d1">
+	  <button id="btn1" data-menu="1">버튼1</button>
+	  <button id="btn2" data-menu="2">버튼2</button>
+	  <button id="btn3" data-menu="3">버튼3</button>
+	</div>
+	<div id="d2"></div>
+</div>
+
+<script>
+var btn1 = document.querySelector("#btn1");
+var btn2 = document.querySelector("#btn2");
+var btn3 = document.querySelector("#btn3");
+
+var d2 = document.querySelector("#d2");
+
+if (document.addEventListener) { // IE9 이상
+	btn1.addEventListener("click", onclickMenu);
+	btn2.addEventListener("click", onclickMenu);
+	btn3.addEventListener("click", onclickMenu);
+	
+} else if (document.attachEvent) { // IE8 이하
+	btn1.attachEvent("onclick", onclickMenu);
+  btn2.attachEvent("onclick", onclickMenu);
+  btn3.attachEvent("onclick", onclickMenu);  
+}
+
+function onclickMenu(event) {
+	var xhr;
+	if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest();
+	} else { // IE6 이하 
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	
+	// 비동기 요청을 설정하려면 open() 함수의 세 번째 파라미터 값을 true로 설정해야 한다.
+  xhr.open("GET", "js6-ajax01.jsp?menu=" + this.getAttribute("data-menu"), true);
+	
+  xhr.send(null); 
+  //비동기 요청인 경우 서버에 요청을 하는(send()를 호출하는) 즉시 리턴한다. 
+ 
+  //주의! 
+  //=> 비동기 요청에서는 send() 호출하는 즉시 리턴하기 때문에
+  //   responseText에는 아직 서버가 보낸 결과가 들어있지 않을 것이다.
+  //=> 따라서 다음과 같이 그냥 사용하면 안된다.
+  d2.innerHTML = xhr.responseText;
+  
+  //=> 그럼 서버가 보낸 결과를 받았는지 어떻게 아는가?
+	//   서버가 응답할 때 이벤트가 발생하는데 
+	//   바로 그 이벤트에 반응하는 리스너를 등록하라!
+	//   js6-07.html을 참고하라!
+  
+  // 비동기 요청에서는 send() 호출 후 바로 리턴하기 때문에
+  // 다음 코드를 즉시 실행할 수 있다. 
+  // 서버에서 응답하는 것과 상관없이 다음 코드를 실행한다.
+  // 그래서 비트캠프 링크가 화면에 바로 보인다.
+  var a = document.createElement("a");
+  a.href = "http://www.bitcamp.co.kr";
+  a.innerHTML = "비트캠프";
+  
+  document.body.appendChild(a);
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

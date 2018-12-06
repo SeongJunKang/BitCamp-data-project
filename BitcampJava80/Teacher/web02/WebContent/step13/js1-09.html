@@ -1,0 +1,45 @@
+<!-- 주제: 변수의 사용법 - 변수와 함수 블록 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+"use strict";
+/*
+- 자바스크립트는 함수 블록에 선언한 변수와 함수 밖에 선언한 변수는 구분한다.
+- 함수 밖에 선언한 변수 => 글로벌 변수 => window 객체에 저장된다.
+- 함수 안에 선언한 변수 => 로컬 변수 => 함수가 호출될 때 사용되고 호출이 끝나면 제거된다.
+ */
+var a = 10; // 글로벌 변수
+
+function m() {
+	var a = 20; // m()에서만 유효한 로컬 변수
+	var b = 30; // m()에서만 유효한 로컬 변수
+	
+	//로컬 변수와 이름이 같은 글로벌 변수를 사용하고 싶을 때?
+	window.a = 100;
+}
+
+m(); // 메서드 호출
+
+console.log("a=", a); // 100
+console.log("b=", b); // b is not defined
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

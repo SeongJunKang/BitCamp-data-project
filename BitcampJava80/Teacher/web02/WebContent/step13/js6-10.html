@@ -1,0 +1,88 @@
+<!-- 주제: AJAX(Asynchronous Javascript And XML) 사용법 - 다른 사이트에 비동기 요청하기 
+=> 1) 웹 브라우저에서 직접 요청하는 것이 아니라,
+      서버의 중계 프로그램을 통해 요청하는 방법.   
+=> js6-10.html        ===> localhost:8080/web02/step13/js6-ajaxproxy.jsp
+   js6-ajaxproxy.jsp  ===> 192.168.0.28:8080/web02/step13/js6-ajax02.jsp?menu=...
+    
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div, a {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 10px;
+}
+
+#d2 {
+  height: 200px;
+}
+</style>
+</head>
+<body>
+<div id="content">content
+	<div id="d1">
+	  <button id="btn1" data-menu="1">버튼1</button>
+	  <button id="btn2" data-menu="2">버튼2</button>
+	  <button id="btn3" data-menu="3">버튼3</button>
+	</div>
+	<div id="d2"></div>
+</div>
+
+<script>
+var btn1 = document.querySelector("#btn1");
+var btn2 = document.querySelector("#btn2");
+var btn3 = document.querySelector("#btn3");
+
+var d2 = document.querySelector("#d2");
+
+if (document.addEventListener) { // IE9 이상
+	btn1.addEventListener("click", onclickMenu);
+	btn2.addEventListener("click", onclickMenu);
+	btn3.addEventListener("click", onclickMenu);
+	
+} else if (document.attachEvent) { // IE8 이하
+	btn1.attachEvent("onclick", onclickMenu);
+  btn2.attachEvent("onclick", onclickMenu);
+  btn3.attachEvent("onclick", onclickMenu);  
+}
+
+function onclickMenu(event) {
+	var xhr;
+	if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest();
+	} else { // IE6 이하 
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			  d2.innerHTML = xhr.responseText;
+			  
+		} else if (xhr.readyState == 4 && xhr.status != 200) {
+			  console.log("서버 요청에 문제 발생!");
+		}
+	};
+	
+  xhr.open("GET", "js6-ajaxproxy.jsp?menu=" + this.getAttribute("data-menu"), true);
+  xhr.send(null); 
+  
+  var a = document.createElement("a");
+  a.href = "http://www.bitcamp.co.kr";
+  a.innerHTML = "비트캠프";
+  
+  document.body.appendChild(a);
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

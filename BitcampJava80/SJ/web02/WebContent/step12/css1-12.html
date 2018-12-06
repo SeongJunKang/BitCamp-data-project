@@ -1,0 +1,59 @@
+<!-- 셀렉트 사용법 - 상태 조건으로 태그 선택
+=> 특정 상태에 해당하는 태그를 선택
+셀렉터 : nth-child => 대상 태그가 부모로부터 n번째인 태그를 찾는다.
+                      단 n은 1부터 시작한다.
+1) 태그 선택
+    태그명 {}
+    
+2) 아이디 선택
+    #아이디 {}
+    
+3) 클래스 선택
+    .클래스명 {}
+    
+4) 자손을 선택
+    태그 자손태그 {}
+    태그 > 자식태그 {}
+    
+5) 조건으로 태그를 선택
+		태그#아이디 {}
+		태그.클래스명 {}
+		태그 [속성명]
+    태그 [속성명=값]
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 01</title>
+<style>
+tr:nth-child(2n + 1) {
+	background-color: yellow;
+}
+
+tr:FIRST-CHILD {
+	background-color: aqua;
+}
+</style>
+</head>
+<body>
+<table border="1">
+<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th></tr>
+<tr><th>1</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>2</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>3</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>4</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>5</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>6</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>7</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>8</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>9</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>10</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>11</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>12</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+<tr><th>13</th><th>aaaaaaa</th><th>홍길동</th><th>2016-05-24</th></tr>
+<tr><th>14</th><th>bbbbbbb</th><th>강성준</th><th>2016-05-24</th></tr>
+</table>
+</body>
+</html>

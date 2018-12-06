@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--1) 값을 넘기는 단축 표기법 -->
+	<bean id="c1" class="step33$Spring_Ioc.exam02.Car">
+		<constructor-arg value="800" type="int"/>
+		<constructor-arg value="티코" type="java.lang.String"/>
+	</bean>
+	
+	<!--2) 타입 속성 생략 -->
+	<bean id="c2" class="step33$Spring_Ioc.exam02.Car">
+		<constructor-arg value="티코"/>
+		<constructor-arg value="800"/>
+	</bean>
+	
+	<!-- 3) index 속성 -->
+	<bean id="c3" class="step33$Spring_Ioc.exam02.Car">
+		<constructor-arg index = "0" value="티코"/>
+		<constructor-arg index = "1" type="int" value="800"/>
+	</bean>
+</beans>

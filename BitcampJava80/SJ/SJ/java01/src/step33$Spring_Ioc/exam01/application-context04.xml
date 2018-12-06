@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- id 나 name은 중복되어서는 안된다. -->
+    <bean id="c1" class="step33$Spring_Ioc.exam01.Car"/>
+    <!--  name 은 이름을 여러개 지정 할 수 있다 ! -->
+    <bean name="c2,c3" class="step33$Spring_Ioc.exam01.Car"/>
+    <bean name="c4;c5;c6" class="step33$Spring_Ioc.exam01.Car"/>
+    <bean name="c7 c8 c9" class="step33$Spring_Ioc.exam01.Car"/>
+    <bean id ="c10" name="c11" class="step33$Spring_Ioc.exam01.Car"/>
+
+</beans>

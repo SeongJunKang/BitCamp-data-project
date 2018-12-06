@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1) 호출할 생성자를 지정하지 않으면 기본 생성자를 호출한다. -->
+    <bean id="c1" class="step33.exam02.Car"/>
+    
+    <!-- 2) 다른 생성자 호출하기 -->
+    <bean id="c2" class="step33.exam02.Car">
+      <constructor-arg><value type="java.lang.String">티코</value></constructor-arg>
+      <constructor-arg><value type="int">800</value></constructor-arg>
+    </bean>
+    
+    <bean id="c3" class="step33.exam02.Car">
+      <constructor-arg><value type="java.lang.String">티코</value></constructor-arg>
+      <constructor-arg><value type="java.lang.String">비트자동차</value></constructor-arg>
+    </bean>
+    
+    <bean id="c4" class="step33.exam02.Car">
+      <constructor-arg><value type="java.lang.String">티코</value></constructor-arg>
+      <constructor-arg><value type="int">800</value></constructor-arg>
+      <constructor-arg><value type="java.lang.String">비트자동차</value></constructor-arg>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

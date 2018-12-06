@@ -1,0 +1,92 @@
+<!-- 주제: 색상 및 배경 다루기 - 배경 그림 넣기 응용편 2
+=> 한 개의 그림 파일에 성공과 실패 아이콘을 함께 두고,
+   단지 위치 이동으로 처리한다. => 실행 속도가 빠르다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+  /* border: 1px solid red; */
+}
+
+#imgbox {
+  /* border: 1px solid red; */
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 5px 0 0 0;
+  padding: 0px;
+}
+
+input[name=email] {
+  border-width: 0px;
+  height: 19px;
+  margin: 0px 5px 3px 0;
+  padding: 0px;
+}
+
+input[name=email]:focus {
+  outline: none;
+}
+
+.success {
+  background: white url("img03.png") no-repeat -87px -27px;
+}
+
+.failure {
+  background: white url("img03.png") no-repeat -287px -27px;
+}
+
+#emailbox {
+  display: inline-block;
+  border: 1px solid gray;
+  width: 195px;
+  padding-left: 5px;
+}
+
+</style>
+</head>
+<body>
+이메일:
+<div id="emailbox"> 
+<input id="email" type="text" name="email"><div id="imgbox"></div><span id="checkResult"></span>
+</div><br>
+
+암호: <input id="password" type="password" name="password"><br>
+<button type="button">로그인</button>
+
+<script>
+var t1 = document.getElementById("email");
+var imgbox = document.getElementById("imgbox");
+
+t1.onkeyup = function(event) {
+	if (t1.value == "admin") { // 중복 이메일로 가정하자!
+		//document.getElementById("checkResult").innerHTML = "중복된 이메일입니다.";
+	  imgbox.className = "failure";
+	  
+	} else if (t1.value.length == 0) {
+		//document.getElementById("checkResult").innerHTML = "";
+		imgbox.className = "";
+		
+	} else { // 신규 이메일로 가정하자!
+		//document.getElementById("checkResult").innerHTML = "사용 가능!";
+	  imgbox.className = "success";
+	}
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

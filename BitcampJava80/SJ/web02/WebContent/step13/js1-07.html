@@ -1,0 +1,22 @@
+<!-- 변수의 사용법 - "use strict"  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 01</title>
+</head>
+<body>
+	<script type="text/javascript">
+	"use strict" // 특별한 명령어다. 자바스크립트 엔진에게 보내는 특수 명령.
+	/*
+	- 자바스크립트는 프로퍼티를 중복 선언하더라도 오류가 아니다.
+	- 다만 기존에 있는 프로퍼티를 덮어 쓸 뿐이다.
+	*/
+  var name = "홍길동";
+	console.log(name);
+	var name = "엄진영";
+	console.log(name);   
+	</script>
+</body>
+</html>

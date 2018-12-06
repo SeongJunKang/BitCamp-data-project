@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="c1" class="step33.exam05.Car">
+      <property name="model" value="소나타"/>
+      <property name="maker" value="비트자동차"/>
+      <!-- 배열 주입하기 -->
+      <property name="tires">
+        <array>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+        </array>
+      </property>
+    </bean>
+    
+    <bean id="c2" class="step33.exam05.Car">
+      <property name="model" value="소나타"/>
+      <property name="maker" value="비트자동차"/>
+      <!-- 배열 주입하기 -->
+      <property name="tires">
+        <list>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+        </list>
+      </property>
+    </bean>
+    
+    <bean id="c3" class="step33.exam05.Car">
+      <property name="model" value="소나타"/>
+      <property name="maker" value="비트자동차"/>
+      <!-- List 주입하기 -->
+      <property name="tires2">
+        <array>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+        </array>
+      </property>
+    </bean>
+    
+    <bean id="c4" class="step33.exam05.Car">
+      <property name="model" value="소나타"/>
+      <property name="maker" value="비트자동차"/>
+      <!-- List 주입하기 -->
+      <property name="tires2">
+        <list>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+          <bean class="step33.exam05.Tire" p:width="225" p:aspectRatio="50" p:rim="75"/>
+        </list>
+      </property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
